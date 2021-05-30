@@ -12,11 +12,12 @@
         <v-spacer></v-spacer>
 
         <div
-          :class="[isMobile ? 'd-none' : 'd-flex  mr-5']"
-          v-for="(route, index) in routes"
-          :key="index"
+          :class="[isMobile ? 'd-none' : '	d-none  d-flex mr-5 d-sm-flex']"
+        
         >
           <v-btn
+            v-for="(route, index) in routes"
+          :key="index"
             :text="route.text"
             :dark="route.dark"
             :color="route.color"
@@ -48,10 +49,11 @@
           <v-list-item-group
             v-model="group"
             active-class="green--text text--accent-4"
-            v-for="(route, index) in routes"
-            :key="index"
+          
           >
             <v-list-item
+              v-for="(route, index) in routes"
+            :key="index"
               link
               class="text-capitalize"
               :to="{ name: route.slug }"
@@ -141,16 +143,27 @@ export default {
       ]
     };
   },
-  mounted() {
-    window.addEventListener("resize", () => {
-      if (window.innerWidth <= 772) {
+  methods: {
+    resize() {
+            if (window.innerWidth <= 772) {
         console.log(window.innerWidth);
         this.isMobile = true;
         console.log(this.isMobile);
       } else {
         this.isMobile = false;
       }
-    });
-  }
-};
+  
+    }
+  },
+  mounted() {
+
+    window.addEventListener("resize", () => {
+      this.resize()
+    })
+
+  },
+  created () {
+    this.resize()
+  },
+  };
 </script>
