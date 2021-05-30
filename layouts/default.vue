@@ -80,6 +80,7 @@ export default {
   data() {
     return {
       drawer: null,
+      group: null,
       isMobile: false,
       routes: [
         {
