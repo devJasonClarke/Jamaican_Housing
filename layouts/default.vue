@@ -11,13 +11,10 @@
 
         <v-spacer></v-spacer>
 
-        <div
-          :class="[isMobile ? 'd-none' : '	d-none  d-flex mr-5 d-sm-flex']"
-        
-        >
+        <div :class="[isMobile ? 'd-none' : '	d-none  d-flex mr-5 d-sm-flex']">
           <v-btn
             v-for="(route, index) in routes"
-          :key="index"
+            :key="index"
             :text="route.text"
             :dark="route.dark"
             :color="route.color"
@@ -25,50 +22,46 @@
             link
             :to="{ name: route.slug }"
           >
- 
             {{ route.title }}
           </v-btn>
         </div>
       </v-toolbar>
       <v-divider></v-divider>
-
-      <v-navigation-drawer v-model="drawer" absolute temporary>
-        <v-list-item>
-          <v-list-item-avatar>
-            <v-img src="https://www.countryflags.io/jm/flat/64.png"></v-img>
-          </v-list-item-avatar>
-
-          <v-list-item-content>
-            <v-list-item-title>Real Estate JA</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-divider></v-divider>
-
-        <v-list dense nav>
-          <v-list-item-group
-            v-model="group"
-            active-class="green--text text--accent-4"
-          
-          >
-            <v-list-item
-              v-for="(route, index) in routes"
-            :key="index"
-              link
-              class="text-capitalize"
-              :to="{ name: route.slug }"
-            >
-              <v-list-item-icon>
-                <v-icon>{{ route.icon }}</v-icon>
-              </v-list-item-icon>
-
-              <v-list-item-title>{{ route.title }}</v-list-item-title>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
-      </v-navigation-drawer>
     </nav>
+    <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-list-item>
+        <v-list-item-avatar>
+          <v-img src="https://www.countryflags.io/jm/flat/64.png"></v-img>
+        </v-list-item-avatar>
 
+        <v-list-item-content>
+          <v-list-item-title>Real Estate JA</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list dense nav>
+        <v-list-item-group
+          v-model="group"
+          active-class="green--text text--accent-4"
+        >
+          <v-list-item
+            v-for="(route, index) in routes"
+            :key="index"
+            link
+            class="text-capitalize"
+            :to="{ name: route.slug }"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ route.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-title>{{ route.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
     <v-main>
       <v-container>
         <nuxt />
@@ -145,25 +138,22 @@ export default {
   },
   methods: {
     resize() {
-            if (window.innerWidth <= 772) {
+      if (window.innerWidth <= 772) {
         console.log(window.innerWidth);
         this.isMobile = true;
         console.log(this.isMobile);
       } else {
         this.isMobile = false;
       }
-  
     }
   },
   mounted() {
-
     window.addEventListener("resize", () => {
-      this.resize()
-    })
-
+      this.resize();
+    });
   },
-  created () {
-    this.resize()
-  },
-  };
+  created() {
+    this.resize();
+  }
+};
 </script>
