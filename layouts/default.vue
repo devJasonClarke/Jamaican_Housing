@@ -96,7 +96,7 @@ export default {
           dark: false,
           color: ""
         },
-        {
+       {
           title: "sell",
           slug: "sell",
           icon: "mdi-currency-usd",
@@ -104,8 +104,8 @@ export default {
           text: true,
           dark: false,
           color: ""
-        },
-        {
+        }, 
+       /*  {
           title: "blog",
           slug: "blog",
           icon: "mdi-newspaper-variant-multiple-outline",
@@ -113,7 +113,7 @@ export default {
           text: true,
           dark: false,
           color: ""
-        },
+        },  */
         {
           title: "contact",
           slug: "contact",
@@ -123,9 +123,27 @@ export default {
           dark: false,
           color: ""
         },
+        {
+          title: "Log In",
+          slug: "login",
+          icon: "mdi-login-variant",
+          depressed: false,
+          text: true,
+          dark: false,
+          color: ""
+        },
+        {
+          title: "Sign Up",
+          slug: "signup",
+          icon: "mdi-cellphone-link",
+          depressed: false,
+          text: true,
+          dark: false,
+          color: ""
+        },
 
         {
-          title: "add to listing",
+          title: "add a listing",
           slug: "dashboard",
           icon: "mdi-view-dashboard",
           depressed: true,
