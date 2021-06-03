@@ -64,7 +64,7 @@
               </v-col>
 
               <v-col cols="2">
-                <v-btn color="success" block class="pa-5 ">Search</v-btn>
+                <v-btn color="green accent-4" dark block class="pa-5 ">Search</v-btn>
               </v-col>
             </v-row></v-container
           >
