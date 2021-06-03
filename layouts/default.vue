@@ -7,7 +7,7 @@
           @click.stop="drawer = !drawer"
         >
         </v-app-bar-nav-icon>
-        <v-toolbar-title>Real Estate Ja</v-toolbar-title>
+        <v-toolbar-title ><nuxt-link to="/">Real Estate Ja</nuxt-link></v-toolbar-title>
 
         <v-spacer></v-spacer>
 
@@ -35,7 +35,7 @@
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title>Real Estate JA</v-list-item-title>
+          <v-list-item-title class="gn">Real Estate JA</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
@@ -62,11 +62,13 @@
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
+
     <v-main>
-      <v-container>
+      <v-container fluid class="ma-0 pa-0">
         <nuxt />
       </v-container>
     </v-main>
+
   </v-app>
 </template>
 
