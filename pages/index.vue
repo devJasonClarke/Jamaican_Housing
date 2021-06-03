@@ -1,72 +1,31 @@
 <template>
   <div>
-<the-home-page-header />
-    <v-container class="tabs">
-      <v-sheet>
-        <div class="tab-buttons">
-          <v-btn
-            depressed
-            tile
-            x-large
-            class="mr-1 rounded-t-lg"
-            @click="changeTab(toggle[0])"
-            color="white"
-            >Buy</v-btn
-          >
-          <v-btn
-            depressed
-            tile
-            x-large
-            @click="changeTab(toggle[1])"
-            color="grey lighten-1"
-            class="rounded-t-lg"
-            >Rent</v-btn
-          >
-        </div>
-        <v-card
-          tile
-          height="90"
-          color="white"
-          elevation="3"
-          class="rounded-b-lg rounded-tr-lg"
-        >
-          {{ tabs }}
-        </v-card>
-      </v-sheet>
-      <v-container class="top">
-        jah jah thank you
-      </v-container>
+    <TheHomePageHeader />
+    <TheHomePageHeaderSearchSection />
+    <v-container class="top">
+      <SectionTitles
+        subTitle="FIND YOUR HOME TODAY"
+        mainTitle=" Featured listings around you"
+        linkMessage="See all featured listings "
+      />
     </v-container>
   </div>
 </template>
 
 <script>
-
-import TheHomePageHeader from '../components/TheHomePageHeader.vue';
+import TheHomePageHeader from "../components/TheHomePageHeader.vue";
 export default {
   components: { TheHomePageHeader },
   data() {
-    return {
-      tabs: "buy",
-      toggle: ["buy", "rent"]
-    };
-  },
-  methods: {
-    changeTab(x) {
-      this.tabs = x;
-    }
+    return {};
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.top{
+.top {
   background: rgb(255, 215, 215);
   margin-top: 90px;
   height: 100vh;
-}
-.tabs {
-  margin-top: -110px;
-
 }
 </style>
