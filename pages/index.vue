@@ -33,6 +33,9 @@
           {{ tabs }}
         </v-card>
       </v-sheet>
+      <v-container class="top">
+        jah jah thank you
+      </v-container>
     </v-container>
   </div>
 </template>
@@ -57,25 +60,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.top{
+  background: rgb(255, 215, 215);
+  margin-top: 90px;
+  height: 100vh;
+}
 .tabs {
   margin-top: -110px;
-}
 
-.header-img {
-  height: 590px;
-}
-.header-text-container {
-  display: flex;
-  align-items: center;
-  min-height: 590px;
-  color: white;
-
-  h1 {
-    font-size: 72px;
-  }
-
-  p {
-    font-size: 20px;
-  }
 }
 </style>
