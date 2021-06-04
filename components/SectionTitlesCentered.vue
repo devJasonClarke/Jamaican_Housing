@@ -1,7 +1,7 @@
 <template>
   <v-container class="section-margin-top">
     <v-row>
-      <v-col cols="11" class=" pb-0">
+      <v-col cols="12" class=" pb-0 text-center">
         <p
           class="mb-1 text-subtitle-1 font-weight-bold text-uppercase section-titles-Subtitle"
         >
@@ -10,15 +10,12 @@
       </v-col>
       <v-col
         cols="12"
-        class="d-flex justify-space-between flex-column flex-sm-row pt-0 align-sm-end"
+        class="text-center"
       >
         <p class="text-h4 font-weight-bold pr-2">
           {{ mainTitle }}
         </p>
-        <v-spacer></v-spacer>
-        <p>
-          {{ linkMessage }} <v-icon>mdi-chevron-double-right mdi-18px</v-icon>
-        </p></v-col
+      </v-col
       >
     </v-row>
   </v-container>
@@ -48,4 +45,5 @@ export default {
   letter-spacing: 3px !important ;
   color: var(--primary-green);
 }
+
 </style>

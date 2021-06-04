@@ -1,8 +1,14 @@
 :root {
-    --primary-green: #00C853;
-  }
+  --primary-green: #00c853;
+}
 
-.primary-green{
- color: var(--primary-green);   
+.primary-green {
+  color: var(--primary-green);
+}
+.section-margin-top {
+  margin-top: 80px;
+}
+.sub-section-margin-top {
+  margin-top: 30px;
 }
 

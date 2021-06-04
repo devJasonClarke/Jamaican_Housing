@@ -16,9 +16,7 @@
           {{ mainTitle }}
         </p>
         <v-spacer></v-spacer>
-        <p>
-          {{ linkMessage }} <v-icon>mdi-chevron-double-right mdi-18px</v-icon>
-        </p></v-col
+       </v-col
       >
     </v-row>
   </v-container>
@@ -32,10 +30,6 @@ export default {
       required: true
     },
     mainTitle: {
-      type: String,
-      required: true
-    },
-    linkMessage: {
       type: String,
       required: true
     }
