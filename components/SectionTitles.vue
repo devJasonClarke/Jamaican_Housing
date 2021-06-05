@@ -1,5 +1,5 @@
 <template>
-  <v-container class="section-margin-top">
+  <v-container  >
     <v-row>
       <v-col cols="11" class=" pb-0">
         <p
