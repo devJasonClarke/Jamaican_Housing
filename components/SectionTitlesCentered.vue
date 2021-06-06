@@ -40,10 +40,3 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.section-titles-Subtitle {
-  letter-spacing: 3px !important ;
-  color: var(--primary-green);
-}
-
-</style>

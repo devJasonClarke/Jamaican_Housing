@@ -16,8 +16,8 @@
                   mdi-home-search-outline mdi-36px
                 </v-icon>
               </v-avatar>
-              <p class="mt-6">Search For THE PERFECT PLACE</p>
-              <p>
+              <p class="mt-6 text-subtitle-1 font-weight-bold text-uppercase">Search For THE PERFECT PLACE</p>
+              <p class="text-body-2"> 
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio
                 atque repellendus voluptas ut doloremque impedit.
               </p>
@@ -28,8 +28,8 @@
               <v-avatar size="62" color="green lighten-4" class="">
                 <v-icon dark color="green">mdi-key-variant mdi-36px</v-icon>
               </v-avatar>
-              <p class="mt-6">Rent THE PERFECT PLACE</p>
-              <p>
+              <p class="mt-6 text-subtitle-1 font-weight-bold text-uppercase">Rent THE PERFECT PLACE</p>
+              <p class="text-body-2">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio
                 atque repellendus voluptas ut doloremque impedit.
               </p>
@@ -42,8 +42,8 @@
                   >mdi-home-group mdi-36px</v-icon
                 ></v-avatar
               >
-              <p class="mt-6">List THE PERFECT PLACE</p>
-              <p>
+              <p class="mt-6 text-subtitle-1 font-weight-bold text-uppercase">List THE PERFECT PLACE</p>
+              <p class="text-body-2">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio
                 atque repellendus voluptas ut doloremque impedit.
               </p>

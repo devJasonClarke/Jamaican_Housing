@@ -7,9 +7,11 @@
             depressed
             tile
             x-large
-            class="mr-1 rounded-t-lg "
+            :class="[
+              tabs === 'buy' ? 'white' : 'grey lighten-1',
+              'mr-1 rounded-t-lg'
+            ]"
             @click="changeTab(toggle[0])"
-            color="white"
             >Buy</v-btn
           >
           <v-btn
@@ -17,20 +19,26 @@
             tile
             x-large
             @click="changeTab(toggle[1])"
-            color="grey lighten-1"
-            class="rounded-t-lg"
+            :class="[
+              tabs === 'rent' ? 'white' : 'grey lighten-1',
+              'rounded-t-lg'
+            ]"
             >Rent</v-btn
           >
         </div>
         <v-card
           tile
-          height="90"
+          min-height="90"
           color="white"
           elevation="3"
-          class="rounded-b-lg rounded-tr-lg d-flex align-center"
+          class="rounded-b-lg rounded-tr-lg d-flex align-center pa-3"
         >
           <v-container fluid class="px-6">
-            <v-row align="center" justify="space-around">
+            <v-row
+              align="center"
+              justify="space-around"
+              class="flex-column flex-md-row"
+            >
               <v-col>
                 <v-select
                   outlined
@@ -38,7 +46,7 @@
                   label="PARISH"
                   prepend-icon="mdi-map-marker"
                   hide-details
-                  :items="items"
+                  :items="parishes"
                   color="green"
                 ></v-select>
               </v-col>
@@ -49,7 +57,7 @@
                   label="TYPE"
                   prepend-icon="mdi-home-city"
                   hide-details
-                  :items="items"
+                  :items="realEstateType"
                 ></v-select>
               </v-col>
               <v-col>
@@ -59,11 +67,11 @@
                   label="MAX PRICE"
                   prepend-icon="mdi-cash-multiple "
                   hide-details
-                  :items="items"
+                  :items="maxPrices[tabs]"
                 ></v-select>
               </v-col>
 
-              <v-col cols="2">
+              <v-col md="2">
                 <v-btn color="green accent-4" dark block class="pa-5 "
                   >Search</v-btn
                 >
@@ -80,9 +88,55 @@
 export default {
   data() {
     return {
+      currency: '$',
       tabs: "buy",
       toggle: ["buy", "rent"],
-      items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+      items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+      parishes: [
+        "Clarendon",
+        "Hanover",
+        "Kingston",
+        "Manchester",
+        "Portland",
+        "St. Andrew",
+        "St. Ann",
+        "St. Catherine",
+        "St. Elizabeth",
+        "St. James",
+        "St. Mary",
+        "St. Thomas",
+        "Trelawny",
+        "Westmoreland"
+      ],
+      realEstateType: [
+        "Apartment",
+        "Commercial Building/Offices",
+        "Development Land (Commercial)",
+        "Development Land (Residential)",
+        "Factory",
+        "Farm/Agriculture",
+        "House",
+        "Townhouse",
+        "Warehouse"
+      ],
+      maxPrices: {
+        rent: [
+          "$ 50,000 JMD" ,
+          "$ 70,000 JMD" ,
+          "$ 200,000 JMD" ,
+          "$ 500,000 JMD" ,
+          "$ 700,000 JMD" ,
+          "$ 2,000,00 JMD "
+        ],
+        buy: [
+          "$ 5,000,000 JMD",
+          "$ 14,000,000 JMD",
+          "$ 25,000,000 JMD",
+          "$ 50,000,000 JMD",
+          "$ 75,000,000 JMD",
+          "$ 150,000,00 JMD"
+        ]
+      }
     };
   },
 

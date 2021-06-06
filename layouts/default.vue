@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="font">
     <nav>
       <v-toolbar flat>
         <v-app-bar-nav-icon
