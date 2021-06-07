@@ -14,25 +14,31 @@
         subTitle="FIND YOUR HOME TODAY"
         mainTitle="Featured listings around you"
         linkMessage="See all featured listings "
-       
       />
+
+     <TheSwiper :card='card' />
     </SectionPadding>
   </div>
 </template>
 
 <script>
 import TheHomePageHeader from "../components/TheHomePageHeader.vue";
-import sellSvg from "~/assets/images/svg/sell.svg";
-import rentSvg from "~/assets/images/svg/rent.svg";
-import buySvg from "~/assets/images/svg/buy.svg";
+
 export default {
+
   components: { TheHomePageHeader },
   data() {
     return {
-      sellSvg: sellSvg,
-      rentSvg: rentSvg,
-      buySvg: buySvg
-    };
+        card: {
+        title: "Top you adfasd road trips",
+        parish: "St. James",
+        realEstateType: "Apartment",
+        squareMeters: 80,
+        beds: 3,
+        bathroom: 2,
+        price: 70
+      }
+    }
   }
 };
 </script>
