@@ -44,6 +44,7 @@
                   outlined
                   dense
                   label="PARISH"
+                  v-model="selectedParish"
                   prepend-icon="mdi-map-marker"
                   hide-details
                   :items="parishes"
@@ -55,6 +56,7 @@
                   outlined
                   dense
                   label="TYPE"
+                  v-model="selectedRealEstateType"
                   prepend-icon="mdi-home-city"
                   hide-details
                   :items="realEstateType"
@@ -65,6 +67,7 @@
                   outlined
                   dense
                   label="MAX PRICE"
+                  v-model="selectedMaxPrice"
                   prepend-icon="mdi-cash-multiple "
                   hide-details
                   :items="maxPrices[tabs]"
@@ -81,17 +84,23 @@
         </v-card>
       </v-sheet>
     </v-container>
+    {{selectedParish}}
+    {{selectedRealEstateType}}
+    {{selectedMaxPrice}}
   </div>
+  
 </template>
 
 <script>
 export default {
   data() {
     return {
-      currency: '$',
+      currency: "$",
       tabs: "buy",
       toggle: ["buy", "rent"],
-      items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+      selectedParish: "",
+      selectedRealEstateType: "",
+      selectedMaxPrice: "",
       parishes: [
         "Clarendon",
         "Hanover",
@@ -121,11 +130,12 @@ export default {
       ],
       maxPrices: {
         rent: [
-          "$ 50,000 JMD" ,
-          "$ 70,000 JMD" ,
-          "$ 200,000 JMD" ,
-          "$ 500,000 JMD" ,
-          "$ 700,000 JMD" ,
+          "$ 50,000 JMD",
+          "$ 70,000 JMD",
+          "$ 150,000 JMD",
+          "$ 200,000 JMD",
+          "$ 500,000 JMD",
+          "$ 700,000 JMD",
           "$ 2,000,00 JMD "
         ],
         buy: [
@@ -134,6 +144,7 @@ export default {
           "$ 25,000,000 JMD",
           "$ 50,000,000 JMD",
           "$ 75,000,000 JMD",
+          "$ 100,000,000 JMD",
           "$ 150,000,00 JMD"
         ]
       }
