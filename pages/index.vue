@@ -30,7 +30,7 @@ export default {
   data() {
     return {
         card: {
-        title: "Top you adfasd road trips",
+        title: "Sunny Private Studio Apartment",
         parish: "St. James",
         realEstateType: "Apartment",
         squareMeters: 80,
