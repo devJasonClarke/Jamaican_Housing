@@ -3,6 +3,10 @@
   --primary-green: rgba(0, 200, 83, 0.685);
 }
 
+a{
+  text-decoration: none;
+}
+
 .primary-green {
   color: var(--primary-green) !important;
 }
@@ -19,6 +23,9 @@
 .section-titles-Subtitle {
   letter-spacing: 3px !important ;
   color: var(--primary-green);
+}
+.letter-spacing{
+  letter-spacing: 13px !important ;
 }
 .background-shade{
 

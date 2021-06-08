@@ -16,7 +16,15 @@
         linkMessage="See all featured listings "
       />
 
-     <TheSwiper :card='card' />
+      <TheRealEstatePropertySwiper :card="card" />
+    </SectionPadding>
+    <SectionPadding>
+      <SectionTitles
+        subTitle="MOST POPULAR parishes"
+        mainTitle="What's trending"
+        linkMessage="See all parishes "
+      />
+<TheTrendingSection />
     </SectionPadding>
   </div>
 </template>
@@ -25,11 +33,11 @@
 import TheHomePageHeader from "../components/TheHomePageHeader.vue";
 
 export default {
-
   components: { TheHomePageHeader },
   data() {
     return {
-        card: {
+
+      card: {
         title: "Sunny Private Studio Apartment",
         parish: "St. James",
         realEstateType: "Apartment",
@@ -38,7 +46,7 @@ export default {
         bathroom: 2,
         price: 70
       }
-    }
+    };
   }
 };
 </script>

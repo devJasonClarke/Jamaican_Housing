@@ -60,6 +60,7 @@
                   prepend-icon="mdi-home-city"
                   hide-details
                   :items="realEstateType"
+                     color="green"
                 ></v-select>
               </v-col>
               <v-col>
@@ -71,6 +72,7 @@
                   prepend-icon="mdi-cash-multiple "
                   hide-details
                   :items="maxPrices[tabs]"
+                     color="green"
                 ></v-select>
               </v-col>
 
@@ -84,9 +86,9 @@
         </v-card>
       </v-sheet>
     </v-container>
-    {{selectedParish}}
+<!--     {{selectedParish}}
     {{selectedRealEstateType}}
-    {{selectedMaxPrice}}
+    {{selectedMaxPrice}} -->
   </div>
   
 </template>
@@ -154,6 +156,7 @@ export default {
   methods: {
     changeTab(x) {
       this.tabs = x;
+      this.selectedMaxPrice = '';
     }
   }
 };
