@@ -1,8 +1,8 @@
 <template>
   <div class="section-margin-top ">
-    <swiper class="swiper" :options="swiperOption">
+    <swiper class="swiper" :options="propertySwiperOption">
       <swiper-slide class="sliide" v-for="index in 7" :key="index">
-        <v-card class="mx-auto" max-width="252">
+        <v-card class="mx-auto" max-width="252" nuxt :to="{name: 'buy'}">
           <v-img
             src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
             height="168"
@@ -59,7 +59,7 @@ export default {
   },
   data() {
     return {
-      swiperOption: {
+      propertySwiperOption: {
         initialSlide: 3,
         /*         loop: true,
         loopedSlides: 0, */

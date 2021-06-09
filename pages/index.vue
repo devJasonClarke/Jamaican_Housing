@@ -24,19 +24,61 @@
         mainTitle="What's trending"
         linkMessage="See all parishes "
       />
-<TheTrendingSection />
+      <TheTrendingSection />
     </SectionPadding>
+    <SectionPadding>
+      <SectionTitles
+        subTitle="Our Amazing support system"
+        mainTitle="Premiere Sponsors & Partners"
+        linkMessage="Become a sponsor "
+      />
+      <v-container>
+        <swiper class="swiper" :options="sponsorSwiperOption">
+          <swiper-slide class="sliide">
+           <div class="img-wrap">
+              <v-img  :src="sponsorOne" class="images" 
+          > </v-img>
+           </div>
+          </swiper-slide>
+          <swiper-slide class="sliide">
+              <div class="img-wrap-2">
+             <v-img  :src="sponsorTwo" class="images" 
+          > </v-img>
+              </div>
+          </swiper-slide>
+        
+
+          <div class="swiper-pagination" slot="pagination"></div>
+        </swiper>
+      </v-container>
+    </SectionPadding>
+        <SectionPadding class="background-shade"></SectionPadding>
   </div>
 </template>
 
 <script>
 import TheHomePageHeader from "../components/TheHomePageHeader.vue";
-
+import sponsorOne from '../assets/images/sponsors/genr8-3d.webp';
+import sponsorTwo from '../assets/images/sponsors/smarthub.svg';
 export default {
   components: { TheHomePageHeader },
   data() {
     return {
+      sponsorOne: sponsorOne,
+      sponsorTwo: sponsorTwo,
+      sponsorSwiperOption: {
+        slidesPerView: 2,
+    
+        /*  centeredSlides: true, */
+        
+        spaceBetween: 30,
 
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+          dynamicBullets: true
+        }
+      },
       card: {
         title: "Sunny Private Studio Apartment",
         parish: "St. James",
@@ -52,5 +94,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.swiper {
+  padding-bottom: 50px;
+}
+.swiper-slide{
+  width: 200px;
+}
+
+.img-wrap{
+  height: 200px;
+  width: auto;
+}
+.img-wrap-2{
+  height: 200px;
+  width: 300px;
+}
 
 </style>
