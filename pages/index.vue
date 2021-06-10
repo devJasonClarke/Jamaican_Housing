@@ -35,31 +35,28 @@
       <v-container>
         <swiper class="swiper" :options="sponsorSwiperOption">
           <swiper-slide class="sliide">
-           <div class="img-wrap">
-              <v-img  :src="sponsorOne" class="images" 
-          > </v-img>
-           </div>
+         
+              <img :src="sponsorOne" class="images" />
+       
           </swiper-slide>
           <swiper-slide class="sliide">
-              <div class="img-wrap-2">
-             <v-img  :src="sponsorTwo" class="images" 
-          > </v-img>
-              </div>
+           
+              <img :src="sponsorTwo" class="images" />
+           
           </swiper-slide>
-        
 
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
       </v-container>
     </SectionPadding>
-        <SectionPadding class="background-shade"></SectionPadding>
+    <SectionPadding class="background-shade"></SectionPadding>
   </div>
 </template>
 
 <script>
 import TheHomePageHeader from "../components/TheHomePageHeader.vue";
-import sponsorOne from '../assets/images/sponsors/genr8-3d.webp';
-import sponsorTwo from '../assets/images/sponsors/smarthub.svg';
+import sponsorOne from "../assets/images/sponsors/genr8-3d.webp";
+import sponsorTwo from "../assets/images/sponsors/smarthub.svg";
 export default {
   components: { TheHomePageHeader },
   data() {
@@ -67,16 +64,24 @@ export default {
       sponsorOne: sponsorOne,
       sponsorTwo: sponsorTwo,
       sponsorSwiperOption: {
-        slidesPerView: 2,
-    
+        slidesPerView: 1,
+        loop: true,
+
         /*  centeredSlides: true, */
-        
+
         spaceBetween: 30,
 
         pagination: {
           el: ".swiper-pagination",
           clickable: true,
           dynamicBullets: true
+        },
+        breakpoints: {
+          // when window width is >= 320px
+          400: {
+            slidesPerView: 2,
+         
+          }
         }
       },
       card: {
@@ -97,17 +102,27 @@ export default {
 .swiper {
   padding-bottom: 50px;
 }
-.swiper-slide{
+.swiper-slide {
   width: 200px;
 }
 
-.img-wrap{
-  height: 200px;
+.images {
+  display: block;
+  max-height: 150px;
   width: auto;
-}
-.img-wrap-2{
-  height: 200px;
-  width: 300px;
+  margin: 0 auto;
 }
 
+@media screen and (max-width: 700px) {
+  .images {
+    height: auto;
+    width: 200px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .images {
+    height: 100px;
+    width: auto;
+  }
+}
 </style>

@@ -49,6 +49,7 @@
                   hide-details
                   :items="parishes"
                   color="green"
+                  item-color='green'
                 ></v-select>
               </v-col>
               <v-col>
@@ -61,6 +62,7 @@
                   hide-details
                   :items="realEstateType"
                      color="green"
+                          item-color='green'
                 ></v-select>
               </v-col>
               <v-col>
@@ -73,6 +75,7 @@
                   hide-details
                   :items="maxPrices[tabs]"
                      color="green"
+                          item-color='green'
                 ></v-select>
               </v-col>
 
