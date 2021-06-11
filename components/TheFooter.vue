@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <SectionPadding class="background-shade-2">
+    <SectionPadding class="backgroundShadeDarker">
       <v-container>
         <v-row>
           <v-col cols="12" md="4" sm="12">

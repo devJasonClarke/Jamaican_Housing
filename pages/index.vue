@@ -9,7 +9,7 @@
       />
       <SectionHompageOpportunitiesExplaination />
     </SectionPadding>
-    <SectionPadding class="background-shade">
+    <SectionPadding class="backgroundShade">
       <SectionTitles
         subTitle="FIND YOUR HOME TODAY"
         mainTitle="Featured listings around you"
@@ -35,12 +35,13 @@
       <TheSponsorsAndPartnersSwiper />
     </SectionPadding>
 
-    <SectionPadding class="background-shade">
+    <SectionPadding class="backgroundShade">
       <TheHomepageSectionSubTitlesNoLink
         subTitle="START Browsing TODAY"
         mainTitle="Real Estate JA allows you to add or discover the best offers on the Jamaican Real Estate market"
       />
     </SectionPadding>
+
   </div>
 </template>
 

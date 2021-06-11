@@ -7,7 +7,7 @@
           tile
           x-large
           :class="[
-            tabs === 'buy' ? 'white' : 'grey lighten-1',
+            tabs === 'buy' ? '' : 'grey lighten-1',
             'mr-1 rounded-t-lg'
           ]"
           @click="changeTab(toggle[0])"
@@ -19,7 +19,7 @@
           x-large
           @click="changeTab(toggle[1])"
           :class="[
-            tabs === 'rent' ? 'white' : 'grey lighten-1',
+            tabs === 'rent' ? '' : 'grey lighten-1',
             'rounded-t-lg'
           ]"
           >Rent</v-btn
@@ -28,7 +28,7 @@
       <v-card
         tile
         min-height="90"
-        color="white"
+
         elevation="3"
         class="rounded-b-lg rounded-tr-lg d-flex align-center pa-3"
       >
