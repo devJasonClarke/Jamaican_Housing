@@ -32,58 +32,108 @@
         mainTitle="Premiere Sponsors & Partners"
         linkMessage="Become a sponsor "
       />
-      <v-container>
-        <swiper class="swiper" :options="sponsorSwiperOption">
-          <swiper-slide class="sliide">
-         
-              <img :src="sponsorOne" class="images" />
-       
-          </swiper-slide>
-          <swiper-slide class="sliide">
-           
-              <img :src="sponsorTwo" class="images" />
-           
-          </swiper-slide>
-
-          <div class="swiper-pagination" slot="pagination"></div>
-        </swiper>
-      </v-container>
+      <TheSponsorsAndPartnersSwiper />
     </SectionPadding>
-    <SectionPadding class="background-shade"></SectionPadding>
+    <SectionPadding class="background-shade">
+      <TheHomepageSectionSubTitlesNoLink
+        subTitle="START Browsing TODAY"
+        mainTitle="Real Estate JA allows you to add or discover the best offers on the Jamaican Real Estate market"
+      />
+    </SectionPadding>
+    <SectionPadding class="background-shade">
+ 
+      <v-container>
+        <v-row>
+          <v-col cols="12" md="4" sm="12">
+            <p class="text-uppercase text-subtitle-1 font-weight-bold" >Real Estate JA</p>
+            <p>Discover the best offers on the Jamaican Real Estate market</p>
+          </v-col>
+
+          <v-col cols="12" md="2" sm="6">
+            <p class="text-uppercase text-subtitle-1 font-weight-bold">Market</p>
+            <ul class="pa-0 red--text">
+              <li>
+                <nuxt-link  :to="{ name: 'buy' }"
+                  >Buy</nuxt-link
+                >
+              </li>
+              <li>
+                <nuxt-link  :to="{ name: 'rent' }"
+                  >Rent</nuxt-link
+                >
+              </li>
+              <li>
+                <nuxt-link  :to="{ name: 'sell' }"
+                  >Sell</nuxt-link
+                >
+              </li>
+              <li>
+                <nuxt-link  :to="{ name: 'dashboard' }"
+                  >Add A Listing</nuxt-link
+                >
+              </li>
+            </ul>
+          </v-col>
+
+          <v-col cols="12" md="2" sm="6">
+            <p class="text-uppercase text-subtitle-1 font-weight-bold">Resources</p>
+            <ul class="pa-0">
+              <li>
+                <nuxt-link  :to="{ name: 'contact' }"
+                  >Contact</nuxt-link
+                >
+              </li>
+
+              <li>
+                <nuxt-link  :to="{ name: 'blog' }"
+                  >Blog</nuxt-link
+                >
+              </li>
+            </ul>
+          </v-col>
+
+          <v-col cols="12" md="4" sm=12>
+            <p class="text-uppercase text-subtitle-1 font-weight-bold">Keep up to date with the market</p>
+            <p>Enter you email address to receive the top real estate deals currently on the market</p>
+            <v-text-field
+              label="Your Email Address"
+              :rules="rules"
+              hide-details="auto"
+              outlined
+              dense
+        
+              color="green accent-4"
+            >
+              <v-icon slot="append">
+                mdi-email
+              </v-icon>
+            </v-text-field>
+          </v-col>
+        </v-row>
+      </v-container>
+      
+    </SectionPadding>
+    <div class="footer green darken-4 white--text  text-center">
+    <p class="py-7 ma-0">  2021. Real Estate JA. All rights reserved.
+</p>
+
+    </div>
   </div>
 </template>
 
 <script>
 import TheHomePageHeader from "../components/TheHomePageHeader.vue";
-import sponsorOne from "../assets/images/sponsors/genr8-3d.webp";
-import sponsorTwo from "../assets/images/sponsors/smarthub.svg";
+
 export default {
   components: { TheHomePageHeader },
   data() {
     return {
-      sponsorOne: sponsorOne,
-      sponsorTwo: sponsorTwo,
-      sponsorSwiperOption: {
-        slidesPerView: 1,
-        loop: true,
-
-        /*  centeredSlides: true, */
-
-        spaceBetween: 30,
-
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-          dynamicBullets: true
-        },
-        breakpoints: {
-          // when window width is >= 320px
-          400: {
-            slidesPerView: 2,
-         
-          }
-        }
-      },
+      rules: [
+        value =>
+          !value ||
+          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+          "E-mail must be valid"
+      ],
       card: {
         title: "Sunny Private Studio Apartment",
         parish: "St. James",
@@ -98,31 +148,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.swiper {
-  padding-bottom: 50px;
-}
-.swiper-slide {
-  width: 200px;
-}
-
-.images {
-  display: block;
-  max-height: 150px;
-  width: auto;
-  margin: 0 auto;
-}
-
-@media screen and (max-width: 700px) {
-  .images {
-    height: auto;
-    width: 200px;
-  }
-}
-@media screen and (max-width: 400px) {
-  .images {
-    height: 100px;
-    width: auto;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

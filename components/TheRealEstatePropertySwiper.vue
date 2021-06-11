@@ -2,7 +2,7 @@
   <div class="section-margin-top ">
     <swiper class="swiper" :options="propertySwiperOption">
       <swiper-slide class="sliide" v-for="index in 7" :key="index">
-        <v-card class="mx-auto" max-width="252" nuxt :to="{name: 'buy'}">
+        <v-card class="mx-auto" max-width="252" nuxt :to="{ name: 'buy' }">
           <v-img
             src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
             height="168"
@@ -60,17 +60,27 @@ export default {
   data() {
     return {
       propertySwiperOption: {
-        initialSlide: 3,
+        initialSlide: 0,
+        slidesPerView: 1,
+
         /*         loop: true,
         loopedSlides: 0, */
-        slidesPerView: "auto",
+
         centeredSlides: true,
-        spaceBetween: 30,
+        spaceBetween: 15,
 
         pagination: {
           el: ".swiper-pagination",
           clickable: true,
           dynamicBullets: true
+        },
+        breakpoints: {
+          // when window width is >= 320px
+          501: {
+            initialSlide: 3,
+            slidesPerView: "auto",
+            spaceBetween: 30
+          }
         }
       },
 
@@ -81,7 +91,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .swiper {
   padding-bottom: 50px;
 }
@@ -89,5 +98,7 @@ export default {
 .swiper-slide {
   width: 252px;
   min-height: 340px;
+  transition: .35s ease;
+
 }
 </style>
