@@ -78,15 +78,14 @@ export default {
           error: colors.red.accent3,
           background: colors.indigo.lighten5,
           info: colors.teal.darken1,
-          backgroundShade: "#f8f9fa",
-          backgroundShadeDarker: "#f0f1f3"
+
         },
         dark: {
           primary: colors.blue.darken4,
           background: colors.indigo.base,
           info: colors.teal.lighten1,
-          backgroundShade: "#272727",
-          backgroundShadeDarker: "#121212"
+ 
+ 
         }
       },
       dark: false

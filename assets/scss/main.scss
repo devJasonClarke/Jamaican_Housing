@@ -3,12 +3,12 @@
   --primary-green: rgba(0, 200, 83, 0.685);
 }
 
-a{
+a {
   text-decoration: none;
   color: black;
 }
-ul{
-  li{
+ul {
+  li {
     list-style: none;
     padding: 2.5px 0;
   }
@@ -23,33 +23,39 @@ ul{
   margin-top: 30px;
 }
 
-.padding-top-and-bottom{
+.padding-top-and-bottom {
   padding: 80px 0 80px 0;
 }
 .section-titles-Subtitle {
   letter-spacing: 3px !important ;
   color: var(--primary-green);
 }
-.letter-spacing{
+.letter-spacing {
   letter-spacing: 13px !important ;
 }
-.background-shade{
 
-    /*   background-color: rgba(232, 245, 233, 0.3); */
-      background-color: #f8f9fa;
-
+.backgroundShade {
+  /*   background-color: rgba(232, 245, 233, 0.3); */
+  background-color: #f8f9fa !important;
 }
-.background-shade-2{
-
-    /*   background-color: rgba(232, 245, 233, 0.3); */
-      background-color: #f0f1f3;
-
-
+.backgroundShadeDarker {
+  /*   background-color: rgba(232, 245, 233, 0.3); */
+  background-color: #f0f1f3 !important;
 }
 
-l{
-  color: #1d1d1d;
+.theme--dark.v-application {
+.backgroundShade {
+  /*   background-color: rgba(232, 245, 233, 0.3); */
+  background-color: #272727 !important;
 }
+}
+.theme--dark.v-application {
+.backgroundShadeDarker {
+  /*   background-color: rgba(232, 245, 233, 0.3); */
+  background-color: #121212 !important;
+}
+}
+
 /* *{
   line-height: 22px !important;
 } */

@@ -237,7 +237,7 @@ export default {
           this.$vuetify.theme.dark = true;
           this.darkTheme = true;
         } else {
-          this.$vuetify.theme.dark = false;
+          this.$vuetify.theme.dark =false;
               this.darkTheme = false;
         }
       }
