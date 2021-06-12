@@ -28,7 +28,11 @@
           >
             {{ route.title }}
           </v-btn>
-          <v-menu open-on-hover offset-y   :close-on-content-click="closeOnContentClick">
+          <v-menu
+            open-on-hover
+            offset-y
+            :close-on-content-click="closeOnContentClick"
+          >
             <template v-slot:activator="{ on, attrs }">
               <v-btn
                 dark
@@ -40,8 +44,8 @@
                 ><v-icon>mdi-account</v-icon> Sign IN
               </v-btn>
             </template>
-    
-            <v-list dense nav >
+
+            <v-list dense nav>
               <v-list-item-group
                 v-model="signInDropDown"
                 active-class="green--text text--accent-4"
@@ -53,20 +57,20 @@
                   class="text-uppercase"
                   :to="{ name: route.slug }"
                 >
-               
                   <v-list-item-title>{{ route.title }}</v-list-item-title>
                 </v-list-item>
               </v-list-item-group>
             </v-list>
-        <v-sheet >     <v-switch
-   v-model="$vuetify.theme.dark"
-      class="px-2 pt-0 mt-0"
-      inset
-      label="Dark Mode"
-      color="green accent-4"
- 
-            
-    ></v-switch></v-sheet>
+            <v-sheet>
+              <v-switch
+               @click="toggleDarkTheme"
+               v-model="darkTheme"
+                class="px-2 pt-0 mt-0"
+                inset
+                label="Dark Mode"
+                color="green accent-4"
+              ></v-switch
+            ></v-sheet>
           </v-menu>
         </div>
       </v-toolbar>
@@ -117,7 +121,7 @@ export default {
       group: null,
       signInDropDown: null,
       closeOnContentClick: false,
-      darkMode: false,
+      darkTheme: false,
       isMobile: false,
       signInMenu: [
         {
@@ -221,6 +225,22 @@ export default {
       } else {
         this.isMobile = false;
       }
+    },
+    toggleDarkTheme() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+      localStorage.setItem("darkTheme", this.$vuetify.theme.dark.toString());
+    },
+    checkDarkTheme() {
+      const theme = localStorage.getItem("darkTheme");
+      if (theme) {
+        if (theme == "true") {
+          this.$vuetify.theme.dark = true;
+          this.darkTheme = true;
+        } else {
+          this.$vuetify.theme.dark = false;
+              this.darkTheme = false;
+        }
+      }
     }
   },
   mounted() {
@@ -228,6 +248,7 @@ export default {
     window.addEventListener("resize", () => {
       this.resize();
     });
+    this.checkDarkTheme();
   }
 };
 </script>
