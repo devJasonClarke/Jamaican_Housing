@@ -196,8 +196,8 @@ export default {
           text: true,
           dark: false,
           color: ""
-        }
-        /*  {
+        },
+         {
           title: "Log In",
           slug: "login",
           icon: "mdi-login-variant",
@@ -214,7 +214,7 @@ export default {
           text: true,
           dark: false,
           color: ""
-        }, */
+        }, 
       ]
     };
   },
@@ -233,7 +233,7 @@ export default {
     checkDarkTheme() {
       const theme = localStorage.getItem("darkTheme");
       if (theme) {
-        if (theme == "true") {
+        if (theme === "true") {
           this.$vuetify.theme.dark = true;
           this.darkTheme = true;
         } else {

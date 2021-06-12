@@ -35,25 +35,29 @@ ul {
 }
 
 .backgroundShade {
-  /*   background-color: rgba(232, 245, 233, 0.3); */
   background-color: #f8f9fa !important;
 }
 .backgroundShadeDarker {
-  /*   background-color: rgba(232, 245, 233, 0.3); */
   background-color: #f0f1f3 !important;
 }
 
 .theme--dark.v-application {
-.backgroundShade {
-  /*   background-color: rgba(232, 245, 233, 0.3); */
-  background-color: #272727 !important;
-}
+  .backgroundShade {
+    background-color: #272727 !important;
+  }
 }
 .theme--dark.v-application {
-.backgroundShadeDarker {
-  /*   background-color: rgba(232, 245, 233, 0.3); */
-  background-color: #121212 !important;
+  .backgroundShadeDarker {
+    background-color: #121212 !important;
+  }
 }
+.theme--dark.v-application {
+  .swiper-pagination-bullet {
+    background: #fff !important;
+  }
+  .swiper-pagination-bullet-active {
+    background: var(--primary-green) !important;
+  }
 }
 
 /* *{
