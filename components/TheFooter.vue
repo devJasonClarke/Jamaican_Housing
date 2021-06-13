@@ -91,7 +91,7 @@ export default {
           },
           {
             title: "sell",
-            route: "sell"
+            route: "dashboard"
           },
           {
             title: "rent",

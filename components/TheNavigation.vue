@@ -17,14 +17,14 @@
           <v-btn
             :class="{ 'd-none': isMobile }"
             v-for="(route, index) in routes"
-            :key="index"
+            :key="'mainNavigation' + index"
             :text="route.text"
             :dark="route.dark"
             :color="route.color"
             :outlined="route.outline"
             :depressed="route.depressed"
             link
-            :to="{ name: route.slug }"
+            :to="{ name: route.route }"
           >
             {{ route.title }}
           </v-btn>
@@ -52,10 +52,10 @@
               >
                 <v-list-item
                   v-for="(route, index) in signInMenu"
-                  :key="index"
+                  :key="'signInMenu' + index"
                   link
                   class="text-uppercase"
-                  :to="{ name: route.slug }"
+                  :to="{ name: route.route }"
                 >
                   <v-list-item-title>{{ route.title }}</v-list-item-title>
                 </v-list-item>
@@ -63,8 +63,8 @@
             </v-list>
             <v-sheet>
               <v-switch
-               @click="toggleDarkTheme"
-               v-model="darkTheme"
+                @click="toggleDarkTheme"
+                v-model="darkTheme"
                 class="px-2 pt-0 mt-0"
                 inset
                 label="Dark Mode"
@@ -96,10 +96,10 @@
         >
           <v-list-item
             v-for="(route, index) in routes"
-            :key="index"
+            :key="'navigationDrawer' + index"
             link
             class="text-capitalize"
-            :to="{ name: route.slug }"
+            :to="{ name: route.route }"
           >
             <v-list-item-icon>
               <v-icon>{{ route.icon }}</v-icon>
@@ -109,10 +109,10 @@
           </v-list-item>
           <v-list-item
             v-for="(route, index) in signInMenu"
-            :key="index"
+            :key="'secondaryNavigationDrawer' + index"
             link
             class="text-capitalize"
-            :to="{ name: route.slug }"
+            :to="{ name: route.route }"
           >
             <v-list-item-icon>
               <v-icon>{{ route.icon }}</v-icon>
@@ -137,10 +137,9 @@ export default {
       darkTheme: false,
       isMobile: false,
       signInMenu: [
-      
-         {
+        {
           title: "Log In",
-          slug: "login",
+          route: "login",
           icon: "mdi-login-variant",
           depressed: false,
           text: true,
@@ -149,7 +148,7 @@ export default {
         },
         {
           title: "Sign Up",
-          slug: "signup",
+          route: "signup",
           icon: "mdi-cellphone-link",
           depressed: false,
           text: true,
@@ -160,7 +159,7 @@ export default {
       routes: [
         {
           title: "buy",
-          slug: "buy",
+          route: "buy",
           icon: "mdi-bank",
           depressed: false,
           text: true,
@@ -169,7 +168,7 @@ export default {
         },
         {
           title: "rent",
-          slug: "rent",
+          route: "rent",
           icon: "mdi-currency-usd-circle-outline",
           depressed: false,
           text: true,
@@ -178,7 +177,7 @@ export default {
         },
         {
           title: "sell",
-          slug: "sell",
+          route: "dashboard",
           icon: "mdi-currency-usd",
           depressed: false,
           text: true,
@@ -187,7 +186,7 @@ export default {
         },
         /*  {
           title: "blog",
-          slug: "blog",
+          route: "blog",
           icon: "mdi-newspaper-variant-multiple-outline",
           depressed: false,
           text: true,
@@ -197,20 +196,20 @@ export default {
 
         {
           title: "add a listing",
-          slug: "dashboard",
+          route: "dashboard",
           icon: "mdi-view-dashboard",
           depressed: true,
           text: true
         },
         {
           title: "contact",
-          slug: "contact",
+          route: "contact",
           icon: "mdi-email",
           depressed: false,
           text: true,
           dark: false,
           color: ""
-        },
+        }
       ]
     };
   },
@@ -233,8 +232,8 @@ export default {
           this.$vuetify.theme.dark = true;
           this.darkTheme = true;
         } else {
-          this.$vuetify.theme.dark =false;
-              this.darkTheme = false;
+          this.$vuetify.theme.dark = false;
+          this.darkTheme = false;
         }
       }
     }
