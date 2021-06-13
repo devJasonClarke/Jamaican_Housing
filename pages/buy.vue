@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-img :src="img" min-height="300" max-height="400"></v-img>
     <SectionPadding>
       <SectionTitlesSecondary mainTitle="Buy Real Estate" />
     </SectionPadding>
@@ -8,14 +9,14 @@
     <SectionPaddingAlt>
       <TheSearchSection />
     </SectionPaddingAlt>
-
+    <div id="top"></div>
     <SectionPadding class="backgroundShade">
       <TheRealEstatePropertiesListingLoader
         v-if="loading"
         title="sale"
         :card="card"
       />
-      <TheRealEstatePropertiesListing v-else title="sale" :card="card" />
+      <TheRealEstatePropertiesListing v-else title="Real Estate for Sale" :card="card" />
       <div class="d-flex justify-center align-center mt-4">
         <v-btn
           class="mx-2"
@@ -40,9 +41,11 @@
 </template>
 
 <script>
+import img from "~/assets/images/house.jpg";
 export default {
   data() {
     return {
+        img: img,
       loading: false,
       card: {
         title: "Sunny Private Studio Apartment",
@@ -55,16 +58,30 @@ export default {
       }
     };
   },
+  computed: {
+    target() {
+      const value = "#top";
+      if (!isNaN(value)) return Number(value);
+      else return value;
+    },
+    options() {
+      return {
+        offset: 10
+      };
+    }
+  },
 
   methods: {
     previous() {
       console.log("previous");
       this.loading = true;
+      this.$vuetify.goTo(this.target, this.options);
       setTimeout(() => (this.loading = false), 3000);
     },
     next() {
       console.log("next");
       this.loading = true;
+      this.$vuetify.goTo(this.target, this.options);
       setTimeout(() => (this.loading = false), 3000);
     }
   }

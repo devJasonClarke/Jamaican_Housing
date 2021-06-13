@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <p class="text-body mb-6">Homes For {{ title }}</p>
+    <p class="text-body mb-6">{{ title }}</p>
 
     <v-row>
       <v-col

@@ -1,8 +1,7 @@
 <template>
   <div>
-    <v-img :src="img" min-height="300" max-height="400"></v-img>
     <SectionPadding>
-      <SectionTitlesSecondary mainTitle="Rent A Home" />
+      <SectionTitlesSecondary mainTitle="Buy Real Estate" />
     </SectionPadding>
 
     <v-divider></v-divider>
@@ -13,10 +12,10 @@
     <SectionPadding class="backgroundShade">
       <TheRealEstatePropertiesListingLoader
         v-if="loading"
-        title="rent"
+        title="sale"
         :card="card"
       />
-      <TheRealEstatePropertiesListing v-else title="Homes for rent" :card="card" />
+      <TheRealEstatePropertiesListing v-else title="Real Estate for Sale" :card="card" />
       <div class="d-flex justify-center align-center mt-4">
         <v-btn
           class="mx-2"
@@ -41,11 +40,9 @@
 </template>
 
 <script>
-import img from "~/assets/images/house.jpg";
 export default {
   data() {
     return {
-              img: img,
       loading: false,
       card: {
         title: "Sunny Private Studio Apartment",
@@ -58,10 +55,11 @@ export default {
       }
     };
   },
-    computed: {
+  computed: {
     target() {
       const value = "#top";
-    return value;
+      if (!isNaN(value)) return Number(value);
+      else return value;
     },
     options() {
       return {
@@ -69,28 +67,20 @@ export default {
       };
     }
   },
+
   methods: {
     previous() {
       console.log("previous");
       this.loading = true;
-        this.$vuetify.goTo(this.target, this.options);
+      this.$vuetify.goTo(this.target, this.options);
       setTimeout(() => (this.loading = false), 3000);
     },
     next() {
       console.log("next");
       this.loading = true;
-        this.$vuetify.goTo(this.target, this.options);
+      this.$vuetify.goTo(this.target, this.options);
       setTimeout(() => (this.loading = false), 3000);
     }
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.card {
-  transition: 0.4s all ease;
-  &:hover {
-    transform: scale(1.04);
-  }
-}
-</style>

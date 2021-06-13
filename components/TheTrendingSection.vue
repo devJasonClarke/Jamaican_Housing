@@ -5,7 +5,7 @@
         <nuxt-link to="/buy">
           <v-img
             :src="img"
-            class="d-flex align-center rounded-lg image-height"
+            class="d-flex image  align-center rounded-lg image-height"
               
             gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
           >
@@ -22,7 +22,7 @@
         <nuxt-link to="/buy">
           <v-img
             :src="img"
-            class="d-flex align-center rounded-lg image-height"
+            class="d-flex image  align-center rounded-lg image-height"
               
             gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
           >
@@ -39,7 +39,7 @@
         <nuxt-link to="/buy">
           <v-img
             :src="img"
-            class="d-flex align-center rounded-lg image-height"
+            class="d-flex image  align-center rounded-lg image-height"
               
             gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
           >
@@ -56,7 +56,7 @@
         <nuxt-link to="/buy">
           <v-img
             :src="img"
-            class="d-flex align-center rounded-lg image-height"
+            class="d-flex image  align-center rounded-lg image-height"
               
             gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
           >
@@ -73,7 +73,7 @@
         <nuxt-link to="/buy">
           <v-img
             :src="img"
-            class="d-flex align-center rounded-lg image-height"
+            class="d-flex image  align-center rounded-lg image-height"
               
             gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
           >
@@ -101,7 +101,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-image {
+.image {
   transition: 0.35s ease;
   &:hover {
     transform: translateY(-3px);
