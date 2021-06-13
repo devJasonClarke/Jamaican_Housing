@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12" class="pa-md-0">
         <h1 class="text-h3 font-weight-bold text-capitalize">
-          {{ mainTitle }} In {{ location }}
+          {{ mainTitle }}
         </h1>
       </v-col>
       <v-col cols="12" sm="9" class=" px-md-0 pb-0 pt-8 ">
@@ -22,10 +22,6 @@
 <script>
 export default {
   props: {
-    location: {
-      type: String,
-      required: true
-    },
     mainTitle: {
       type: String,
       required: true

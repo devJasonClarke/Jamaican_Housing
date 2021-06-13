@@ -5,6 +5,19 @@
       justify="space-around"
       class="flex-column flex-md-row"
     >
+          <v-col>
+              <v-select
+                outlined
+                dense
+                label="PARISH"
+                v-model="selectedParish"
+                prepend-icon="mdi-map-marker"
+                hide-details
+                :items="parishes"
+                color="green"
+                item-color="green"
+              ></v-select>
+            </v-col>
       <v-col>
         <v-select
           outlined
@@ -24,7 +37,7 @@
           outlined
           dense
           label="BEDROOMS "
-          v-model="selectedParish"
+          v-model="selectedBedrooms"
           prepend-icon="mdi-bed"
           hide-details
           :items="bedrooms"
@@ -58,9 +71,26 @@ export default {
   data() {
     return {
       selectedParish: "",
+      selectedBedrooms:'',
       selectedRealEstateType: "",
       selectedMaxPrice: "",
       bedrooms: ["1", "2", "3", "4 +"],
+           parishes: [
+        "Clarendon",
+        "Hanover",
+        "Kingston",
+        "Manchester",
+        "Portland",
+        "St. Andrew",
+        "St. Ann",
+        "St. Catherine",
+        "St. Elizabeth",
+        "St. James",
+        "St. Mary",
+        "St. Thomas",
+        "Trelawny",
+        "Westmoreland"
+      ],
       realEstateType: [
         "Apartment",
         "Commercial Building/Offices",

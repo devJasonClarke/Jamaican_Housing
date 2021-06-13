@@ -1,10 +1,7 @@
 <template>
   <div>
     <SectionPadding>
-      <SectionTitlesSecondary
-        location="St. James"
-        mainTitle="Buy Real Estate"
-      />
+      <SectionTitlesSecondary mainTitle="Buy Real Estate" />
     </SectionPadding>
 
     <v-divider></v-divider>
@@ -13,7 +10,7 @@
     </SectionPaddingAlt>
 
     <SectionPadding class="backgroundShade">
-           <TheRealEstatePropertiesListingLoader
+      <TheRealEstatePropertiesListingLoader
         v-if="loading"
         title="sale"
         :card="card"
@@ -58,7 +55,7 @@ export default {
       }
     };
   },
-  
+
   methods: {
     previous() {
       console.log("previous");
@@ -73,4 +70,3 @@ export default {
   }
 };
 </script>
-

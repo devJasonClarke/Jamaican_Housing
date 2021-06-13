@@ -1,5 +1,5 @@
 <template>
-  <v-container  >
+  <v-container>
     <v-row>
       <v-col cols="11" class=" pb-0">
         <p
@@ -16,10 +16,17 @@
           {{ mainTitle }}
         </p>
         <v-spacer></v-spacer>
-        <p>
+
+        <v-btn
+          text
+          depressed
+          :plain="$vuetify.breakpoint.xs"
+          :to="{ name: route }"
+          class="pl-0 pl-sm-4 justify-start font-weight-regular mb-0 mb-sm-4 text-capitalize"
+        >
           {{ linkMessage }} <v-icon>mdi-chevron-double-right mdi-18px</v-icon>
-        </p></v-col
-      >
+        </v-btn>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -38,6 +45,10 @@ export default {
     linkMessage: {
       type: String,
       required: true
+    },
+    route: {
+      type: String,
+      required: true
     }
   }
 };
@@ -47,5 +58,11 @@ export default {
 .section-titles-Subtitle {
   letter-spacing: 3px !important ;
   color: var(--primary-green);
+}
+.underline {
+  transition: 0.4s all ease;
+  &:hover {
+    transform: translateX(5px);
+  }
 }
 </style>

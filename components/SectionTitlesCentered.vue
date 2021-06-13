@@ -32,10 +32,7 @@ export default {
       type: String,
       required: true
     },
-    linkMessage: {
-      type: String,
-      required: true
-    }
+ 
   }
 };
 </script>

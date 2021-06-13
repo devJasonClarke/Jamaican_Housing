@@ -1,7 +1,7 @@
 <template>
   <div>
     <SectionPadding>
-      <SectionTitlesSecondary location="St. James" mainTitle="Rent A Home In" />
+      <SectionTitlesSecondary mainTitle="Rent A Home" />
     </SectionPadding>
 
     <v-divider></v-divider>
