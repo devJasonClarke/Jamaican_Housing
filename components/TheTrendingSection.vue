@@ -1,12 +1,11 @@
 <template>
   <v-container>
     <v-row>
-      <v-col md="8" sm="6">
-        <nuxt-link to="/buy">
+      <v-col cols="12" md="8" sm="6">
+        <nuxt-link  :to="{ name: 'parish-slug', params: { slug: 'kingston' } }">
           <v-img
             :src="img"
             class="d-flex image  align-center rounded-lg image-height"
-              
             gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
           >
             <p
@@ -18,12 +17,11 @@
         </nuxt-link>
       </v-col>
 
-      <v-col md="4" sm="6">
-        <nuxt-link to="/buy">
+      <v-col cols="12" md="4" sm="6">
+        <nuxt-link  :to="{ name: 'parish-slug', params: { slug: 'st-james' } }">
           <v-img
             :src="img"
             class="d-flex image  align-center rounded-lg image-height"
-              
             gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
           >
             <p
@@ -35,12 +33,11 @@
         </nuxt-link>
       </v-col>
 
-      <v-col md="4" sm="6">
-        <nuxt-link to="/buy">
+      <v-col cols="12" md="4" sm="6">
+        <nuxt-link  :to="{ name: 'parish-slug', params: { slug: 'st-ann' } }">
           <v-img
             :src="img"
             class="d-flex image  align-center rounded-lg image-height"
-              
             gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
           >
             <p
@@ -52,12 +49,11 @@
         </nuxt-link>
       </v-col>
 
-      <v-col md="4" sm="6">
-        <nuxt-link to="/buy">
+      <v-col cols="12" md="4" sm="6">
+        <nuxt-link  :to="{ name: 'parish-slug', params: { slug: 'portland' } }">
           <v-img
             :src="img"
             class="d-flex image  align-center rounded-lg image-height"
-              
             gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
           >
             <p
@@ -69,12 +65,11 @@
         </nuxt-link>
       </v-col>
 
-      <v-col md="4" sm="12">
-        <nuxt-link to="/buy">
+      <v-col cols="12" md="4" sm="12">
+        <nuxt-link  :to="{ name: 'parish-slug', params: { slug: 'manchester' } }">
           <v-img
             :src="img"
             class="d-flex image  align-center rounded-lg image-height"
-              
             gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
           >
             <p

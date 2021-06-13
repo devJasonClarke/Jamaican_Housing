@@ -2,7 +2,12 @@
   <div>
     <v-img :src="img" min-height="300" max-height="400"></v-img>
     <SectionPadding>
-      <SectionTitlesSecondary mainTitle="Rent A Home" />
+      <SectionTitlesSecondary
+        mainTitle="Rent A Home"
+        paragraph=" Prepare a short list of features you would like in a home, such as
+          location, beds & bath's required, bearing in mind affordability and
+          accommodation requirements."
+      />
     </SectionPadding>
 
     <v-divider></v-divider>
@@ -16,7 +21,11 @@
         title="rent"
         :card="card"
       />
-      <TheRealEstatePropertiesListing v-else title="Homes for rent" :card="card" />
+      <TheRealEstatePropertiesListing
+        v-else
+        title="Homes for rent"
+        :card="card"
+      />
       <div class="d-flex justify-center align-center mt-4">
         <v-btn
           class="mx-2"
@@ -45,7 +54,7 @@ import img from "~/assets/images/house.jpg";
 export default {
   data() {
     return {
-              img: img,
+      img: img,
       loading: false,
       card: {
         title: "Sunny Private Studio Apartment",
@@ -58,10 +67,10 @@ export default {
       }
     };
   },
-    computed: {
+  computed: {
     target() {
       const value = "#top";
-    return value;
+      return value;
     },
     options() {
       return {
@@ -73,13 +82,13 @@ export default {
     previous() {
       console.log("previous");
       this.loading = true;
-        this.$vuetify.goTo(this.target, this.options);
+      this.$vuetify.goTo(this.target, this.options);
       setTimeout(() => (this.loading = false), 3000);
     },
     next() {
       console.log("next");
       this.loading = true;
-        this.$vuetify.goTo(this.target, this.options);
+      this.$vuetify.goTo(this.target, this.options);
       setTimeout(() => (this.loading = false), 3000);
     }
   }

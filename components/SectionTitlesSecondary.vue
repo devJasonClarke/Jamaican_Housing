@@ -10,9 +10,7 @@
         <p
           class="text-h6 text-capitalize font-weight-regular grey--black text--lighten-5 mb-0"
         >
-          Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements.
+         {{paragraph}}
         </p>
       </v-col>
     </v-row>
@@ -23,6 +21,10 @@
 export default {
   props: {
     mainTitle: {
+      type: String,
+      required: true
+    },
+    paragraph: {
       type: String,
       required: true
     }

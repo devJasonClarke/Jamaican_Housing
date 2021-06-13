@@ -2,244 +2,263 @@
   <div>
     <v-img :src="img" min-height="300" max-height="400"></v-img>
     <SectionPadding>
-      <SectionTitlesSecondary mainTitle="Parishes" />
+      <SectionTitlesSecondary
+        mainTitle="Parishes"
+        paragraph=" Prepare a short list of features you would like in a home, such as
+          location, beds & bath's required, bearing in mind affordability and
+          accommodation requirements."
+      />
     </SectionPadding>
 
     <v-divider></v-divider>
 
     <SectionPadding class="backgroundShade">
-  <v-container>
-    <v-row>
-      <v-col md="8" sm="6">
-        <nuxt-link to="/buy">
-          <v-img
-            :src="img"
-            class="d-flex image  align-center rounded-lg image-height"
-              
-            gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
-          >
-            <p
-              class=" white--text text-center font-weight-black text-h4 text-uppercase"
+      <v-container>
+        <v-row>
+          <v-col cols="12" md="8" sm="6">
+            <nuxt-link
+              :to="{ name: 'parish-slug', params: { slug: 'clarendon' } }"
             >
-              Clarendon
-            </p>
-          </v-img>
-        </nuxt-link>
-      </v-col>
+              <v-img
+                :src="img"
+                class="d-flex image  align-center rounded-lg image-height"
+                gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
+              >
+                <p
+                  class=" white--text text-center font-weight-black text-h4 text-uppercase"
+                >
+                  Clarendon
+                </p>
+              </v-img>
+            </nuxt-link>
+          </v-col>
 
-      <v-col md="4" sm="6">
-        <nuxt-link to="/buy">
-          <v-img
-            :src="img"
-            class="d-flex image  align-center rounded-lg image-height"
-              
-            gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
-          >
-            <p
-              class=" white--text text-center font-weight-black text-h4 text-uppercase"
+          <v-col cols="12" md="4" sm="6">
+            <nuxt-link
+              :to="{ name: 'parish-slug', params: { slug: 'hanover' } }"
             >
-             Hanover
-            </p>
-          </v-img>
-        </nuxt-link>
-      </v-col>
+              <v-img
+                :src="img"
+                class="d-flex image  align-center rounded-lg image-height"
+                gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
+              >
+                <p
+                  class=" white--text text-center font-weight-black text-h4 text-uppercase"
+                >
+                  Hanover
+                </p>
+              </v-img>
+            </nuxt-link>
+          </v-col>
 
-      <v-col md="4" sm="6">
-        <nuxt-link to="/buy">
-          <v-img
-            :src="img"
-            class="d-flex image  align-center rounded-lg image-height"
-              
-            gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
-          >
-            <p
-              class=" white--text text-center font-weight-black text-h4 text-uppercase"
+          <v-col cols="12" md="4" sm="6">
+            <nuxt-link
+              :to="{ name: 'parish-slug', params: { slug: 'kingston' } }"
             >
-        Kingston
-            </p>
-          </v-img>
-        </nuxt-link>
-      </v-col>
+              <v-img
+                :src="img"
+                class="d-flex image  align-center rounded-lg image-height"
+                gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
+              >
+                <p
+                  class=" white--text text-center font-weight-black text-h4 text-uppercase"
+                >
+                  Kingston
+                </p>
+              </v-img>
+            </nuxt-link>
+          </v-col>
 
-      <v-col md="4" sm="6">
-        <nuxt-link to="/buy">
-          <v-img
-            :src="img"
-            class="d-flex image  align-center rounded-lg image-height"
-              
-            gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
-          >
-            <p
-              class=" white--text text-center font-weight-black text-h4 text-uppercase"
+          <v-col cols="12" md="4" sm="6">
+            <nuxt-link
+              :to="{ name: 'parish-slug', params: { slug: 'manchester' } }"
             >
-          Manchester
-            </p>
-          </v-img>
-        </nuxt-link>
-      </v-col>
+              <v-img
+                :src="img"
+                class="d-flex image  align-center rounded-lg image-height"
+                gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
+              >
+                <p
+                  class=" white--text text-center font-weight-black text-h4 text-uppercase"
+                >
+                  Manchester
+                </p>
+              </v-img>
+            </nuxt-link>
+          </v-col>
 
-      <v-col md="4" sm="6">
-        <nuxt-link to="/buy">
-          <v-img
-            :src="img"
-            class="d-flex image  align-center rounded-lg image-height"
-              
-            gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
-          >
-            <p
-              class=" white--text text-center font-weight-black text-h4 text-uppercase"
+          <v-col cols="12" md="4" sm="6">
+            <nuxt-link
+              :to="{ name: 'parish-slug', params: { slug: 'portland' } }"
             >
-             Portland
-            </p>
-          </v-img>
-        </nuxt-link>
-      </v-col>
-      <v-col md="6" sm="6">
-        <nuxt-link to="/buy">
-          <v-img
-            :src="img"
-            class="d-flex image  align-center rounded-lg image-height"
-              
-            gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
-          >
-            <p
-              class=" white--text text-center font-weight-black text-h4 text-uppercase"
+              <v-img
+                :src="img"
+                class="d-flex image  align-center rounded-lg image-height"
+                gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
+              >
+                <p
+                  class=" white--text text-center font-weight-black text-h4 text-uppercase"
+                >
+                  Portland
+                </p>
+              </v-img>
+            </nuxt-link>
+          </v-col>
+          <v-col cols="12" md="6" sm="6">
+            <nuxt-link
+              :to="{ name: 'parish-slug', params: { slug: 'st-andrew' } }"
             >
-          St. Andrew
-            </p>
-          </v-img>
-        </nuxt-link>
-      </v-col>
-      <v-col md="6" sm="6">
-        <nuxt-link to="/buy">
-          <v-img
-            :src="img"
-            class="d-flex image  align-center rounded-lg image-height"
-              
-            gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
-          >
-            <p
-              class=" white--text text-center font-weight-black text-h4 text-uppercase"
+              <v-img
+                :src="img"
+                class="d-flex image  align-center rounded-lg image-height"
+                gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
+              >
+                <p
+                  class=" white--text text-center font-weight-black text-h4 text-uppercase"
+                >
+                  St. Andrew
+                </p>
+              </v-img>
+            </nuxt-link>
+          </v-col>
+          <v-col cols="12" md="6" sm="6">
+            <nuxt-link
+              :to="{ name: 'parish-slug', params: { slug: 'st-ann' } }"
             >
-          St. Ann
-            </p>
-          </v-img>
-        </nuxt-link>
-      </v-col>
-      <v-col md="4" sm="6">
-        <nuxt-link to="/buy">
-          <v-img
-            :src="img"
-            class="d-flex image  align-center rounded-lg image-height"
-              
-            gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
-          >
-            <p
-              class=" white--text text-center font-weight-black text-h4 text-uppercase"
+              <v-img
+                :src="img"
+                class="d-flex image  align-center rounded-lg image-height"
+                gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
+              >
+                <p
+                  class=" white--text text-center font-weight-black text-h4 text-uppercase"
+                >
+                  St. Ann
+                </p>
+              </v-img>
+            </nuxt-link>
+          </v-col>
+          <v-col cols="12" md="4" sm="6">
+            <nuxt-link
+              :to="{ name: 'parish-slug', params: { slug: 'st-catherine' } }"
             >
-   St. Catherine
-            </p>
-          </v-img>
-        </nuxt-link>
-      </v-col>
-      <v-col md="8" sm="6">
-        <nuxt-link to="/buy">
-          <v-img
-            :src="img"
-            class="d-flex image  align-center rounded-lg image-height"
-              
-            gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
-          >
-            <p
-              class=" white--text text-center font-weight-black text-h4 text-uppercase"
+              <v-img
+                :src="img"
+                class="d-flex image  align-center rounded-lg image-height"
+                gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
+              >
+                <p
+                  class=" white--text text-center font-weight-black text-h4 text-uppercase"
+                >
+                  St. Catherine
+                </p>
+              </v-img>
+            </nuxt-link>
+          </v-col>
+          <v-col cols="12" md="8" sm="6">
+            <nuxt-link
+              :to="{ name: 'parish-slug', params: { slug: 'st-elizabeth' } }"
             >
-      St. Elizabeth
-            </p>
-          </v-img>
-        </nuxt-link>
-      </v-col>
-      <v-col md="4" sm="6">
-        <nuxt-link to="/buy">
-          <v-img
-            :src="img"
-            class="d-flex image  align-center rounded-lg image-height"
-              
-            gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
-          >
-            <p
-              class=" white--text text-center font-weight-black text-h4 text-uppercase"
+              <v-img
+                :src="img"
+                class="d-flex image  align-center rounded-lg image-height"
+                gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
+              >
+                <p
+                  class=" white--text text-center font-weight-black text-h4 text-uppercase"
+                >
+                  St. Elizabeth
+                </p>
+              </v-img>
+            </nuxt-link>
+          </v-col>
+          <v-col cols="12" md="4" sm="6">
+            <nuxt-link
+              :to="{ name: 'parish-slug', params: { slug: 'st-james' } }"
             >
-      St. James
-            </p>
-          </v-img>
-        </nuxt-link>
-      </v-col>
-      <v-col md="4" sm="6">
-        <nuxt-link to="/buy">
-          <v-img
-            :src="img"
-            class="d-flex image  align-center rounded-lg image-height"
-              
-            gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
-          >
-            <p
-              class=" white--text text-center font-weight-black text-h4 text-uppercase"
+              <v-img
+                :src="img"
+                class="d-flex image  align-center rounded-lg image-height"
+                gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
+              >
+                <p
+                  class=" white--text text-center font-weight-black text-h4 text-uppercase"
+                >
+                  St. James
+                </p>
+              </v-img>
+            </nuxt-link>
+          </v-col>
+          <v-col cols="12" md="4" sm="6">
+            <nuxt-link
+              :to="{ name: 'parish-slug', params: { slug: 'st-mary' } }"
             >
-      St. Mary
-            </p>
-          </v-img>
-        </nuxt-link>
-      </v-col>
-      <v-col md="4" sm="6">
-        <nuxt-link to="/buy">
-          <v-img
-            :src="img"
-            class="d-flex image  align-center rounded-lg image-height"
-              
-            gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
-          >
-            <p
-              class=" white--text text-center font-weight-black text-h4 text-uppercase"
+              <v-img
+                :src="img"
+                class="d-flex image  align-center rounded-lg image-height"
+                gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
+              >
+                <p
+                  class=" white--text text-center font-weight-black text-h4 text-uppercase"
+                >
+                  St. Mary
+                </p>
+              </v-img>
+            </nuxt-link>
+          </v-col>
+          <v-col cols="12" md="4" sm="6">
+            <nuxt-link
+              :to="{ name: 'parish-slug', params: { slug: 'st-thomas' } }"
             >
-      St. Thomas
-            </p>
-          </v-img>
-        </nuxt-link>
-      </v-col>
-      <v-col md="6" sm="6">
-        <nuxt-link to="/buy">
-          <v-img
-            :src="img"
-            class="d-flex image  align-center rounded-lg image-height"
-              
-            gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
-          >
-            <p
-              class=" white--text text-center font-weight-black text-h4 text-uppercase"
+              <v-img
+                :src="img"
+                class="d-flex image  align-center rounded-lg image-height"
+                gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
+              >
+                <p
+                  class=" white--text text-center font-weight-black text-h4 text-uppercase"
+                >
+                  St. Thomas
+                </p>
+              </v-img>
+            </nuxt-link>
+          </v-col>
+          <v-col cols="12" md="6" sm="6">
+            <nuxt-link
+              :to="{ name: 'parish-slug', params: { slug: 'trelawny' } }"
             >
-      Trelawny
-            </p>
-          </v-img>
-        </nuxt-link>
-      </v-col>
-      <v-col md="6" sm="6">
-        <nuxt-link to="/buy">
-          <v-img
-            :src="img"
-            class="d-flex image  align-center rounded-lg image-height"
-              
-            gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
-          >
-            <p
-              class=" white--text text-center font-weight-black text-h4 text-uppercase"
+              <v-img
+                :src="img"
+                class="d-flex image  align-center rounded-lg image-height"
+                gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
+              >
+                <p
+                  class=" white--text text-center font-weight-black text-h4 text-uppercase"
+                >
+                  Trelawny
+                </p>
+              </v-img>
+            </nuxt-link>
+          </v-col>
+          <v-col cols="12" md="6" sm="6">
+            <nuxt-link
+              :to="{ name: 'parish-slug', params: { slug: 'westmoreland' } }"
             >
-      Westmoreland
-            </p>
-          </v-img>
-        </nuxt-link>
-      </v-col>
-    </v-row>
-  </v-container>
+              <v-img
+                :src="img"
+                class="d-flex image  align-center rounded-lg image-height"
+                gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
+              >
+                <p
+                  class=" white--text text-center font-weight-black text-h4 text-uppercase"
+                >
+                  Westmoreland
+                </p>
+              </v-img>
+            </nuxt-link>
+          </v-col>
+        </v-row>
+      </v-container>
     </SectionPadding>
   </div>
 </template>
@@ -265,7 +284,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
 .image {
   transition: 0.35s ease;
   &:hover {

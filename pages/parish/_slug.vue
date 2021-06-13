@@ -1,12 +1,14 @@
 <template>
   <div>
+    <v-img :src="img" min-height="300" max-height="400"></v-img>
     <SectionPadding>
-      <SectionTitlesSecondary mainTitle="Buy Real Estate" />
+      <SectionTitlesSecondary :mainTitle="parish.name" :paragraph="parish.description"/>
+   
     </SectionPadding>
 
     <v-divider></v-divider>
     <SectionPaddingAlt>
-      <TheSearchSection />
+      <TheSearchSectionParishPage />
     </SectionPaddingAlt>
     <div id="top"></div>
     <SectionPadding class="backgroundShade">
@@ -15,7 +17,7 @@
         title="sale"
         :card="card"
       />
-      <TheRealEstatePropertiesListing v-else title="Real Estate for Sale" :card="card" />
+      <TheRealEstatePropertiesListing v-else :title="title" :card="card" />
       <div class="d-flex justify-center align-center mt-4">
         <v-btn
           class="mx-2"
@@ -40,10 +42,16 @@
 </template>
 
 <script>
+import img from "~/assets/images/house.jpg";
+import parishes from "../../assets/parishes/parishes";
 export default {
   data() {
     return {
+      img: img,
       loading: false,
+      l: "adf",
+      title: `The Best Real Estate`,
+
       card: {
         title: "Sunny Private Studio Apartment",
         parish: "St. James",
@@ -56,6 +64,9 @@ export default {
     };
   },
   computed: {
+    parish() {
+      return parishes.parishes.find(parish => parish.slug == this.$route.params.slug);
+    },
     target() {
       const value = "#top";
       if (!isNaN(value)) return Number(value);

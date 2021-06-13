@@ -2,7 +2,12 @@
   <div>
     <v-img :src="img" min-height="300" max-height="400"></v-img>
     <SectionPadding>
-      <SectionTitlesSecondary mainTitle="Buy Real Estate" />
+      <SectionTitlesSecondary
+        mainTitle="Buy Real Estate"
+        paragraph=" Prepare a short list of features you would like in a home, such as
+          location, beds & bath's required, bearing in mind affordability and
+          accommodation requirements."
+      />
     </SectionPadding>
 
     <v-divider></v-divider>
@@ -16,7 +21,11 @@
         title="sale"
         :card="card"
       />
-      <TheRealEstatePropertiesListing v-else title="Real Estate for Sale" :card="card" />
+      <TheRealEstatePropertiesListing
+        v-else
+        title="Real Estate for Sale"
+        :card="card"
+      />
       <div class="d-flex justify-center align-center mt-4">
         <v-btn
           class="mx-2"
@@ -45,7 +54,7 @@ import img from "~/assets/images/house.jpg";
 export default {
   data() {
     return {
-        img: img,
+      img: img,
       loading: false,
       card: {
         title: "Sunny Private Studio Apartment",
