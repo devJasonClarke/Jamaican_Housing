@@ -107,6 +107,19 @@
 
             <v-list-item-title>{{ route.title }}</v-list-item-title>
           </v-list-item>
+          <v-list-item
+            v-for="(route, index) in signInMenu"
+            :key="index"
+            link
+            class="text-capitalize"
+            :to="{ name: route.slug }"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ route.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-title>{{ route.title }}</v-list-item-title>
+          </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -124,19 +137,20 @@ export default {
       darkTheme: false,
       isMobile: false,
       signInMenu: [
-        {
-          title: "sign up",
-          slug: "signup",
-          icon: "mdi-account",
+      
+         {
+          title: "Log In",
+          slug: "login",
+          icon: "mdi-login-variant",
           depressed: false,
           text: true,
           dark: false,
           color: ""
         },
         {
-          title: "log in",
-          slug: "login",
-          icon: "mdi-account",
+          title: "Sign Up",
+          slug: "signup",
+          icon: "mdi-cellphone-link",
           depressed: false,
           text: true,
           dark: false,
@@ -197,24 +211,6 @@ export default {
           dark: false,
           color: ""
         },
-         {
-          title: "Log In",
-          slug: "login",
-          icon: "mdi-login-variant",
-          depressed: false,
-          text: true,
-          dark: false,
-          color: ""
-        },
-        {
-          title: "Sign Up",
-          slug: "signup",
-          icon: "mdi-cellphone-link",
-          depressed: false,
-          text: true,
-          dark: false,
-          color: ""
-        }, 
       ]
     };
   },
