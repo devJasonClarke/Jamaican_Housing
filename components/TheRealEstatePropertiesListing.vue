@@ -12,6 +12,7 @@
         class="mb-4"
       >
         <v-card
+
           nuxt
           :to="{ name: 'buy' }"
           outlined

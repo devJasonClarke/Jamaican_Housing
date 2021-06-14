@@ -3,7 +3,7 @@ export default {
     {
       name: "Clarendon",
       slug: "clarendon",
-      image: "~/assets/images/parishes/Clarendon.jpg",
+      image: "https://jasonjh.netlify.app/_nuxt/img/house.9f67aae.jpg",
       id: 1,
       description:
         "It is Clarendon"
@@ -11,7 +11,7 @@ export default {
     {
       name: "Hanover",
       slug: "hanover",
-      image: "~/assets/images/parishes/Hanover.jpg",
+      image: "https://jasonjh.netlify.app/_nuxt/img/house.9f67aae.jpg",
       id: 1,
       description:
         "It is Hanover"
@@ -19,7 +19,7 @@ export default {
     {
       name: "Kingston",
       slug: "kingston",
-      image: "~/assets/images/parishes/Kingston.jpg",
+      image: "https://jasonjh.netlify.app/_nuxt/img/house.9f67aae.jpg",
       id: 1,
       description:
         "It is Kingston"
@@ -27,7 +27,7 @@ export default {
     {
       name: "Manchester",
       slug: "manchester",
-      image: "~/assets/images/parishes/Manchester.jpg",
+      image: "https://jasonjh.netlify.app/_nuxt/img/house.9f67aae.jpg",
       id: 1,
       description:
         "It is Manchester"
@@ -35,7 +35,7 @@ export default {
     {
       name: "Portland",
       slug: "portland",
-      image: "~/assets/images/parishes/Portland.jpg",
+      image: "https://jasonjh.netlify.app/_nuxt/img/house.9f67aae.jpg",
       id: 1,
       description:
         "It is Portland"
@@ -43,15 +43,15 @@ export default {
     {
       name: "St. Andrew",
       slug: "st-andrew",
-      image: "~/assets/images/parishes/St-Andrew.jpg",
+      image: "https://jasonjh.netlify.app/_nuxt/img/house.9f67aae.jpg",
       id: 1,
       description:
         "It is St-Andrew"
     },
     {
-      name: "St.vAnn",
+      name: "St. Ann",
       slug: "st-ann",
-      image: "~/assets/images/parishes/St-Ann.jpg",
+      image: "https://jasonjh.netlify.app/_nuxt/img/house.9f67aae.jpg",
       id: 1,
       description:
         "It is St-Ann"
@@ -59,7 +59,7 @@ export default {
     {
       name: "St. Catherine",
       slug: "st-catherine",
-      image: "~/assets/images/parishes/St-Catherine.jpg",
+      image: "https://jasonjh.netlify.app/_nuxt/img/house.9f67aae.jpg",
       id: 1,
       description:
         "It is St-Catherine"
@@ -67,7 +67,7 @@ export default {
     {
       name: "St. Elizabeth",
       slug: "st-elizabeth",
-      image: "~/assets/images/parishes/St-Elizabeth.jpg",
+      image: "https://jasonjh.netlify.app/_nuxt/img/house.9f67aae.jpg",
       id: 1,
       description:
         "It is St-Elizabeth"
@@ -75,7 +75,7 @@ export default {
     {
       name: "St. James",
       slug: "st-james",
-      image: "~/assets/images/parishes/St-James.jpg",
+      image: "https://jasonjh.netlify.app/_nuxt/img/house.9f67aae.jpg",
       id: 1,
       description:
         "It is St-James"
@@ -83,7 +83,7 @@ export default {
     {
       name: "St. Mary",
       slug: "st-mary",
-      image: "~/assets/images/parishes/St-Mary.jpg",
+      image: "https://jasonjh.netlify.app/_nuxt/img/house.9f67aae.jpg",
       id: 1,
       description:
         "It is St-Mary"
@@ -91,7 +91,7 @@ export default {
     {
       name: "St. Thomas",
       slug: "st-thomas",
-      image: "~/assets/images/parishes/St-Thomas.jpg",
+      image: "https://jasonjh.netlify.app/_nuxt/img/house.9f67aae.jpg",
       id: 1,
       description:
         "It is St-Thomas"
@@ -99,7 +99,7 @@ export default {
     {
       name: "Trelawny",
       slug: "trelawny",
-      image: "~/assets/images/parishes/Trelawny.jpg",
+      image: "https://jasonjh.netlify.app/_nuxt/img/house.9f67aae.jpg",
       id: 1,
       description:
         "It is Trelawny"
@@ -107,7 +107,7 @@ export default {
     {
       name: "Westmoreland",
       slug: "westmoreland",
-      image: "~/assets/images/parishes/Westmoreland.jpg",
+      image: "https://jasonjh.netlify.app/_nuxt/img/house.9f67aae.jpg",
       id: 1,
       description:
         "It is Westmoreland"
