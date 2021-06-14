@@ -46,10 +46,14 @@
 <script>
 import parishes from "~/assets/parishes/parishes";
 export default {
-  asyncData({ params }) {
+  asyncData({ params, redirect }) {
     let theParam = String(params.slug);
     const parish = () =>
       parishes.parishes.find(parish => parish.slug == theParam);
+
+    if (parish() === undefined) {
+      redirect("/404");
+    }
     return {
       parish
     };
