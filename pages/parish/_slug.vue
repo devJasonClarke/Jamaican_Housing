@@ -50,8 +50,6 @@ export default {
     let theParam = String(params.slug);
     const parish = () =>
       parishes.parishes.find(parish => parish.slug == theParam);
-    console.log("Yes");
-    console.log(theParam);
     return {
       parish
     };
