@@ -28,11 +28,7 @@
           >
             {{ route.title }}
           </v-btn>
-          <v-menu
-            open-on-hover
-            offset-y
-            :close-on-content-click="closeOnContentClick"
-          >
+          <v-menu offset-y :close-on-content-click="closeOnContentClick">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
                 dark
@@ -50,17 +46,70 @@
                 v-model="signInDropDown"
                 active-class="green--text text--accent-4"
               >
-                <v-list-item
-                  v-for="(route, index) in signInMenu"
-                  :key="'signInMenu' + index"
-                  link
-                  class="text-uppercase"
-                  :to="{ name: route.route }"
-                >
-                  <v-list-item-title>{{ route.title }}</v-list-item-title>
-                </v-list-item>
+                <v-dialog transition="dialog-bottom-transition" max-width="400">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-list-item
+                      v-for="(route, index) in signInMenu"
+                      :key="'signInMenu' + index"
+                      v-bind="attrs"
+                      v-on="on"
+                      class="text-uppercase"
+                      @click="authSwitcher(route.title)"
+                    >
+                      <v-list-item-title>{{ route.title }}</v-list-item-title>
+                    </v-list-item>
+                  </template>
+                  <template v-slot:default="dialog">
+                    <v-card max-width="400" class="pa-6">
+                      <div class="d-flex justify-end">
+                        <v-btn fab text small @click="dialog.value = false"
+                          ><v-icon>mdi-close</v-icon></v-btn
+                        >
+                      </div>
+                      <v-card-title class="px-0 text-h4">
+                        {{ authState }}
+                      </v-card-title>
+                      <v-form v-model="valid">
+                        <v-text-field
+                          :rules="emailRules"
+                          v-model="email"
+                          label="Email address"
+                          required
+                          outlined
+                          dense
+                          class="mt-6"
+                          color="green accent-4"
+                        ></v-text-field>
+                        <v-text-field
+                          :rules="passwordRules"
+                          v-model="password"
+                          label="Password"
+                          required
+                          outlined
+                          dense
+                          class="mt-1"
+                          color="green accent-4"
+                        ></v-text-field>
+                        <v-btn color="success" depressed block>{{
+                          authState
+                        }}</v-btn>
+                      </v-form>
+                      <p class="middle-text mt-3 grey--text">or</p>
+
+                      <v-btn block large depressed>
+                        <v-img
+                          src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+                          max-width="36"
+                          class="mr-3 "
+                        />
+                        {{ authState }} with Google
+                      </v-btn>
+                    </v-card>
+                  </template>
+                </v-dialog>
               </v-list-item-group>
             </v-list>
+
             <v-sheet>
               <v-switch
                 @click="toggleDarkTheme"
@@ -76,6 +125,7 @@
       </v-toolbar>
       <v-divider></v-divider>
     </nav>
+
     <v-navigation-drawer v-model="drawer" fixed temporary>
       <v-list-item>
         <v-list-item-avatar>
@@ -107,19 +157,67 @@
 
             <v-list-item-title>{{ route.title }}</v-list-item-title>
           </v-list-item>
-          <v-list-item
-            v-for="(route, index) in signInMenu"
-            :key="'secondaryNavigationDrawer' + index"
-            link
-            class="text-capitalize"
-            :to="{ name: route.route }"
-          >
-            <v-list-item-icon>
-              <v-icon>{{ route.icon }}</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title>{{ route.title }}</v-list-item-title>
-          </v-list-item>
+          <v-dialog transition="dialog-bottom-transition" max-width="400">
+            <template v-slot:activator="{ on, attrs }">
+              <v-list-item
+                v-for="(route, index) in signInMenu"
+                :key="'signInMenu' + index"
+                v-bind="attrs"
+                v-on="on"
+                class="text-uppercase"
+                @click="authSwitcher(route.title)"
+              >
+                <v-list-item-icon>
+                  <v-icon>{{ route.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>{{ route.title }}</v-list-item-title>
+              </v-list-item>
+            </template>
+            <template v-slot:default="dialog">
+              <v-card max-width="400" class="pa-6">
+                <div class="d-flex justify-end">
+                  <v-btn fab text small @click="dialog.value = false"
+                    ><v-icon>mdi-close</v-icon></v-btn
+                  >
+                </div>
+                <v-card-title class="px-0 text-h4">
+                  {{ authState }}
+                </v-card-title>
+                <v-form v-model="valid">
+                  <v-text-field
+                    :rules="emailRules"
+                    v-model="email"
+                    label="Email address"
+                    required
+                    outlined
+                    dense
+                    class="mt-6"
+                    color="green accent-4"
+                  ></v-text-field>
+                  <v-text-field
+                    :rules="passwordRules"
+                    v-model="password"
+                    label="Password"
+                    required
+                    outlined
+                    dense
+                    class="mt-1"
+                    color="green accent-4"
+                  ></v-text-field>
+                  <v-btn color="success" depressed block>{{ authState }}</v-btn>
+                </v-form>
+                <p class="middle-text mt-3 grey--text">or</p>
+                <v-btn block large depressed>
+                  <v-img
+                    src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+                    max-width="36"
+                    class="mr-3 "
+                  />
+                  {{ authState }} with Google
+                </v-btn>
+              </v-card>
+            </template>
+          </v-dialog>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -132,24 +230,40 @@ export default {
     return {
       drawer: null,
       group: null,
+      email: null,
+      password: null,
+      authState: "",
+      valid: false,
+      passwordRules: [
+        value => !!value || "Required.",
+        value => (value || "").length >= 8 || "Min 8 characters"
+      ],
+      emailRules: [
+        value => !!value || "Required.",
+        value => (value || "").length <= 100 || "Max 100 characters",
+        value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return pattern.test(value) || "Invalid email.";
+        }
+      ],
       signInDropDown: null,
       closeOnContentClick: false,
       darkTheme: false,
       isMobile: false,
       signInMenu: [
         {
-          title: "Log In",
-          route: "login",
-          icon: "mdi-login-variant",
+          title: "Sign Up",
+          route: "signup",
+          icon: "mdi-cellphone-link",
           depressed: false,
           text: true,
           dark: false,
           color: ""
         },
         {
-          title: "Sign Up",
-          route: "signup",
-          icon: "mdi-cellphone-link",
+          title: "Login",
+          route: "login",
+          icon: "mdi-login-variant",
           depressed: false,
           text: true,
           dark: false,
@@ -236,6 +350,13 @@ export default {
           this.darkTheme = false;
         }
       }
+    },
+    authSwitcher(x) {
+      if (x === "Login") {
+        this.authState = x;
+      } else {
+        this.authState = x;
+      }
     }
   },
   mounted() {
@@ -247,3 +368,30 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+.middle-text {
+  overflow: hidden;
+  text-align: center;
+}
+
+.middle-text:before,
+.middle-text:after {
+  background-color: #e0e0e0;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.middle-text:before {
+  right: 0.5em;
+  margin-left: -50%;
+}
+
+.middle-text:after {
+  left: 0.5em;
+  margin-right: -50%;
+}
+</style>

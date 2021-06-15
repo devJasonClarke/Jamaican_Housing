@@ -6,10 +6,7 @@
           depressed
           tile
           x-large
-          :class="[
-            tabs === 'buy' ? '' : 'grey lighten-1',
-            'mr-1 rounded-t-lg'
-          ]"
+          :class="[tabs === 'buy' ? '' : 'grey lighten-1', 'mr-1 rounded-t-lg']"
           @click="changeTab(toggle[0])"
           >Buy</v-btn
         >
@@ -18,74 +15,82 @@
           tile
           x-large
           @click="changeTab(toggle[1])"
-          :class="[
-            tabs === 'rent' ? '' : 'grey lighten-1',
-            'rounded-t-lg'
-          ]"
+          :class="[tabs === 'rent' ? '' : 'grey lighten-1', 'rounded-t-lg']"
           >Rent</v-btn
         >
       </div>
-      <v-card
-        tile
-        min-height="90"
-
-        elevation="3"
-        class="rounded-b-lg rounded-tr-lg d-flex align-center pa-3"
-      >
-        <v-container fluid class="px-6">
-          <v-row
-            align="center"
-            justify="space-around"
-            class="flex-column flex-md-row"
-          >
-            <v-col>
-              <v-select
-                outlined
-                dense
-                label="PARISH"
-                v-model="selectedParish"
-                prepend-icon="mdi-map-marker"
-                hide-details
-                :items="parishes"
-                color="green"
-                item-color="green"
-              ></v-select>
-            </v-col>
-            <v-col>
-              <v-select
-                outlined
-                dense
-                label="TYPE"
-                v-model="selectedRealEstateType"
-                prepend-icon="mdi-home-city"
-                hide-details
-                :items="realEstateType"
-                color="green"
-                item-color="green"
-              ></v-select>
-            </v-col>
-            <v-col>
-              <v-select
-                outlined
-                dense
-                label="MAX PRICE"
-                v-model="selectedMaxPrice"
-                prepend-icon="mdi-cash-multiple "
-                hide-details
-                :items="maxPrices[tabs]"
-                color="green"
-                item-color="green"
-              ></v-select>
-            </v-col>
-
-            <v-col md="2">
-              <v-btn color="green accent-4" dark block class="pa-5 "
-                >Search</v-btn
-              >
-            </v-col>
-          </v-row></v-container
+      <v-form ref="form" v-model="valid" lazy-validation>
+        <v-card
+          tile
+          min-height="90"
+          elevation="3"
+          class="rounded-b-lg rounded-tr-lg d-flex align-center pa-3"
         >
-      </v-card>
+          <v-container fluid class="px-6">
+            <v-row
+              align="center"
+              justify="space-around"
+              class="flex-column flex-md-row"
+            >
+              <v-col>
+                <v-select
+                  outlined
+                  dense
+                  label="PARISH"
+                  v-model="selectedParish"
+                  prepend-icon="mdi-map-marker"
+                  hide-details
+                  :items="parishes"
+                  color="green"
+                  item-color="green"
+                  :rules="[v => !!v || 'Item is required']"
+                  required
+                ></v-select>
+              </v-col>
+              <v-col>
+                <v-select
+                  outlined
+                  dense
+                  label="TYPE"
+                  v-model="selectedRealEstateType"
+                  prepend-icon="mdi-home-city"
+                  hide-details
+                  :items="realEstateType"
+                  color="green"
+                  item-color="green"
+                  :rules="[v => !!v || 'Item is required']"
+                ></v-select>
+              </v-col>
+              <v-col>
+                <v-select
+                  outlined
+                  dense
+                  label="MAX PRICE"
+                  v-model="selectedMaxPrice"
+                  prepend-icon="mdi-cash-multiple "
+                  hide-details
+                  :items="maxPrices[tabs]"
+                  color="green"
+                  item-color="green"
+                  :rules="[v => !!v || 'Item is required']"
+                  required
+                ></v-select>
+              </v-col>
+
+              <v-col md="2">
+                <v-btn
+                  color="green accent-4"
+                  dark
+                  block
+                  class="pa-5 "
+                  @click="validate"
+                  >Search</v-btn
+                >
+              </v-col>
+            </v-row></v-container
+          >
+        </v-card>
+      </v-form>
     </v-container>
     <!--     {{selectedParish}}
     {{selectedRealEstateType}}
@@ -97,6 +102,7 @@
 export default {
   data() {
     return {
+      valid: false,
       currency: "$",
       tabs: "buy",
       toggle: ["buy", "rent"],
@@ -157,6 +163,15 @@ export default {
     changeTab(x) {
       this.tabs = x;
       this.selectedMaxPrice = "";
+            this.selectedRealEstateType= "";
+      this.selectedParish= "";
+    },
+    validate() {
+      if (this.$refs.form.validate()) {
+        console.log("valid");
+      } else {
+        console.log("not");
+      }
     }
   }
 };

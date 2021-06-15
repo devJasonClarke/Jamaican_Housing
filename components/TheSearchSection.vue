@@ -1,23 +1,26 @@
 <template>
+      <v-form ref="form" v-model="valid" lazy-validation>
   <v-container>
     <v-row
       align="center"
       justify="space-around"
       class="flex-column flex-md-row"
     >
-          <v-col>
-              <v-select
-                outlined
-                dense
-                label="PARISH"
-                v-model="selectedParish"
-                prepend-icon="mdi-map-marker"
-                hide-details
-                :items="parishes"
-                color="green"
-                item-color="green"
-              ></v-select>
-            </v-col>
+      <v-col>
+        <v-select
+          outlined
+          dense
+          label="PARISH"
+          v-model="selectedParish"
+          prepend-icon="mdi-map-marker"
+          hide-details
+          :items="parishes"
+          color="green"
+          item-color="green"
+          :rules="[v => !!v || 'Item is required']"
+          required
+        ></v-select>
+      </v-col>
       <v-col>
         <v-select
           outlined
@@ -29,6 +32,8 @@
           :items="maxPrices"
           color="green"
           item-color="green"
+          :rules="[v => !!v || 'Item is required']"
+          required
         ></v-select>
       </v-col>
 
@@ -43,6 +48,8 @@
           :items="bedrooms"
           color="green"
           item-color="green"
+          :rules="[v => !!v || 'Item is required']"
+          required
         ></v-select>
       </v-col>
       <v-col>
@@ -56,26 +63,32 @@
           :items="realEstateType"
           color="green"
           item-color="green"
+          :rules="[v => !!v || 'Item is required']"
+          required
         ></v-select>
       </v-col>
 
       <v-col md="2">
-        <v-btn color="green accent-4" dark block class="pa-5 ">Search</v-btn>
+        <v-btn color="green accent-4" dark block class="pa-5 " @click="validate"
+          >Search</v-btn
+        >
       </v-col>
     </v-row></v-container
   >
+      </v-form>
 </template>
 
 <script>
 export default {
   data() {
     return {
+        valid: false,
       selectedParish: "",
-      selectedBedrooms:'',
+      selectedBedrooms: "",
       selectedRealEstateType: "",
       selectedMaxPrice: "",
       bedrooms: ["1", "2", "3", "4 +"],
-           parishes: [
+      parishes: [
         "Clarendon",
         "Hanover",
         "Kingston",
@@ -112,6 +125,15 @@ export default {
         "$ 150,000,00 JMD"
       ]
     };
+  },
+  methods: {
+    validate() {
+      if (this.$refs.form.validate()) {
+        console.log("valid");
+      } else {
+        console.log("not");
+      }
+    }
   }
 };
 </script>

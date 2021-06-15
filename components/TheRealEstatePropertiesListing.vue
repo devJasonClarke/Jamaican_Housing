@@ -4,7 +4,7 @@
 
     <v-row>
       <v-col
-        v-for="index in 10"
+        v-for="index in 8"
         :key="index"
         cols="12"
         sm="4"
@@ -12,7 +12,6 @@
         class="mb-4"
       >
         <v-card
-
           nuxt
           :to="{ name: 'buy' }"
           outlined
@@ -80,7 +79,6 @@ export default {
   },
   data() {
     return {
-      
       iconColor: "rgba(0, 200, 83, 0.5)"
     };
   }
@@ -95,4 +93,3 @@ export default {
   }
 }
 </style>
-

@@ -3,7 +3,7 @@
         <p class="text-body mb-6">Homes For {{title}}</p>
 
         <v-row>
-          <v-col v-for="index in 10" :key="index+'a'" cols="12" sm='4' md="3" class="mb-4">
+          <v-col v-for="index in 8" :key="index+'a'" cols="12" sm='4' md="3" class="mb-4">
                   <v-sheet
   
     class="pa-3 rounded-lg"
