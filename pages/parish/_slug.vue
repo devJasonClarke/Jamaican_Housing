@@ -52,7 +52,7 @@ export default {
       parishes.parishes.find(parish => parish.slug == theParam);
 
     if (parish() === undefined) {
-      redirect("/404");
+      redirect(404, "/404");
     }
     return {
       parish
