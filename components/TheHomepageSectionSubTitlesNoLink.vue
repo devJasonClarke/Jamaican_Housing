@@ -30,6 +30,8 @@
           </v-icon></v-btn
         >
         <p class="text-center mt-3 ">It's Free!</p>
+
+        
       </v-col>
     </v-row>
   </v-container>

@@ -69,7 +69,7 @@
                       <v-card-title class="px-0 text-h4">
                         {{ authState }}
                       </v-card-title>
-                      <v-form v-model="valid">
+                      <v-form ref="form" v-model="valid" lazy-validation>
                         <v-text-field
                           :rules="emailRules"
                           v-model="email"
@@ -90,7 +90,7 @@
                           class="mt-1"
                           color="green accent-4"
                         ></v-text-field>
-                        <v-btn color="success" depressed block>{{
+                        <v-btn color="success" depressed block @click="validate">{{
                           authState
                         }}</v-btn>
                       </v-form>
@@ -183,7 +183,7 @@
                 <v-card-title class="px-0 text-h4">
                   {{ authState }}
                 </v-card-title>
-                <v-form v-model="valid">
+                <v-form ref="form" v-model="valid" lazy-validation>
                   <v-text-field
                     :rules="emailRules"
                     v-model="email"
@@ -351,6 +351,14 @@ export default {
         }
       }
     },
+    validate() {
+      if (this.$refs.form.validate()) {
+        console.log("valid");
+      } else {
+        console.log("not");
+      }
+    
+  },
     authSwitcher(x) {
       if (x === "Login") {
         this.authState = x;
