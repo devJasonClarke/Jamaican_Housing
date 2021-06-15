@@ -49,6 +49,8 @@ export default {
     "@nuxtjs/axios",
     // https://go.nuxtjs.dev/pwa
     "@nuxtjs/pwa",
+    //Google Tag Manager
+    '@nuxtjs/gtm',
     // https://go.nuxtjs.dev/content
     /*     '@nuxt/content', */
     [
@@ -70,6 +72,10 @@ export default {
     ]
   ],
 
+  gtm: {
+    enabled: true,
+    id: 'GTM-5QNQDKF'
+  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
