@@ -1,5 +1,6 @@
 <template>
   <div>
+    <TheMetaTags :title="title" :description="description"/>
     <TheHomePageHeader />
     <TheSearchSectionHomePage />
     <SectionPadding>
@@ -54,6 +55,8 @@ export default {
   components: { TheHomePageHeader },
   data() {
     return {
+      title: 'Home | Real Estate Ja',
+      description: 'Welcome To Real Estate Ja',
       card: {
         title: "Sunny Private Studio Apartment",
         parish: "St. James",

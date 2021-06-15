@@ -1,5 +1,6 @@
 <template>
   <div>
+     <TheMetaTags :title="title" :description="description"/>
     <v-img :src="img" min-height="300" max-height="400"></v-img>
     <SectionPadding>
       <SectionTitlesSecondary
@@ -54,6 +55,8 @@ import img from "~/assets/images/house.jpg";
 export default {
   data() {
     return {
+      title: 'Rent A Home',
+      descritpion: 'rent',
       img: img,
       loading: false,
       card: {
