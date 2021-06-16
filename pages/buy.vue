@@ -55,7 +55,7 @@ import img from "~/assets/images/house.jpg";
 export default {
   data() {
     return {
-      title: 'Buy Real Estate',
+      title: 'Buy Real Estate | Jamaica Housing',
       description: 'buy',
       img: img,
       loading: false,
@@ -75,11 +75,6 @@ export default {
       const value = "#top";
       if (!isNaN(value)) return Number(value);
       else return value;
-    },
-    options() {
-      return {
-        offset: 10
-      };
     }
   },
 
@@ -87,13 +82,13 @@ export default {
     previous() {
       console.log("previous");
       this.loading = true;
-      this.$vuetify.goTo(this.target, this.options);
+      this.$vuetify.goTo(this.target);
       setTimeout(() => (this.loading = false), 3000);
     },
     next() {
       console.log("next");
       this.loading = true;
-      this.$vuetify.goTo(this.target, this.options);
+      this.$vuetify.goTo(this.target);
       setTimeout(() => (this.loading = false), 3000);
     }
   }

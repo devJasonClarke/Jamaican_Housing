@@ -11,17 +11,21 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-
-    title: "Home | Real Estate Ja", 
+    titleTemplate: "Real Estate Ja",
+    title: "Real Estate Ja",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-
+      { hid: "description", name: "description", content: "" },
+      { hid: "author", name: "author", content: "Jason Clarke" }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
   env: {
-    baseURL: (process.env.NODE_ENV === 'production' ? 'https://jasonjh.netlify.app/' : 'http://localhost:3000')
+    baseURL:
+      process.env.NODE_ENV === "production"
+        ? "https://jasonjh.netlify.app/"
+        : "http://localhost:3000"
   },
   loading: {
     color: "#00C853",
@@ -50,20 +54,20 @@ export default {
     // https://go.nuxtjs.dev/pwa
     "@nuxtjs/pwa",
     //Google Tag Manager
-    '@nuxtjs/gtm',
+    "@nuxtjs/gtm",
     // https://go.nuxtjs.dev/content
     /*     '@nuxt/content', */
     [
-      '@nuxtjs/firebase',
+      "@nuxtjs/firebase",
       {
         config: {
-          apiKey: '<apiKey>',
-          authDomain: '<authDomain>',
-          projectId: '<projectId>',
-          storageBucket: '<storageBucket>',
-          messagingSenderId: '<messagingSenderId>',
-          appId: '<appId>',
-          measurementId: '<measurementId>'
+          apiKey: "<apiKey>",
+          authDomain: "<authDomain>",
+          projectId: "<projectId>",
+          storageBucket: "<storageBucket>",
+          messagingSenderId: "<messagingSenderId>",
+          appId: "<appId>",
+          measurementId: "<measurementId>"
         },
         services: {
           auth: true // Just as example. Can be any other service.
@@ -74,7 +78,7 @@ export default {
 
   gtm: {
     enabled: true,
-    id: 'GTM-5QNQDKF'
+    id: "GTM-5QNQDKF"
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
@@ -93,22 +97,19 @@ export default {
   vuetify: {
     customVariables: ["~/assets/variables.scss"],
     theme: {
-         themes: {
+      themes: {
         light: {
           primary: colors.lightBlue,
           secondary: colors.grey.darken1,
           accent: colors.pink.darken1,
           error: colors.red.accent3,
           background: colors.indigo.lighten5,
-          info: colors.teal.darken1,
-
+          info: colors.teal.darken1
         },
         dark: {
           primary: colors.blue.darken4,
           background: colors.indigo.base,
-          info: colors.teal.lighten1,
- 
- 
+          info: colors.teal.lighten1
         }
       },
       dark: false

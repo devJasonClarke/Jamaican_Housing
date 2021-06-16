@@ -1,10 +1,14 @@
 <template>
   <div>
-    <v-img :src="parish().image" min-height="300" max-height="400"></v-img>
+    <TheMetaTags
+      :title="`${parish.name} | Jamaica Housing`"
+      :description="parish.description"
+    />
+    <v-img :src="parish.image" min-height="300" max-height="400"></v-img>
     <SectionPadding>
       <SectionTitlesSecondary
-        :mainTitle="parish().name"
-        :paragraph="parish().description"
+        :mainTitle="parish.name"
+        :paragraph="parish.description"
       />
     </SectionPadding>
 
@@ -46,21 +50,9 @@
 <script>
 import parishes from "~/assets/parishes/parishes";
 export default {
-  asyncData({ params, redirect }) {
-    let theParam = String(params.slug);
-    const parish = () =>
-      parishes.parishes.find(parish => parish.slug == theParam);
-
-    if (parish() === undefined) {
-      redirect(404, "/404");
-    }
-    return {
-      parish
-    };
-  },
-
   data() {
     return {
+      parish: "",
       loading: false,
       title: `The Best Real Estate`,
       card: {
@@ -74,16 +66,16 @@ export default {
       }
     };
   },
+  async fetch() {
+    let theParam = String(this.$route.params.slug);
+    let j = () => parishes.parishes.find(parish => parish.slug == theParam);
+    this.parish = j();
+  },
   computed: {
     target() {
       const value = "#top";
       if (!isNaN(value)) return Number(value);
       else return value;
-    },
-    options() {
-      return {
-        offset: 10
-      };
     }
   },
 
@@ -91,13 +83,13 @@ export default {
     previous() {
       console.log("previous");
       this.loading = true;
-      this.$vuetify.goTo(this.target, this.options);
+      this.$vuetify.goTo(this.target);
       setTimeout(() => (this.loading = false), 3000);
     },
     next() {
       console.log("next");
       this.loading = true;
-      this.$vuetify.goTo(this.target, this.options);
+      this.$vuetify.goTo(this.target);
       setTimeout(() => (this.loading = false), 3000);
     }
   }

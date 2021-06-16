@@ -55,7 +55,7 @@ import img from "~/assets/images/house.jpg";
 export default {
   data() {
     return {
-      title: 'Rent A Home',
+      title: 'Rent A Home | Jamaica Housing',
       descritpion: 'rent',
       img: img,
       loading: false,
@@ -74,24 +74,19 @@ export default {
     target() {
       const value = "#top";
       return value;
-    },
-    options() {
-      return {
-        offset: 10
-      };
     }
   },
   methods: {
     previous() {
       console.log("previous");
       this.loading = true;
-      this.$vuetify.goTo(this.target, this.options);
+      this.$vuetify.goTo(this.target);
       setTimeout(() => (this.loading = false), 3000);
     },
     next() {
       console.log("next");
       this.loading = true;
-      this.$vuetify.goTo(this.target, this.options);
+      this.$vuetify.goTo(this.target);
       setTimeout(() => (this.loading = false), 3000);
     }
   }
