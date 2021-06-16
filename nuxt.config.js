@@ -85,17 +85,18 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
+    icon: {
+      source: "~/static/icon.png"
+    },
     manifest: {
       lang: "en",
       name: "Jamaica Housing",
       short_name: "JA Housing",
-      description : "Housing Web App",
+      description: "Housing Web App",
       theme_color: "#00c853",
       background_color: "00c853"
     },
-    meta: {
-      
-    }
+    meta: {}
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
