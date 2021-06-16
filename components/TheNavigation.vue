@@ -97,9 +97,10 @@
                       <p class="middle-text mt-3 grey--text">or</p>
 
                       <v-btn block large depressed>
+                    
                         <v-img
-                          src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
-                          max-width="36"
+                          :src="require('~/assets/images/svg/google.svg')"
+                          max-width="30"
                           class="mr-3 "
                         />
                         {{ authState }} with Google
@@ -209,8 +210,8 @@
                 <p class="middle-text mt-3 grey--text">or</p>
                 <v-btn block large depressed>
                   <v-img
-                    src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
-                    max-width="36"
+                       :src="require('~/assets/images/svg/google.svg')"
+                    max-width="30"
                     class="mr-3 "
                   />
                   {{ authState }} with Google
