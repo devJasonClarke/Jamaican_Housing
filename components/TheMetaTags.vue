@@ -14,10 +14,6 @@ export default {
     description: {
       type: String,
       required: true
-    },
-    image: {
-      type: String,
-      default: "https://nuxtjs.org/nuxt-card.png"
     }
   },
 
@@ -42,11 +38,6 @@ export default {
           content: this.description
         },
         {
-          hid: "twitter:image",
-          name: "twitter:image",
-          content: this.image
-        },
-        {
           hid: "twitter:image:alt",
           name: "twitter:image:alt",
           content: this.title
@@ -61,17 +52,7 @@ export default {
           property: "og:description",
           content: this.description
         },
-        {
-          hid: "og:image",
-          property: "og:image",
-          content: this.image
-        },
-        {
-          hid: "og:image:secure_url",
-          property: "og:image:secure_url",
-          content: this.image
-        },
-        {
+          {
           hid: "og:image:alt",
           property: "og:image:alt",
           content: this.title
