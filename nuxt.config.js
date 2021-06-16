@@ -11,8 +11,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: "Real Estate Ja",
-    title: "Real Estate Ja",
+    titleTemplate: "Jamaica Housing",
+    title: "Jamaica Housing",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -85,18 +85,14 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
-    icon: {
-      source: "~/static/icon.png"
-    },
     manifest: {
       lang: "en",
       name: "Jamaica Housing",
       short_name: "JA Housing",
       description: "Housing Web App",
       theme_color: "#00c853",
-      background_color: "00c853"
-    },
-    meta: {}
+      background_color: "#00c853"
+    }
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
