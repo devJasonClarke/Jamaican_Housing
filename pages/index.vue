@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TheMetaTags :title="title" :description="description"/>
+    <TheMetaTags :title="title" :description="description" />
     <TheHomePageHeader />
     <TheSearchSectionHomePage />
     <SectionPadding>
@@ -53,10 +53,21 @@ import TheHomePageHeader from "../components/TheHomePageHeader.vue";
 
 export default {
   components: { TheHomePageHeader },
+  fetch() {
+    this.$OneSignal.push(() => {
+      this.$OneSignal.isPushNotificationsEnabled(isEnabled => {
+        if (isEnabled) {
+          console.log("Push notifications are enabled!");
+        } else {
+          console.log("Push notifications are not enabled yet.");
+        }
+      });
+    });
+  },
   data() {
     return {
-      title: 'Home | Real Estate Ja',
-      description: 'Welcome To Real Estate Ja',
+      title: "Home | Real Estate Ja",
+      description: "Welcome To Real Estate Ja",
       card: {
         title: "Sunny Private Studio Apartment",
         parish: "St. James",
