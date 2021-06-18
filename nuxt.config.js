@@ -52,8 +52,8 @@ export default {
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/onesignal',
-        // https://go.nuxtjs.dev/pwa
+    "@nuxtjs/onesignal",
+    // https://go.nuxtjs.dev/pwa
     "@nuxtjs/pwa",
     //Google Tag Manager
     "@nuxtjs/gtm",
@@ -80,15 +80,15 @@ export default {
   ],
   oneSignal: {
     cdn: true,
-    OneSignalSDK: 'https://cdn.onesignal.com/sdks/OneSignalSDK.js',
+    OneSignalSDK: "https://cdn.onesignal.com/sdks/OneSignalSDK.js",
     init: {
-      appId: '3b3f470a-3687-4700-a38e-551bdf04fb86',
+      appId: "3b3f470a-3687-4700-a38e-551bdf04fb86",
       allowLocalhostAsSecureOrigin: true,
       welcomeNotification: {
-          disable: true
-      },
-    
-    }
+        disable: true
+      }
+    },
+    importScripts: ["/sw.js"]
   },
   gtm: {
     enabled: true,
