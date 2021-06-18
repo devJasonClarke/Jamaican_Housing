@@ -81,8 +81,11 @@ export default {
       appId: '3b3f470a-3687-4700-a38e-551bdf04fb86',
       allowLocalhostAsSecureOrigin: true,
       welcomeNotification: {
-          disable: true
-      }
+          disable: false
+      },
+      notifyButton: {
+        enable: true,
+      },
     }
   },
   gtm: {
