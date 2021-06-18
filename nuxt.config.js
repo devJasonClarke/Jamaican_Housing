@@ -79,8 +79,6 @@ export default {
     ]
   ],
   oneSignal: {
-    cdn: true,
-    OneSignalSDK: "https://cdn.onesignal.com/sdks/OneSignalSDK.js",
     init: {
       appId: "3b3f470a-3687-4700-a38e-551bdf04fb86",
       allowLocalhostAsSecureOrigin: true,
