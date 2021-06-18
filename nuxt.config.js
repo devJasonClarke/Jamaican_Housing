@@ -52,10 +52,12 @@ export default {
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
     // https://go.nuxtjs.dev/pwa
+    '@nuxtjs/onesignal',
+        // https://go.nuxtjs.dev/pwa
     "@nuxtjs/pwa",
     //Google Tag Manager
     "@nuxtjs/gtm",
-    '@nuxtjs/onesignal',
+
     // https://go.nuxtjs.dev/content
     /*     '@nuxt/content', */
     [
@@ -83,9 +85,7 @@ export default {
       welcomeNotification: {
           disable: false
       },
-      notifyButton: {
-        enable: true,
-      },
+    
     }
   },
   gtm: {
