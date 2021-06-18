@@ -55,6 +55,7 @@ export default {
     "@nuxtjs/pwa",
     //Google Tag Manager
     "@nuxtjs/gtm",
+    '@nuxtjs/onesignal',
     // https://go.nuxtjs.dev/content
     /*     '@nuxt/content', */
     [
@@ -75,7 +76,15 @@ export default {
       }
     ]
   ],
-
+  oneSignal: {
+    init: {
+      appId: '3b3f470a-3687-4700-a38e-551bdf04fb86',
+      allowLocalhostAsSecureOrigin: true,
+      welcomeNotification: {
+          disable: false
+      }
+    }
+  },
   gtm: {
     enabled: true,
     id: "GTM-5QNQDKF"
