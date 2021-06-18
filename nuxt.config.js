@@ -52,9 +52,9 @@ export default {
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
     // https://go.nuxtjs.dev/pwa
-    "@nuxtjs/onesignal",
-    // https://go.nuxtjs.dev/pwa
+
     "@nuxtjs/pwa",
+    '@nuxtjs/onesignal',
     //Google Tag Manager
     "@nuxtjs/gtm",
 
@@ -80,14 +80,15 @@ export default {
   ],
   oneSignal: {
     init: {
-      appId: "3b3f470a-3687-4700-a38e-551bdf04fb86",
+      appId: '3b3f470a-3687-4700-a38e-551bdf04fb86',
       allowLocalhostAsSecureOrigin: true,
       welcomeNotification: {
-        disable: false
+          disable: false
       },
       notifyButton: {
-        enable: true
-      }
+        enable: true,
+      },
+    
     }
   },
   gtm: {
