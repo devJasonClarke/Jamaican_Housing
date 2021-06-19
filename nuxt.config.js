@@ -54,7 +54,6 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/onesignal',
     "@nuxtjs/pwa",
-
     //Google Tag Manager
     "@nuxtjs/gtm",
 

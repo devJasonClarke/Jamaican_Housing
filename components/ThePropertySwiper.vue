@@ -1,7 +1,7 @@
 <template>
   <swiper class="swiper" :options="propertySwiperOptions">
     <swiper-slide class="sliide" v-for="index in 6" :key="index">
-      <v-img :src="require('~/assets/images/house.jpg')" height="450"></v-img>
+      <img :src="require('~/assets/images/house.jpg')" height="450" width="100%"/>
     </swiper-slide>
 
     <div class="swiper-pagination" slot="pagination"></div>
@@ -14,13 +14,13 @@ export default {
     return {
       propertySwiperOptions: {
         slidesPerView: 1,
-   
-  
+        loop: true,
+/*         mousewheel: true, */
         spaceBetween: 0,
-   /*      autoplay: {
+         /*  autoplay: {
           delay: 2500,
           disableOnInteraction: false
-        }, */
+        },  */
         pagination: {
           el: ".swiper-pagination",
           clickable: true,
