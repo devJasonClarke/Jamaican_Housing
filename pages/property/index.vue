@@ -67,16 +67,10 @@
             <div class="">
               <div>
                 <v-list dense flat>
-                  <v-list-item-group
-                    :color="iconColor"
-                    class="amendities-grid"
-                  >
+                  <v-list-item-group :color="iconColor" class="amendities-grid">
                     <v-list-item v-for="(item, i) in items" :key="i">
                       <v-list-item-icon>
-                        <v-icon
-                          v-text="item.icon"
-                          :color="iconColor"
-                        ></v-icon>
+                        <v-icon v-text="item.icon" :color="iconColor"></v-icon>
                       </v-list-item-icon>
 
                       <v-list-item-content>
@@ -107,7 +101,132 @@
             ></iframe>
           </div>
         </v-col>
-        <v-col cols="12" md="4">4. Realtor Card</v-col>
+        <v-col cols="12" md="4">
+          <v-card class="pa-6 ml-sm-3 mb-6" outlined>
+            <v-img
+              height="150"
+              width="150"
+              src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+              class="rounded-circle mx-auto my-0"
+            ></v-img>
+            <div class="text-center d-flex flex-column">
+              <p class="text-h6 mt-4 mb-0">
+                Jason Clarke
+                <v-tooltip color="blue" top>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-icon color="blue" dark v-bind="attrs" v-on="on">
+                      mdi-check-decagram
+                    </v-icon>
+                  </template>
+                  <span>Verified Realtor</span>
+                </v-tooltip>
+              </p>
+              <a href="mailto:JasonClarke@gmail.com" class="text-subtitle-1"
+                >Jasonclarke@gmail.com</a
+              >
+              <a href="tel:876 314 7199" class="text-subtitle-1"
+                >+ 876 314 7199</a
+              >
+            </div>
+            <v-divider class="my-4"></v-divider>
+            <div class="d-flex justify-center">
+              <a target="_blank" href="https://gen3d.netlify.app/">
+                <v-btn icon color="blue darken-3" x-large>
+                  <v-icon>mdi-facebook </v-icon>
+                </v-btn>
+              </a>
+              <a
+                target="_blank"
+                href="https://www.instagram.com/jasonclarke.dev/"
+              >
+                <v-btn icon color="pink darken-1" x-large>
+                  <v-icon>mdi-instagram </v-icon>
+                </v-btn>
+              </a>
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/in/devjasonclarke/"
+              >
+                <v-btn icon color="blue darken-4" x-large>
+                  <v-icon>mdi-linkedin </v-icon>
+                </v-btn>
+              </a>
+              <a target="_blank" href="https://wa.me/8768018972">
+                <v-btn icon color="green" x-large>
+                  <v-icon>mdi-whatsapp </v-icon>
+                </v-btn>
+              </a>
+            </div>
+            <v-divider class="my-4"></v-divider>
+            <v-form class="mt-6" @submit.prevent="">
+              <v-text-field
+                outlined
+                dense
+                label="Full Name *"
+                required
+                :color="iconColor"
+              ></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                label="Phone Number *"
+                required
+                :color="iconColor"
+              ></v-text-field>
+              <v-text-field
+                outlined
+                dense
+                label="Email Address *"
+                required
+                :color="iconColor"
+              ></v-text-field>
+              <v-btn
+                class="mb-6"
+                x-large
+                type="submit"
+                :color="iconColor"
+                block
+                dark
+                depressed
+              >
+                Send Message
+                <v-icon right>
+                  mdi-send mdi-rotate-315
+                </v-icon>
+              </v-btn>
+              <a href="tel:876 314 7199" class="text-subtitle-1">
+                <v-btn
+                  class="mb-6"
+                  x-large
+                  outlined
+                  :color="iconColor"
+                  block
+                  dark
+                >
+                  <v-icon left>
+                    mdi-phone-outline
+                  </v-icon>
+                  Call
+                </v-btn>
+              </a>
+              <a target="_blank" href="https://wa.me/8768018972">
+                <v-btn
+                  class="mb-6"
+                  x-large
+                  outlined
+                  :color="iconColor"
+                  block
+                  dark
+                >
+                  <v-icon left color="green" dark>
+                    mdi-whatsapp
+                  </v-icon>
+                  Whatsapp
+                </v-btn>
+              </a>
+            </v-form>
+          </v-card>
+        </v-col>
       </v-row>
     </v-container>
   </div>
@@ -117,7 +236,7 @@
 export default {
   data() {
     return {
-      iconColor: "rgba(0, 200, 83, 0.5)",
+      iconColor: "rgba(0, 200, 83, 1)",
       items: [
         {
           text: "Wifi",
