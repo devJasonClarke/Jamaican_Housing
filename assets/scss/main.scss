@@ -1,6 +1,5 @@
 :root {
   --primary-green: #00c853;
-
 }
 
 a {
@@ -13,6 +12,18 @@ ul {
     padding: 2.5px 0;
   }
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.img{
+  object-fit: cover;
+}
+
 .primary-green {
   color: var(--primary-green) !important;
 }

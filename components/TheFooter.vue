@@ -14,11 +14,11 @@
 
           <v-col cols="12" md="2" sm="6">
             <p
-              class="text-uppercase text-subtitle-1 font-weight-bold text-sm-h6 ml-4"
+              class="text-uppercase text-subtitle-1 font-weight-bold text-sm-h6 "
             >
               Market
             </p>
-            <ul class="pa-0">
+            <ul class="pa-0  ml-n4">
               <li v-for="(route, index) in routes.market" :key="index">
                 <v-btn text :to="{ name: route.route }">{{
                   route.title
@@ -29,11 +29,11 @@
 
           <v-col cols="12" md="2" sm="6">
             <p
-              class="text-uppercase text-subtitle-1 font-weight-bold text-sm-h6  ml-4"
+              class="text-uppercase text-subtitle-1 font-weight-bold text-sm-h6  "
             >
               Resources
             </p>
-            <ul class="pa-0">
+            <ul class="pa-0 ml-n4">
               <li v-for="(route, index) in routes.resources" :key="index">
                 <v-btn text :to="{ name: route.route }">{{
                   route.title

@@ -170,6 +170,7 @@
                 outlined
                 dense
                 label="Phone Number *"
+                type="number"
                 required
                 :color="iconColor"
               ></v-text-field>
@@ -177,9 +178,17 @@
                 outlined
                 dense
                 label="Email Address *"
+                type="email"
                 required
                 :color="iconColor"
               ></v-text-field>
+              <v-textarea
+                outlined
+                name="input-7-4"
+                label="Message *"
+                value="Hello, I am interested in this property"
+                :color="iconColor"
+              ></v-textarea>
               <v-btn
                 class="mb-6"
                 x-large
