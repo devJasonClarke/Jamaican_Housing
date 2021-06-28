@@ -1,6 +1,7 @@
 <template>
   <div>
     <ThePropertySwiper />
+
     <v-container class="mt-6">
       <v-row>
         <v-col cols="12" md="8">
@@ -8,7 +9,8 @@
             <v-icon :color="iconColor">mdi-map-marker mdi-24px</v-icon>
             catherine hall, St. James
           </p>
-          <h1>
+          <h1 class="d-flex justify-space-between">
+            <span>
             Modern Studio APARTMENT
 
             <v-tooltip color="blue" bottom>
@@ -19,9 +21,31 @@
               </template>
               <span>Verified</span>
             </v-tooltip>
+</span>
+              <v-tooltip color="red" bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                v-bind="attrs" v-on="on"
+               :loading="likeLoading"
+                  small
+                 icon
+                 color="red"
+                  @click="likeProperty"
+             
+                >
+                  <v-icon color="red" v-if="liked" > mdi-heart</v-icon>
+                  <v-icon color="red"  v-else>mdi-heart-outline</v-icon>
+                </v-btn>
+              </template>
+              <span>Favourites</span>
+            </v-tooltip>
+
+
+          
           </h1>
           <p>Apartment</p>
-          <div class="pa-0 pb-2 d-flex justify-space-between icons-max-width">
+          
+          <div class="pa-0 pb-2 d-flex justify-space-between flex-wrap icons-max-width">
             <p>
               <v-icon :color="iconColor"
                 >mdi-ruler-square mdi-flip-v mdi-18px</v-icon
@@ -36,7 +60,7 @@
               <v-icon :color="iconColor">mdi-shower-head mdi-18px</v-icon>
               1 Bathroom
             </p>
-            <p>
+            <p >
               <v-icon :color="iconColor">mdi-tag mdi-18px</v-icon>
               55K
             </p>
@@ -52,6 +76,55 @@
               odit eum, itaque illum nulla quidem delectus magnam fugiat dolorum
               sed aut pariatur sunt. Et doloremque officiis nam quos sunt!
             </p>
+       <!--      <v-row class="mb-3">
+              <v-col
+              cols="1"
+                ><v-btn
+                  class="d-inline"
+                  small
+                  fab
+                  color="white"
+                  @click="likeProperty"
+                >
+                  <v-icon color="red" v-if="liked" > mdi-heart</v-icon>
+                  <v-icon color="red"  v-else>mdi-heart-outline</v-icon>
+                </v-btn></v-col
+              >
+              <v-col>Share: <v-btn
+                  class="d-inline"
+                  small
+                  fab
+                  color="white"
+                  @click="likeProperty"
+                >
+                  <v-icon color="red" v-if="liked" > mdi-heart</v-icon>
+                  <v-icon color="red"  v-else>mdi-heart-outline</v-icon>
+                </v-btn>
+                
+                <v-btn
+                  class="d-inline"
+                  small
+                  fab
+                  color="white"
+                  @click="likeProperty"
+                >
+                  <v-icon color="red" v-if="liked" > mdi-heart</v-icon>
+                  <v-icon color="red"  v-else>mdi-heart-outline</v-icon>
+                </v-btn>
+                
+                <v-btn
+                  class="d-inline"
+                  small
+                  fab
+                  color="white"
+                  @click="likeProperty"
+                >
+                  <v-icon color="red" v-if="liked" > mdi-heart</v-icon>
+                  <v-icon color="red"  v-else>mdi-heart-outline</v-icon>
+                </v-btn>
+                
+                </v-col>
+            </v-row> -->
           </div>
           <v-divider class="mb-4"></v-divider>
           <div>
@@ -263,9 +336,20 @@ export default {
         { text: "Swimming Pool", icon: "mdi-pool" },
         { text: "Generator", icon: "mdi-flash" },
         { text: "Water Tank", icon: "mdi-water" }
-      ]
+      ],
+      liked: false,
+      likeLoading: false,
     };
-  }
+  },
+  methods: {
+    likeProperty() {
+   
+       this.liked = !this.liked;
+       this.likeLoading = !this.likeLoading;
+           setTimeout(() => (this.likeLoading = !this.likeLoading), 1000);
+ 
+    }
+  },
 };
 </script>
 

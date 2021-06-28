@@ -1,9 +1,11 @@
 <template>
   <swiper class="swiper" :options="propertySwiperOptions">
+    
     <swiper-slide class="sliide" v-for="index in 6" :key="index">
       <img class="img" :src="require('~/assets/images/house.jpg')" height="450" width="100%"/>
     </swiper-slide>
-
+    <div class="swiper-button-prev" slot="button-prev"></div>
+    <div class="swiper-button-next" slot="button-next"></div>
     <div class="swiper-pagination" slot="pagination"></div>
   </swiper>
 </template>
@@ -26,6 +28,10 @@ export default {
           clickable: true,
           dynamicBullets: true
         },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+          },
         /*      navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev"

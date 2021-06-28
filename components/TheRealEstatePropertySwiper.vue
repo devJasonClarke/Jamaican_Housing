@@ -23,7 +23,6 @@ export default {
       propertySwiperOption: {
         initialSlide: 0,
         slidesPerView: 1,
-        mousewheel: true,
         centeredSlides: true,
         spaceBetween: 15,
 

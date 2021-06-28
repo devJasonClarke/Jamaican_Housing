@@ -17,7 +17,7 @@
     >
 
     <v-card-title>
-      {{ card.title }}
+      {{ card.title }}        
     </v-card-title>
 
     <v-card-subtitle class="pb-4 primary-green">
