@@ -224,7 +224,7 @@
                   <v-icon>mdi-linkedin </v-icon>
                 </v-btn>
               </a>
-              <a target="_blank" href="https://wa.me/8768018972">
+              <a target="_blank" :href="`https://wa.me/${phoneNumber}`">
                 <v-btn icon color="green" x-large>
                   <v-icon>mdi-whatsapp </v-icon>
                 </v-btn>
@@ -276,7 +276,7 @@
                   mdi-send mdi-rotate-315
                 </v-icon>
               </v-btn>
-              <a href="tel:876 314 7199" class="text-subtitle-1">
+              <a :href="phoneNumber" class="text-subtitle-1">
                 <v-btn
                   class="mb-6"
                   x-large
@@ -291,7 +291,7 @@
                   Call
                 </v-btn>
               </a>
-              <a target="_blank" href="https://wa.me/8768018972">
+              <a target="_blank" :href="`https://wa.me/${phoneNumber}`">
                 <v-btn
                   class="mb-6"
                   x-large
@@ -319,6 +319,7 @@ export default {
   data() {
     return {
       iconColor: "rgba(0, 200, 83, 1)",
+      phoneNumber: 18763147199,
       items: [
         {
           text: "Wifi",
@@ -350,6 +351,7 @@ export default {
  
     }
   },
+ 
 };
 </script>
 
