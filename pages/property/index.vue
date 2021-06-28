@@ -276,7 +276,7 @@
                   mdi-send mdi-rotate-315
                 </v-icon>
               </v-btn>
-              <a :href="phoneNumber" class="text-subtitle-1">
+              <a :href="`tel:${phoneNumber}`" class="text-subtitle-1">
                 <v-btn
                   class="mb-6"
                   x-large
