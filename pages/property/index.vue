@@ -11,41 +11,41 @@
           </p>
           <h1 class="d-flex justify-space-between">
             <span>
-            Modern Studio APARTMENT
+              Modern Studio APARTMENT
 
-            <v-tooltip color="blue" bottom>
-              <template v-slot:activator="{ on, attrs }">
-                <v-icon color="blue" dark v-bind="attrs" v-on="on">
-                  mdi-check-decagram mdi-36px
-                </v-icon>
-              </template>
-              <span>Verified</span>
-            </v-tooltip>
-</span>
-              <v-tooltip color="red" bottom>
+              <v-tooltip color="blue" bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-icon color="blue" dark v-bind="attrs" v-on="on">
+                    mdi-check-decagram mdi-36px
+                  </v-icon>
+                </template>
+                <span>Verified</span>
+              </v-tooltip>
+            </span>
+            <v-tooltip color="red" bottom>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
-                v-bind="attrs" v-on="on"
-               :loading="likeLoading"
-                  small
-                 icon
-                 color="red"
+                  v-bind="attrs"
+                  v-on="on"
+                  :loading="likeLoading"
+                  class="mt-1"
+    
+                  icon
+                  color="red"
                   @click="likeProperty"
-             
                 >
-                  <v-icon color="red" v-if="liked" > mdi-heart</v-icon>
-                  <v-icon color="red"  v-else>mdi-heart-outline</v-icon>
+                  <v-icon color="red" v-if="liked"> mdi-heart</v-icon>
+                  <v-icon color="red" v-else>mdi-heart-outline</v-icon>
                 </v-btn>
               </template>
               <span>Favourites</span>
             </v-tooltip>
-
-
-          
           </h1>
           <p>Apartment</p>
-          
-          <div class="pa-0 pb-2 d-flex justify-space-between flex-wrap icons-max-width">
+
+          <div
+            class="pa-0 pb-2 d-flex justify-space-between flex-wrap icons-max-width"
+          >
             <p>
               <v-icon :color="iconColor"
                 >mdi-ruler-square mdi-flip-v mdi-18px</v-icon
@@ -60,7 +60,7 @@
               <v-icon :color="iconColor">mdi-shower-head mdi-18px</v-icon>
               1 Bathroom
             </p>
-            <p >
+            <p>
               <v-icon :color="iconColor">mdi-tag mdi-18px</v-icon>
               55K
             </p>
@@ -76,7 +76,7 @@
               odit eum, itaque illum nulla quidem delectus magnam fugiat dolorum
               sed aut pariatur sunt. Et doloremque officiis nam quos sunt!
             </p>
-       <!--      <v-row class="mb-3">
+            <!--      <v-row class="mb-3">
               <v-col
               cols="1"
                 ><v-btn
@@ -197,8 +197,8 @@
               <a href="mailto:JasonClarke@gmail.com" class="text-subtitle-1"
                 >Jasonclarke@gmail.com</a
               >
-              <a href="tel:876 314 7199" class="text-subtitle-1"
-                >+ 876 314 7199</a
+              <a :href="`tel:${phoneNumber}`" class="text-subtitle-1"
+                >{{formattedNumber}}</a
               >
             </div>
             <v-divider class="my-4"></v-divider>
@@ -339,19 +339,25 @@ export default {
         { text: "Water Tank", icon: "mdi-water" }
       ],
       liked: false,
-      likeLoading: false,
+      likeLoading: false
     };
   },
   methods: {
     likeProperty() {
-   
-       this.liked = !this.liked;
-       this.likeLoading = !this.likeLoading;
-           setTimeout(() => (this.likeLoading = !this.likeLoading), 1000);
- 
+      this.liked = !this.liked;
+      this.likeLoading = !this.likeLoading;
+      setTimeout(() => (this.likeLoading = !this.likeLoading), 1000);
     }
   },
- 
+  computed: {
+    formattedNumber() {
+    
+/* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */
+    
+var phone =   [this.phoneNumber.toString().slice(0, 4), "-", this.phoneNumber.toString().slice(4,7), "-", this.phoneNumber.toString().slice(7)].join('');
+      return phone;
+    }
+  },
 };
 </script>
 
