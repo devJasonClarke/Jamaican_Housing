@@ -6,7 +6,7 @@
           depressed
           tile
           x-large
-          :class="[tabs === 'buy' ? '' : 'grey lighten-1', 'mr-1 rounded-t-lg']"
+          :class="[tabs === 'buy' ? '' : 'tint', 'mr-1 rounded-t-lg']"
           @click="changeTab(toggle[0])"
           >Buy</v-btn
         >
@@ -15,7 +15,7 @@
           tile
           x-large
           @click="changeTab(toggle[1])"
-          :class="[tabs === 'rent' ? '' : 'grey lighten-1', 'rounded-t-lg']"
+          :class="[tabs === 'rent' ? '' : 'tint', 'rounded-t-lg']"
           >Rent</v-btn
         >
       </div>
@@ -180,5 +180,8 @@ export default {
 <style lang="scss" scoped>
 .tabs {
   margin-top: -110px;
+}
+.tint{
+  opacity: .55;
 }
 </style>
