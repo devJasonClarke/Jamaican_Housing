@@ -90,14 +90,17 @@
                           class="mt-1"
                           color="green accent-4"
                         ></v-text-field>
-                        <v-btn color="success" depressed block @click="validate">{{
-                          authState
-                        }}</v-btn>
+                        <v-btn
+                          color="success"
+                          depressed
+                          block
+                          @click="validate"
+                          >{{ authState }}</v-btn
+                        >
                       </v-form>
                       <p class="middle-text mt-3 grey--text">or</p>
 
                       <v-btn block large depressed>
-                    
                         <v-img
                           :src="require('~/assets/images/svg/google.svg')"
                           max-width="30"
@@ -113,8 +116,8 @@
 
             <v-sheet>
               <v-switch
-                @click="toggleDarkTheme"
-                v-model="darkTheme"
+                @click="toggleTheme"
+                v-model="colorTheme"
                 class="px-2 pt-0 mt-0"
                 inset
                 label="Dark Mode"
@@ -210,7 +213,7 @@
                 <p class="middle-text mt-3 grey--text">or</p>
                 <v-btn block large depressed>
                   <v-img
-                       :src="require('~/assets/images/svg/google.svg')"
+                    :src="require('~/assets/images/svg/google.svg')"
                     max-width="30"
                     class="mr-3 "
                   />
@@ -226,6 +229,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -249,7 +254,6 @@ export default {
       ],
       signInDropDown: null,
       closeOnContentClick: false,
-      darkTheme: false,
       isMobile: false,
       signInMenu: [
         {
@@ -328,7 +332,16 @@ export default {
       ]
     };
   },
+  computed: {
+    ...mapGetters({
+      colorTheme: "colorTheme/theme"
+    })
+  },
   methods: {
+    ...mapActions({
+      toggleTheme: "colorTheme/toggleTheme",
+      checkTheme: "colorTheme/checkTheme"
+    }),
     resize() {
       if (window.innerWidth <= 772) {
         this.isMobile = true;
@@ -336,30 +349,14 @@ export default {
         this.isMobile = false;
       }
     },
-    toggleDarkTheme() {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-      localStorage.setItem("darkTheme", this.$vuetify.theme.dark.toString());
-    },
-    checkDarkTheme() {
-      const theme = localStorage.getItem("darkTheme");
-      if (theme) {
-        if (theme === "true") {
-          this.$vuetify.theme.dark = true;
-          this.darkTheme = true;
-        } else {
-          this.$vuetify.theme.dark = false;
-          this.darkTheme = false;
-        }
-      }
-    },
+
     validate() {
       if (this.$refs.form.validate()) {
         console.log("valid");
       } else {
         console.log("not");
       }
-    
-  },
+    },
     authSwitcher(x) {
       if (x === "Login") {
         this.authState = x;
@@ -373,7 +370,7 @@ export default {
     window.addEventListener("resize", () => {
       this.resize();
     });
-    this.checkDarkTheme();
+    this.checkTheme();
   }
 };
 </script>
