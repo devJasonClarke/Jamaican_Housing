@@ -117,7 +117,7 @@
             <v-sheet>
               <v-switch
                 @click="toggleTheme"
-                v-model="colorTheme"
+                :input-value="colorTheme"
                 class="px-2 pt-0 mt-0"
                 inset
                 label="Dark Mode"
