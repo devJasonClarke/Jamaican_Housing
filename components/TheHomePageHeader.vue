@@ -7,7 +7,11 @@
     >
       <v-container class="d-flex align-center header-text-container">
         <div class="mb-16">
-          <h1 class="white--text font-weight-black">
+          <h1
+          
+               :class="{ 'text-h2 text-sm-h1 white--text font-weight-bold': $vuetify.breakpoint.xsOnly  }"
+           
+          >
             Let us guide you <br />
             home
           </h1>

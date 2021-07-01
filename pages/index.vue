@@ -67,7 +67,12 @@ export default {
         price: 70
       }
     };
-  }
+  },
+created () {
+     
+      console.log(process.env.apiSecret)
+    
+},
 };
 </script>
 

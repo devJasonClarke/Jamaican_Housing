@@ -16,16 +16,13 @@ export default {
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "" },
+      { hid: "description", name: "description", content: "Discover the best offers on the Jamaican Real Estate Market" },
       { hid: "author", name: "author", content: "Jason Clarke" }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
   env: {
-    baseURL:
-      process.env.NODE_ENV === "production"
-        ? "https://jasonjh.netlify.app/"
-        : "http://localhost:3000"
+    apiSecret: process.env.API_SECRET 
   },
   loading: {
     color: "#00C853",
@@ -103,7 +100,7 @@ export default {
       lang: "en",
       name: "Jamaica Housing",
       short_name: "JA Housing",
-      description: "Housing Web App",
+      description: "Discover the best offers on the Jamaican Real Estate Market",
       theme_color: "#00c853",
       background_color: "#00c853"
     }

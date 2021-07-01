@@ -2,16 +2,16 @@
   <div>
     <ThePropertySwiper />
 
-    <v-container class="mt-6">
+    <v-container class="mt-6 mb-9">
       <v-row>
         <v-col cols="12" md="8">
           <p class="green--text text--accent-4 text-capitalize">
             <v-icon :color="iconColor">mdi-map-marker mdi-24px</v-icon>
             catherine hall, St. James
           </p>
-          <h1 class="d-flex justify-space-between">
+          <h1 class="d-flex justify-space-between text-capitalize">
             <span>
-              Modern Studio APARTMENT
+              Modern Studio apartment
 
               <v-tooltip color="blue" bottom>
                 <template v-slot:activator="{ on, attrs }">
@@ -29,7 +29,6 @@
                   v-on="on"
                   :loading="likeLoading"
                   class="mt-1"
-    
                   icon
                   color="red"
                   @click="likeProperty"
@@ -41,10 +40,9 @@
               <span>Favourites</span>
             </v-tooltip>
           </h1>
-          <p>Apartment</p>
 
           <div
-            class="pa-0 pb-2 d-flex justify-space-between flex-wrap icons-max-width"
+            class="mt-6 pa-0  pb-2 d-flex justify-space-between flex-wrap icons-max-width"
           >
             <p>
               <v-icon :color="iconColor"
@@ -67,7 +65,7 @@
           </div>
 
           <div class="">
-            <p>Description</p>
+            <p class="text-h6">Description</p>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
               animi quam blanditiis veritatis ducimus explicabo illo ex dolore a
@@ -76,94 +74,116 @@
               odit eum, itaque illum nulla quidem delectus magnam fugiat dolorum
               sed aut pariatur sunt. Et doloremque officiis nam quos sunt!
             </p>
-            <!--      <v-row class="mb-3">
-              <v-col
-              cols="1"
-                ><v-btn
-                  class="d-inline"
-                  small
-                  fab
-                  color="white"
-                  @click="likeProperty"
+            <v-row class="mb-3">
+              <v-col cols="12" sm="6"
+                >Share:
+                <a
+                  target="_blank"
+                  rel="nofollow noopener"
+                  :href="
+                    `https://twitter.com/share?url=https://jamaican-housing.pages.dev/property&text=Look at this offer`
+                  "
                 >
-                  <v-icon color="red" v-if="liked" > mdi-heart</v-icon>
-                  <v-icon color="red"  v-else>mdi-heart-outline</v-icon>
-                </v-btn></v-col
-              >
-              <v-col>Share: <v-btn
-                  class="d-inline"
-                  small
-                  fab
-                  color="white"
-                  @click="likeProperty"
+                  <v-btn class="d-inline" small icon fab color="white">
+                    <v-icon color="blue">mdi-twitter</v-icon>
+                  </v-btn>
+                </a>
+                <a
+                  target="_blank"
+                  rel="nofollow noopener"
+                  :href="
+                    `https://twitter.com/share?url=https://jamaican-housing.pages.dev/property&text=Look at this offer`
+                  "
                 >
-                  <v-icon color="red" v-if="liked" > mdi-heart</v-icon>
-                  <v-icon color="red"  v-else>mdi-heart-outline</v-icon>
-                </v-btn>
-                
-                <v-btn
-                  class="d-inline"
-                  small
-                  fab
-                  color="white"
-                  @click="likeProperty"
-                >
-                  <v-icon color="red" v-if="liked" > mdi-heart</v-icon>
-                  <v-icon color="red"  v-else>mdi-heart-outline</v-icon>
-                </v-btn>
-                
-                <v-btn
-                  class="d-inline"
-                  small
-                  fab
-                  color="white"
-                  @click="likeProperty"
-                >
-                  <v-icon color="red" v-if="liked" > mdi-heart</v-icon>
-                  <v-icon color="red"  v-else>mdi-heart-outline</v-icon>
-                </v-btn>
-                
-                </v-col>
-            </v-row> -->
-          </div>
-          <v-divider class="mb-4"></v-divider>
-          <div>
-            <p>Overview</p>
-          </div>
-          <v-divider class="mb-4"></v-divider>
-          <div>
-            <p>Details</p>
-          </div>
-          <v-divider class="mb-4"></v-divider>
-          <div>
-            <p>Amenities</p>
-            <div class="">
-              <div>
-                <v-list dense flat>
-                  <v-list-item-group :color="iconColor" class="amendities-grid">
-                    <v-list-item v-for="(item, i) in items" :key="i">
-                      <v-list-item-icon>
-                        <v-icon v-text="item.icon" :color="iconColor"></v-icon>
-                      </v-list-item-icon>
+                  <v-btn class="d-inline" small icon fab color="white">
+                    <v-icon color="blue darken-3">mdi-facebook</v-icon>
+                  </v-btn>
+                </a>
 
-                      <v-list-item-content>
-                        <v-list-item-title
-                          v-text="item.text"
-                        ></v-list-item-title>
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-list-item-group>
-                </v-list>
-              </div>
-            </div>
+                <a
+                  target="_blank"
+                  rel="nofollow noopener"
+                  :href="
+                    `https://www.linkedin.com/sharing/share-offsite/?url=https://jamaican-housing.pages.dev/property`
+                  "
+                >
+                  <v-btn class="d-inline" small icon fab color="white">
+                    <v-icon color="blue darken-2">mdi-linkedin</v-icon>
+                  </v-btn>
+                </a>
+                <a
+                  target="_blank"
+                  rel="nofollow noopener"
+                  :href="
+                    `https://wa.me/?text=Look at this offer https://jamaican-housing.pages.dev/property`
+                  "
+                >
+                  <v-btn class="d-inline" small icon fab color="white">
+                    <v-icon color="green">mdi-whatsapp</v-icon>
+                  </v-btn>
+                </a>
+              </v-col>
+              <v-col cols="12" sm="6"
+                >Print:
+                <a target="_blank" rel="nofollow noopener" href="">
+                  <v-btn class="d-inline" small icon fab>
+                    <v-icon>mdi-printer</v-icon>
+                  </v-btn>
+                </a>
+              </v-col>
+            </v-row>
           </div>
-          <v-divider class="mb-4"></v-divider>
-          <div>
-            <p>Video</p>
+          <v-divider class="mt-2 mb-4"></v-divider>
+
+          <div :class="{ 'mb-5': $vuetify.theme.dark }">
+            <p class="text-h6">Details</p>
+            <v-list dense flat :class="{ 'py-4': $vuetify.theme.dark }">
+              <v-list-item-group
+                no-action="true"
+                :color="iconColor"
+                class="amendities-grid"
+              >
+                <v-list-item v-for="(detail, i) in details" :key="i">
+                  <v-list-item-content class="mb-3">
+                    <v-list-item-title
+                      class="text-body-1 text-capitalize  font-weight-medium"
+                      v-text="`${detail.detail} :`"
+                    ></v-list-item-title>
+
+                    <v-list-item-title
+                      class="text-body-1 mt-1 font-weight-regular"
+                      v-text="`${detail.value}`"
+                    ></v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list-item-group>
+            </v-list>
           </div>
-          <v-divider class="mb-4"></v-divider>
+          <v-divider class="mt-2 mb-4"></v-divider>
+          <div :class="{ 'mb-5': $vuetify.theme.dark }">
+            <p class="text-h6">Amenities</p>
+
+            <v-list dense flat :class="{ 'py-4': $vuetify.theme.dark }">
+              <v-list-item-group :color="iconColor" class="amendities-grid">
+                <v-list-item v-for="(item, i) in items" :key="i">
+                  <v-list-item-icon>
+                    <v-icon v-text="item.icon" :color="iconColor"></v-icon>
+                  </v-list-item-icon>
+
+                  <v-list-item-content>
+                    <v-list-item-title
+                      class="text-body-1 font-weight-regular"
+                      v-text="item.text"
+                    ></v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list-item-group>
+            </v-list>
+          </div>
+          <v-divider class="mt-2 mb-4"></v-divider>
+
           <div>
-            <p>Virtual Tour</p>
+            <p class="text-h6">Virtual Tour</p>
             <iframe
               width="100%"
               height="480"
@@ -171,6 +191,18 @@
               frameborder="0"
               allowfullscreen
               allow="xr-spatial-tracking"
+            ></iframe>
+          </div>
+          <v-divider class="mt-2 mb-4"></v-divider>
+          <div>
+            <p class="text-h6 ">Video</p>
+            <iframe
+              height="480"
+              width="100%"
+              src="https://www.youtube.com/embed/oiM0o1gop2Y"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
             ></iframe>
           </div>
         </v-col>
@@ -197,19 +229,28 @@
               <a href="mailto:JasonClarke@gmail.com" class="text-subtitle-1"
                 >Jasonclarke@gmail.com</a
               >
-              <a :href="`tel:${phoneNumber}`" class="text-subtitle-1"
-                >{{formattedNumber}}</a
+              <a
+                target="_blank"
+                rel="nofollow noopener"
+                :href="`tel:${phoneNumber}`"
+                class="text-subtitle-1"
+                >{{ formattedNumber }}</a
               >
             </div>
-            <v-divider class="my-4"></v-divider>
+            <v-divider class="mt-2 mb-4"></v-divider>
             <div class="d-flex justify-center">
-              <a target="_blank" href="https://gen3d.netlify.app/">
+              <a
+                target="_blank"
+                rel="nofollow noopener"
+                href="https://gen3d.netlify.app/"
+              >
                 <v-btn icon color="blue darken-3" x-large>
                   <v-icon>mdi-facebook </v-icon>
                 </v-btn>
               </a>
               <a
                 target="_blank"
+                rel="nofollow noopener"
                 href="https://www.instagram.com/jasonclarke.dev/"
               >
                 <v-btn icon color="pink darken-1" x-large>
@@ -218,19 +259,24 @@
               </a>
               <a
                 target="_blank"
+                rel="nofollow noopener"
                 href="https://www.linkedin.com/in/devjasonclarke/"
               >
-                <v-btn icon color="blue darken-4" x-large>
+                <v-btn icon color="blue darken-2" x-large>
                   <v-icon>mdi-linkedin </v-icon>
                 </v-btn>
               </a>
-              <a target="_blank" :href="`https://wa.me/${phoneNumber}`">
+              <a
+                target="_blank"
+                rel="nofollow noopener"
+                :href="`https://wa.me/${phoneNumber}`"
+              >
                 <v-btn icon color="green" x-large>
                   <v-icon>mdi-whatsapp </v-icon>
                 </v-btn>
               </a>
             </div>
-            <v-divider class="my-4"></v-divider>
+            <v-divider class="mt-2 mb-4"></v-divider>
             <v-form class="mt-6" @submit.prevent="">
               <v-text-field
                 outlined
@@ -291,7 +337,7 @@
                   Call
                 </v-btn>
               </a>
-              <a target="_blank" :href="`https://wa.me/${phoneNumber}`">
+              <a :href="`https://wa.me/${phoneNumber}`">
                 <v-btn
                   class="mb-6"
                   x-large
@@ -311,6 +357,16 @@
         </v-col>
       </v-row>
     </v-container>
+    <SectionPadding class="backgroundShade">
+      <SectionTitles
+        subTitle="FIND YOUR HOME TODAY"
+        mainTitle="Featured listings around you"
+        linkMessage="See all featured listings "
+        route="featured"
+      />
+
+      <TheRealEstatePropertySwiper :card="card" />
+    </SectionPadding>
   </div>
 </template>
 
@@ -320,6 +376,15 @@ export default {
     return {
       iconColor: "rgba(0, 200, 83, 1)",
       phoneNumber: 18763147199,
+      card: {
+        title: "Sunny Private Studio Apartment",
+        parish: "St. James",
+        realEstateType: "Apartment",
+        squareMeters: 80,
+        beds: 3,
+        bathroom: 2,
+        price: 70
+      },
       items: [
         {
           text: "Wifi",
@@ -338,6 +403,48 @@ export default {
         { text: "Generator", icon: "mdi-flash" },
         { text: "Water Tank", icon: "mdi-water" }
       ],
+      details: [
+        {
+          detail: "Property ID",
+          value: "MLS-99999"
+        },
+        {
+          detail: "Property Type",
+          value: "Apartment"
+        },
+        {
+          detail: "Bed Rooms",
+          value: "1"
+        },
+        {
+          detail: "Bathrooms",
+          value: "1"
+        },
+        {
+          detail: "Size",
+          value: "12 square metre"
+        },
+        {
+          detail: "Garages",
+          value: "1"
+        },
+        {
+          detail: "Price",
+          value: "$55000 JMD / month"
+        },
+        {
+          detail: "Property Status",
+          value: "For Rent"
+        },
+        {
+          detail: "Community",
+          value: "Catherine Hall"
+        },
+        {
+          detail: "Parish",
+          value: "St. James"
+        }
+      ],
       liked: false,
       likeLoading: false
     };
@@ -351,13 +458,18 @@ export default {
   },
   computed: {
     formattedNumber() {
-    
-/* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */
-    
-var phone =   [this.phoneNumber.toString().slice(0, 4), "-", this.phoneNumber.toString().slice(4,7), "-", this.phoneNumber.toString().slice(7)].join('');
+      /* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */
+
+      var phone = [
+        this.phoneNumber.toString().slice(0, 4),
+        "-",
+        this.phoneNumber.toString().slice(4, 7),
+        "-",
+        this.phoneNumber.toString().slice(7)
+      ].join("");
       return phone;
     }
-  },
+  }
 };
 </script>
 
