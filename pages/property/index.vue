@@ -92,7 +92,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://twitter.com/share?url=https://jamaican-housing.pages.dev/property&text=Look at this offer`
+                    `https://www.facebook.com/sharer.php?=https://jamaican-housing.pages.dev/property`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">

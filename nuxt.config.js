@@ -22,7 +22,7 @@ export default {
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
   env: {
-    apiSecret: process.env.API_SECRET 
+    geoLocationApi: process.env.GEO_LOCATION_API_KEY
   },
   loading: {
     color: "#00C853",

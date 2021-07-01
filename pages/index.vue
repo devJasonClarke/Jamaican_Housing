@@ -18,7 +18,7 @@
         route="featured"
       />
 
-      <TheRealEstatePropertySwiper :card="card" />
+      <TheRealEstatePropertySwiper />
     </SectionPadding>
     <SectionPadding>
       <SectionTitles
@@ -57,7 +57,7 @@ export default {
     return {
       title: "Home | Real Estate Ja",
       description: "Welcome To Real Estate Ja",
-      card: {
+/*       card: {
         title: "Sunny Private Studio Apartment",
         parish: "St. James",
         realEstateType: "Apartment",
@@ -65,12 +65,11 @@ export default {
         beds: 3,
         bathroom: 2,
         price: 70
-      }
+      } */
     };
   },
 created () {
      
-      console.log(process.env.apiSecret)
     
 },
 };

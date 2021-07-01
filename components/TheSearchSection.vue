@@ -29,7 +29,7 @@
           v-model="selectedMaxPrice"
           prepend-icon="mdi-cash-multiple "
           hide-details
-          :items="maxPrices"
+          :items="maxPrices.buy"
           color="green"
           item-color="green"
           :rules="[v => !!v || 'Item is required']"
@@ -79,7 +79,9 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
+  
   data() {
     return {
         valid: false,
@@ -87,44 +89,7 @@ export default {
       selectedBedrooms: "",
       selectedRealEstateType: "",
       selectedMaxPrice: "",
-      bedrooms: ["1", "2", "3", "4 +"],
-      parishes: [
-        "Clarendon",
-        "Hanover",
-        "Kingston",
-        "Manchester",
-        "Portland",
-        "St. Andrew",
-        "St. Ann",
-        "St. Catherine",
-        "St. Elizabeth",
-        "St. James",
-        "St. Mary",
-        "St. Thomas",
-        "Trelawny",
-        "Westmoreland"
-      ],
-      realEstateType: [
-        "Apartment",
-        "Commercial Building/Offices",
-        "Development Land (Commercial)",
-        "Development Land (Residential)",
-        "Factory",
-        "Farm/Agriculture",
-        "House",
-        "Townhouse",
-        "Warehouse"
-      ],
-      maxPrices: [
-        "$ 5,000,000 JMD",
-        "$ 14,000,000 JMD",
-        "$ 25,000,000 JMD",
-        "$ 50,000,000 JMD",
-        "$ 75,000,000 JMD",
-        "$ 100,000,000 JMD",
-        "$ 150,000,00 JMD"
-      ]
-    };
+          };
   },
   methods: {
     validate() {
@@ -134,7 +99,16 @@ export default {
         console.log("not");
       }
     }
-  }
+  },
+      computed: {
+    ...mapGetters({
+      parishes: "selectOptions/parishes",
+      realEstateType: "selectOptions/realEstateType",
+      maxPrices: "selectOptions/maxPrices",
+      bedrooms:  "selectOptions/bedrooms"
+   
+    })
+  },
 };
 </script>
 

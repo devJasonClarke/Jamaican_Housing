@@ -4,14 +4,14 @@
 
     <v-row>
       <v-col
-        v-for="index in 8"
+      v-for="(property, index) in card"
         :key="index"
         cols="12"
         sm="4"
         md="3"
         class="mb-4"
       >
-        <TheCard :card="card"/>
+        <TheCard :card="property"/>
       </v-col>
     </v-row>
   </v-container>
@@ -21,7 +21,7 @@
 export default {
   props: {
     card: {
-      type: Object,
+      type: Array,
       required: true
     },
     title: {

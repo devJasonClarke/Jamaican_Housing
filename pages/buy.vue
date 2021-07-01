@@ -20,12 +20,12 @@
       <TheRealEstatePropertiesListingLoader
         v-if="loading"
         title="sale"
-        :card="card"
+ 
       />
       <TheRealEstatePropertiesListing
         v-else
         title="Real Estate for Sale"
-        :card="card"
+        :card="featuredProperties"
       />
       <div class="d-flex justify-center align-center mt-4">
         <v-btn
@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import img from "~/assets/images/house.jpg";
 export default {
   data() {
@@ -59,38 +60,32 @@ export default {
       description: 'buy',
       img: img,
       loading: false,
-      card: {
-        title: "Sunny Private Studio Apartment",
-        parish: "St. James",
-        realEstateType: "Apartment",
-        squareMeters: 80,
-        beds: 3,
-        bathroom: 2,
-        price: 70
-      }
+   
     };
   },
   computed: {
     target() {
-      const value = "#top";
-      if (!isNaN(value)) return Number(value);
-      else return value;
-    }
+  const value = "#top";
+      return value;
+    },
+      ...mapGetters({
+      featuredProperties: "properties/featuredProperties"
+    })
   },
 
   methods: {
     previous() {
-      console.log("previous");
-      this.loading = true;
+        this.loading = true;
       this.$vuetify.goTo(this.target);
       setTimeout(() => (this.loading = false), 3000);
     },
     next() {
-      console.log("next");
+     console.log("next");
       this.loading = true;
       this.$vuetify.goTo(this.target);
       setTimeout(() => (this.loading = false), 3000);
     }
-  }
+  },
+
 };
 </script>

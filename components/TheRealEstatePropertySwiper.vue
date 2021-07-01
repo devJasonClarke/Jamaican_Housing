@@ -1,8 +1,8 @@
 <template>
   <div class="section-margin-top ">
     <swiper class="swiper" :options="propertySwiperOption">
-      <swiper-slide class="sliide" v-for="index in 7" :key="index">
-      <TheCardSwiper :card='card' />
+      <swiper-slide class="sliide" v-for="(property, index) in featuredProperties" :key="index">
+      <TheCardSwiper :card='property' />
       </swiper-slide>
 
       <div class="swiper-pagination" slot="pagination"></div>
@@ -11,13 +11,9 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-  props: {
-    card: {
-      type: Object,
-      required: true
-    }
-  },
+
   data() {
     return {
       propertySwiperOption: {
@@ -43,7 +39,12 @@ export default {
 
       iconColor: "rgba(0, 200, 83, 0.5)"
     };
-  }
+  },
+    computed: {
+    ...mapGetters({
+      featuredProperties: "properties/featuredProperties"
+    })
+  },
 };
 </script>
 

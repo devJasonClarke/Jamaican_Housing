@@ -1,6 +1,6 @@
 <template>
   <div>
-     <TheMetaTags :title="title" :description="description"/>
+    <TheMetaTags :title="title" :description="description" />
     <v-img :src="img" min-height="300" max-height="400"></v-img>
     <SectionPadding>
       <SectionTitlesSecondary
@@ -17,15 +17,11 @@
     </SectionPaddingAlt>
     <div id="top"></div>
     <SectionPadding class="backgroundShade">
-      <TheRealEstatePropertiesListingLoader
-        v-if="loading"
-        title="rent"
-        :card="card"
-      />
+      <TheRealEstatePropertiesListingLoader v-if="loading" title="rent" />
       <TheRealEstatePropertiesListing
         v-else
         title="Homes for rent"
-        :card="card"
+        :card="featuredProperties"
       />
       <div class="d-flex justify-center align-center mt-4">
         <v-btn
@@ -51,12 +47,13 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import img from "~/assets/images/house.jpg";
 export default {
   data() {
     return {
-      title: 'Rent A Home | Jamaica Housing',
-      descritpion: 'rent',
+      title: "Rent A Home | Jamaica Housing",
+      descritpion: "rent",
       img: img,
       loading: false,
       card: {
@@ -74,7 +71,10 @@ export default {
     target() {
       const value = "#top";
       return value;
-    }
+    },
+    ...mapGetters({
+      featuredProperties: "properties/featuredProperties"
+    })
   },
   methods: {
     previous() {

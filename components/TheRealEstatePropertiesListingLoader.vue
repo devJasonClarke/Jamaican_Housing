@@ -1,6 +1,6 @@
 <template>
         <v-container>
-        <p class="text-body mb-6">Homes For {{title}}</p>
+        <p class="text-body mb-6">Real Estate For {{title}}</p>
 
         <v-row>
           <v-col v-for="index in 8" :key="index+'a'" cols="12" sm='4' md="3" class="mb-4">
