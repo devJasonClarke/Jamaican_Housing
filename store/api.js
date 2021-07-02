@@ -24,13 +24,14 @@ export const getters = {
 export const actions = {
   async getIPAddress({ commit }) {
     const ip = await fetch(
-      `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.abstractApi}`
+      `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.abstractApi}&fields=ip_address`
     )
       .then(res => res.json())
       .then(data => data)
       .catch(err => {
         /*      this.error = `Please Check Internet Connection. ${err}`;
       this.snackbar = true; */
+      
         console.log("the eror for api4 is" + err);
       });
 console.log(ip);
