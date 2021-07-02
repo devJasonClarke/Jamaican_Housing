@@ -21,9 +21,9 @@
       <TheRealEstatePropertiesListingLoader
         v-if="loading"
         title="sale"
-        :card="card"
+
       />
-      <TheRealEstatePropertiesListing v-else :title="title" :card="card" />
+      <TheRealEstatePropertiesListing v-else :title="title" :card="featuredProperties" />
       <div class="d-flex justify-center align-center mt-4">
         <v-btn
           class="mx-2"
@@ -49,6 +49,7 @@
 
 <script>
 import parishes from "~/assets/parishes/parishes";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -73,10 +74,12 @@ export default {
   },
   computed: {
     target() {
-      const value = "#top";
-      if (!isNaN(value)) return Number(value);
-      else return value;
-    }
+  const value = "#top";
+      return value;
+    },
+      ...mapGetters({
+      featuredProperties: "properties/featuredProperties"
+    })
   },
 
   methods: {

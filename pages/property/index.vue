@@ -365,7 +365,7 @@
         route="featured"
       />
 
-      <TheRealEstatePropertySwiper :card="card" />
+      <TheRealEstatePropertySwiper />
     </SectionPadding>
   </div>
 </template>

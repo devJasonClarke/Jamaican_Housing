@@ -14,7 +14,7 @@
           v-model="selectedMaxPrice"
           prepend-icon="mdi-cash-multiple "
           hide-details
-          :items="maxPrices"
+          :items="maxPrices.buy"
           color="green"
           item-color="green"
           :rules="[v => !!v || 'Item is required']"
@@ -89,7 +89,8 @@ export default {
     ...mapGetters({
       parishes: "selectOptions/parishes",
       realEstateType: "selectOptions/realEstateType",
-      maxPrices: "selectOptions/maxPrices"
+      maxPrices: "selectOptions/maxPrices",
+            bedrooms:  "selectOptions/bedrooms"
     })
   },
 };
