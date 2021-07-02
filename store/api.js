@@ -3,19 +3,22 @@ export const state = () => ({
   ipAddress: null,
   error: null,
 
-  currencies:{},
   /* Info needed for app */
-  
-  country: {
- 
-  }
+  currencies: {},
+  currencyCodeList: [],
+  activeCurrency: "JMD",
+  currencyRate: 1,
+  country: {}
 });
 
 export const getters = {
   ip: state => state.ip,
   ipAddress: state => state.ipAddress,
   country: state => state.country,
-  currencies: state => state.currencies
+  currencies: state => state.currencies,
+  currencyCodeList: state => state.currencyCodeList,
+  activeCurrency: state => state.activeCurrency,
+  currencyRate: state => state.currencyRate
 };
 
 export const actions = {
@@ -32,7 +35,7 @@ export const actions = {
     commit("GET_IP_ADDRESS", ip.ip);
   },
   async getIPInfo({ commit, state }) {
-    const  info = await fetch(
+    const info = await fetch(
       `https://ip-geolocation-ipwhois-io.p.rapidapi.com/json/?ip=${state.ipAddress}`,
       {
         method: "GET",
@@ -49,10 +52,10 @@ export const actions = {
         /* this.snackbar = true; */
       });
 
-    commit("GET_IP_INFO",  info);
+    commit("GET_IP_INFO", info);
   },
 
-  async getCurrencies({ commit }){
+  async getCurrencies({ commit }) {
     const currencies = await fetch(
       `https://exchangerate-api.p.rapidapi.com/rapid/latest/JMD`,
       {
@@ -69,8 +72,10 @@ export const actions = {
         console.error(err);
       });
 
-         commit("GET_Currencies",  currencies.rates);
-    
+    commit("GET_Currencies", currencies.rates);
+  },
+  setActiveCurrency({ commit }, data) {
+    commit("SET_ACTIVE_CURRENCY", data);
   }
 };
 
@@ -80,17 +85,22 @@ export const mutations = {
     console.log(ip);
   },
   GET_IP_INFO: (state, info) => {
-     state.country = {
+    state.country = {
       country: info.country,
       flag: info.country_flag,
       currencyCode: info.currency_code,
       currencySymbol: info.currency_symbol
-    }; 
-    console.log(state.country.flag)
+    };
+  
+  },
+  GET_Currencies: (state, currencies) => {
+    state.currencies = currencies;
+    const myObject = currencies;
+    const keyNames = Object.keys(myObject);
+    state.currencyCodeList = keyNames;
 
   },
-  GET_Currencies: (state, currencies) =>{
-state.currencies = currencies
-console.log(state.currencies)
+  SET_ACTIVE_CURRENCY: (state, data) => {
+    state.currencyRate = state.currencies[data];
   }
 };

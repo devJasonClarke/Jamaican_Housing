@@ -26,19 +26,22 @@ export default {
     await this.getIpAddress();
     await this.getIpInfo();
     await this.getCurrencies();
-
   },
   methods: {
     ...mapActions({
       getIpAddress: "api/getIPAddress",
       getIpInfo: "api/getIPInfo",
-      getCurrencies: 'api/getCurrencies'
+      getCurrencies: "api/getCurrencies",
+      checkTheme: "colorTheme/checkTheme"
     })
   },
   computed: {
     ...mapGetters({
       ipAddress: "api/ipAddress"
     })
+  },
+  mounted() {
+    this.checkTheme();
   }
 };
 </script>

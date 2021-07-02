@@ -374,30 +374,3 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
-.middle-text {
-  overflow: hidden;
-  text-align: center;
-}
-
-.middle-text:before,
-.middle-text:after {
-  background-color: #e0e0e0;
-  content: "";
-  display: inline-block;
-  height: 1px;
-  position: relative;
-  vertical-align: middle;
-  width: 50%;
-}
-
-.middle-text:before {
-  right: 0.5em;
-  margin-left: -50%;
-}
-
-.middle-text:after {
-  left: 0.5em;
-  margin-right: -50%;
-}
-</style>

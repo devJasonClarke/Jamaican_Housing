@@ -58,10 +58,20 @@
               <v-icon :color="iconColor">mdi-shower-head mdi-18px</v-icon>
               1 Bathroom
             </p>
-            <p>
-              <v-icon :color="iconColor">mdi-tag mdi-18px</v-icon>
-              55K
-            </p>
+          
+              <p  >
+                <v-icon :color="iconColor">mdi-tag mdi-18px</v-icon>
+                  <span v-for="(detail, i) in details" :key="`icon ${i}`">
+                    <span v-if="detail.price" :class="{  'd-none': !detail.price}">
+
+                 
+                {{ shortenMoney(detail.price) }}
+                   </span>
+                            </span>
+              </p>
+    
+
+         
           </div>
 
           <div class="">
@@ -152,8 +162,16 @@
 
                     <v-list-item-title
                       class="text-body-1 mt-1 font-weight-regular"
-                      v-text="`${detail.value}`"
-                    ></v-list-item-title>
+                      v-if="!detail.price"
+                    >
+                      {{ detail.value }}
+                    </v-list-item-title>
+                    <v-list-item-title
+                      class="text-body-1 mt-1 font-weight-regular"
+                      v-else
+                    >
+                     {{ country.currencySymbol }}  {{ numberWithCommas(detail.price  * currencyRate) }}    {{ activeCurrency }}
+                    </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
               </v-list-item-group>
@@ -430,7 +448,8 @@ export default {
         },
         {
           detail: "Price",
-          value: "$55000 JMD / month"
+          value: "$55000 JMD / month",
+          price: 85000
         },
         {
           detail: "Property Status",
@@ -454,9 +473,47 @@ export default {
       this.liked = !this.liked;
       this.likeLoading = !this.likeLoading;
       setTimeout(() => (this.likeLoading = !this.likeLoading), 1000);
+    },
+    shortenMoney(num) {
+      if (num < 1000) {
+        return num;
+      }
+      var si = [
+        { v: 1e3, s: "K" },
+        { v: 1e6, s: "M" },
+        { v: 1e9, s: "B" },
+        { v: 1e12, s: "T" },
+        { v: 1e15, s: "P" },
+        { v: 1e18, s: "E" }
+      ];
+      var i;
+      for (i = si.length - 1; i > 0; i--) {
+        if (num >= si[i].v) {
+          break;
+        }
+      }
+      return (
+        (num / si[i].v).toFixed(2).replace(/\.0+$|(\.[0-9]*[1-9])0+$/, "$1") +
+        si[i].s
+      );
+    },
+    numberWithCommas(x) {
+      x = Math.round((x + Number.EPSILON) * 100) / 100;
+
+      x = x.toString();
+      let pattern = /(-?\d+)(\d{3})/;
+      while (pattern.test(x)) x = x.replace(pattern, "$1,$2");
+      return x;
     }
   },
   computed: {
+        ...mapGetters({
+    
+      country: "api/country",
+       activeCurrency: "api/activeCurrency",
+      currencyRate: "api/currencyRate",
+     
+    }),
     formattedNumber() {
       /* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */
 
