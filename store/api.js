@@ -23,7 +23,9 @@ export const getters = {
 
 export const actions = {
   async getIPAddress({ commit }) {
-    const ip = await fetch("https://api64.ipify.org?format=json")
+    const ip = await fetch(
+      `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.abstractApi}`
+    )
       .then(res => res.json())
       .then(data => data)
       .catch(err => {
@@ -31,8 +33,8 @@ export const actions = {
       this.snackbar = true; */
         console.log("the eror for api4 is" + err);
       });
-
-    commit("GET_IP_ADDRESS", ip.ip);
+console.log(ip);
+    commit("GET_IP_ADDRESS", ip.ip_address);
   },
   async getIPInfo({ commit, state }) {
     const info = await fetch(
@@ -75,32 +77,30 @@ export const actions = {
     commit("GET_Currencies", currencies.rates);
   },
   setActiveCurrency({ commit }, data) {
-    console.log(data)
+    console.log(data);
     commit("SET_ACTIVE_CURRENCY", data);
-    
   }
 };
 
 export const mutations = {
   GET_IP_ADDRESS: (state, ip) => {
     state.ipAddress = ip;
-    console.log(ip);
+  /*   console.log(ip); */
   },
   GET_IP_INFO: (state, info) => {
+    /* console.log(info); */
     state.country = {
       country: info.country,
       flag: info.country_flag,
       currencyCode: info.currency_code,
       currencySymbol: info.currency_symbol
     };
-  
   },
   GET_Currencies: (state, currencies) => {
     state.currencies = currencies;
     const myObject = currencies;
     const keyNames = Object.keys(myObject);
     state.currencyCodeList = keyNames;
-
   },
   SET_ACTIVE_CURRENCY: (state, data) => {
     state.currencyRate = state.currencies[data];

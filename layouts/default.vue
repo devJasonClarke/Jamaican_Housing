@@ -1,8 +1,8 @@
 <template>
   <v-app class="font">
     <TheAPICalls />
-    <div>
-      <nav>
+ 
+   
         <v-toolbar flat>
           <v-app-bar-nav-icon
             class="hidden-md-and-up"
@@ -146,7 +146,7 @@
           </div>
         </v-toolbar>
         <v-divider></v-divider>
-      </nav>
+    
 
       <v-navigation-drawer v-model="drawer" fixed temporary>
         <v-list-item>
@@ -245,7 +245,7 @@
           </v-list-item-group>
         </v-list>
       </v-navigation-drawer>
-    </div>
+
     <v-main>
       <v-container fluid class="ma-0 pa-0">
         <nuxt />

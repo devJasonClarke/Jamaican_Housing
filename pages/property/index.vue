@@ -170,7 +170,7 @@
                       class="text-body-1 mt-1 font-weight-regular"
                       v-else
                     >
-                     {{ country.currencySymbol }}  {{ numberWithCommas(detail.price  * currencyRate) }}    {{ activeCurrency }}
+                     <!-- {{ country.currencySymbol }}  --> $ {{ numberWithCommas(detail.price  * currencyRate) }}    {{ activeCurrency }}
                     </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>

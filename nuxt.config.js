@@ -22,7 +22,8 @@ export default {
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
   env: {
-    geoLocationApi: process.env.GEO_LOCATION_API_KEY
+    geoLocationApi: process.env.GEO_LOCATION_API_KEY,
+    abstractApi:  process.env.ABSTRACT_API_KEY
   },
   loading: {
     color: "#00C853",
