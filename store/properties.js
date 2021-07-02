@@ -18,7 +18,7 @@ export const state = () => ({
       squareMeters: 80,
       beds: 3,
       bathroom: 2,
-      price: 70
+      price: 85000
     }
   ],
   featured: [
@@ -29,7 +29,7 @@ export const state = () => ({
       squareMeters: 80,
       beds: 3,
       bathroom: 2,
-      price: 70
+      price: 80000
     },
     {
       title: "Sunny Private Studio Apartment",
@@ -38,7 +38,7 @@ export const state = () => ({
       squareMeters: 80,
       beds: 3,
       bathroom: 2,
-      price: 70
+      price: 20000
     },
     {
       title: "Sunny Private Studio Apartment",
@@ -47,7 +47,7 @@ export const state = () => ({
       squareMeters: 80,
       beds: 3,
       bathroom: 2,
-      price: 70
+      price: 170000
     },
     {
       title: "Sunny Private Studio Apartment",
@@ -56,7 +56,7 @@ export const state = () => ({
       squareMeters: 80,
       beds: 3,
       bathroom: 2,
-      price: 70
+      price: 72000
     },
     {
       title: "Sunny Private Studio Apartment",
@@ -65,7 +65,7 @@ export const state = () => ({
       squareMeters: 80,
       beds: 3,
       bathroom: 2,
-      price: 70
+      price: 120000
     },
     {
       title: "Sunny Private Studio Apartment",
@@ -74,7 +74,7 @@ export const state = () => ({
       squareMeters: 80,
       beds: 3,
       bathroom: 2,
-      price: 70
+      price: 5000000
     },
     {
       title: "Sunny Private Studio Apartment",
@@ -83,7 +83,7 @@ export const state = () => ({
       squareMeters: 80,
       beds: 3,
       bathroom: 2,
-      price: 70
+      price: 57400
     }
   ],
 });

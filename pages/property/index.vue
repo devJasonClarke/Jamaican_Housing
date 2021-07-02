@@ -476,6 +476,8 @@ export default {
       setTimeout(() => (this.likeLoading = !this.likeLoading), 1000);
     },
        shortenMoney(num) {
+          num = Math.round((num + Number.EPSILON) * 100) / 100;
+
       if (num < 1000) {
         return num;
       }
