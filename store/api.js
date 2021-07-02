@@ -75,7 +75,9 @@ export const actions = {
     commit("GET_Currencies", currencies.rates);
   },
   setActiveCurrency({ commit }, data) {
+    console.log(data)
     commit("SET_ACTIVE_CURRENCY", data);
+    
   }
 };
 
@@ -102,5 +104,6 @@ export const mutations = {
   },
   SET_ACTIVE_CURRENCY: (state, data) => {
     state.currencyRate = state.currencies[data];
+    state.activeCurrency = data;
   }
 };

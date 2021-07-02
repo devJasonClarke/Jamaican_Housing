@@ -65,7 +65,7 @@
                     <span v-if="detail.price" :class="{  'd-none': !detail.price}">
 
                  
-                {{ shortenMoney(detail.price) }}
+                {{ shortenMoney(detail.price * currencyRate) }} {{activeCurrency}}
                    </span>
                             </span>
               </p>
@@ -389,6 +389,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -474,7 +475,7 @@ export default {
       this.likeLoading = !this.likeLoading;
       setTimeout(() => (this.likeLoading = !this.likeLoading), 1000);
     },
-    shortenMoney(num) {
+       shortenMoney(num) {
       if (num < 1000) {
         return num;
       }
@@ -497,6 +498,7 @@ export default {
         si[i].s
       );
     },
+        
     numberWithCommas(x) {
       x = Math.round((x + Number.EPSILON) * 100) / 100;
 
@@ -504,7 +506,8 @@ export default {
       let pattern = /(-?\d+)(\d{3})/;
       while (pattern.test(x)) x = x.replace(pattern, "$1,$2");
       return x;
-    }
+    },
+ 
   },
   computed: {
         ...mapGetters({
@@ -514,6 +517,7 @@ export default {
       currencyRate: "api/currencyRate",
      
     }),
+
     formattedNumber() {
       /* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */
 

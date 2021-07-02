@@ -1,17 +1,6 @@
 <template>
   <v-app class="font">
     <TheAPICalls />
-  <!--   {{ ipAddress }}
-    <img :src="country.flag" height="60" width="60" />
-    {{ country.flag }}
-    <p>
-      {{ country.currencySymbol }}
-      {{ numberWithCommas(50000 * currencyRate) }}
-      {{ activeCurrency }}
-    </p>
-
-    <h3>The Currency: <br /></h3>
- -->
     <div>
       <nav>
         <v-toolbar flat>
@@ -143,13 +132,14 @@
               <v-sheet>
                 <v-select
                   :items="currencyCodeList"
-              
-                  @change="setActiveCurrency(currency)"
+                  v-model="selectedCurrency"
+                  @change="setActiveCurrency(selectedCurrency)"
                   label="Currency"
                  dense
           outlined
                   class="px-2 pt-0 mt-0 mx-0 select-max-width"
                   color="green accent-4"
+                  item-color="green"
                 ></v-select>
               </v-sheet>
             </v-menu>
@@ -272,7 +262,7 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      currency: "JMD",
+      selectedCurrency: "JMD",
       drawer: null,
       group: null,
       email: null,
