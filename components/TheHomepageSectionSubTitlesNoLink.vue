@@ -29,7 +29,7 @@
             mdi-account-plus
           </v-icon></v-btn
         >
-        <p class="text-center mt-3 ">It's Free!</p>
+        <p class="text-center mt-3 ">We won't charge you a milion dollars <br /> It's Free!</p>
 
         
       </v-col>

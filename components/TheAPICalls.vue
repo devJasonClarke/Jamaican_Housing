@@ -1,13 +1,20 @@
 <template>
-  <v-snackbar v-model="snackbar" :timeout="20000" right>
-    {{ error }}
+<div class="">
+  <div v-if="errorMessage">
+  <v-snackbar v-model="error" :timeout="20000" left>
+    {{ errorMessage }}. Please check internet connection
+    
 
     <template v-slot:action="{ attrs }">
-      <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
+      <v-btn color="pink" text v-bind="attrs" @click="error = false">
         Close
       </v-btn>
     </template>
   </v-snackbar>
+
+
+
+</div></div>
 </template>
 
 <script>
@@ -17,27 +24,28 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      snackbar: false,
-      error: null,
+      
+      error: true,
       close: null
     };
   },
   async fetch() {
-    await this.getIpAddress();
+
     await this.getIpInfo();
     await this.getCurrencies();
   },
   methods: {
     ...mapActions({
-      getIpAddress: "api/getIPAddress",
       getIpInfo: "api/getIPInfo",
       getCurrencies: "api/getCurrencies",
-      checkTheme: "colorTheme/checkTheme"
+      checkTheme: "colorTheme/checkTheme",
+
     })
   },
   computed: {
     ...mapGetters({
-      ipAddress: "api/ipAddress"
+      country: "api/country",
+            errorMessage: 'api/errorMessage'
     })
   },
   mounted() {

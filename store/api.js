@@ -1,7 +1,7 @@
 export const state = () => ({
   /* API Calls to get user's IP adress and corresponding info */
-  ipAddress: null,
-  error: null,
+  
+  errorMessage: null,
 
   /* Info needed for app */
   currencies: {},
@@ -12,53 +12,40 @@ export const state = () => ({
 });
 
 export const getters = {
-  ip: state => state.ip,
-  ipAddress: state => state.ipAddress,
+
   country: state => state.country,
   currencies: state => state.currencies,
   currencyCodeList: state => state.currencyCodeList,
   activeCurrency: state => state.activeCurrency,
-  currencyRate: state => state.currencyRate
+  currencyRate: state => state.currencyRate,
+  errorMessage: state  => state.errorMessage
 };
 
 export const actions = {
-  async getIPAddress({ commit }) {
-    const ip = await fetch(
-      `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.abstractApi}&fields=ip_address`
+  async getIPInfo({ commit }) {
+    let error = null;
+
+
+    const info = await fetch(
+      `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.abstractApi}&fields=country,flag,currency`
     )
       .then(res => res.json())
       .then(data => data)
       .catch(err => {
-        /*      this.error = `Please Check Internet Connection. ${err}`;
-      this.snackbar = true; */
-      
+        error = err;
         console.log("the eror for api4 is" + err);
       });
-console.log(ip);
-    commit("GET_IP_ADDRESS", ip.ip_address);
-  },
-  async getIPInfo({ commit, state }) {
-    const info = await fetch(
-      `https://ip-geolocation-ipwhois-io.p.rapidapi.com/json/?ip=${state.ipAddress}`,
-      {
-        method: "GET",
-        headers: {
-          "x-rapidapi-key": process.env.geoLocationApi,
-          "x-rapidapi-host": "ip-geolocation-ipwhois-io.p.rapidapi.com"
-        }
-      }
-    )
-      .then(response => response.json())
-      .then(data => data)
-      .catch(err => {
-        this.error = `Please Check Internet Connection. ${err}`;
-        /* this.snackbar = true; */
-      });
 
-    commit("GET_IP_INFO", info);
+   
+    if(error === null){
+      commit("GET_IP_INFO", info);
+    } else{
+      commit("LOG_ERROR", error);
+    }
   },
 
   async getCurrencies({ commit }) {
+    let error = null;
     const currencies = await fetch(
       `https://exchangerate-api.p.rapidapi.com/rapid/latest/JMD`,
       {
@@ -72,10 +59,18 @@ console.log(ip);
       .then(res => res.json())
       .then(data => data)
       .catch(err => {
+        error = err;
         console.error(err);
       });
 
-    commit("GET_Currencies", currencies.rates);
+      
+    if(error === null){
+   
+      commit("GET_Currencies", currencies.rates);
+    } else{
+      commit("LOG_ERROR", error);
+    }
+
   },
   setActiveCurrency({ commit }, data) {
     console.log(data);
@@ -84,18 +79,20 @@ console.log(ip);
 };
 
 export const mutations = {
-  GET_IP_ADDRESS: (state, ip) => {
-    state.ipAddress = ip;
-  /*   console.log(ip); */
+
+  LOG_ERROR: (state,error) =>{
+    console.log('Logged Error '+ error)
+state.errorMessage = error;
   },
+
   GET_IP_INFO: (state, info) => {
-    /* console.log(info); */
     state.country = {
       country: info.country,
-      flag: info.country_flag,
-      currencyCode: info.currency_code,
-      currencySymbol: info.currency_symbol
+      flag: info.flag.svg,
+      currencyCode: info.currency.currency_code
     };
+
+ 
   },
   GET_Currencies: (state, currencies) => {
     state.currencies = currencies;
