@@ -58,20 +58,16 @@
               <v-icon :color="iconColor">mdi-shower-head mdi-18px</v-icon>
               1 Bathroom
             </p>
-          
-              <p  >
-                <v-icon :color="iconColor">mdi-tag mdi-18px</v-icon>
-                  <span v-for="(detail, i) in details" :key="`icon ${i}`">
-                    <span v-if="detail.price" :class="{  'd-none': !detail.price}">
 
-                 
-                {{ shortenMoney(detail.price * currencyRate) }} {{activeCurrency}}
-                   </span>
-                            </span>
-              </p>
-    
-
-         
+            <p>
+              <v-icon :color="iconColor">mdi-tag mdi-18px</v-icon>
+              <span v-for="(detail, i) in details" :key="`icon ${i}`">
+                <span v-if="detail.price" :class="{ 'd-none': !detail.price }">
+                  {{ shortenMoney(detail.price * currencyRate) }}
+                  {{ activeCurrency }}
+                </span>
+              </span>
+            </p>
           </div>
 
           <div class="">
@@ -135,11 +131,10 @@
               </v-col>
               <v-col cols="12" sm="6"
                 >Print:
-                <a target="_blank" rel="nofollow noopener" href="">
-                  <v-btn class="d-inline" small icon fab>
-                    <v-icon>mdi-printer</v-icon>
-                  </v-btn>
-                </a>
+
+                <v-btn class="d-inline" small icon fab @click="print">
+                  <v-icon>mdi-printer</v-icon>
+                </v-btn>
               </v-col>
             </v-row>
           </div>
@@ -170,7 +165,9 @@
                       class="text-body-1 mt-1 font-weight-regular"
                       v-else
                     >
-                     <!-- {{ country.currencySymbol }}  --> $ {{ numberWithCommas(detail.price  * currencyRate) }}    {{ activeCurrency }}
+                      <!-- {{ country.currencySymbol }}  -->
+                      $ {{ numberWithCommas(detail.price * currencyRate) }}
+                      {{ activeCurrency }}
                     </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
@@ -470,13 +467,16 @@ export default {
     };
   },
   methods: {
+    print() {
+window.print();
+    },
     likeProperty() {
       this.liked = !this.liked;
       this.likeLoading = !this.likeLoading;
       setTimeout(() => (this.likeLoading = !this.likeLoading), 1000);
     },
-       shortenMoney(num) {
-          num = Math.round((num + Number.EPSILON) * 100) / 100;
+    shortenMoney(num) {
+      num = Math.round((num + Number.EPSILON) * 100) / 100;
 
       if (num < 1000) {
         return num;
@@ -500,7 +500,7 @@ export default {
         si[i].s
       );
     },
-        
+
     numberWithCommas(x) {
       x = Math.round((x + Number.EPSILON) * 100) / 100;
 
@@ -508,16 +508,13 @@ export default {
       let pattern = /(-?\d+)(\d{3})/;
       while (pattern.test(x)) x = x.replace(pattern, "$1,$2");
       return x;
-    },
- 
+    }
   },
   computed: {
-        ...mapGetters({
-    
+    ...mapGetters({
       country: "api/country",
-       activeCurrency: "api/activeCurrency",
-      currencyRate: "api/currencyRate",
-     
+      activeCurrency: "api/activeCurrency",
+      currencyRate: "api/currencyRate"
     }),
 
     formattedNumber() {
