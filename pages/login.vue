@@ -6,11 +6,7 @@
       class="py-sm-6 px-sm-9 pa-6 mx-auto"
       elevation="0"
     >
-      <!--    <div class="d-flex justify-end">
-        <v-btn fab text small @click="dialog.value = false"
-          ><v-icon>mdi-close</v-icon></v-btn
-        >
-      </div> -->
+
       <v-card-title class="px-0 text-h4 font-weight-bold">
         {{ authState }}
       </v-card-title>
@@ -60,18 +56,8 @@
       </v-btn>
 
      
-      <p class="mt-6">Don't have an account? <nuxt-link to="signup">Sign Up</nuxt-link></p>
+      <p class="mt-6">Don't have an account? <nuxt-link :to="{name: 'signup'}">Sign Up</nuxt-link></p>
 
-      <!--    <p class="middle-text mt-3 grey--text">Additional Options</p>
-        
-          <v-btn class="mt-6 " block large depressed>
-            Login
-          </v-btn>
-
-          <v-btn  class="mt-6 " block large depressed>
-            Forgot Password
-          </v-btn>
-         -->
     </v-card>
 
 </template>
