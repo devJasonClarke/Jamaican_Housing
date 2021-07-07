@@ -140,10 +140,11 @@ export default {
       ],
       email: "",
       emailRules: [
-        v => !!v || "E-mail is required",
-        v =>
+        value => !!value || "Required.",
+        value => (value || "").length <= 100 || "Max 100 characters",
+        value =>
           /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
-            v
+            value
           ) || "E-mail must be valid"
       ]
     };

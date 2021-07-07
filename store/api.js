@@ -82,7 +82,7 @@ export const mutations = {
 
   LOG_ERROR: (state,error) =>{
     console.log('Logged Error '+ error)
-state.errorMessage = error;
+state.errorMessage = `${error}. Please check your internet connection`;
   },
 
   GET_IP_INFO: (state, info) => {

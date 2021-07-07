@@ -75,6 +75,38 @@ input[type="number"] {
 }
 
 
+// Sign Up / Log In Or
+.middle-text {
+  overflow: hidden;
+  text-align: center;
+}
+
+.middle-text:before,
+.middle-text:after {
+  background-color: #e0e0e0;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.middle-text:before {
+  right: 0.5em;
+  margin-left: -50%;
+}
+
+.middle-text:after {
+  left: 0.5em;
+  margin-right: -50%;
+}
+.select-max-width {
+  max-width: 150px;
+}
+
+
+// Sponsors and Partners Images
 .images {
   display: block;
   max-height: 150px;
@@ -110,6 +142,8 @@ input[type="number"] {
     backgroundShadeDarker: colors.indigo.base
 
 */
+
+// Page Transition
 .page-enter-active, .page-leave-active {
   transition: opacity .3s;
 }
