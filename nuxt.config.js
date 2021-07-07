@@ -33,7 +33,7 @@ export default {
     projectId: process.env.projectId,
     storageBucket: process.env.storageBucket,
     messagingSenderId: process.env.messagingSenderId,
-    appI: process.env.appI,
+    appId: process.env.appId,
     measurementId: process.env.measurementId
   },
   loading: {
@@ -77,7 +77,7 @@ export default {
           projectId: process.env.projectId,
           storageBucket: process.env.storageBucket,
           messagingSenderId: process.env.messagingSenderId,
-          appId: process.env.appI,
+          appId: process.env.appId,
           measurementId: process.env.measurementId
         },
         services: {
