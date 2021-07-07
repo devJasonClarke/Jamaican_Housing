@@ -34,7 +34,7 @@
         subTitle="Our Amazing support system"
         mainTitle="Premiere Sponsors & Partners"
         linkMessage="Become a sponsor "
-        route="sponsor"
+        route="sponsors"
       />
       <TheSponsorsAndPartnersSwiper />
     </SectionPadding>
@@ -52,12 +52,14 @@
 import TheHomePageHeader from "../components/TheHomePageHeader.vue";
 
 export default {
+    
   components: { TheHomePageHeader },
   data() {
     return {
       title: "Home | Real Estate Ja",
       description: "Welcome To Real Estate Ja",
-/*       card: {
+
+      /*       card: {
         title: "Sunny Private Studio Apartment",
         parish: "St. James",
         realEstateType: "Apartment",
@@ -68,10 +70,10 @@ export default {
       } */
     };
   },
-created () {
-     
-    
-},
+  methods: {
+ 
+  },
+
 };
 </script>
 

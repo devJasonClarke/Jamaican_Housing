@@ -1,5 +1,5 @@
 <template>
-  <v-app class="font">
+  <v-app class="wrapper">
     <TheAPICalls />
  
    
@@ -448,4 +448,5 @@ export default {
 .select-max-width{
   max-width: 150px;
 }
+
 </style>

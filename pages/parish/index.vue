@@ -270,7 +270,7 @@ export default {
   data() {
     return {
        title: 'Parishes | Jamaica Housing',
-      descritpion: 'parishes',
+      description: 'parishes',
       img: img,
       loading: false,
       card: {

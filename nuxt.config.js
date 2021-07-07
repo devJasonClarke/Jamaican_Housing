@@ -16,14 +16,25 @@ export default {
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "Discover the best offers on the Jamaican Real Estate Market" },
+      {
+        hid: "description",
+        name: "description",
+        content: "Discover the best offers on the Jamaican Real Estate Market"
+      },
       { hid: "author", name: "author", content: "Jason Clarke" }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
   env: {
     geoLocationApi: process.env.GEO_LOCATION_API_KEY,
-    abstractApi:  process.env.ABSTRACT_API_KEY
+    abstractApi: process.env.ABSTRACT_API_KEY,
+    apiKey: process.env.apiKey,
+    authDomain: process.env.authDomain,
+    projectId: process.env.projectId,
+    storageBucket: process.env.storageBucket,
+    messagingSenderId: process.env.messagingSenderId,
+    appI: process.env.appI,
+    measurementId: process.env.measurementId
   },
   loading: {
     color: "#00C853",
@@ -50,7 +61,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/onesignal',
+    "@nuxtjs/onesignal",
     "@nuxtjs/pwa",
     //Google Tag Manager
     "@nuxtjs/gtm",
@@ -61,31 +72,33 @@ export default {
       "@nuxtjs/firebase",
       {
         config: {
-          apiKey: "<apiKey>",
-          authDomain: "<authDomain>",
-          projectId: "<projectId>",
-          storageBucket: "<storageBucket>",
-          messagingSenderId: "<messagingSenderId>",
-          appId: "<appId>",
-          measurementId: "<measurementId>"
+          apiKey: process.env.apiKey,
+          authDomain: process.env.authDomain,
+          projectId: process.env.projectId,
+          storageBucket: process.env.storageBucket,
+          messagingSenderId: process.env.messagingSenderId,
+          appId: process.env.appI,
+          measurementId: process.env.measurementId
         },
         services: {
-          auth: true // Just as example. Can be any other service.
+          auth: true,
+          firestore: true,
+          storage: true,
+          analytics: true
         }
       }
     ]
   ],
   oneSignal: {
     init: {
-      appId: '3b3f470a-3687-4700-a38e-551bdf04fb86',
+      appId: "3b3f470a-3687-4700-a38e-551bdf04fb86",
       allowLocalhostAsSecureOrigin: true,
       welcomeNotification: {
-          disable: false
+        disable: false
       },
       notifyButton: {
-        enable: true,
-      },
-    
+        enable: true
+      }
     }
   },
   gtm: {
@@ -101,7 +114,8 @@ export default {
       lang: "en",
       name: "Jamaica Housing",
       short_name: "JA Housing",
-      description: "Discover the best offers on the Jamaican Real Estate Market",
+      description:
+        "Discover the best offers on the Jamaican Real Estate Market",
       theme_color: "#00c853",
       background_color: "#00c853"
     }

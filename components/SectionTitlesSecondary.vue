@@ -8,7 +8,7 @@
       </v-col>
       <v-col cols="12" sm="9" class=" px-md-0 pb-0 pt-md-6 ">
         <p
-          class="text-body-1 text-sm-h6 text-capitalize font-weight-regular grey--black text--lighten-5 mb-0"
+          class="text-body-1 text-sm-h6 font-weight-regular grey--black text--lighten-5 mb-0"
         >
          {{paragraph}}
         </p>

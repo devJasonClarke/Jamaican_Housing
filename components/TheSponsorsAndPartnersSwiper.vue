@@ -7,7 +7,7 @@
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <img :src="sponsorOne" class="images"
+          <img :src="require('~/assets/images/sponsors/genr8-3d.webp')" class="images"
         /></a>
       </swiper-slide>
       <swiper-slide class="sliide">
@@ -16,7 +16,7 @@
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <img :src="sponsorTwo" class="images"
+          <img  :src="require('~/assets/images/sponsors/smarthub.svg')" class="images"
         /></a>
       </swiper-slide>
 
@@ -26,13 +26,11 @@
 </template>
 
 <script>
-import sponsorOne from "../assets/images/sponsors/genr8-3d.webp";
-import sponsorTwo from "../assets/images/sponsors/smarthub.svg";
 export default {
   data() {
     return {
-      sponsorOne: sponsorOne,
-      sponsorTwo: sponsorTwo,
+
+ 
       sponsorSwiperOption: {
         slidesPerView: 1,
         loop: true,
@@ -66,27 +64,4 @@ export default {
   width: 200px;
 }
 
-.images {
-  display: block;
-  max-height: 150px;
-  width: auto;
-  margin: 0 auto;
-  transition: 0.35s ease;
-  &:hover {
-    transform: scale(1.02);
-  }
-}
-
-@media screen and (max-width: 700px) {
-  .images {
-    height: auto;
-    width: 200px;
-  }
-}
-@media screen and (max-width: 501px) {
-  .images {
-    height: 100px;
-    width: auto;
-  }
-}
 </style>

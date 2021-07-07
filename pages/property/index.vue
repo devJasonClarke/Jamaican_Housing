@@ -320,7 +320,7 @@
                 outlined
                 name="input-7-4"
                 label="Message *"
-                value="Hello, I am interested in this property"
+                value="Hi Jason, I am interested in this property."
                 :color="iconColor"
               ></v-textarea>
               <v-btn
@@ -468,7 +468,7 @@ export default {
   },
   methods: {
     print() {
-window.print();
+      window.print();
     },
     likeProperty() {
       this.liked = !this.liked;

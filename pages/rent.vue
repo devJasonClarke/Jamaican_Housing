@@ -53,7 +53,7 @@ export default {
   data() {
     return {
       title: "Rent A Home | Jamaica Housing",
-      descritpion: "rent",
+      description: "rent",
       img: img,
       loading: false,
       card: {

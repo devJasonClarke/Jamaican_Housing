@@ -74,6 +74,30 @@ input[type="number"] {
   }
 }
 
+
+.images {
+  display: block;
+  max-height: 150px;
+  width: auto;
+  margin: 0 auto;
+  transition: 0.35s ease;
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .images {
+    height: auto;
+    width: 200px;
+  }
+}
+@media screen and (max-width: 501px) {
+  .images {
+    height: 100px;
+    width: auto;
+  }}
+
 /* *{
   line-height: 22px !important;
 } */
@@ -86,3 +110,33 @@ input[type="number"] {
     backgroundShadeDarker: colors.indigo.base
 
 */
+/* .page-enter-active, .page-leave-active {
+  transition: opacity .3s;
+}
+.page-enter, .page-leave-to {
+  opacity: 0;
+}
+ */
+
+/*  .page-enter-active,
+ .page-leave-active {
+   animation-duration: 0.4s;
+   animation-fill-mode: both;
+   animation-name: zoom;
+ }
+ 
+ .page-leave-active {
+   animation-direction: reverse;
+ }
+ 
+ @keyframes zoom {
+   from {
+     opacity: 0;
+     transform: scale3d(0.3, 0.3, 0.3);
+   }
+ 
+   100% {
+     opacity: 1;
+   }
+ }
+  */
