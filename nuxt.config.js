@@ -28,6 +28,7 @@ export default {
   env: {
     geoLocationApi: process.env.GEO_LOCATION_API_KEY,
     abstractApi: process.env.ABSTRACT_API_KEY,
+    formApi: process.env.FORM_API_KEY,
     apiKey: process.env.apiKey,
     authDomain: process.env.authDomain,
     projectId: process.env.projectId,
@@ -58,13 +59,14 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
-    // https://go.nuxtjs.dev/pwa
+
     "@nuxtjs/onesignal",
+
     "@nuxtjs/pwa",
-    //Google Tag Manager
+
     "@nuxtjs/gtm",
+    "@nuxtjs/robots",
 
     // https://go.nuxtjs.dev/content
     /*     '@nuxt/content', */
@@ -87,8 +89,48 @@ export default {
           analytics: true
         }
       }
-    ]
+    ],
+    "@nuxtjs/sitemap"
   ],
+  robots: () => {
+    return {
+      UserAgent: "*",
+      Disallow: "/dashboard"
+    };
+  },
+  sitemap: {
+    hostname: "https://jamaican-housing.pages.dev/",
+    gzip: true,
+    exclude: ["/dashboard"],
+    routes: [
+      "/buy",
+      "/rent",
+      "/contact",
+      "/sponsors",
+      "/featured",
+      "/parish",
+      "/property",
+      "/blog",
+      "/parish/clarendon",
+      "/parish/hanover",
+      "/parish/kingston",
+      "/parish/manchester",
+      "/parish/portland",
+      "/parish/st-andrew",
+      "/parish/st-ann",
+      "/parish/st-catherine",
+      "/parish/st-elizabeth",
+      "/parish/st-james",
+      "/parish/st-mary",
+      "/parish/st-thomas",
+      "/parish/trelawny",
+      "/parish/westmoreland",
+      {
+        url: "/",
+        priority: 1
+      }
+    ]
+  },
   oneSignal: {
     init: {
       appId: "3b3f470a-3687-4700-a38e-551bdf04fb86",

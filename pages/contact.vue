@@ -15,7 +15,12 @@
       <v-container>
         <v-row>
           <v-col cols="12" md="6">
-            <v-form v-model="valid" class="mx-0" ref="form">
+            <v-form
+              @submit.prevent="validate"
+              v-model="valid"
+              class="mx-0"
+              ref="form"
+            >
               <v-row>
                 <v-col cols="6">
                   <v-text-field
@@ -64,15 +69,43 @@
                   ></v-textarea
                 ></v-col>
               </v-row>
-              <v-btn large color="success" @click="validate" block depressed
-                >Send</v-btn
+              <v-btn
+                type="submit"
+                v-if="sentStatus === false"
+                :loading="loading"
+                large
+                color="success"
+                block
+                depressed
+                >Send
+              </v-btn>
+              <v-btn
+                v-else-if="sentStatus === true"
+                :loading="loading"
+                large
+                color="success"
+                block
+                depressed
               >
+                <v-icon dark> mdi-check</v-icon>
+              </v-btn>
+              <v-btn
+                type="submit"
+                v-else
+                :loading="loading"
+                large
+                color="error"
+                block
+                depressed
+              >
+                <v-icon dark> mdi-close</v-icon>
+              </v-btn>
             </v-form></v-col
           >
-          <v-col cols="12" md="6"
-            ><v-img
+          <v-col cols="12" md="6">
+            <v-img
               gradient="to top right, rgba(0, 0, 0, 0.1) ,rgba(0, 0, 0, 0.25)"
-              src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+              :src="require('~/assets/images/shaking-hands.jpg')"
             ></v-img
           ></v-col>
         </v-row>
@@ -86,32 +119,62 @@ import img from "~/assets/images/house.jpg";
 export default {
   data() {
     return {
+      title: "Contact | Jamaica Housing",
+      description: "Contact",
       img: img,
       iconColor: "rgba(0, 200, 83, 1)",
       valid: false,
       firstname: "",
       lastname: "",
+      email: "",
       message: "",
+      loading: false,
+      sentStatus: false,
       messageRules: [
         v => !!v || "Message is required",
-        v => v.length <= 10 || "Message must be less than 10 characters"
+        v => v.length >= 10 || "Message must be greater than 10 characters"
       ],
       nameRules: [
         v => !!v || "Name is required",
-        v => v.length <= 10 || "Name must be less than 10 characters"
+        v => v.length > 1 || "Name must be greater than 1 character"
       ],
       email: "",
       emailRules: [
         v => !!v || "E-mail is required",
-        v => /.+@.+/.test(v) || "E-mail must be valid"
+        v =>
+          /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
+            v
+          ) || "E-mail must be valid"
       ]
     };
   },
   methods: {
-   validate () {
-        this.$refs.form.validate()
-      },
-  },
+    validate() {
+      let axios = this.$axios;
+      if (this.$refs.form.validate()) {
+        this.loading = true;
+        axios
+          .post(`https://submit-form.com/${process.env.formApi}`, {
+            "First Name": this.firstname,
+            "Last Name": this.lastname,
+            Email: this.email,
+            Message: this.message
+          })
+          .then(response => {
+            console.log("The response: " + response);
+            this.loading = false;
+            this.sentStatus = true;
+          })
+          .catch(response => {
+            console.error("The error: " + response);
+            this.loading = false;
+            this.sentStatus = "error";
+          });
+      } else {
+        console.log("Your bloodclaat mada");
+      }
+    }
+  }
 };
 </script>
 <style lang="scss"></style>
