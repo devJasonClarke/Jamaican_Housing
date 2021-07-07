@@ -23,7 +23,7 @@
         md="6"
         class="d-flex align-center justify-center flex-column flex-row pt-0 mt-3 mt-sm-0"
       >
-        <v-btn x-large dark depressed color="green accent-4"
+        <v-btn x-large dark depressed nuxt :to="{name: 'signup'}" color="green accent-4"
           >Create Your Account
           <v-icon right dark>
             mdi-account-plus
