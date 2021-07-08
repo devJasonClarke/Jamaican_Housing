@@ -64,11 +64,11 @@
 
     <p class=" body-2 grey--text text--darken-1 ">
       By signing up you agree to Jamaica Housing's
-      <nuxt-link target="_blank" :to="{ name: 'terms-of-conditions' }"
+      <nuxt-link :to="{ name: 'terms-of-conditions' }"
         >Terms and Conditions</nuxt-link
       >
       and
-      <nuxt-link target="_blank" :to="{ name: 'privacy-policy' }"
+      <nuxt-link :to="{ name: 'privacy-policy' }"
         >Privacy Policy</nuxt-link
       >.
     </p>
