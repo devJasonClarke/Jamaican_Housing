@@ -547,7 +547,5 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
-.v-application a{
-  color: red;
-}
+
 </style>
