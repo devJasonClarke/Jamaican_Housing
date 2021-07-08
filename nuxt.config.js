@@ -95,7 +95,8 @@ export default {
   robots: () => {
     return {
       UserAgent: "*",
-      Disallow: "/dashboard"
+      Disallow: "/dashboard/",
+      sitemap: 'https://jamaican-housing.pages.dev/sitemap.xml'
     };
   },
   sitemap: {

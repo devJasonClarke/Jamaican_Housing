@@ -110,7 +110,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://www.linkedin.com/sharing/share-offsite/?url=https://jamaican-housing.pages.dev/property`
+                    `https://www.linkedin.com/cws/share/?url=https://jamaican-housing.pages.dev/property`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
