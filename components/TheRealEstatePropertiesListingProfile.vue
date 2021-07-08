@@ -8,7 +8,7 @@
         :key="index"
         cols="12"
         :sm="[flexSm ? 6 : 4]"
-        :md="[flexMd ? 4 : 3]"
+        :md="[flexMd ? 6 : 4]"
         class="mb-4"
       >
         <TheCard :card="property" />
@@ -36,7 +36,6 @@ export default {
       flexMd: false
     };
   },
-
   methods: {
     resize() {
       if (window.innerWidth <= 1264) {

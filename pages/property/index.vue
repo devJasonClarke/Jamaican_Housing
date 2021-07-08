@@ -223,14 +223,18 @@
         </v-col>
         <v-col cols="12" md="4">
           <v-card class="pa-6 ml-sm-3 mb-6" outlined>
+              <nuxt-link :to="{name: 'profile'}">
             <v-img
+            
               height="150"
               width="150"
               src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
               class="rounded-circle mx-auto my-0"
             ></v-img>
+              </nuxt-link>
+              
             <div class="text-center d-flex flex-column">
-              <p class="text-h6 mt-4 mb-0">
+              <nuxt-link :to="{name: 'profile'}" class="text-h6 black--text mt-4 mb-0">
                 Jason Clarke
                 <v-tooltip color="blue" top>
                   <template v-slot:activator="{ on, attrs }">
@@ -240,7 +244,7 @@
                   </template>
                   <span>Verified Realtor</span>
                 </v-tooltip>
-              </p>
+              </nuxt-link >
               <a href="mailto:JasonClarke@gmail.com" class="text-subtitle-1"
                 >Jasonclarke@gmail.com</a
               >

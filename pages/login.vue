@@ -1,4 +1,6 @@
 <template>
+<div>
+  <TheMetaTags :title="title" :description="description" />
 
     <v-card
       min-width="300"
@@ -59,7 +61,7 @@
       <p class="mt-6">Don't have an account? <nuxt-link :to="{name: 'signup'}">Sign Up</nuxt-link></p>
 
     </v-card>
-
+</div>
 </template>
 
 <script>
@@ -67,7 +69,8 @@ export default {
   layout: "signin",
   data() {
     return {
-
+      title: "Login | Jamaica Housing",
+      description: "Login",
       authState: "Login",
       email: "",
       password: "",

@@ -370,7 +370,7 @@ export default {
     window.addEventListener("resize", () => {
       this.resize();
     });
-    this.checkTheme();
+ 
   }
 };
 </script>

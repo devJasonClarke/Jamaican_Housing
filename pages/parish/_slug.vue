@@ -21,9 +21,14 @@
       <TheRealEstatePropertiesListingLoader
         v-if="loading"
         title="sale"
-
+      
       />
-      <TheRealEstatePropertiesListing v-else :title="title" :card="featuredProperties" />
+      <TheRealEstatePropertiesListing
+      
+        v-else
+        :title="title"
+        :card="featuredProperties"
+      />
       <div class="d-flex justify-center align-center mt-4">
         <v-btn
           class="mx-2"
@@ -74,10 +79,10 @@ export default {
   },
   computed: {
     target() {
-  const value = "#top";
+      const value = "#top";
       return value;
     },
-      ...mapGetters({
+    ...mapGetters({
       featuredProperties: "properties/featuredProperties"
     })
   },

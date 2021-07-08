@@ -404,7 +404,7 @@ export default {
   data() {
     return {
       img: img,
-      title: "Privacy Policy",
+      title: "Privacy Policy | Jamaica Housing",
       description: "privacy Policy"
     };
   }

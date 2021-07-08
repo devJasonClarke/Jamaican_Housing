@@ -1,78 +1,79 @@
 <template>
-  <v-card
-    min-width="300"
-    max-width="450"
-    class="py-sm-6 px-sm-9 pa-6 mx-auto"
-    elevation="0"
-  >
-    <v-card-title class="px-0 text-h4 font-weight-bold">
-      {{ authState }}
-    </v-card-title>
-    <p class="px-0 body-1 grey--text text--darken-1">
-      We won't charge you a milion dollars, It's Free! Discover the best
-      investment opportunities around you or add your own.
-    </p>
-    <v-form ref="form" v-model="valid" lazy-validation>
-      <v-text-field
-        :rules="emailRules"
-        v-model="email"
-        label="Email address"
-        required
-        outlined
-        dense
-        class="mt-6"
-        color="green accent-4"
-      ></v-text-field>
-      <v-text-field
-        v-model="password"
-        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-        :rules="passwordRules"
-        :type="show1 ? 'text' : 'password'"
-        class="mt-1"
-        color="green accent-4"
-        name="input-10-1"
-        outlined
-        dense
-        required
-        label="Password"
-        hint="At least 8 characters"
-        @click:append="show1 = !show1"
-      ></v-text-field>
+  <div>
+    <TheMetaTags :title="title" :description="description" />
 
-      <v-btn large color="success" depressed block @click="validate">{{
-        authState
-      }}</v-btn>
-    </v-form>
-    <p class="middle-text mt-3 grey--text">or</p>
+    <v-card
+      min-width="300"
+      max-width="450"
+      class="py-sm-6 px-sm-9 pa-6 mx-auto"
+      elevation="0"
+    >
+      <v-card-title class="px-0 text-h4 font-weight-bold">
+        {{ authState }}
+      </v-card-title>
+      <p class="px-0 body-1 grey--text text--darken-1">
+        We won't charge you a milion dollars, It's Free! Discover the best
+        investment opportunities around you or add your own.
+      </p>
+      <v-form ref="form" v-model="valid" lazy-validation>
+        <v-text-field
+          :rules="emailRules"
+          v-model="email"
+          label="Email address"
+          required
+          outlined
+          dense
+          class="mt-6"
+          color="green accent-4"
+        ></v-text-field>
+        <v-text-field
+          v-model="password"
+          :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+          :rules="passwordRules"
+          :type="show1 ? 'text' : 'password'"
+          class="mt-1"
+          color="green accent-4"
+          name="input-10-1"
+          outlined
+          dense
+          required
+          label="Password"
+          hint="At least 8 characters"
+          @click:append="show1 = !show1"
+        ></v-text-field>
 
-    <v-btn block large depressed>
-      <v-img
-        :src="require('~/assets/images/svg/google.svg')"
-        max-width="30"
-        class="mr-3 "
-      />
-      {{ authState }} with Google
-    </v-btn>
+        <v-btn large color="success" depressed block @click="validate">{{
+          authState
+        }}</v-btn>
+      </v-form>
+      <p class="middle-text mt-3 grey--text">or</p>
 
+      <v-btn block large depressed>
+        <v-img
+          :src="require('~/assets/images/svg/google.svg')"
+          max-width="30"
+          class="mr-3 "
+        />
+        {{ authState }} with Google
+      </v-btn>
 
-    <v-divider class="my-6"></v-divider>
-    <p>
-      Already have an account?
-      <nuxt-link :to="{ name: 'login' }">Login</nuxt-link>
-    </p>
-    <v-divider class="my-6"></v-divider>
+      <v-divider class="my-6"></v-divider>
+      <p>
+        Already have an account?
+        <nuxt-link :to="{ name: 'login' }">Login</nuxt-link>
+      </p>
+      <v-divider class="my-6"></v-divider>
 
-    <p class=" body-2 grey--text text--darken-1 ">
-      By signing up you agree to Jamaica Housing's
-      <nuxt-link :to="{ name: 'terms-of-conditions' }"
-        >Terms and Conditions</nuxt-link
-      >
-      and
-      <nuxt-link :to="{ name: 'privacy-policy' }"
-        >Privacy Policy</nuxt-link
-      >.
-    </p>
-  </v-card>
+      <p class=" body-2 grey--text text--darken-1 ">
+        By signing up you agree to Jamaica Housing's
+        <nuxt-link :to="{ name: 'terms-of-conditions' }"
+          >Terms and Conditions</nuxt-link
+        >
+        and
+        <nuxt-link :to="{ name: 'privacy-policy' }">Privacy Policy</nuxt-link>.
+      </p>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -80,6 +81,8 @@ export default {
   layout: "signin",
   data() {
     return {
+      title: "Sign Up | Jamaica Housing",
+      description: "Sign Up",
       authState: "Sign Up",
       email: "",
       password: "",

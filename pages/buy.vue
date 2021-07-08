@@ -1,6 +1,6 @@
 <template>
   <div>
-     <TheMetaTags :title="title" :description="description"/>
+    <TheMetaTags :title="title" :description="description" />
     <v-img :src="img" min-height="300" max-height="400"></v-img>
     <SectionPadding>
       <SectionTitlesSecondary
@@ -20,12 +20,13 @@
       <TheRealEstatePropertiesListingLoader
         v-if="loading"
         title="sale"
- 
+       
       />
       <TheRealEstatePropertiesListing
         v-else
         title="Real Estate for Sale"
         :card="featuredProperties"
+     
       />
       <div class="d-flex justify-center align-center mt-4">
         <v-btn
@@ -56,36 +57,34 @@ import img from "~/assets/images/house.jpg";
 export default {
   data() {
     return {
-      title: 'Buy Real Estate | Jamaica Housing',
-      description: 'buy',
+      title: "Buy Real Estate | Jamaica Housing",
+      description: "buy",
       img: img,
-      loading: false,
-   
+      loading: false
     };
   },
   computed: {
     target() {
-  const value = "#top";
+      const value = "#top";
       return value;
     },
-      ...mapGetters({
+    ...mapGetters({
       featuredProperties: "properties/featuredProperties"
     })
   },
 
   methods: {
     previous() {
-        this.loading = true;
+      this.loading = true;
       this.$vuetify.goTo(this.target);
       setTimeout(() => (this.loading = false), 3000);
     },
     next() {
-     console.log("next");
+      console.log("next");
       this.loading = true;
       this.$vuetify.goTo(this.target);
       setTimeout(() => (this.loading = false), 3000);
     }
-  },
-
+  }
 };
 </script>

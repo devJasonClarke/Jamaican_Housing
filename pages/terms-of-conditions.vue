@@ -924,8 +924,8 @@ export default {
   data() {
     return {
       img: img,
-      title: "Terms of Use",
-      description: "Terms of use"
+      title: "Terms of Conditions | Jamaica Housing",
+      description: "Terms of Conditions"
     };
   }
 };

@@ -13,11 +13,16 @@
 
     <div id="top"></div>
     <SectionPadding class="backgroundShade">
-      <TheRealEstatePropertiesListingLoader v-if="loading" title="sale" />
+      <TheRealEstatePropertiesListingLoader
+     
+        v-if="loading"
+        title="sale"
+      />
       <TheRealEstatePropertiesListing
         v-else
         title="Featured listings around you"
         :card="featuredProperties"
+     
       />
     </SectionPadding>
   </div>

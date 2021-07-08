@@ -17,11 +17,16 @@
     </SectionPaddingAlt>
     <div id="top"></div>
     <SectionPadding class="backgroundShade">
-      <TheRealEstatePropertiesListingLoader v-if="loading" title="rent" />
+      <TheRealEstatePropertiesListingLoader
+      
+        v-if="loading"
+        title="rent"
+      />
       <TheRealEstatePropertiesListing
         v-else
         title="Homes for rent"
         :card="featuredProperties"
+      
       />
       <div class="d-flex justify-center align-center mt-4">
         <v-btn

@@ -5,6 +5,7 @@
     outlined
     elevation="0"
     class="rounded-lg card"
+
   >
     <v-img
       src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
