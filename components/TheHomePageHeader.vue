@@ -6,13 +6,14 @@
       gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
     >
       <v-container class="d-flex align-center header-text-container">
-        <div class="mb-16">
+        <div class="mb-16 max-width">
           <h1
-          
-               :class="{ 'text-h2 text-sm-h1 white--text font-weight-bold': $vuetify.breakpoint.xsOnly  }"
-           
+            :class="{
+              'text-h2 text-sm-h1 white--text font-weight-bold':
+                $vuetify.breakpoint.xsOnly
+            }"
           >
-            Let us guide you <br />
+            Let us guide you
             home
           </h1>
           <p>Discover the best offers on the Jamaican real estate market.</p>
@@ -34,6 +35,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.max-width{
+  width: 535px;
+}
+
+
 .header-img {
   height: 590px;
 }
@@ -50,5 +56,11 @@ export default {
   p {
     font-size: 20px;
   }
+}
+
+@media screen and (max-width: 536px) {
+  .max-width{
+  max-width: 535px;
+}
 }
 </style>
