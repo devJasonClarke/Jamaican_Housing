@@ -69,7 +69,7 @@ export default {
     "@nuxtjs/robots",
 
     // https://go.nuxtjs.dev/content
-    /*     '@nuxt/content', */
+        '@nuxt/content',
     [
       "@nuxtjs/firebase",
       {
@@ -103,34 +103,7 @@ export default {
     hostname: "https://jamaican-housing.pages.dev/",
     gzip: true,
     exclude: ["/dashboard"],
-    routes: [
-      "/buy",
-      "/rent",
-      "/contact",
-      "/sponsors",
-      "/featured",
-      "/parish",
-      "/property",
-      "/blog",
-      "/parish/clarendon",
-      "/parish/hanover",
-      "/parish/kingston",
-      "/parish/manchester",
-      "/parish/portland",
-      "/parish/st-andrew",
-      "/parish/st-ann",
-      "/parish/st-catherine",
-      "/parish/st-elizabeth",
-      "/parish/st-james",
-      "/parish/st-mary",
-      "/parish/st-thomas",
-      "/parish/trelawny",
-      "/parish/westmoreland",
-      {
-        url: "/",
-        priority: 1
-      }
-    ]
+
   },
   oneSignal: {
     init: {

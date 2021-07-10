@@ -15,8 +15,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import { mapGetters } from "vuex";
+import { mapActions , mapGetters } from "vuex";
 
 export default {
   data() {

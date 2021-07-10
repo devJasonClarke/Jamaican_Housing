@@ -47,17 +47,23 @@
               v-model="signInDropDown"
               active-class="green--text text--accent-4"
             >
+              <v-list-item
+              
+                class="text-uppercase"
+                :to="{ name: 'signup' }"
+              >
+                <v-list-item-title>Sign Up</v-list-item-title>
+              </v-list-item>
+
               <v-dialog transition="dialog-bottom-transition" max-width="400">
                 <template v-slot:activator="{ on, attrs }">
                   <v-list-item
-                    v-for="(route, index) in signInMenu"
-                    :key="'signInMenu' + index"
+                   
                     v-bind="attrs"
                     v-on="on"
                     class="text-uppercase"
-                    @click="authSwitcher(route.title)"
                   >
-                    <v-list-item-title>{{ route.title }}</v-list-item-title>
+                    <v-list-item-title>Login</v-list-item-title>
                   </v-list-item>
                 </template>
                 <template v-slot:default="dialog">
@@ -68,7 +74,7 @@
                       >
                     </div>
                     <v-card-title class="px-0 text-h4">
-                      {{ authState }}
+                      Login
                     </v-card-title>
                     <v-form ref="form" v-model="valid" lazy-validation>
                       <v-text-field
@@ -94,15 +100,10 @@
                         required
                         label="Password"
                         hint="At least 8 characters"
-                  
                         @click:append="show1 = !show1"
                       ></v-text-field>
-                      <v-btn
-                        color="success"
-                        depressed
-                        block
-                        @click="validate"
-                        >{{ authState }}</v-btn
+                      <v-btn color="success" depressed block @click="validate"
+                        >Login</v-btn
                       >
                     </v-form>
                     <p class="middle-text mt-3 grey--text">or</p>
@@ -113,7 +114,7 @@
                         max-width="30"
                         class="mr-3 "
                       />
-                      {{ authState }} with Google
+                      Login with Google
                     </v-btn>
                   </v-card>
                 </template>
@@ -180,20 +181,30 @@
 
             <v-list-item-title>{{ route.title }}</v-list-item-title>
           </v-list-item>
+          <v-list-item
+          
+            class="text-uppercase"
+            :to="{ name: 'signup' }"
+          >
+            <v-list-item-title>
+              <v-list-item-icon>
+                <v-icon>mdi-cellphone-link</v-icon>
+              </v-list-item-icon>
+              Sign Up</v-list-item-title
+            >
+          </v-list-item>
+
           <v-dialog transition="dialog-bottom-transition" max-width="400">
             <template v-slot:activator="{ on, attrs }">
               <v-list-item
-                v-for="(route, index) in signInMenu"
-                :key="'signInMenu' + index"
                 v-bind="attrs"
                 v-on="on"
                 class="text-uppercase"
-                @click="authSwitcher(route.title)"
               >
                 <v-list-item-icon>
-                  <v-icon>{{ route.icon }}</v-icon>
+                  <v-icon>mdi-login-variant</v-icon>
                 </v-list-item-icon>
-                <v-list-item-title>{{ route.title }}</v-list-item-title>
+                <v-list-item-title>Login</v-list-item-title>
               </v-list-item>
             </template>
             <template v-slot:default="dialog">
@@ -204,7 +215,7 @@
                   >
                 </div>
                 <v-card-title class="px-0 text-h4">
-                  {{ authState }}
+                  Login
                 </v-card-title>
                 <v-form ref="form" v-model="valid" lazy-validation>
                   <v-text-field
@@ -233,7 +244,7 @@
                     counter
                     @click:append="show1 = !show1"
                   ></v-text-field>
-                  <v-btn color="success" depressed block>{{ authState }}</v-btn>
+                  <v-btn color="success" depressed block>Login</v-btn>
                 </v-form>
                 <p class="middle-text mt-3 grey--text">or</p>
                 <v-btn block large depressed>
@@ -242,7 +253,7 @@
                     max-width="30"
                     class="mr-3 "
                   />
-                  {{ authState }} with Google
+                  Login with Google
                 </v-btn>
               </v-card>
             </template>
@@ -273,7 +284,6 @@ export default {
       email: null,
       password: null,
       show1: false,
-      authState: "",
       valid: false,
 
       passwordRules: [
@@ -291,26 +301,6 @@ export default {
       signInDropDown: null,
       closeOnContentClick: false,
       isMobile: false,
-      signInMenu: [
-        {
-          title: "Sign Up",
-          route: "signup",
-          icon: "mdi-cellphone-link",
-          depressed: false,
-          text: true,
-          dark: false,
-          color: ""
-        },
-        {
-          title: "Login",
-          route: "login",
-          icon: "mdi-login-variant",
-          depressed: false,
-          text: true,
-          dark: false,
-          color: ""
-        }
-      ],
       routes: [
         {
           title: "buy",
@@ -339,7 +329,15 @@ export default {
           dark: false,
           color: ""
         },
-        /*  {
+
+        {
+          title: "add a property",
+          route: "dashboard",
+          icon: "mdi-view-dashboard",
+          depressed: true,
+          text: true
+        },
+        {
           title: "blog",
           route: "blog",
           icon: "mdi-newspaper-variant-multiple-outline",
@@ -347,14 +345,6 @@ export default {
           text: true,
           dark: false,
           color: ""
-        },  */
-
-        {
-          title: "add a listing",
-          route: "dashboard",
-          icon: "mdi-view-dashboard",
-          depressed: true,
-          text: true
         },
         {
           title: "contact",
