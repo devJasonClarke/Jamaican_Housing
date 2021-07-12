@@ -98,11 +98,11 @@ export default {
     return {
       UserAgent: "*",
       Disallow: "/dashboard/",
-      sitemap: `${process.env.baseUrl}/sitemap.xml`
+      sitemap: `${process.env.BASE_URL}/sitemap.xml`
     };
   },
   sitemap: {
-    hostname: process.env.baseUrl,
+    hostname: process.env.BASE_URL,
     gzip: true,
     exclude: ["/dashboard"]
   },
