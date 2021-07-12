@@ -36,7 +36,8 @@ export default {
     messagingSenderId: process.env.messagingSenderId,
     appId: process.env.appId,
     measurementId: process.env.measurementId,
-    baseUrl: process.env.BASE_URL
+    baseUrl: process.env.BASE_URL,
+    oneSignalAppID: process.env.ONE_SIGNAL_APP_ID
   },
   loading: {
     color: "#00C853",
@@ -70,7 +71,7 @@ export default {
     "@nuxtjs/robots",
 
     // https://go.nuxtjs.dev/content
-        '@nuxt/content',
+    "@nuxt/content",
     [
       "@nuxtjs/firebase",
       {
@@ -103,12 +104,11 @@ export default {
   sitemap: {
     hostname: process.env.baseUrl,
     gzip: true,
-    exclude: ["/dashboard"],
-
+    exclude: ["/dashboard"]
   },
   oneSignal: {
     init: {
-      appId: "3b3f470a-3687-4700-a38e-551bdf04fb86",
+      appId: process.env.oneSignalAppID,
       allowLocalhostAsSecureOrigin: true,
       welcomeNotification: {
         disable: false

@@ -7,23 +7,28 @@
       <p>{{ author.bio }}</p>
     </div>
   </div> -->
-  <v-card  class="pa-2 mb-12" >
+  <v-card class="pa-2 mb-12">
     <div class="d-flex flex-wrap flex-sm-no-wrap justify-space-between">
       <div>
-  
-        <v-card-title class="text-h5">Author: {{author.name}}</v-card-title>
+        <v-card-title class="text-h5">Author: {{ author.name }}</v-card-title>
 
-        <v-card-subtitle>Bio: {{author.bio}}</v-card-subtitle>
+        <v-card-subtitle>Bio: {{ author.bio }}</v-card-subtitle>
 
         <v-card-actions>
-          <v-btn class="ml-2 mt-5" 
-          :to="{ name: 'blog-author-author', params: { author: author.name }}"          depressed>
+          <v-btn
+            class="ml-2 mt-5"
+            :to="{
+              name: 'blog-author-author',
+              params: { author: author.name }
+            }"
+            depressed
+          >
             See blog posts
           </v-btn>
         </v-card-actions>
       </div>
 
-      <v-avatar class="ma-3" size="125" >
+      <v-avatar class="ma-3" size="125">
         <v-img
           :src="`https://source.unsplash.com/${author.image}/125x125`"
         ></v-img>

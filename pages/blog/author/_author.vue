@@ -1,5 +1,9 @@
 <template>
   <div>
+    <TheMetaTags
+      :title="`${articles[0].author.name} | Jamaica Housing`"
+      :description="articles[0].author.bio"
+    />
     <v-container>
       <h1>Author: {{ articles[0].author.name }}</h1>
       <p>Bio: {{ articles[0].author.bio }}</p>
