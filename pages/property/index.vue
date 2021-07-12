@@ -87,7 +87,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://twitter.com/share?url=https://jamaican-housing.pages.dev/property&text=Look at this offer`
+                    `https://twitter.com/share?url=https://jamaican-housing.pages.dev/property&text=Have a look at this property:`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
@@ -110,11 +110,11 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://www.linkedin.com/cws/share/?url=https://jamaican-housing.pages.dev/property`
+                    ` https://t.me/share/url?url=https://jamaican-housing.pages.dev/property&text=Have a look at this property:`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
-                    <v-icon color="blue darken-2">mdi-linkedin</v-icon>
+                    <v-icon color="blue darken-2">mdi-telegram</v-icon>
                   </v-btn>
                 </a>
                 <a
@@ -233,10 +233,7 @@
             </nuxt-link>
 
             <div class="text-center d-flex flex-column">
-              <nuxt-link
-                :to="{ name: 'profile' }"
-                class="text-h6  mt-4 mb-0"
-              >
+              <nuxt-link :to="{ name: 'profile' }" class="text-h6  mt-4 mb-0">
                 Jason Clarke
                 <v-tooltip color="blue" top>
                   <template v-slot:activator="{ on, attrs }">
@@ -547,5 +544,4 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
-
 </style>

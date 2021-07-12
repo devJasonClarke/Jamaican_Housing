@@ -35,7 +35,8 @@ export default {
     storageBucket: process.env.storageBucket,
     messagingSenderId: process.env.messagingSenderId,
     appId: process.env.appId,
-    measurementId: process.env.measurementId
+    measurementId: process.env.measurementId,
+    baseUrl: process.env.BASE_URL
   },
   loading: {
     color: "#00C853",
@@ -96,11 +97,11 @@ export default {
     return {
       UserAgent: "*",
       Disallow: "/dashboard/",
-      sitemap: 'https://jamaican-housing.pages.dev/sitemap.xml'
+      sitemap: `${process.env.baseUrl}/sitemap.xml`
     };
   },
   sitemap: {
-    hostname: "https://jamaican-housing.pages.dev/",
+    hostname: process.env.baseUrl,
     gzip: true,
     exclude: ["/dashboard"],
 
@@ -138,7 +139,9 @@ export default {
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
-  content: {},
+  content: {
+    nestedProperties: ["author.name"]
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {

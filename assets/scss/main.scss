@@ -74,7 +74,6 @@ input[type="number"] {
   }
 }
 
-
 // Sign Up / Log In Or
 .middle-text {
   overflow: hidden;
@@ -105,7 +104,6 @@ input[type="number"] {
   max-width: 150px;
 }
 
-
 // Sponsors and Partners Images
 .images {
   display: block;
@@ -115,6 +113,40 @@ input[type="number"] {
   transition: 0.35s ease;
   &:hover {
     transform: scale(1.02);
+  }
+}
+
+//Nuxt
+
+.nuxt-content {
+  h1 {
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: 0.0073529412em;
+    margin-bottom: 30px;
+  }
+  h2 {
+    font-weight: 400;
+    size: 2.125rem;
+    letter-spacing: 0.0073529412em;
+
+  }
+
+}
+@media screen and (max-width: 600px) {
+  .nuxt-content {
+    h1 {
+      font-weight: 400;
+      font-size: 1.5rem;
+      letter-spacing: 0.0073529412em;
+      margin-bottom: 30px;
+    }
+    h2 {
+      font-weight: 400;
+      size: 1.125rem;
+      letter-spacing: 0.0073529412em;
+      color: red;
+    }
   }
 }
 
@@ -128,7 +160,8 @@ input[type="number"] {
   .images {
     height: 100px;
     width: auto;
-  }}
+  }
+}
 
 /* *{
   line-height: 22px !important;
@@ -144,13 +177,14 @@ input[type="number"] {
 */
 
 // Page Transition
-.page-enter-active, .page-leave-active {
-  transition: opacity .3s;
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.3s;
 }
-.page-enter, .page-leave-to {
+.page-enter,
+.page-leave-to {
   opacity: 0;
 }
-
 
 /*  .page-enter-active,
  .page-leave-active {

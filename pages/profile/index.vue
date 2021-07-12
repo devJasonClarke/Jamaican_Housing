@@ -234,7 +234,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+
 .max-width {
   width: 208px;
 }
