@@ -16,7 +16,8 @@
 
       <div class="d-flex mr-0 mr-md-5 d-sm-flex">
         <v-btn
-          :class="{ 'd-none': isMobile }"
+          :class="{ 'd-none': $vuetify.breakpoint.smAndDown  }"
+          
           v-for="(route, index) in routes"
           :key="'mainNavigation' + index"
           :text="route.text"
@@ -283,7 +284,7 @@ export default {
       ],
       signInDropDown: null,
       closeOnContentClick: false,
-      isMobile: false,
+ 
       routes: [
         {
           title: "buy",
@@ -357,13 +358,7 @@ export default {
       while (pattern.test(x)) x = x.replace(pattern, "$1,$2");
       return x;
     },
-    resize() {
-      if (window.innerWidth <= 772) {
-        this.isMobile = true;
-      } else {
-        this.isMobile = false;
-      }
-    },
+   
 
     validate() {
       if (this.$refs.form.validate()) {
@@ -390,12 +385,6 @@ export default {
       activeCurrency: "api/activeCurrency",
       colorTheme: "colorTheme/theme"
     })
-  },
-  mounted() {
-    this.resize();
-    window.addEventListener("resize", () => {
-      this.resize();
-    });
   }
 };
 </script>
