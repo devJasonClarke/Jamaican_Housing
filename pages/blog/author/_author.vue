@@ -11,7 +11,9 @@
             <v-img
               height="150"
               width="150"
-            :src="`https://source.unsplash.com/${articles[0].author.image}/200x200`"
+              :src="
+                `https://source.unsplash.com/${articles[0].author.image}/200x200`
+              "
               class="rounded-circle mx-auto my-0"
             ></v-img>
             <div class="text-center d-flex flex-column">
@@ -89,7 +91,7 @@
                     {{ article.title }}
                   </p>
                   <p class="my-3 body-2">{{ article.description }}</p>
-           
+
                   <p class=" body-2">{{ formatDate(article.createdAt) }}</p>
                 </div>
               </NuxtLink>
@@ -98,17 +100,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <SectionPadding class="backgroundShade padding-top-and-bottom-alt">
-      <v-container class="d-flex justify-center align-center flex-wrap">
-        <p class="text-center mr-3 my-3 text-h5 font-weight-bold">
-          Want to publish your article on Jamaica Housing?
-        </p>
-        <v-btn color="success" :to="{ name: 'contact' }" depressed rounded
-          >Contact Us</v-btn
-        >
-      </v-container>
-    </SectionPadding>
-
+    <TheBlogCallToAction />
   </div>
 </template>
 
@@ -143,4 +135,3 @@ export default {
   }
 };
 </script>
-

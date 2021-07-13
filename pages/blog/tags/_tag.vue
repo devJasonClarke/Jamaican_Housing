@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <v-container class="mt-6 mb-9">
       <v-row>
         <v-col cols="12">
@@ -7,7 +7,7 @@
           <p class="body-1">
             {{ tag.description }}
           </p>
-   <TheBlogSearchInput class="max-width mt-6"/>
+          <TheBlogSearchInput class="max-width mt-6" />
           <v-row class="mt-6">
             <v-col
               cols="12"
@@ -38,8 +38,8 @@
         </v-col>
       </v-row>
     </v-container>
- 
-  </v-container>
+    <TheBlogCallToAction />
+  </div>
 </template>
 
 <script>
@@ -66,7 +66,7 @@ export default {
       return new Date(date).toLocaleDateString("en", options);
     }
   },
-    computed: {
+  computed: {
     ...mapGetters({
       theme: "colorTheme/theme"
     })
@@ -74,11 +74,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
-
-.max-width{
+.max-width {
   max-width: 557px;
 }
-
-
 </style>

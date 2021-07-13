@@ -31,14 +31,14 @@
                     'd-flex flex-wrap flex-sm-nowrap'
                   ]"
                 >
-                  <img
+               <!--    <img
                     :src="require('~/assets/images/house.jpg')"
                     class="mr-0 mr-sm-6 blog-img"
-                  />
-                  <!--      <img
+                  /> -->
+                       <img
                 :src="`https://source.unsplash.com/${article.image}/200x134`"
                 class="mr-0 mr-sm-6 blog-img"
-              /> -->
+              />
                    <div>
                     <h2>{{ article.title }}</h2>
                     <p>by {{ article.author.name }}</p>
@@ -55,6 +55,7 @@
         </v-row>
       </v-container>
     </SectionPadding>
+     <TheBlogCallToAction />
   </div>
 </template>
 

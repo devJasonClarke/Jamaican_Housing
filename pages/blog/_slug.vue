@@ -30,7 +30,9 @@
             ]"
           >
             <img
-             :src="`https://source.unsplash.com/${article.author.image}/200x200`"
+              :src="
+                `https://source.unsplash.com/${article.author.image}/200x200`
+              "
               alt="Author Photo"
               class="rounded-circle mr-3 author-img"
             />
@@ -49,7 +51,7 @@
             </div>
           </nuxt-link>
           <img
-            :src="require('~/assets/images/house.jpg')"
+            :src="`https://source.unsplash.com/${article.image}/776x450`"
             alt="Jamaica Housing Image"
             width="100%"
             height="450"
@@ -65,7 +67,7 @@
 
           <nuxt-content :document="article" />
         </article>
-        <TheAuthor :author="article.author" />
+        <TheAuthor :author="article.author" class="mt-12" />
         <prev-next :prev="prev" :next="next" />
       </v-container>
     </SectionPadding>

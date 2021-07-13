@@ -12,8 +12,8 @@
       append-icon="mdi-magnify"
     ></v-text-field>
 
-    <v-card class="absolute" outlined tile>
-      <v-list v-if="articles.length">
+    <v-card class="absolute" elevation="3" tile>
+      <v-list class="max-width" v-if="articles.length">
         <v-list-item-group>
           <v-list-item
             v-for="article of articles"
@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -56,5 +55,9 @@ export default {
 <style lang="scss" scoped>
 .absolute {
   position: absolute;
+}
+.max-width {
+  min-width: 100%;
+  max-width: 92vw;
 }
 </style>
