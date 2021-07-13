@@ -81,7 +81,7 @@
                 <img
                   :src="`https://source.unsplash.com/${article.image}/480x250`"
                   :alt="article.alt"
-                  class="img"
+                  class="blog-list-img"
                 />
 
                 <div>
@@ -143,9 +143,3 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.img {
-  width: 100%;
-  height: 250px;
-}
-</style>
