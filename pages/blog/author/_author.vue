@@ -89,7 +89,8 @@
                     {{ article.title }}
                   </p>
                   <p class="my-3 body-2">{{ article.description }}</p>
-                  <p class=" body-2">{{ formatDate(article.updatedAt) }}</p>
+           
+                  <p class=" body-2">{{ formatDate(article.createdAt) }}</p>
                 </div>
               </NuxtLink>
             </v-col>
