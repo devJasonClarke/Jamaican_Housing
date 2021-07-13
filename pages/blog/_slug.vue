@@ -4,6 +4,7 @@
       :title="`${article.title} | Jamaica Housing`"
       :description="article.description"
     />
+
     <v-parallax
       :src="require('~/assets/images/house.jpg')"
       width="100%"
@@ -29,7 +30,7 @@
             ]"
           >
             <img
-              :src="require('~/assets/images/house.jpg')"
+             :src="`https://source.unsplash.com/${article.author.image}/200x200`"
               alt="Author Photo"
               class="rounded-circle mr-3 author-img"
             />
@@ -68,8 +69,27 @@
         <prev-next :prev="prev" :next="next" />
       </v-container>
     </SectionPadding>
-    <SectionPadding class="backgroundShade">
-      <v-container class="max-width">ddd </v-container>
+    <SectionPadding class="backgroundShade padding-top-and-bottom-alt">
+      <v-container class="max-width">
+        <p class="text-h5 mb-6">Article Tags:</p>
+        <span v-for="(tag, i) in article.tags" :key="i">
+          <v-chip
+            :to="{
+              name: 'blog-tags-tag',
+              params: { tag: tags[tag].slug }
+            }"
+            color="green accent-4"
+            outlined
+            pill
+            class="mr-3"
+          >
+            <v-avatar left>
+              <v-icon>mdi-checkbox-marked-circle</v-icon>
+            </v-avatar>
+            {{ tags[tag].name }}</v-chip
+          >
+        </span>
+      </v-container>
     </SectionPadding>
   </div>
 </template>
@@ -85,8 +105,15 @@ export default {
       .surround(params.slug)
       .fetch();
 
+    const tagsList = await $content("tags")
+      .only(["name", "slug"])
+      .where({ name: { $containsAny: article.tags } })
+      .fetch();
+    const tags = Object.assign({}, ...tagsList.map(s => ({ [s.name]: s })));
+
     return {
       article,
+      tags,
       prev,
       next
     };

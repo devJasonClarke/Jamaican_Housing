@@ -47,22 +47,13 @@
               v-model="signInDropDown"
               active-class="green--text text--accent-4"
             >
-              <v-list-item
-              
-                class="text-uppercase"
-                :to="{ name: 'signup' }"
-              >
+              <v-list-item class="text-uppercase" :to="{ name: 'signup' }">
                 <v-list-item-title>Sign Up</v-list-item-title>
               </v-list-item>
 
               <v-dialog transition="dialog-bottom-transition" max-width="400">
                 <template v-slot:activator="{ on, attrs }">
-                  <v-list-item
-                   
-                    v-bind="attrs"
-                    v-on="on"
-                    class="text-uppercase"
-                  >
+                  <v-list-item v-bind="attrs" v-on="on" class="text-uppercase">
                     <v-list-item-title>Login</v-list-item-title>
                   </v-list-item>
                 </template>
@@ -181,11 +172,7 @@
 
             <v-list-item-title>{{ route.title }}</v-list-item-title>
           </v-list-item>
-          <v-list-item
-          
-            class="text-uppercase"
-            :to="{ name: 'signup' }"
-          >
+          <v-list-item class="text-uppercase" :to="{ name: 'signup' }">
             <v-list-item-title>
               <v-list-item-icon>
                 <v-icon>mdi-cellphone-link</v-icon>
@@ -196,11 +183,7 @@
 
           <v-dialog transition="dialog-bottom-transition" max-width="400">
             <template v-slot:activator="{ on, attrs }">
-              <v-list-item
-                v-bind="attrs"
-                v-on="on"
-                class="text-uppercase"
-              >
+              <v-list-item v-bind="attrs" v-on="on" class="text-uppercase">
                 <v-list-item-icon>
                   <v-icon>mdi-login-variant</v-icon>
                 </v-list-item-icon>

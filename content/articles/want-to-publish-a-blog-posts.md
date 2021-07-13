@@ -1,15 +1,18 @@
 ---
-title: Want to publish blog post?
+title: Want to publish a blog post?
 
 author:
   name: Jason Clarke
   bio: I am the creator of this website
   image: t7waxpkDD4g
 
+tags: 
+  - Renting
+
 image: g39p1kDjvSY
 read_time: 1
 
-description: I am the man
+description: Let me guide you on how to post a blog.
 ---
 
 # Want to publish blog post?
