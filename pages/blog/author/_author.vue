@@ -81,7 +81,7 @@
                 :class="[theme ? 'white--text' : 'black--text']"
               >
                 <img
-                  :src="`https://source.unsplash.com/${article.image}/480x250`"
+                  :src="`https://source.unsplash.com/${article.image}/1000x1000`"
                   :alt="article.alt"
                   class="blog-list-img"
                 />

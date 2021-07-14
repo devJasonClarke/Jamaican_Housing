@@ -22,7 +22,7 @@
               <li
                 v-for="article of articles"
                 :key="article.slug"
-                class="blog-link"
+                class="mb-9"
               >
                 <NuxtLink
                   :to="{ name: 'blog-slug', params: { slug: article.slug } }"
@@ -31,31 +31,36 @@
                     'd-flex flex-wrap flex-sm-nowrap'
                   ]"
                 >
-               <!--    <img
+                  <!--    <img
                     :src="require('~/assets/images/house.jpg')"
                     class="mr-0 mr-sm-6 blog-img"
                   /> -->
-                       <img
-                :src="`https://source.unsplash.com/${article.image}/200x134`"
-                class="mr-0 mr-sm-6 blog-img"
-              />
-                   <div>
+                  <img
+                    :src="
+                      `https://source.unsplash.com/${article.image}/1000x1000`
+                    "
+                    class="mr-0 mr-sm-6 blog-img"
+                  />
+                  <div>
                     <h2>{{ article.title }}</h2>
-                    <p>by {{ article.author.name }}</p>
+                    <p class="my-3 body-2">{{ article.description }}</p>
+
+                    <p class="body-2">by {{ article.author.name }}</p>
                   </div>
-                
                 </NuxtLink>
-            
+                <v-divider class="mt-3 mt-sm-0"></v-divider>
               </li>
             </ul></v-col
           >
           <v-col cols="12" md="4">
             <div style="position: sticky; top: 40px">
-            asdfsadfsd </div></v-col>
+              asdfsadfsd
+            </div></v-col
+          >
         </v-row>
       </v-container>
     </SectionPadding>
-     <TheBlogCallToAction />
+    <TheBlogCallToAction />
   </div>
 </template>
 
@@ -93,27 +98,20 @@ ul {
   margin: 0;
   padding: 0;
 }
-.blog-link {
-  margin-bottom: 53px;
-}
+
 .blog-img {
   object-fit: cover;
-  width: 200px;
-  height: 134px;
+  width: 210px;
+  height: 210px;
 }
 
 @media screen and (max-width: 1264px) {
   .blog-img {
-    height: 168px;
-    width: 200px;
+
+    width: 210px;
   }
 }
-@media screen and (max-width: 960px) {
-  .blog-img {
-    width: 200px;
-    height: 134px;
-  }
-}
+
 @media screen and (max-width: 600px) {
   .blog-img {
     width: 100%;
