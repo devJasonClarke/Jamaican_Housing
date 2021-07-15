@@ -7,8 +7,8 @@
         v-for="index in 8"
         :key="index + 'a'"
         cols="12"
-        sm="4"
-        :md="md"
+        :sm="[flexSm ? 6 : 4]"
+        :md="[flexMd ? 6 : 3]"
         class="mb-4"
       >
         <v-sheet class="pa-3 rounded-lg">
@@ -28,11 +28,38 @@ export default {
     title: {
       type: String,
       required: true
-    },
-    md: {
-      type: Number,
-      required: true
     }
+  },
+  data() {
+    return {
+      iconColor: "rgba(0, 200, 83, 0.5)",
+      flexSm: false,
+      flexMd: false
+    };
+  },
+  methods: {
+    resize() {
+      if (window.innerWidth <= 1264) {
+        this.flexMd = true;
+        // console.log(this.flexMd);
+      } else {
+        this.flexMd = false;
+        // console.log(this.flexMd);
+      }
+
+      if (window.innerWidth <= 800) {
+        this.flexSm = true;
+      } else {
+        this.flexSm = false;
+      }
+    }
+  },
+
+  mounted() {
+    this.resize();
+    window.addEventListener("resize", () => {
+      this.resize();
+    });
   }
 };
 </script>

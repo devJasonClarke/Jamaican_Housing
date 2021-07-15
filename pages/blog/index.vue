@@ -68,7 +68,6 @@
                   {{ tag.name }}</v-chip
                 >
               </span>
-              {{ authorz }}
               <v-divider class="my-6"></v-divider>
               <p class="text-h6 font-weight-regular ">Recommended Authors</p>
               <div v-for="(author, i) of authors" :key="`author: ${i}`">
