@@ -5,7 +5,7 @@ author:
   name: VitrinaBox Official
   bio: I am the creator of this website
   image: 376KN_ISplE
-
+  recommended: true
 tags: 
   - Renting
 

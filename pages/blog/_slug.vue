@@ -4,12 +4,14 @@
       :title="`${article.title} | Jamaica Housing`"
       :description="article.description"
     />
-
+   <v-img v-if="$vuetify.breakpoint.xsOnly " :src="require('~/assets/images/house.jpg')" min-height="300" max-height="400"></v-img>
     <v-parallax
+    v-else
       :src="require('~/assets/images/house.jpg')"
       width="100%"
       height="500"
     ></v-parallax>
+    
     <!--     <v-parallax
       :src="`https://source.unsplash.com/${article.image}`"
       width="100%"

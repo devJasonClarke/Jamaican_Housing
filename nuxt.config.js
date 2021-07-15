@@ -126,7 +126,7 @@ export default {
                 /* acceptButton limited to 15 characters */
                 acceptButton: "Allow",
                 /* cancelButton limited to 15 characters */
-                cancelButton: "Cancel"
+                cancelButton: "No Thanks"
               },
               delay: {
                 timeDelay: 20

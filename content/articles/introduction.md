@@ -5,6 +5,7 @@ author:
   name: Jason Clarke
   bio: I am the creator of this website
   image: t7waxpkDD4g
+  recommended: true
 
 tags: 
   - Renting

@@ -66,7 +66,7 @@
         </v-row>
       </v-container>
     </SectionPadding>
-    <div class="footer green darken-4 white--text  text-center">
+    <div class="footer green darken-2 white--text  text-center">
       <p class="py-7 ma-0">&copy; Real Estate JA {{ year }} | All rights reserved</p>
     </div>
   </footer>

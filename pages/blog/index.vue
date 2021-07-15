@@ -16,14 +16,10 @@
     <SectionPadding>
       <v-container>
         <v-row class="flex-wrap-reverse">
-          <v-col cols="12" md="8">
+          <v-col cols="12" md="8" class="pr-sm-6">
             <TheBlogSearchInput />
             <ul>
-              <li
-                v-for="article of articles"
-                :key="article.slug"
-                class="mb-9"
-              >
+              <li v-for="article of articles" :key="article.slug" class="mb-9">
                 <NuxtLink
                   :to="{ name: 'blog-slug', params: { slug: article.slug } }"
                   :class="[
@@ -49,12 +45,65 @@
                   </div>
                 </NuxtLink>
                 <v-divider class="mt-3 mt-sm-0"></v-divider>
-              </li>
-            </ul></v-col
-          >
-          <v-col cols="12" md="4">
-            <div style="position: sticky; top: 40px">
-              asdfsadfsd
+              </li></ul
+          ></v-col>
+          <v-col cols="12" md="4" class="border">
+            <div class="sticky px-sm-3 mb-6 mb-md-0">
+              <p class="text-h6 font-weight-regular ">Recommended Topics</p>
+
+              <span v-for="(tag, i) in tags" :key="i">
+                <v-chip
+                  :to="{
+                    name: 'blog-tags-tag',
+                    params: { tag: tag.slug }
+                  }"
+                  color="green accent-4"
+                  outlined
+                  pill
+                  class="mr-3 mb-3"
+                >
+                  <v-avatar left>
+                    <v-icon>mdi-checkbox-marked-circle</v-icon>
+                  </v-avatar>
+                  {{ tag.name }}</v-chip
+                >
+              </span>
+              {{ authorz }}
+              <v-divider class="my-6"></v-divider>
+              <p class="text-h6 font-weight-regular ">Recommended Authors</p>
+              <div v-for="(author, i) of authors" :key="`author: ${i}`">
+                <span v-if="author.recommended">
+                  <nuxt-link
+                    :to="{
+                      name: 'blog-author-author',
+                      params: { author: author.name }
+                    }"
+                    :class="[
+                      theme ? 'white--text' : 'black--text',
+                      'd-flex align-center mt-6 details'
+                    ]"
+                  >
+                    <img
+                      :src="
+                        `https://source.unsplash.com/${author.image}/200x200`
+                      "
+                      alt="Author Photo"
+                      class="rounded-circle mr-3 author-img"
+                    />
+                    <!--       <img
+              :src="`https://source.unsplash.com/${author.image}/60x60`"
+              alt="Author Photo"
+              class="rounded-circle mr-3 img"
+            />
+ -->
+                    <div>
+                      <p class="body-1 font-weight-bold">
+                        {{ author.name }}
+                      </p>
+                    </div>
+                  </nuxt-link>
+                </span>
+              </div>
             </div></v-col
           >
         </v-row>
@@ -74,8 +123,20 @@ export default {
       .sortBy("createdAt", "asc")
       .fetch();
 
+    const authors = await $content("authors")
+      .only(["name", "slug", "image", "recommended"])
+      .sortBy("name", "asc")
+      .fetch();
+
+    const tags = await $content("tags")
+      .only(["name", "slug"])
+      .sortBy("name", "asc")
+      .fetch();
+
     return {
-      articles
+      articles,
+      authors,
+      tags
     };
   },
   data() {
@@ -98,17 +159,36 @@ ul {
   margin: 0;
   padding: 0;
 }
-
+.author-img {
+  width: 60px;
+  height: 60px;
+}
+.border {
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
+}
+.theme--dark.v-application {
+  .border {
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+  }
+}
 .blog-img {
   object-fit: cover;
   width: 210px;
   height: 210px;
 }
 
+.sticky {
+  position: sticky;
+  top: 40px;
+}
 @media screen and (max-width: 1264px) {
   .blog-img {
-
     width: 210px;
+  }
+}
+@media screen and (max-width: 960px) {
+  .border {
+    border-left: none;
   }
 }
 
