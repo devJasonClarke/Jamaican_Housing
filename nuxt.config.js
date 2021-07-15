@@ -113,8 +113,27 @@ export default {
       welcomeNotification: {
         disable: false
       },
-      notifyButton: {
-        enable: true
+      promptOptions: {
+        slidedown: {
+          prompts: [
+            {
+              type: "push", // current types are "push" & "category"
+              autoPrompt: true,
+              text: {
+                /* limited to 90 characters */
+                actionMessage:
+                  "We'd like to show you notifications for the latest news and updates.",
+                /* acceptButton limited to 15 characters */
+                acceptButton: "Allow",
+                /* cancelButton limited to 15 characters */
+                cancelButton: "Cancel"
+              },
+              delay: {
+                timeDelay: 20
+              }
+            }
+          ]
+        }
       }
     }
   },
