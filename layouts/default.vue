@@ -16,8 +16,7 @@
 
       <div class="d-flex mr-0 mr-md-5 d-sm-flex">
         <v-btn
-          :class="{ 'd-none': $vuetify.breakpoint.smAndDown  }"
-          
+          :class="{ 'd-none': $vuetify.breakpoint.smAndDown }"
           v-for="(route, index) in routes"
           :key="'mainNavigation' + index"
           :text="route.text"
@@ -284,7 +283,7 @@ export default {
       ],
       signInDropDown: null,
       closeOnContentClick: false,
- 
+
       routes: [
         {
           title: "buy",
@@ -358,7 +357,6 @@ export default {
       while (pattern.test(x)) x = x.replace(pattern, "$1,$2");
       return x;
     },
-   
 
     validate() {
       if (this.$refs.form.validate()) {
@@ -391,5 +389,14 @@ export default {
 <style scoped>
 .select-max-width {
   max-width: 150px;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.3s;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
 }
 </style>
