@@ -9,7 +9,7 @@
       app
     >
       <v-list>
-        <v-list-item-group v-model="group">
+        <v-list-item-group >
           <v-list-item
             v-for="(item, i) in items"
             :key="i"
@@ -29,8 +29,13 @@
     </v-navigation-drawer>
 
     <v-app-bar :clipped-left="clipped" fixed app elevation="0">
-      <v-app-bar-nav-icon @click.stop="miniVariant = !miniVariant" />
-
+       <v-btn
+        icon
+        @click.stop="miniVariant = !miniVariant"
+      >
+        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
+      </v-btn>
+      <v-app-bar-nav-icon   @click.stop="drawer = !drawer"  />
       <v-list-item>
         <v-list-item-avatar>
           <v-img src="https://www.countryflags.io/jm/flat/64.png"></v-img>
@@ -128,9 +133,8 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      group: true,
       clipped: false,
-      drawer: true,
+      drawer: false,
       fixed: false,
       items: [
         {
