@@ -19,14 +19,7 @@
             <div class="text-center d-flex flex-column">
               <p class="text-h5 font-weight-bold mt-4 mb-0">
                 {{ articles[0].author.name }}
-                <v-tooltip color="blue" top>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-icon color="blue" dark v-bind="attrs" v-on="on">
-                      mdi-check-decagram
-                    </v-icon>
-                  </template>
-                  <span>Verified Author</span>
-                </v-tooltip>
+             <VerifiedSymbol role="author"/>
               </p>
               <p class="mt-3">{{ articles[0].author.bio }}</p>
             </div>

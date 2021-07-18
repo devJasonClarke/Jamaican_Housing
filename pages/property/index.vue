@@ -235,14 +235,7 @@
             <div class="text-center d-flex flex-column">
               <nuxt-link :to="{ name: 'profile' }" class="text-h6  mt-4 mb-0">
                 Jason Clarke
-                <v-tooltip color="blue" top>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-icon color="blue" dark v-bind="attrs" v-on="on">
-                      mdi-check-decagram
-                    </v-icon>
-                  </template>
-                  <span>Verified Realtor</span>
-                </v-tooltip>
+         <VerifiedSymbol role="realtor"/>
               </nuxt-link>
               <a href="mailto:JasonClarke@gmail.com" class="text-subtitle-1"
                 >Jasonclarke@gmail.com</a

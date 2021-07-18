@@ -165,6 +165,7 @@
             link
             class="text-capitalize"
             :to="{ name: route.route }"
+            exact 
           >
             <v-list-item-icon>
               <v-icon>{{ route.icon }}</v-icon>
@@ -316,7 +317,7 @@ export default {
         {
           title: "add a property",
           route: "dashboard",
-          icon: "mdi-view-dashboard",
+          icon: "mdi-home-import-outline",
           depressed: true,
           text: true
         },
@@ -332,7 +333,7 @@ export default {
         {
           title: "contact",
           route: "contact",
-          icon: "mdi-email",
+          icon: "mdi-email-outline",
           depressed: false,
           text: true,
           dark: false,
