@@ -52,22 +52,31 @@
               Enter you email address to receive the top real estate deals
               currently on the market
             </p>
-            <v-text-field
-              label="Your Email Address"
-              :rules="rules"
-              hide-details="auto"
-              append-icon="mdi-email"
-              outlined
-              dense
-              color="green accent-4"
-            >
-            </v-text-field>
+            <v-form ref="form" v-model="valid" @submit.prevent="sendEmail">
+              <v-text-field
+                label="Your Email Address"
+                :rules="rules"
+                hide-details="auto"
+                v-model="email"
+                prepend-inner-icon="mdi-email"
+                append-outer-icon="mdi-check"
+                @click:append-outer="sendEmail"
+                outlined
+                dense
+                :loading="loading"
+                color="green accent-4"
+              >
+              </v-text-field>
+            </v-form>
+           <span> {{ success }}</span>
           </v-col>
         </v-row>
       </v-container>
     </SectionPadding>
     <div class="footer green darken-2 white--text  text-center">
-      <p class="py-7 ma-0">&copy; Real Estate JA {{ year }} | All rights reserved</p>
+      <p class="py-7 ma-0">
+        &copy; Real Estate JA {{ year }} | All rights reserved
+      </p>
     </div>
   </footer>
 </template>
@@ -77,11 +86,15 @@ export default {
   data() {
     return {
       year: "",
+      email: "",
+      loading: false,
+      valid: false,
+      success: '',
       rules: [
         value =>
-          !value ||
-          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-          "E-mail must be valid"
+          /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
+            value
+          ) || "E-mail must be valid"
       ],
       routes: {
         market: [
@@ -119,11 +132,22 @@ export default {
     getYear() {
       let year = new Date().getFullYear();
       this.year = year;
+    },
+    validate() {
+      this.$refs.form.validate();
+    },
+    sendEmail() {
+      if (this.valid === true) {
+        this.loading = true;
+        this.$OneSignal.setEmail(this.email);
+        this.success = 'Success!';
+        this.loading = false;
+      }
     }
   },
-  mounted () {
-      this.getYear();
-  },
+  mounted() {
+    this.getYear();
+  }
 };
 </script>
 
