@@ -139,7 +139,7 @@ export default {
     sendEmail() {
       if (this.valid === true) {
         this.loading = true;
-        this.$OneSignal.setEmail(this.email);
+        window.$OneSignal.setEmail(this.email);
         this.success = 'Success!';
         this.loading = false;
       }
