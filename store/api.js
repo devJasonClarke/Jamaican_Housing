@@ -77,6 +77,7 @@ export const actions = {
       // console.log(`Push Currency ${state.currencies}`);
     }
   },
+  
   setActiveCurrency({ commit }, data) {
     console.log(data);
     commit("SET_ACTIVE_CURRENCY", data);

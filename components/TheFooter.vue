@@ -64,11 +64,11 @@
                 outlined
                 dense
                 :loading="loading"
-                color="green accent-4"
+                :color="formStatus"
               >
               </v-text-field>
             </v-form>
-            <span> {{ success }}</span>
+            <span> {{ submitMessage }}</span>
           </v-col>
         </v-row>
       </v-container>
@@ -89,7 +89,8 @@ export default {
       email: "",
       loading: false,
       valid: false,
-      success: "",
+      submitMessage: "",
+      formStatus: "green accent-4",
       rules: [
         value =>
           /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
@@ -140,12 +141,19 @@ export default {
       if (this.valid === true) {
         this.loading = true;
 
-        this.$OneSignal.push(() => {
-          this.$OneSignal.setEmail(this.email);
-        });
-
-        this.success = "Success!";
-        this.loading = false;
+        this.$OneSignal
+          .push(() => {
+            this.$OneSignal.setEmail(this.email);
+          })
+          .then(() => {
+            this.submitMessage = "Success!";
+            this.loading = false;
+          })
+          .catch(err => {
+            this.submitMessage = err;
+            this.formStatus = "red";
+            this.loading = false;
+          });
       }
     }
   },

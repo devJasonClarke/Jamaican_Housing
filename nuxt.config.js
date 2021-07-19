@@ -122,7 +122,7 @@ export default {
               text: {
                 /* limited to 90 characters */
                 actionMessage:
-                  "We'd like to show you notifications for the latest news and updates.",
+                  "We'd love to show you notifications for the latest news and updates.",
                 /* acceptButton limited to 15 characters */
                 acceptButton: "Allow",
                 /* cancelButton limited to 15 characters */
