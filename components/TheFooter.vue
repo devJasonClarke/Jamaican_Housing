@@ -68,7 +68,7 @@
               >
               </v-text-field>
             </v-form>
-           <span> {{ success }}</span>
+            <span> {{ success }}</span>
           </v-col>
         </v-row>
       </v-container>
@@ -89,7 +89,7 @@ export default {
       email: "",
       loading: false,
       valid: false,
-      success: '',
+      success: "",
       rules: [
         value =>
           /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
@@ -139,8 +139,12 @@ export default {
     sendEmail() {
       if (this.valid === true) {
         this.loading = true;
-        window.$OneSignal.setEmail(this.email);
-        this.success = 'Success!';
+
+        this.$OneSignal.push(() => {
+          this.$OneSignal.setEmail(this.email);
+        });
+
+        this.success = "Success!";
         this.loading = false;
       }
     }
