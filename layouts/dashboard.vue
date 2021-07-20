@@ -32,7 +32,7 @@
 
       <v-list>
         <v-list-item class="px-2" v-if="miniVariant">
-          <v-list-item-avatar>
+          <v-list-item-avatar height="40" width="40">
             <v-img src="https://source.unsplash.com/t7waxpkDD4g/60x60"></v-img>
           </v-list-item-avatar>
         </v-list-item>
@@ -212,22 +212,22 @@ export default {
         {
           icon: "mdi-home-import-outline",
           title: "Add A Property",
-          route: "index"
+          route: "dashboard-add-property"
         },
         {
           icon: "mdi-account-circle-outline",
           title: "User Profile",
-          route: "index"
+          route: "dashboard-user-profile"
         },
         {
           icon: "mdi-message-text-outline",
           title: "Messages",
-          route: "index"
+          route: "dashboard-messages"
         },
         {
           icon: "mdi-heart-outline",
           title: "Favourites",
-          route: "index"
+          route: "dashboard-favourites"
         },
         {
           icon: "mdi-cog-outline",
