@@ -123,19 +123,7 @@
               color="green accent-4"
             ></v-switch
           ></v-sheet>
-          <v-sheet>
-            <v-select
-              :items="currencyCodeList"
-              v-model="selectedCurrency"
-              @change="setActiveCurrency(selectedCurrency)"
-              label="Currency"
-              dense
-              outlined
-              class="px-2 pt-0 mt-0 mx-0 select-max-width"
-              color="green accent-4"
-              item-color="green"
-            ></v-select>
-          </v-sheet>
+          <TheCurrencySelector />
         </v-menu>
       </div>
     </v-toolbar>
@@ -165,7 +153,7 @@
             link
             class="text-capitalize"
             :to="{ name: route.route }"
-            exact 
+            exact
           >
             <v-list-item-icon>
               <v-icon>{{ route.icon }}</v-icon>
@@ -254,7 +242,6 @@
     <TheFooter />
   </v-app>
 </template>
-
 <script>
 import { mapActions } from "vuex";
 import { mapGetters } from "vuex";
@@ -262,7 +249,6 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      selectedCurrency: "JMD",
       drawer: null,
       group: null,
       email: null,
@@ -298,7 +284,7 @@ export default {
         {
           title: "rent",
           route: "rent",
-          icon: "mdi-currency-usd-circle-outline",
+          icon: "mdi-key-chain-variant ",
           depressed: false,
           text: true,
           dark: false,
@@ -307,7 +293,7 @@ export default {
         {
           title: "sell",
           route: "dashboard",
-          icon: "mdi-currency-usd",
+          icon: "mdi-account-key-outline",
           depressed: false,
           text: true,
           dark: false,
@@ -347,7 +333,6 @@ export default {
     ...mapActions({
       getIpAddress: "api/getIPAddress",
       getIpInfo: "api/getIPInfo",
-      setActiveCurrency: "api/setActiveCurrency",
       toggleTheme: "colorTheme/toggleTheme"
     }),
     numberWithCommas(x) {
@@ -379,19 +364,13 @@ export default {
       ipAddress: "api/ipAddress",
       country: "api/country",
       currencies: "api/currencies",
-      currencyCodeList: "api/currencyCodeList",
       currencyRate: "api/currencyRate",
-      activeCurrency: "api/activeCurrency",
       colorTheme: "colorTheme/theme"
     })
   }
 };
 </script>
 <style scoped>
-.select-max-width {
-  max-width: 150px;
-}
-
 .page-enter-active,
 .page-leave-active {
   transition: opacity 0.3s;

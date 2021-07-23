@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapActions , mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
@@ -25,12 +25,12 @@ export default {
     };
   },
   async fetch() {
-    await this.getIpInfo();
+    //  await this.getIpInfo();
     await this.getCurrencies();
   },
   methods: {
     ...mapActions({
-      getIpInfo: "api/getIPInfo",
+      //    getIpInfo: "api/getIPInfo",
       getCurrencies: "api/getCurrencies",
       checkTheme: "colorTheme/checkTheme"
     })

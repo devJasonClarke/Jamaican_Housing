@@ -189,7 +189,7 @@
         route="featured"
       />
 
-      <TheRealEstatePropertySwiper />
+      <TheFeaturedProperties />
     </SectionPadding>
   </div>
 </template>

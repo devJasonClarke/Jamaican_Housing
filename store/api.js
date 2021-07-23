@@ -16,16 +16,18 @@ export const state = () => ({
 });
 
 export const getters = {
-  country: state => state.country,
+  /*  country: state => state.country, */
   currencies: state => state.currencies,
   currencyCodeList: state => state.currencyCodeList,
-  activeCurrency: state => state.activeCurrency,
   currencyRate: state => state.currencyRate,
-  errorMessage: state => state.errorMessage
+  errorMessage: state => state.errorMessage,
+  activeCurrency: state => {
+    return state.activeCurrency;
+  }
 };
 
 export const actions = {
-  async getIPInfo({ commit, state }) {
+  /*   async getIPInfo({ commit, state }) {
     let country = state.country.country;
 
     // Test the API call lifecycle, ensure they are called only once per session
@@ -45,7 +47,7 @@ export const actions = {
       // Test the API call lifecycle, ensure they are called only once per session
       // console.log(`Push ${state.country}`);
     }
-  },
+  }, */
 
   async getCurrencies({ commit, state }) {
     let currency = state.currencies.currencies;
@@ -77,9 +79,11 @@ export const actions = {
       // console.log(`Push Currency ${state.currencies}`);
     }
   },
-  
+  loadActiveCurrency({ commit }) {
+    console.log("load");
+    commit("LOAD_ACTIVE_CURRENCY");
+  },
   setActiveCurrency({ commit }, data) {
-    console.log(data);
     commit("SET_ACTIVE_CURRENCY", data);
   }
 };
@@ -106,8 +110,16 @@ export const mutations = {
     state.currencyCodeList = keyNames;
     // Test the API call lifecycle, ensure they are called only once per session
     // console.log(`After Currency ${state.currencies}`);
+    const getCurrency = localStorage.getItem("activeCurrency");
+    //  console.log(`getCurrency: ${getCurrency}`);
+    if (getCurrency) {
+      state.currencyRate = state.currencies[getCurrency];
+      state.activeCurrency = getCurrency;
+    }
   },
   SET_ACTIVE_CURRENCY: (state, data) => {
+    console.log(data);
+    localStorage.setItem("activeCurrency", data);
     state.currencyRate = state.currencies[data];
     state.activeCurrency = data;
   }

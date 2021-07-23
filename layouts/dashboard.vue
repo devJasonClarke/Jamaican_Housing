@@ -28,7 +28,7 @@
   
       </v-list-item> -->
 
-<!-- // ! Do the same thing with css bindings inorder to save bandwidth -->
+      <!-- // ! Do the same thing with css bindings inorder to save bandwidth -->
 
       <v-list>
         <v-list-item class="px-2" v-if="miniVariant">
@@ -249,7 +249,6 @@ export default {
         this.miniVariant = false;
       } else {
         this.flexMd = false;
-
       }
     }
   },

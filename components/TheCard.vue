@@ -5,7 +5,6 @@
     outlined
     elevation="0"
     class="rounded-lg card"
-
   >
     <v-img
       src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
@@ -47,9 +46,9 @@
           {{ card.bathroom }}
         </p>
         <p>
-          <v-icon :color="iconColor">mdi-tag mdi-18px</v-icon>
+          <v-icon :color="iconColor">mdi-cash-multiple mdi-18px</v-icon>
 
-          {{ shortenMoney(card.price * currencyRate) }} 
+          {{ shortenMoney(card.price * currencyRate) }}
         </p>
       </div>
     </div>
@@ -71,8 +70,8 @@ export default {
     };
   },
   methods: {
-   shortenMoney(num) {
-          num = Math.round((num + Number.EPSILON) * 100) / 100;
+    shortenMoney(num) {
+      num = Math.round((num + Number.EPSILON) * 100) / 100;
 
       if (num < 1000) {
         return num;
@@ -95,8 +94,7 @@ export default {
         (num / si[i].v).toFixed(2).replace(/\.0+$|(\.[0-9]*[1-9])0+$/, "$1") +
         si[i].s
       );
-    },
-        
+    }
   },
   computed: {
     ...mapGetters({

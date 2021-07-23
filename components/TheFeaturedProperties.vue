@@ -2,7 +2,7 @@
   <div class="section-margin-top ">
     <swiper class="swiper" :options="propertySwiperOption">
       <swiper-slide class="sliide" v-for="(card, index) in featuredProperties" :key="index">
-      <TheCardSwiper :card='card' />
+      <TheCardAlt :card='card' />
       </swiper-slide>
 
       <div class="swiper-pagination" slot="pagination"></div>

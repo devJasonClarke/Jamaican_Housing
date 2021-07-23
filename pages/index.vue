@@ -18,7 +18,7 @@
         route="featured"
       />
 
-      <TheRealEstatePropertySwiper />
+      <TheFeaturedProperties />
     </SectionPadding>
     <SectionPadding>
       <SectionTitles
