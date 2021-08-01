@@ -206,7 +206,7 @@ export default {
         },
         {
           icon: "mdi-apps",
-          title: "Dashboard",
+          title: "Properties",
           route: "dashboard"
         },
         {
