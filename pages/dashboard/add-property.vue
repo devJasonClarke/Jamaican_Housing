@@ -19,6 +19,11 @@
           <v-stepper-step step="3" editable>
             Name of confirm
           </v-stepper-step>
+          <v-divider></v-divider>
+          <v-stepper-step :rules="[() => false]" step="4" editable>
+            Custom channels
+            <small>Alert message</small>
+          </v-stepper-step>
         </v-stepper-header>
 
         <v-stepper-items>
@@ -55,6 +60,22 @@
           </v-stepper-content>
 
           <v-stepper-content step="3">
+            <v-card
+              class="mb-12"
+              color="grey lighten-1"
+              height="250px"
+            ></v-card>
+
+            <v-btn color="primary" @click="e1 = 1">
+              Continue
+            </v-btn>
+
+            <v-btn text>
+              Cancel
+            </v-btn>
+          </v-stepper-content>
+
+          <v-stepper-content step="4">
             <v-card
               class="mb-12"
               color="grey lighten-1"
