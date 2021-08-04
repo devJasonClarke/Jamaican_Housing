@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1>User Profile</h1>
+    <h1>Login & security</h1>
   </v-container>
 </template>
 

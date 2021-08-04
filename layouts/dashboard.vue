@@ -252,6 +252,6 @@ export default {
     window.addEventListener("resize", () => {
       this.resize();
     });
-  }
+  },
 };
 </script>
