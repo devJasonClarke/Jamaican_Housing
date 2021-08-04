@@ -27,20 +27,13 @@
 
   
       </v-list-item> -->
-
-      <!-- // ! Do the same thing with css bindings inorder to save bandwidth -->
-
       <v-list>
-        <v-list-item class="px-2" v-if="miniVariant">
-          <v-list-item-avatar height="40" width="40">
-            <v-img src="https://source.unsplash.com/t7waxpkDD4g/60x60"></v-img>
-          </v-list-item-avatar>
-        </v-list-item>
-        <v-list-item
-          class="d-flex justify-center align-center px-0 mx-0"
-          v-else
-        >
-          <v-list-item-avatar height="120" width="120" class="mx-0 px-0">
+        <v-list-item class="d-flex justify-center align-center px-0 mx-0">
+          <v-list-item-avatar
+            :height="[miniVariant ? 40 : 120]"
+            :width="[miniVariant ? 40 : 120]"
+            class="mx-0 px-0"
+          >
             <v-img
               src="https://source.unsplash.com/t7waxpkDD4g/240x240"
             ></v-img>
@@ -199,11 +192,7 @@ export default {
       title: "nope",
       messages: 8,
       routes: [
-        {
-          icon: "mdi-home-outline",
-          title: "Home Page",
-          route: "index"
-        },
+    
         {
           icon: "mdi-apps",
           title: "Properties",
@@ -233,6 +222,11 @@ export default {
           icon: "mdi-cog-outline",
           title: "Settings",
           route: "dashboard-settings"
+        },
+            {
+          icon: "mdi-home-outline",
+          title: "Home Page",
+          route: "index"
         }
       ],
       flexMd: false

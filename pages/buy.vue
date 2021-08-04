@@ -15,8 +15,8 @@
     <SectionPaddingAlt>
       <TheSearchSection />
     </SectionPaddingAlt>
-    <div id="top"></div>
-    <SectionPadding class="backgroundShade">
+
+    <SectionPadding class="backgroundShade" id="top">
       <TheRealEstatePropertiesListingLoader
         v-if="loading"
         title="sale"

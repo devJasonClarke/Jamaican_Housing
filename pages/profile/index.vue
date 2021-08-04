@@ -207,6 +207,10 @@ export default {
   },
   methods: {},
   computed: {
+       target() {
+      const value = "#top";
+      return value;
+    },
     ...mapGetters({
       featuredProperties: "properties/featuredProperties"
     }),
