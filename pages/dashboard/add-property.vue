@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <v-container>
     <h1>Add Propery</h1>
     <SectionPadding>
-      <v-stepper v-model="e1">
+      <v-stepper v-model="e1"  alt-labels>
         <v-stepper-header>
-          <v-stepper-step step="1" editable>
+          <v-stepper-step step="1" complete editable>
             Name of property
           </v-stepper-step>
 
@@ -93,7 +93,7 @@
         </v-stepper-items>
       </v-stepper>
     </SectionPadding>
-  </div>
+  </v-container>
 </template>
 
 <script>

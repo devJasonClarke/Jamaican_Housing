@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <h1>Settings</h1>
     <v-text-field
       v-model="price"
@@ -9,7 +9,7 @@
       dense
     ></v-text-field>
     {{ newPrice }}
-  </div>
+  </v-container>
 </template>
 
 <script>

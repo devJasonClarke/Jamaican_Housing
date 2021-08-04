@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <h1>Properties</h1>
 
     <SectionPadding id="top">
@@ -30,7 +30,7 @@
         </v-btn>
       </div>
     </SectionPadding>
-  </div>
+  </v-container>
 </template>
 
 <script>
