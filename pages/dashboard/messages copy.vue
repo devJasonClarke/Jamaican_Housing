@@ -2,10 +2,12 @@
   <v-container>
     <h1>Messages</h1>
     <SectionPadding>
-      <v-list two-line>
+      <v-list two-line >
         <v-subheader>Messages</v-subheader>
         <div v-for="(item, index) in items" :key="index">
-          <v-list-item :to="{ name: 'index' }">
+        
+
+          <v-list-item  :to="{ name: 'about' }">
             <v-list-item-avatar>
               <v-img :src="item.avatar"></v-img>
             </v-list-item-avatar>
@@ -16,50 +18,31 @@
                 Message: {{ item.message }}</v-list-item-subtitle
               >
             </v-list-item-content>
-            <v-list-item-action>
-              <v-list-item-action-text
-                v-text="item.date"
-              ></v-list-item-action-text>
-
-              <v-icon v-if="!active" color="grey lighten-1">
-                mdi-message-outline
-              </v-icon>
-
-              <v-icon v-else color="yellow darken-3">
-                mdi-message
-              </v-icon>
-            </v-list-item-action>
           </v-list-item>
 
-          <v-divider class="my-4"></v-divider>
+            <v-divider class="my-4"></v-divider>
+
+            
         </div>
       </v-list>
     </SectionPadding>
 
-    <!--    <SectionPadding>
-        <v-subheader>Messages</v-subheader>
-     
+
+
+    <SectionPadding>
       <div v-for="(item, index) in items" :key="index">
-        <v-card elevation="0"  to="/">
-          <v-row>
-            <v-col cols="1" >
-              <v-list-item-avatar rounded="circle" class="mx-4 mt-6">
-                <v-img :src="item.avatar"></v-img>
-              </v-list-item-avatar>
-            </v-col>
-            <v-col cols="11">
-              <v-card-title class="pb-0">Name: {{ item.name }}</v-card-title>
-              <v-card-text class="text-truncate">
-                Message: {{ item.message }}</v-card-text
-              ></v-col
-            >
-    
-          </v-row>
+        <v-card elevation="0">
+          <v-list-item-avatar rounded="circle" class="mx-4 mt-6">
+            <v-img :src="item.avatar"></v-img>
+          </v-list-item-avatar>
+          <v-card-title>Name: {{ item.name }}</v-card-title>
+          <v-card-text>Phone Number:{{ item.phone }}</v-card-text>
+          <v-card-text>Email: {{ item.email }}</v-card-text>
+          <v-card-text class="text-truncate"> Message: {{ item.message }}</v-card-text>
         </v-card>
         <v-divider class="my-3"></v-divider>
       </div>
     </SectionPadding>
-     -->
   </v-container>
 </template>
 
@@ -74,7 +57,6 @@ export default {
           name: "Jason Clarke",
           phone: 8763147199,
           email: "test@email.com",
-          date: "jan 21 2020",
           message:
             "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia repudiandae quod fuga blanditiis consequatur porro placeat ea unde necessitatibus dignissimos quos consectetur dolorem doloribus, ipsam velit rem repellat! Reiciendis, cupiditate. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia repudiandae quod fuga blanditiis consequatur porro placeat ea unde necessitatibus dignissimos quos consectetur dolorem doloribus, ipsam velit rem repellat! Reiciendis, cupiditate."
         },
@@ -121,7 +103,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.test {
+.test{
   background-color: transparent;
 }
 </style>

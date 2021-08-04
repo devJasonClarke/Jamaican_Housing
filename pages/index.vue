@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <TheMetaTags :title="title" :description="description" />
     <TheHomePageHeader />
     <TheSearchSectionHomePage />
