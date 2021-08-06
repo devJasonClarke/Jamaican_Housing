@@ -71,7 +71,7 @@ export default {
     "@nuxtjs/robots",
 
     // https://go.nuxtjs.dev/content
-  // "@nuxt/content",
+  "@nuxt/content",
     [
       "@nuxtjs/firebase",
       {
