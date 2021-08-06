@@ -34,13 +34,20 @@
     <SectionPadding v-else>
       <v-sheet
         height="200px"
-        class="d-flex justify-center align-center flex-column" 
+        class="d-flex justify-center align-center flex-column"
         outlined
         ><p class="text-h6 text-center font-weight-regular">
           No properties as yet.
-           <br>Add your first propery today!
+          <br />Add your first propery today!
         </p>
-        <v-btn nuxt :to="{name: 'dashboard-add-property'}" dark color="green accent-4"> <v-icon left>mdi-home-import-outline</v-icon> Add Property</v-btn>
+        <v-btn
+          nuxt
+          :to="{ name: 'dashboard-add-property' }"
+          dark
+          color="green accent-4"
+        >
+          <v-icon left>mdi-home-import-outline</v-icon> Add Property</v-btn
+        >
       </v-sheet>
     </SectionPadding>
   </v-container>

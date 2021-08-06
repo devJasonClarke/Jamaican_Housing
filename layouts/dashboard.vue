@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
     <TheAPICalls />
- 
+
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -99,9 +99,14 @@
         overlap
         color="green"
       >
-        <v-btn nuxt :to="{name: 'dashboard-messages'}"  icon   small v-if="unReadMessages.length"><v-icon >
-          mdi-bell
-        </v-icon></v-btn>
+        <nuxt-link
+          :to="{ name: 'dashboard-messages' }"
+        
+          v-if="unReadMessages.length"
+          ><v-icon>
+            mdi-bell
+          </v-icon></nuxt-link
+        >
         <v-icon v-else>
           mdi-bell-outline
         </v-icon>
@@ -193,7 +198,6 @@ export default {
       title: "nope",
       messages: 8,
       routes: [
-    
         {
           icon: "mdi-apps",
           title: "Properties",
@@ -224,7 +228,7 @@ export default {
           title: "Settings",
           route: "dashboard-settings"
         },
-            {
+        {
           icon: "mdi-home-outline",
           title: "Home Page",
           route: "index"
@@ -254,10 +258,9 @@ export default {
       this.resize();
     });
   },
-    computed: {
+  computed: {
     ...mapGetters({
-   
-            unReadMessages: 'messages/unReadMessages'
+      unReadMessages: "messages/unReadMessages"
     })
   }
 };
