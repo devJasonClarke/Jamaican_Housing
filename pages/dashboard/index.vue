@@ -40,7 +40,7 @@
           No properties as yet.
            <br>Add your first propery today!
         </p>
-        <v-btn nuxt :to="{name: 'dashboard-add-property'}" dark color="green accent-4">Add Property</v-btn>
+        <v-btn nuxt :to="{name: 'dashboard-add-property'}" dark color="green accent-4"> <v-icon left>mdi-home-import-outline</v-icon> Add Property</v-btn>
       </v-sheet>
     </SectionPadding>
   </v-container>
