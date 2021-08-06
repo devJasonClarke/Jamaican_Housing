@@ -2,7 +2,7 @@
   <v-container>
     <h1>Properties</h1>
 
-    <SectionPadding id="top">
+    <SectionPadding v-if="false" id="top">
       <TheSearchSection />
       <TheRealEstatePropertiesListingLoader v-if="loading" title="sale" />
       <TheRealEstatePropertiesListing
@@ -29,6 +29,19 @@
           </v-icon>
         </v-btn>
       </div>
+    </SectionPadding>
+
+    <SectionPadding v-else>
+      <v-sheet
+        height="200px"
+        class="d-flex justify-center align-center flex-column" 
+        outlined
+        ><p class="text-h6 text-center font-weight-regular">
+          No properties as yet.
+           <br>Add your first propery today!
+        </p>
+        <v-btn nuxt :to="{name: 'dashboard-add-property'}" dark color="green accent-4">Add Property</v-btn>
+      </v-sheet>
     </SectionPadding>
   </v-container>
 </template>

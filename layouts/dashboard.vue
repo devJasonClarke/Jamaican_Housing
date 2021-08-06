@@ -1,6 +1,7 @@
 <template>
   <v-app dark>
     <TheAPICalls />
+ 
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -92,15 +93,15 @@
       </v-list-item>
       <v-spacer />
       <v-badge
-        :content="messages"
+        :content="unReadMessages.length"
         class="mr-6"
-        :value="messages"
+        :value="unReadMessages.length"
         overlap
         color="green"
       >
-        <v-icon v-if="messages">
+        <v-btn nuxt :to="{name: 'dashboard-messages'}"  icon   small v-if="unReadMessages.length"><v-icon >
           mdi-bell
-        </v-icon>
+        </v-icon></v-btn>
         <v-icon v-else>
           mdi-bell-outline
         </v-icon>
@@ -129,7 +130,7 @@
               <v-list-item
                 class="text-uppercase"
                 dense
-                :to="{ name: 'profile' }"
+                :to="{ name: 'dashboard-user-profile' }"
               >
                 <v-list-item-title>
                   <v-list-item-icon>
@@ -177,7 +178,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import VerifiedSymbol from "../components/VerifiedSymbol.vue";
 export default {
   components: { VerifiedSymbol },
@@ -253,5 +254,11 @@ export default {
       this.resize();
     });
   },
+    computed: {
+    ...mapGetters({
+   
+            unReadMessages: 'messages/unReadMessages'
+    })
+  }
 };
 </script>

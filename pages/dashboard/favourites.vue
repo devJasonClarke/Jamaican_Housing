@@ -1,8 +1,9 @@
 <template>
   <v-container>
     <h1>Favourites</h1>
-    
-    <SectionPadding id="top">
+
+    <SectionPadding v-if="false" id="top">
+      <TheSearchSection />
       <TheRealEstatePropertiesListingLoader v-if="loading" title="sale" />
       <TheRealEstatePropertiesListing
         v-else
@@ -28,6 +29,25 @@
           </v-icon>
         </v-btn>
       </div>
+    </SectionPadding>
+
+    <SectionPadding v-else>
+      <v-sheet
+        height="200px"
+        class="d-flex justify-center align-center flex-column"
+        outlined
+        ><p class="text-h6 text-center font-weight-regular">
+          No favourites as yet.
+          <br />Find a property you like today!
+        </p>
+        <v-btn
+          nuxt
+          :to="{ name: 'buy' }"
+          dark
+          color="green accent-4"
+          > <v-icon left>mdi-magnify</v-icon>Search</v-btn
+        >
+      </v-sheet>
     </SectionPadding>
   </v-container>
 </template>

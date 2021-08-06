@@ -292,7 +292,7 @@ export default {
         },
         {
           title: "sell",
-          route: "dashboard",
+          route: "dashboard-add-property",
           icon: "mdi-account-key-outline",
           depressed: false,
           text: true,
@@ -302,7 +302,7 @@ export default {
 
         {
           title: "add a property",
-          route: "dashboard",
+          route: "dashboard-add-property",
           icon: "mdi-home-import-outline",
           depressed: true,
           text: true

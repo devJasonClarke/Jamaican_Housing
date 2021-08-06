@@ -1,14 +1,20 @@
 <template>
   <v-container>
     <h1>Settings</h1>
-    <v-text-field
+<!--     <v-text-field
       v-model="price"
   @input="thePrice"
       single-line
       outlined
       dense
     ></v-text-field>
-    {{ newPrice }}
+    {{ newPrice }} -->
+  
+  <SectionPadding>
+  Color theme: 
+ currency:
+  </SectionPadding>
+ 
   </v-container>
 </template>
 

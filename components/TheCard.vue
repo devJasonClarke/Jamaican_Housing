@@ -46,7 +46,7 @@
           {{ card.bathroom }}
         </p>
         <p>
-          <v-icon :color="iconColor">mdi-cash-multiple mdi-18px</v-icon>
+          <v-icon :color="iconColor">mdi-currency-usd mdi-18px</v-icon>
 
           {{ shortenMoney(card.price * currencyRate) }}
         </p>
