@@ -11,7 +11,7 @@
           sm="6"
         >
           <v-sheet outlined color="rgba(0, 200, 83, 0.2)" rounded>
-            <v-card flat outlined  :to="{ name: item.route }">
+            <v-card flat elevation="0"  :to="{ name: item.route }">
               <v-card-text>
                 <v-avatar
                   size="56"
