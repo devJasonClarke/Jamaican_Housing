@@ -156,7 +156,7 @@
                   Settings</v-list-item-title
                 >
               </v-list-item>
-              <v-list-item class="text-uppercase" dense>
+              <v-list-item class="text-uppercase" dense @click="signOut">
                 <v-list-item-title class=" red--text">
                   <v-list-item-icon>
                     <v-icon color="red">mdi-logout</v-icon>
@@ -243,7 +243,13 @@ export default {
     ...mapActions({
       toggleTheme: "colorTheme/toggleTheme"
     }),
-
+async signOut(){
+await this.$fireModule.auth().signOut().then(() => {
+    this.$router.push({ name: "contact" });
+}).catch((error) => {
+  // An error happened.
+});
+},
     resize() {
       if (window.innerWidth <= 1264) {
         this.flexMd = true;
