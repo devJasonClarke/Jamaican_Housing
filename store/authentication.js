@@ -52,22 +52,29 @@ export const actions = {
         // ..
       });
   },
-  async checkAuthentication({ commit }) {
-    await this.$fireModule.auth().onAuthStateChanged(user => {
-      if (user) {
-        commit("CHECK_AUTHENTICATION", user);
-      } else {
-        // User is signed out
-        // ...
-      }
-    });
+  async checkAuthentication({ commit, state }) {
+    let currentState = state.user;
+
+    if (currentState === null) {
+      await this.$fireModule.auth().onAuthStateChanged(user => {
+        if (user) {
+          console.log(user);
+          commit("CHECK_AUTHENTICATION", user);
+        } else {
+          // User is signed out
+          // ...
+        }
+      });
+    } else {
+      console.log("logged in");
+    }
   }
 };
 
 export const mutations = {
   CHECK_AUTHENTICATION: (state, user) => {
     if (state.user === null) {
-      console.log(user);
+      //      console.log(user);
       state.user = {
         displayName: user.displayName,
         email: user.email,

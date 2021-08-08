@@ -96,6 +96,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
+
   layout: "signin",
   data() {
     return {

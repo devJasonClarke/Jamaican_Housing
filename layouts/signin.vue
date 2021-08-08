@@ -116,8 +116,8 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 export default {
+  middleware: ["signup"],
   data() {
     return {
       drawer: null,
@@ -198,18 +198,7 @@ export default {
         }
       ]
     };
-  },
-    computed: {
-    ...mapGetters({
-      user: "authentication/user"
-    })
-  },
-  mounted () {
-    if(this.user != null){
-      console.log(user)
-this.$router.push({name: 'contact'})
-    }
-  },
+  }
 };
 </script>
 
