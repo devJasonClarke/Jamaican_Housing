@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <TheAuthenticationChecker />
     <v-navigation-drawer v-model="drawer" fixed temporary>
       <v-list-item>
         <v-list-item-avatar>
@@ -115,6 +116,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -196,7 +198,18 @@ export default {
         }
       ]
     };
-  }
+  },
+    computed: {
+    ...mapGetters({
+      user: "authentication/user"
+    })
+  },
+  mounted () {
+    if(this.user != null){
+      console.log(user)
+this.$router.push({name: 'contact'})
+    }
+  },
 };
 </script>
 

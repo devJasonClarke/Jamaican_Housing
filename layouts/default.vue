@@ -1,7 +1,7 @@
 <template>
   <v-app class="wrapper">
     <TheAPICalls />
-
+<TheAuthenticationChecker />
     <v-toolbar flat>
       <v-app-bar-nav-icon
         class="hidden-md-and-up"

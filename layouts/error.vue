@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <TheAuthenticationChecker />
     <h1 v-if="error.statusCode === 404">
       {{ pageNotFound }}
     </h1>

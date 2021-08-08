@@ -9,7 +9,7 @@
       elevation="0"
     >
       <v-card-title class="px-0 text-h4 font-weight-bold">
-        {{ authState }}
+        {{ authState }} {{ user }}
       </v-card-title>
       <p class="px-0 body-1 grey--text text--darken-1">
         We won't charge you a milion dollars, It's Free! Discover the best
@@ -18,7 +18,7 @@
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field
           :rules="emailRules"
-          v-model="email"
+          v-model="credentials.email"
           label="Email address"
           required
           outlined
@@ -27,7 +27,7 @@
           color="green accent-4"
         ></v-text-field>
         <v-text-field
-          v-model="password"
+          v-model="credentials.password"
           :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
           :rules="passwordRules"
           :type="show1 ? 'text' : 'password'"
@@ -42,9 +42,15 @@
           @click:append="show1 = !show1"
         ></v-text-field>
 
-        <v-btn large color="success"   :loading='loading'  depressed block @click="validate">{{
-          authState
-        }}</v-btn>
+        <v-btn
+          large
+          color="success"
+          :loading="loading"
+          depressed
+          block
+          @click="validate"
+          >{{ authState }}</v-btn
+        >
       </v-form>
       <p class="middle-text mt-3 grey--text">or</p>
 
@@ -88,6 +94,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   layout: "signin",
   data() {
@@ -95,8 +102,11 @@ export default {
       title: "Sign Up | Jamaica Housing",
       description: "Sign Up",
       authState: "Sign Up",
-      email: "",
-      password: "",
+      credentials: {
+        email: "",
+        password: ""
+      },
+
       loading: false,
       show1: false,
       valid: false,
@@ -118,41 +128,22 @@ export default {
     };
   },
   methods: {
+    ...mapActions({
+      signup: "authentication/signup"
+    }),
     validate() {
       if (this.$refs.form.validate()) {
         console.log("valid");
-        this.signup();
+        this.signup(this.credentials);
       } else {
         console.log("not");
       }
-    },
-    signup() {
-      this.loading = true;
-
-      this.$fireModule
-        .auth()
-        .createUserWithEmailAndPassword(this.email, this.password)
-        .then(userCredential => {
-          return this.$fire.firestore
-            .collection("users")
-            .doc(userCredential.user.uid)
-            .set({
-              email: this.email,
-              uid: userCredential.user.uid
-            });
-        })
-        .then(() => {
-          this.$router.push({ name: "dashboard" });
-        })
-        .catch(error => {
-          this.loading = false;
-          this.error = true;
-          this.errorMessage = error.message;
-
-          // console.log(error);
-          // ..
-        });
     }
+  },
+  computed: {
+    ...mapGetters({
+      user: "authentication/user"
+    })
   }
 };
 </script>

@@ -1,9 +1,17 @@
-export default function({ store, redirect }) {
+export default function({/*  store, */ app, redirect }) {
+
   // If the user is not authenticated
-  if (!store.state.user.authenticated) {
-    console.log(store.state.user.authenticated);
+ /*  if (store.state.authentication.user === null) {
+    console.log(store.state.authentication.user);
     return redirect("/login");
-  } else {
-    console.log(store.state.user.authenticated + " error");
-  }
+  }  */
+
+  app.$fireModule.auth().onAuthStateChanged(user => {
+    if (user) {
+  //   console.log(`Middleware auth checker ${user}`)
+    } else {
+      return redirect("/login");
+    }
+  });
+
 }

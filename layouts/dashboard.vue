@@ -183,9 +183,11 @@
 </template>
 
 <script>
+
 import { mapGetters, mapActions } from "vuex";
 import VerifiedSymbol from "../components/VerifiedSymbol.vue";
 export default {
+  middleware: ['authenticated'],
   components: { VerifiedSymbol },
   data() {
     return {
