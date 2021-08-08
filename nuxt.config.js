@@ -71,7 +71,7 @@ export default {
     "@nuxtjs/robots",
 
     // https://go.nuxtjs.dev/content
-"@nuxt/content",
+    //"@nuxt/content",
     [
       "@nuxtjs/firebase",
       {
@@ -148,8 +148,8 @@ export default {
   pwa: {
     manifest: {
       lang: "en",
-      name: "Jamaica Housing",
-      short_name: "JA Housing",
+      name: "Real Estate Jamaica",
+      short_name: "Real Estate Ja",
       description:
         "Discover the best offers on the Jamaican Real Estate Market",
       theme_color: "#00c853",

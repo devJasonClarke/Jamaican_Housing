@@ -13,7 +13,7 @@
       </v-card-title>
       <p class="px-0 body-1 grey--text text--darken-1">
         We won't charge you a milion dollars, It's Free! Discover the best
-        investment opportunities around you or add your own.
+        opportunities around you or add your own.
       </p>
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field
@@ -42,7 +42,7 @@
           @click:append="show1 = !show1"
         ></v-text-field>
 
-        <v-btn large color="success" depressed block @click="validate">{{
+        <v-btn large color="success"   :loading='loading'  depressed block @click="validate">{{
           authState
         }}</v-btn>
       </v-form>
@@ -73,6 +73,17 @@
         <nuxt-link :to="{ name: 'privacy-policy' }">Privacy Policy</nuxt-link>.
       </p>
     </v-card>
+    <div v-if="errorMessage">
+      <v-snackbar v-model="error" :timeout="20000">
+        {{ errorMessage }}
+
+        <template v-slot:action="{ attrs }">
+          <v-btn color="pink" text v-bind="attrs" @click="error = false">
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
+    </div>
   </div>
 </template>
 
@@ -86,9 +97,11 @@ export default {
       authState: "Sign Up",
       email: "",
       password: "",
+      loading: false,
       show1: false,
-
       valid: false,
+      errorMessage: "",
+      error: "",
 
       passwordRules: [
         value => !!value || "Required.",
@@ -108,9 +121,37 @@ export default {
     validate() {
       if (this.$refs.form.validate()) {
         console.log("valid");
+        this.signup();
       } else {
         console.log("not");
       }
+    },
+    signup() {
+      this.loading = true;
+
+      this.$fireModule
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(userCredential => {
+          return this.$fire.firestore
+            .collection("users")
+            .doc(userCredential.user.uid)
+            .set({
+              email: this.email,
+              uid: userCredential.user.uid
+            });
+        })
+        .then(() => {
+          this.$router.push({ name: "dashboard" });
+        })
+        .catch(error => {
+          this.loading = false;
+          this.error = true;
+          this.errorMessage = error.message;
+
+          // console.log(error);
+          // ..
+        });
     }
   }
 };
