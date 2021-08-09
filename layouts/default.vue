@@ -32,7 +32,7 @@
         </v-btn>
 
         <v-menu
-          v-if="profile['first name'] === null"
+          v-if="profile['first name'] === 'loading'"
           offset-y
           :close-on-content-click="closeOnContentClick"
         >
