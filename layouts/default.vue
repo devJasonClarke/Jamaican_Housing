@@ -30,7 +30,12 @@
         >
           {{ route.title }}
         </v-btn>
-        <v-menu offset-y :close-on-content-click="closeOnContentClick">
+
+        <v-menu
+          v-if="profile['first name'] === null"
+          offset-y
+          :close-on-content-click="closeOnContentClick"
+        >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               dark
@@ -111,6 +116,49 @@
                   </v-card>
                 </template>
               </v-dialog>
+            </v-list-item-group>
+          </v-list>
+
+          <v-sheet>
+            <v-switch
+              @click="toggleTheme"
+              :input-value="colorTheme"
+              class="px-2 pt-0 mt-0"
+              inset
+              label="Dark Mode"
+              color="green accent-4"
+            ></v-switch
+          ></v-sheet>
+          <TheCurrencySelector />
+        </v-menu>
+        <v-menu v-else offset-y :close-on-content-click="closeOnContentClick">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              dark
+              depressed
+              rounded
+              v-bind="attrs"
+              v-on="on"
+              color="green accent-4"
+              ><v-icon class="mr-1">mdi-account</v-icon>
+              {{ profile["first name"] }}
+            </v-btn>
+          </template>
+
+          <v-list dense nav>
+            <v-list-item-group
+              v-model="signInDropDown"
+              active-class="green--text text--accent-4"
+            >
+              <v-list-item class="text-uppercase" :to="{ name: 'dashboard' }">
+                <v-list-item-title>Dashboard</v-list-item-title>
+              </v-list-item>
+              <v-list-item
+                class="text-uppercase"
+                :to="{ name: 'dashboard-user-profile' }"
+              >
+                <v-list-item-title>Profile</v-list-item-title>
+              </v-list-item>
             </v-list-item-group>
           </v-list>
 
@@ -217,10 +265,12 @@
                     counter
                     @click:append="show1 = !show1"
                   ></v-text-field>
-                     <v-btn color="success" depressed block @click="validate">Login</v-btn>
+                  <v-btn color="success" depressed block @click="validate"
+                    >Login</v-btn
+                  >
                 </v-form>
                 <p class="middle-text mt-3 grey--text">or</p>
-                <v-btn block large depressed> 
+                <v-btn block large depressed>
                   <v-img
                     :src="require('~/assets/images/svg/google.svg')"
                     max-width="30"
@@ -368,7 +418,8 @@ export default {
       country: "api/country",
       currencies: "api/currencies",
       currencyRate: "api/currencyRate",
-      colorTheme: "colorTheme/theme"
+      colorTheme: "colorTheme/theme",
+      profile: "authentication/profile"
     })
   }
 };
