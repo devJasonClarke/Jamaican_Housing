@@ -217,10 +217,10 @@
                     counter
                     @click:append="show1 = !show1"
                   ></v-text-field>
-                  <v-btn color="success" depressed block>Login</v-btn>
+                     <v-btn color="success" depressed block @click="validate">Login</v-btn>
                 </v-form>
                 <p class="middle-text mt-3 grey--text">or</p>
-                <v-btn block large depressed>
+                <v-btn block large depressed> 
                   <v-img
                     :src="require('~/assets/images/svg/google.svg')"
                     max-width="30"
