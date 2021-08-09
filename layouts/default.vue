@@ -172,7 +172,23 @@
               color="green accent-4"
             ></v-switch
           ></v-sheet>
-          <TheCurrencySelector />
+          <TheCurrencySelector class="mb-0" />
+          <v-list class="mt-0" dense nav>
+            <v-list-item-group
+              v-model="signInDropDown"
+              active-class="green--text text--accent-4"
+            >
+              <v-list-item
+                class="text-uppercase"
+                :to="{ name: 'dashboard-user-profile' }"
+              >
+                <v-list-item-title class="red--text d-flex align-center">
+                 
+                  Logout</v-list-item-title
+                >
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
         </v-menu>
       </div>
     </v-toolbar>

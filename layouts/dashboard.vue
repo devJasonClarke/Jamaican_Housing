@@ -177,7 +177,7 @@
                 dense
                 :to="{ name: 'dashboard-user-profile' }"
               >
-                <v-list-item-title>
+                <v-list-item-title class="d-flex align-center">
                   <v-list-item-icon>
                     <v-icon>mdi-account</v-icon>
                   </v-list-item-icon>
@@ -189,7 +189,7 @@
                 dense
                 :to="{ name: 'dashboard-settings' }"
               >
-                <v-list-item-title>
+                <v-list-item-title class="d-flex align-center"> 
                   <v-list-item-icon>
                     <v-icon>mdi-cog</v-icon>
                   </v-list-item-icon>
@@ -197,7 +197,7 @@
                 >
               </v-list-item>
               <v-list-item class="text-uppercase" dense @click="signOut">
-                <v-list-item-title class=" red--text">
+                <v-list-item-title class=" red--text d-flex align-center">
                   <v-list-item-icon>
                     <v-icon color="red">mdi-logout</v-icon>
                   </v-list-item-icon>
