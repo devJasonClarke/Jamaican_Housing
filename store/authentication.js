@@ -48,7 +48,7 @@ export const actions = {
       .then(() => {
         this.$fireModule.auth().onAuthStateChanged(user => {
           if (user) {
-            commit("CHECK_AUTHENTICATION", user);
+            commit("LOGIN", user);
           } else {
             // User is signed out
             // ...
@@ -138,7 +138,7 @@ export const mutations = {
       };
     }
   },
-  LOGIN:(state, user) => {
+  LOGIN: (state, user) => {
     if (state.user === null) {
       //      console.log(user);
       state.user = {

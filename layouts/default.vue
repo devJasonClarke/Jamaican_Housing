@@ -129,7 +129,7 @@
               color="green accent-4"
             ></v-switch
           ></v-sheet>
-          <TheCurrencySelector />
+          <TheCurrencySelector class="pb-3" />
         </v-menu>
         <v-menu v-else offset-y :close-on-content-click="closeOnContentClick">
           <template v-slot:activator="{ on, attrs }">
