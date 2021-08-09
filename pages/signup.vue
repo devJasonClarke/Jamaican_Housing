@@ -3,6 +3,7 @@
     <TheMetaTags :title="title" :description="description" />
 
     <v-card
+      v-show="!profileSetup"
       min-width="300"
       max-width="450"
       class="py-sm-6 px-sm-9 pa-6 mx-auto"
@@ -79,6 +80,161 @@
         <nuxt-link :to="{ name: 'privacy-policy' }">Privacy Policy</nuxt-link>.
       </p>
     </v-card>
+
+    <v-stepper
+      v-model="cur"
+      alt-labels
+      class=" mx-auto"
+      v-show="profileSetup"
+      max-width="450"
+    >
+      <v-stepper-header>
+        <v-stepper-step :color="iconColor" step="1" :complete="cur > 1">
+          Name
+        </v-stepper-step>
+
+        <v-divider></v-divider>
+
+        <v-stepper-step :color="iconColor" step="2">
+          Confirm Details
+        </v-stepper-step>
+      </v-stepper-header>
+
+      <v-stepper-items>
+        <v-stepper-content step="1" class="pb-6">
+          <v-container>
+            <p class="text-h5 pb-6">Name</p>
+            <v-form
+              v-model="validForm"
+              @submit.prevent="validateForm"
+              ref="detailsForm"
+            >
+              <v-row>
+                <v-col cols="">
+                  <v-text-field
+                    outlined
+                    dense
+                    v-model="credentials.firstName"
+                    :rules="nameRules"
+                    label="First Name *"
+                    required
+                    :color="iconColor"
+                  ></v-text-field
+                ></v-col>
+                <v-col cols="12">
+                  <v-text-field
+                    outlined
+                    dense
+                    v-model="credentials.lastName"
+                    :rules="nameRules"
+                    label="Last Name *"
+                    required
+                    :color="iconColor"
+                  ></v-text-field
+                ></v-col>
+                <!--      <v-col cols="12">
+                  <v-text-field
+                    outlined
+                    dense
+                    v-model="phoneNumber"
+                    :rules="phoneNumberRules"
+                    type="number"
+                    label="Phone Number (optional)"
+                    :color="iconColor"
+                  ></v-text-field
+                ></v-col>
+                <v-col cols="12">
+                  <v-text-field
+                    outlined
+                    dense
+                    v-model="whatsappNumber"
+                    :rules="phoneNumberRules"
+                    type="number"
+                    label="Whatsapp Number (optional)"
+                    :color="iconColor"
+                  ></v-text-field
+                ></v-col> -->
+              </v-row>
+            </v-form>
+            <v-btn dark :color="iconColor" @click="validateForm">
+              Continue
+            </v-btn>
+          </v-container>
+        </v-stepper-content>
+
+        <v-stepper-content step="2">
+          <v-container>
+            <p class="text-h5 pb-6">Confirm Details</p>
+            <v-form
+              v-model="formDetails"
+              @submit.prevent="confirmFormDetails"
+              ref="confirmFormDetails"
+            >
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field
+                    outlined
+                    dense
+                    v-model="credentials.firstName"
+                    :rules="nameRules"
+                    label="First Name *"
+                    required
+                    :color="iconColor"
+                  ></v-text-field
+                ></v-col>
+                <v-col cols="12">
+                  <v-text-field
+                    outlined
+                    dense
+                    v-model="credentials.lastName"
+                    :rules="nameRules"
+                    label="Last Name *"
+                    required
+                    :color="iconColor"
+                  ></v-text-field
+                ></v-col>
+                <v-col cols="12">
+                  <v-text-field
+                    :rules="emailRules"
+                    v-model="credentials.email"
+                    label="Email address"
+                    required
+                    outlined
+                    dense
+                    color="green accent-4"
+                  ></v-text-field
+                ></v-col>
+                <v-col cols="12">
+                  <v-text-field
+                    v-model="credentials.password"
+                    :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                    :rules="passwordRules"
+                    :type="show1 ? 'text' : 'password'"
+                    color="green accent-4"
+                    name="input-10-1"
+                    outlined
+                    dense
+                    required
+                    label="Password"
+                    hint="At least 8 characters"
+                    @click:append="show1 = !show1"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-form>
+            <div class="mt-3">
+              <v-btn dark :color="iconColor" @click="confirmFormDetails">
+                Sign Up
+              </v-btn>
+              <v-btn text @click="cur = cur - 1">
+                back
+              </v-btn>
+            </div>
+          </v-container>
+        </v-stepper-content>
+      </v-stepper-items>
+    </v-stepper>
+
     <div v-if="errorMessage">
       <v-snackbar v-model="error" :timeout="20000">
         {{ errorMessage }}
@@ -96,24 +252,45 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
-
   layout: "signin",
   data() {
     return {
       title: "Sign Up | Jamaica Housing",
       description: "Sign Up",
       authState: "Sign Up",
+      profileSetup: false,
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      whatsappNumber: "",
       credentials: {
         email: "",
-        password: ""
+        password: "",
+        firstName: "",
+        lastName: ""
       },
-
+      iconColor: "rgba(0, 200, 83, 1)",
       loading: false,
       show1: false,
       valid: false,
+      cur: 1,
+      validForm: false,
+      formDetails: false,
       errorMessage: "",
       error: "",
-
+      phoneNumberRules: [
+        //  v => !!v || "Phone number is optional",
+        v => v.length >= 10 || "10 Digit Dialing",
+        v => v.length < 12 || "10 Digit Dialing",
+        value =>
+          /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/i.test(
+            value
+          ) || "Phone number must be valid"
+      ],
+      nameRules: [
+        v => !!v || "Name is required",
+        v => v.length > 1 || "Name must be greater than 1 character"
+      ],
       passwordRules: [
         value => !!value || "Required.",
         value => (value || "").length >= 8 || "Min 8 characters"
@@ -134,16 +311,32 @@ export default {
     }),
     validate() {
       if (this.$refs.form.validate()) {
-        console.log("valid");
-        this.signup(this.credentials);
+        console.log("valid 1");
+        this.profileSetup = true;
       } else {
         console.log("not");
+      }
+    },
+    validateForm() {
+      if (this.$refs.detailsForm.validate()) {
+        console.log("valid 2");
+        this.cur++;
+      } else {
+        console.log("not");
+      }
+    },
+    confirmFormDetails() {
+      if (this.$refs.confirmFormDetails.validate()) {
+        console.log("yes! let's go");
+        this.signup(this.credentials);
+      } else {
+        console.log("no!");
       }
     }
   },
   computed: {
     ...mapGetters({
-      user: "authentication/user"
+      user: "authentication/user",
     })
   }
 };

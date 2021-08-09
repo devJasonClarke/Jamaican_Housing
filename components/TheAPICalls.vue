@@ -1,17 +1,5 @@
 <template>
-  <div class="">
-    <div v-if="errorMessage">
-      <v-snackbar v-model="error" :timeout="20000" left>
-        {{ errorMessage }}
-
-        <template v-slot:action="{ attrs }">
-          <v-btn color="pink" text v-bind="attrs" @click="error = false">
-            Close
-          </v-btn>
-        </template>
-      </v-snackbar>
-    </div>
-  </div>
+  <span v-if="false"></span>
 </template>
 
 <script>
@@ -33,13 +21,22 @@ export default {
       //    getIpInfo: "api/getIPInfo",
       getCurrencies: "api/getCurrencies",
       checkTheme: "colorTheme/checkTheme"
-    })
+    }),
+    resetError(){
+      this.error = false;
+    
+    }
   },
   computed: {
     ...mapGetters({
       country: "api/country",
       errorMessage: "api/errorMessage"
     })
+  },
+  watch:{
+errorMessage: function (){
+    this.error = true;
+}
   },
   mounted() {
     this.checkTheme();

@@ -1,5 +1,5 @@
 export const state = () => ({
-  darkTheme:  false
+  darkTheme: false
 });
 
 export const getters = {
@@ -24,7 +24,7 @@ export const mutations = {
       window.$nuxt.$root.$vuetify.theme.dark.toString()
     );
   },
-  
+
   CHECK_THEME: state => {
     const theme = localStorage.getItem("darkTheme");
 

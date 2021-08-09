@@ -1,7 +1,8 @@
 <template>
   <v-app class="wrapper">
     <TheAPICalls />
-<TheAuthenticationChecker />
+    <TheErrorLogger />
+    <TheAuthenticationChecker />
     <v-toolbar flat>
       <v-app-bar-nav-icon
         class="hidden-md-and-up"
@@ -70,7 +71,7 @@
                     <v-form ref="form" v-model="valid" lazy-validation>
                       <v-text-field
                         :rules="emailRules"
-                        v-model="email"
+                        v-model="credentials.email"
                         label="Email address"
                         required
                         outlined
@@ -79,7 +80,7 @@
                         color="green accent-4"
                       ></v-text-field>
                       <v-text-field
-                        v-model="password"
+                        v-model="credentials.password"
                         :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                         :rules="passwordRules"
                         :type="show1 ? 'text' : 'password'"
@@ -192,7 +193,7 @@
                 <v-form ref="form" v-model="valid" lazy-validation>
                   <v-text-field
                     :rules="emailRules"
-                    v-model="email"
+                    v-model="credentials.email"
                     label="Email address"
                     required
                     outlined
@@ -201,7 +202,7 @@
                     color="green accent-4"
                   ></v-text-field>
                   <v-text-field
-                    v-model="password"
+                    v-model="credentials.password"
                     :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                     :rules="passwordRules"
                     :type="show1 ? 'text' : 'password'"
@@ -243,19 +244,19 @@
   </v-app>
 </template>
 <script>
-import { mapActions } from "vuex";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
     return {
       drawer: null,
       group: null,
-      email: null,
-      password: null,
       show1: false,
       valid: false,
-
+      credentials: {
+        email: "",
+        password: ""
+      },
       passwordRules: [
         value => !!value || "Required.",
         value => (value || "").length >= 8 || "Min 8 characters"
@@ -333,7 +334,8 @@ export default {
     ...mapActions({
       getIpAddress: "api/getIPAddress",
       getIpInfo: "api/getIPInfo",
-      toggleTheme: "colorTheme/toggleTheme"
+      toggleTheme: "colorTheme/toggleTheme",
+      login: "authentication/login"
     }),
     numberWithCommas(x) {
       x = Math.round((x + Number.EPSILON) * 100) / 100;
@@ -347,6 +349,7 @@ export default {
     validate() {
       if (this.$refs.form.validate()) {
         console.log("valid");
+        this.login(this.credentials);
       } else {
         console.log("not");
       }

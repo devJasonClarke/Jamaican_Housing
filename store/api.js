@@ -1,8 +1,6 @@
 export const state = () => ({
   /* API Calls to get user's IP adress and corresponding info */
 
-  errorMessage: null,
-
   /* Info needed for app */
   currencies: { currencies: false },
   currencyCodeList: [],
@@ -68,9 +66,9 @@ export const actions = {
       )
         .then(res => res.json())
         .then(data => data)
-        .catch(err => {
-          commit("LOG_ERROR", err);
-          console.error(err);
+        .catch(error => {
+          commit("errors/LOG_ERROR", error, { root: true });
+          console.error(error);
         });
 
       commit("GET_Currencies", currencies.rates);

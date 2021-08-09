@@ -1,7 +1,8 @@
 <template>
   <v-app dark>
+    <TheAuthenticationChecker />
     <TheAPICalls />
-
+    <TheErrorLogger />
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -28,13 +29,40 @@
 
   
       </v-list-item> -->
-      <v-list>
+      <v-list v-if="profile['first name'] === 'loading'">
         <v-list-item class="d-flex justify-center align-center px-0 mx-0">
-          <v-list-item-avatar
+          <v-skeleton-loader
             :height="[miniVariant ? 40 : 120]"
             :width="[miniVariant ? 40 : 120]"
-            class="mx-0 px-0"
+            class="d-block mx-0 rounded-circle"
+            type="image"
+          ></v-skeleton-loader>
+        </v-list-item>
+
+        <v-list-item v-if="!miniVariant">
+          <v-list-item-content>
+            <v-skeleton-loader type="text"></v-skeleton-loader>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+      <v-list v-else>
+        <v-list-item class="d-flex justify-center align-center px-0 mx-0">
+          <v-skeleton-loader
+            v-if="profile['first name'] === 'loading'"
+            :height="[miniVariant ? 40 : 120]"
+            :width="[miniVariant ? 40 : 120]"
+            class="d-block mx-0 rounded-circle"
+            type="image"
+          ></v-skeleton-loader>
+
+          <v-list-item-avatar
+            v-else
+            :height="[miniVariant ? 40 : 120]"
+            :width="[miniVariant ? 40 : 120]"
+            class="mx-0 px-0 green"
           >
+            <!--   <span :class="[miniVariant ? 'text-h6':'text-h4', 'white--text' ]">{{profile["initials"]}}</span> -->
+
             <v-img
               src="https://source.unsplash.com/t7waxpkDD4g/240x240"
             ></v-img>
@@ -43,8 +71,14 @@
 
         <v-list-item v-if="!miniVariant">
           <v-list-item-content>
-            <v-list-item-title class="text-h6 px-0 text-center">
-              Jason Clarke <VerifiedSymbol role="realtor" />
+            <v-skeleton-loader
+              v-if="profile['first name'] === 'loading'"
+              type="text"
+            ></v-skeleton-loader>
+
+            <v-list-item-title v-else class="text-h6 px-0 text-center">
+              {{ `${profile["first name"]} ${profile["last name"]}` }}
+              <VerifiedSymbol role="realtor" />
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -101,7 +135,6 @@
       >
         <nuxt-link
           :to="{ name: 'dashboard-messages' }"
-        
           v-if="unReadMessages.length"
           ><v-icon>
             mdi-bell
@@ -124,8 +157,15 @@
       <v-menu bottom min-width="200px" rounded offset-y>
         <template v-slot:activator="{ on }">
           <v-btn icon x-large v-on="on">
-            <v-avatar color="green" size="36">
-              <span class="white--text ">JC</span>
+            <v-skeleton-loader
+              v-if="profile['first name'] === 'loading'"
+              width="36"
+              height="36"
+              class="d-block mx-0 rounded-circle"
+              type="image"
+            ></v-skeleton-loader>
+            <v-avatar color="green" size="36" v-else>
+              <span class="white--text ">{{ profile["initials"] }}</span>
             </v-avatar>
           </v-btn>
         </template>
@@ -183,12 +223,20 @@
 </template>
 
 <script>
-
 import { mapGetters, mapActions } from "vuex";
 import VerifiedSymbol from "../components/VerifiedSymbol.vue";
 export default {
-  middleware: ['authenticated'],
+  middleware: ["authenticated"],
   components: { VerifiedSymbol },
+  /*  fetch() {
+    this.$fireModule.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.userID = user.uid;
+        console.log(`From fetch ${this.userID}`);
+     
+      }
+    });
+  }, */
   data() {
     return {
       group: null,
@@ -196,7 +244,7 @@ export default {
       drawer: true,
       fixed: false,
       miniVariant: false,
-
+      userID: "",
       title: "nope",
       messages: 8,
       routes: [
@@ -242,14 +290,20 @@ export default {
   methods: {
     ...mapActions({
       toggleTheme: "colorTheme/toggleTheme"
+       
     }),
-async signOut(){
-await this.$fireModule.auth().signOut().then(() => {
-    this.$router.push({ name: "contact" });
-}).catch((error) => {
-  // An error happened.
-});
-},
+
+    async signOut() {
+      await this.$fireModule
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.push({ name: "contact" });
+        })
+        .catch(error => {
+          // An error happened.
+        });
+    },
     resize() {
       if (window.innerWidth <= 1264) {
         this.flexMd = true;
@@ -268,7 +322,8 @@ await this.$fireModule.auth().signOut().then(() => {
   },
   computed: {
     ...mapGetters({
-      unReadMessages: "messages/unReadMessages"
+      unReadMessages: "messages/unReadMessages",
+      profile: "authentication/profile"
     })
   }
 };

@@ -1,24 +1,22 @@
 <template>
-<div>
-  <TheMetaTags :title="title" :description="description" />
-
+  <div>
+    <TheMetaTags :title="title" :description="description" />
     <v-card
       min-width="300"
       max-width="410"
       class="py-sm-6 px-sm-9 pa-6 mx-auto"
       elevation="0"
     >
-
       <v-card-title class="px-0 text-h4 font-weight-bold">
         {{ authState }}
       </v-card-title>
       <p class="px-0 body-1 grey--text text--darken-1">
-       Welcome back! Great to see that you're onboard.
+        Welcome back! Great to see that you're onboard.
       </p>
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field
           :rules="emailRules"
-          v-model="email"
+          v-model="credentials.email"
           label="Email address"
           required
           outlined
@@ -27,7 +25,7 @@
           color="green accent-4"
         ></v-text-field>
         <v-text-field
-          v-model="password"
+          v-model="credentials.password"
           :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
           :rules="passwordRules"
           :type="show1 ? 'text' : 'password'"
@@ -57,14 +55,16 @@
         {{ authState }} with Google
       </v-btn>
 
-     
-      <p class="mt-6">Don't have an account? <nuxt-link :to="{name: 'signup'}">Sign Up</nuxt-link></p>
-
+      <p class="mt-6">
+        Don't have an account?
+        <nuxt-link :to="{ name: 'signup' }">Sign Up</nuxt-link>
+      </p>
     </v-card>
-</div>
+  </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   layout: "signin",
   data() {
@@ -72,10 +72,12 @@ export default {
       title: "Login | Jamaica Housing",
       description: "Login",
       authState: "Login",
-      email: "",
-      password: "",
-      show1: false,
 
+      show1: false,
+   credentials: {
+        email: "",
+        password: "",
+      },
       valid: false,
 
       passwordRules: [
@@ -93,9 +95,13 @@ export default {
     };
   },
   methods: {
+    ...mapActions({
+      login: "authentication/login"
+    }),
     validate() {
       if (this.$refs.form.validate()) {
         console.log("valid");
+        this.login(this.credentials)
       } else {
         console.log("not");
       }
@@ -103,4 +109,3 @@ export default {
   }
 };
 </script>
-

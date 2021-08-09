@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <TheAuthenticationChecker />
+      <TheErrorLogger />
     <v-navigation-drawer v-model="drawer" fixed temporary>
       <v-list-item>
         <v-list-item-avatar>
