@@ -13,7 +13,7 @@
       <p class="px-0 body-1 grey--text text--darken-1">
         Welcome back! Great to see that you're onboard.
       </p>
-      <v-form ref="form" v-model="valid" lazy-validation>
+      <v-form ref="form" v-model="valid"   @submit.prevent="validate" lazy-validation>
         <v-text-field
           :rules="emailRules"
           v-model="credentials.email"
@@ -39,8 +39,9 @@
           hint="At least 8 characters"
           @click:append="show1 = !show1"
         ></v-text-field>
-        <p>Reset Password</p>
-        <v-btn large color="success" depressed block @click="validate">{{
+        <p>   <nuxt-link :to="{ name: 'reset-password' }">Reset Password</nuxt-link></p>
+       
+        <v-btn :loading='loading' large color="success" depressed block type="submit">{{
           authState
         }}</v-btn>
       </v-form>
@@ -64,7 +65,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   layout: "signin",
   data() {
@@ -79,19 +80,6 @@ export default {
         password: "",
       },
       valid: false,
-
-      passwordRules: [
-        value => !!value || "Required.",
-        value => (value || "").length >= 8 || "Min 8 characters"
-      ],
-      emailRules: [
-        value => !!value || "Required.",
-        value => (value || "").length <= 100 || "Max 100 characters",
-        value =>
-          /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
-            value
-          ) || "E-mail must be valid"
-      ]
     };
   },
   methods: {
@@ -106,6 +94,13 @@ export default {
         console.log("not");
       }
     }
+  },
+    computed: {
+    ...mapGetters({
+      passwordRules: "inputRules/passwordRules",
+      emailRules: "inputRules/emailRules",
+          loading: "authentication/loading"
+    })
   }
 };
 </script>

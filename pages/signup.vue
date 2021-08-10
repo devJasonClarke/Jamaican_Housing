@@ -16,7 +16,12 @@
         We won't charge you a milion dollars, It's Free! Discover the best
         opportunities around you or add your own.
       </p>
-      <v-form ref="form" v-model="valid" lazy-validation>
+      <v-form
+        ref="form"
+        v-model="valid"
+        lazy-validation
+        @submit.prevent="validate"
+      >
         <v-text-field
           :rules="emailRules"
           v-model="credentials.email"
@@ -43,15 +48,9 @@
           @click:append="show1 = !show1"
         ></v-text-field>
 
-        <v-btn
-          large
-          color="success"
-          :loading="loading"
-          depressed
-          block
-          @click="validate"
-          >{{ authState }}</v-btn
-        >
+        <v-btn large color="success" depressed block type="submit">{{
+          authState
+        }}</v-btn>
       </v-form>
       <p class="middle-text mt-3 grey--text">or</p>
 
@@ -155,10 +154,10 @@
                   ></v-text-field
                 ></v-col> -->
               </v-row>
+              <v-btn dark :color="iconColor" type="submit">
+                Continue
+              </v-btn>
             </v-form>
-            <v-btn dark :color="iconColor" @click="validateForm">
-              Continue
-            </v-btn>
           </v-container>
         </v-stepper-content>
 
@@ -221,15 +220,15 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
+              <div class="mt-3">
+                <v-btn dark :loading="loading" :color="iconColor" type="submit">
+                  Sign Up
+                </v-btn>
+                <v-btn text @click="cur = cur - 1">
+                  back
+                </v-btn>
+              </div>
             </v-form>
-            <div class="mt-3">
-              <v-btn dark :color="iconColor" @click="confirmFormDetails">
-                Sign Up
-              </v-btn>
-              <v-btn text @click="cur = cur - 1">
-                back
-              </v-btn>
-            </div>
           </v-container>
         </v-stepper-content>
       </v-stepper-items>
@@ -270,39 +269,13 @@ export default {
         lastName: ""
       },
       iconColor: "rgba(0, 200, 83, 1)",
-      loading: false,
       show1: false,
       valid: false,
       cur: 1,
       validForm: false,
       formDetails: false,
       errorMessage: "",
-      error: "",
-      phoneNumberRules: [
-        //  v => !!v || "Phone number is optional",
-        v => v.length >= 10 || "10 Digit Dialing",
-        v => v.length < 12 || "10 Digit Dialing",
-        value =>
-          /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/i.test(
-            value
-          ) || "Phone number must be valid"
-      ],
-      nameRules: [
-        v => !!v || "Name is required",
-        v => v.length > 1 || "Name must be greater than 1 character"
-      ],
-      passwordRules: [
-        value => !!value || "Required.",
-        value => (value || "").length >= 8 || "Min 8 characters"
-      ],
-      emailRules: [
-        value => !!value || "Required.",
-        value => (value || "").length <= 100 || "Max 100 characters",
-        value =>
-          /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
-            value
-          ) || "E-mail must be valid"
-      ]
+      error: ""
     };
   },
   methods: {
@@ -337,6 +310,10 @@ export default {
   computed: {
     ...mapGetters({
       user: "authentication/user",
+      loading: "authentication/loading",
+      nameRules: "inputRules/nameRules",
+      passwordRules: "inputRules/passwordRules",
+      emailRules: "inputRules/emailRules"
     })
   }
 };

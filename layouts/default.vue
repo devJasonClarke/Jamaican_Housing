@@ -73,7 +73,12 @@
                     <v-card-title class="px-0 text-h4">
                       Login
                     </v-card-title>
-                    <v-form ref="form" v-model="valid" lazy-validation>
+                    <v-form
+                      ref="form"
+                      v-model="valid"
+                      @submit.prevent="validate"
+                      lazy-validation
+                    >
                       <v-text-field
                         :rules="emailRules"
                         v-model="credentials.email"
@@ -99,7 +104,18 @@
                         hint="At least 8 characters"
                         @click:append="show1 = !show1"
                       ></v-text-field>
-                      <v-btn color="success" depressed block @click="validate"
+                      <p>
+                        <nuxt-link :to="{ name: 'reset-password' }"
+                          >Reset Password</nuxt-link
+                        >
+                      </p>
+
+                      <v-btn
+                        :loading="loading"
+                        color="success"
+                        depressed
+                        block
+                        type="submit"
                         >Login</v-btn
                       >
                     </v-form>
@@ -173,16 +189,12 @@
             ></v-switch
           ></v-sheet>
           <TheCurrencySelector class="mb-0" />
-          <v-list class="mt-0" dense nav        >
+          <v-list class="mt-0" dense nav>
             <v-list-item-group
               v-model="signInDropDown"
               active-class="green--text text--accent-4"
-              
             >
-              <v-list-item
-                class="text-uppercase"
-             @click="logout"
-              >
+              <v-list-item class="text-uppercase" @click="logout">
                 <v-list-item-title class="red--text d-flex align-center">
                   Logout</v-list-item-title
                 >
@@ -254,7 +266,12 @@
                 <v-card-title class="px-0 text-h4">
                   Login
                 </v-card-title>
-                <v-form ref="form" v-model="valid" lazy-validation>
+                <v-form
+                  ref="form"
+                  v-model="valid"
+                  @submit.prevent="validate"
+                  lazy-validation
+                >
                   <v-text-field
                     :rules="emailRules"
                     v-model="credentials.email"
@@ -281,7 +298,12 @@
                     counter
                     @click:append="show1 = !show1"
                   ></v-text-field>
-                  <v-btn color="success" depressed block @click="validate"
+                  <p>
+                    <nuxt-link :to="{ name: 'reset-password' }"
+                      >Reset Password</nuxt-link
+                    >
+                  </p>
+                  <v-btn color="success" depressed block type="submit"
                     >Login</v-btn
                   >
                 </v-form>
@@ -323,18 +345,6 @@ export default {
         email: "",
         password: ""
       },
-      passwordRules: [
-        value => !!value || "Required.",
-        value => (value || "").length >= 8 || "Min 8 characters"
-      ],
-      emailRules: [
-        value => !!value || "Required.",
-        value => (value || "").length <= 100 || "Max 100 characters",
-        value =>
-          /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
-            value
-          ) || "E-mail must be valid"
-      ],
       signInDropDown: null,
       closeOnContentClick: false,
 
@@ -437,7 +447,10 @@ export default {
       currencyRate: "api/currencyRate",
       colorTheme: "colorTheme/theme",
       profile: "authentication/profile",
-      userAthenticated: "authentication/userAthenticated"
+      userAthenticated: "authentication/userAthenticated",
+      passwordRules: "inputRules/passwordRules",
+      emailRules: "inputRules/emailRules",
+      loading: "authentication/loading"
     })
   }
 };

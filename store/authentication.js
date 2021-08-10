@@ -1,13 +1,15 @@
 export const state = () => ({
   user: null,
   userAthenticated: false,
-  profile: {}
+  profile: {},
+  loading: false
 });
 
 export const getters = {
   user: state => state.user,
   profile: state => state.profile,
-  userAthenticated: state => state.userAthenticated
+  userAthenticated: state => state.userAthenticated,
+  loading: state => state.loading
 };
 
 export const actions = {
@@ -28,7 +30,7 @@ export const actions = {
     ).toUpperCase();
 
     console.log(initials);
-
+    commit("LOADING_STATE", true);
     //* sign up using firebase with credentials
     await this.$fireModule
       .auth()
@@ -50,6 +52,7 @@ export const actions = {
         this.$fireModule.auth().onAuthStateChanged(user => {
           if (user) {
             commit("LOGIN", user);
+            commit("LOADING_STATE", false);
           } else {
             // User is signed out
             // ...
@@ -63,13 +66,14 @@ export const actions = {
       //* catch and log error in error module
       .catch(error => {
         commit("errors/LOG_ERROR", error, { root: true });
+        commit("LOADING_STATE", false);
         console.log(error);
         // ..
       });
   },
   async login({ commit }, credentials) {
     const { email, password } = credentials;
-
+    commit("LOADING_STATE", true);
     await this.$fireModule
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -77,6 +81,7 @@ export const actions = {
         this.$fireModule.auth().onAuthStateChanged(user => {
           if (user) {
             commit("LOGIN", user);
+            commit("LOADING_STATE", false);
           } else {
             // User is signed out
             // ...
@@ -88,6 +93,7 @@ export const actions = {
       })
       .catch(error => {
         commit("errors/LOG_ERROR", error, { root: true });
+        commit("LOADING_STATE", false);
       });
   },
   async logout({ commit }) {
@@ -99,6 +105,7 @@ export const actions = {
       })
       .then(() => {
         commit("LOGOUT");
+        commit("LOADING_STATE", false);
       })
       .catch(error => {
         commit("errors/LOG_ERROR", error, { root: true });
@@ -140,6 +147,9 @@ export const actions = {
     } else {
       console.log("logged in");
     }
+  },
+  loadingState({ commit }, value) {
+    commit("LOADING_STATE", value);
   }
 };
 
@@ -176,5 +186,8 @@ export const mutations = {
   SET_PROFILE: (state, data) => {
     state.profile = data;
     state.userAthenticated = true;
+  },
+  LOADING_STATE: (state, value) => {
+    state.loading = value;
   }
 };

@@ -115,6 +115,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import img from "~/assets/images/house.jpg";
 export default {
   data() {
@@ -130,23 +131,8 @@ export default {
       message: "",
       loading: false,
       sentStatus: false,
-      messageRules: [
-        v => !!v || "Message is required",
-        v => v.length >= 10 || "Message must be greater than 10 characters"
-      ],
-      nameRules: [
-        v => !!v || "Name is required",
-        v => v.length > 1 || "Name must be greater than 1 character"
-      ],
-      email: "",
-      emailRules: [
-        value => !!value || "Required.",
-        value => (value || "").length <= 100 || "Max 100 characters",
-        value =>
-          /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
-            value
-          ) || "E-mail must be valid"
-      ]
+
+      email: ""
     };
   },
   methods: {
@@ -175,6 +161,13 @@ export default {
         console.log("Your bloodclaat mada");
       }
     }
+  },
+  computed: {
+    ...mapGetters({
+      emailRules: "inputRules/emailRules",
+      nameRules: "inputRules/nameRules",
+      messageRules: "inputRules/messageRules"
+    })
   }
 };
 </script>
