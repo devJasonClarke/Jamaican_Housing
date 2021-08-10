@@ -94,8 +94,7 @@ export const actions = {
        await this.$fireModule
       .auth()
       .signOut()
-      
-      .then(() => {
+        .then(() => {
         commit("LOGOUT");
        })
       .catch(error => {
