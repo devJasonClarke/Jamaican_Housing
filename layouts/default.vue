@@ -32,7 +32,7 @@
         </v-btn>
 
         <v-menu
-          v-if="profile['first name'] === 'loading'"
+          v-if="!userAthenticated"
           offset-y
           :close-on-content-click="closeOnContentClick"
         >
@@ -173,17 +173,17 @@
             ></v-switch
           ></v-sheet>
           <TheCurrencySelector class="mb-0" />
-          <v-list class="mt-0" dense nav>
+          <v-list class="mt-0" dense nav        >
             <v-list-item-group
               v-model="signInDropDown"
               active-class="green--text text--accent-4"
+              
             >
               <v-list-item
                 class="text-uppercase"
-                :to="{ name: 'dashboard-user-profile' }"
+             @click="logout"
               >
                 <v-list-item-title class="red--text d-flex align-center">
-                 
                   Logout</v-list-item-title
                 >
               </v-list-item>
@@ -401,7 +401,8 @@ export default {
       getIpAddress: "api/getIPAddress",
       getIpInfo: "api/getIPInfo",
       toggleTheme: "colorTheme/toggleTheme",
-      login: "authentication/login"
+      login: "authentication/login",
+      logout: "authentication/logout"
     }),
     numberWithCommas(x) {
       x = Math.round((x + Number.EPSILON) * 100) / 100;
@@ -435,7 +436,8 @@ export default {
       currencies: "api/currencies",
       currencyRate: "api/currencyRate",
       colorTheme: "colorTheme/theme",
-      profile: "authentication/profile"
+      profile: "authentication/profile",
+      userAthenticated: "authentication/userAthenticated"
     })
   }
 };

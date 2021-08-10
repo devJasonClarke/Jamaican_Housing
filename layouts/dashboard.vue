@@ -29,7 +29,7 @@
 
   
       </v-list-item> -->
-      <v-list v-if="profile['first name'] === 'loading'">
+      <v-list v-if="!userAthenticated">
         <v-list-item class="d-flex justify-center align-center px-0 mx-0">
           <v-skeleton-loader
             :height="[miniVariant ? 40 : 120]"
@@ -48,7 +48,7 @@
       <v-list v-else>
         <v-list-item class="d-flex justify-center align-center px-0 mx-0">
           <v-skeleton-loader
-            v-if="profile['first name'] === 'loading'"
+            v-if="!userAthenticated"
             :height="[miniVariant ? 40 : 120]"
             :width="[miniVariant ? 40 : 120]"
             class="d-block mx-0 rounded-circle"
@@ -72,7 +72,7 @@
         <v-list-item v-if="!miniVariant">
           <v-list-item-content>
             <v-skeleton-loader
-              v-if="profile['first name'] === 'loading'"
+              v-if="!userAthenticated"
               type="text"
             ></v-skeleton-loader>
 
@@ -158,7 +158,7 @@
         <template v-slot:activator="{ on }">
           <v-btn icon x-large v-on="on">
             <v-skeleton-loader
-              v-if="profile['first name'] === 'loading'"
+              v-if="!userAthenticated"
               width="36"
               height="36"
               class="d-block mx-0 rounded-circle"
@@ -189,14 +189,14 @@
                 dense
                 :to="{ name: 'dashboard-settings' }"
               >
-                <v-list-item-title class="d-flex align-center"> 
+                <v-list-item-title class="d-flex align-center">
                   <v-list-item-icon>
                     <v-icon>mdi-cog</v-icon>
                   </v-list-item-icon>
                   Settings</v-list-item-title
                 >
               </v-list-item>
-              <v-list-item class="text-uppercase" dense @click="signOut">
+              <v-list-item class="text-uppercase" dense @click="logout">
                 <v-list-item-title class=" red--text d-flex align-center">
                   <v-list-item-icon>
                     <v-icon color="red">mdi-logout</v-icon>
@@ -289,21 +289,10 @@ export default {
   },
   methods: {
     ...mapActions({
-      toggleTheme: "colorTheme/toggleTheme"
-       
+      toggleTheme: "colorTheme/toggleTheme",
+      logout: "authentication/logout"
     }),
 
-    async signOut() {
-      await this.$fireModule
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.push({ name: "contact" });
-        })
-        .catch(error => {
-          // An error happened.
-        });
-    },
     resize() {
       if (window.innerWidth <= 1264) {
         this.flexMd = true;
@@ -323,7 +312,8 @@ export default {
   computed: {
     ...mapGetters({
       unReadMessages: "messages/unReadMessages",
-      profile: "authentication/profile"
+      profile: "authentication/profile",
+      userAthenticated: "authentication/userAthenticated"
     })
   }
 };

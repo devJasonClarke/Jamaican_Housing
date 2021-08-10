@@ -1,15 +1,13 @@
 export const state = () => ({
   user: null,
-  profile: {
-    "first name": "loading",
-    "last name": "loading",
-    initials: "loading"
-  }
+  userAthenticated: false,
+  profile: {}
 });
 
 export const getters = {
   user: state => state.user,
-  profile: state => state.profile
+  profile: state => state.profile,
+  userAthenticated: state => state.userAthenticated
 };
 
 export const actions = {
@@ -36,13 +34,16 @@ export const actions = {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(userCredential => {
-        return this.$fire.firestore.collection("users").add({
-          email: email,
-          "first name": firstName,
-          "last name": lastName,
-          uid: userCredential.user.uid,
-          initials: initials
-        });
+        return this.$fire.firestore
+          .collection("users")
+          .doc(userCredential.user.uid)
+          .set({
+            email: email,
+            "first name": firstName,
+            "last name": lastName,
+            uid: userCredential.user.uid,
+            initials: initials
+          });
       })
       //* check user and add user to state
       .then(() => {
@@ -89,7 +90,18 @@ export const actions = {
         commit("errors/LOG_ERROR", error, { root: true });
       });
   },
-
+  async logout({ commit }) {
+       await this.$fireModule
+      .auth()
+      .signOut()
+      
+      .then(() => {
+        commit("LOGOUT");
+       })
+      .catch(error => {
+        // An error happened.
+      });
+  },
   //* check if user is authenticated
   async checkAuthentication({ commit, state }) {
     let currentState = state.user;
@@ -104,14 +116,16 @@ export const actions = {
           //* get user from firestore
           this.$fire.firestore
             .collection("users")
-            .where("uid", "==", user.uid)
+            .doc(user.uid)
             .get()
-            .then(querySnapshot => {
-              querySnapshot.forEach(doc => {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
+            .then(doc => {
+              if (doc.exists) {
+                console.log("Document data exits:", doc.data());
                 commit("SET_PROFILE", doc.data());
-              });
+              } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+              }
             })
             .catch(error => {
               console.log("Error getting documents: ", error);
@@ -148,7 +162,13 @@ export const mutations = {
       };
     }
   },
+  LOGOUT: state => {
+    state.user = null;
+    state.userAthenticated = false;
+    state.profile = {};
+  },
   SET_PROFILE: (state, data) => {
     state.profile = data;
+    state.userAthenticated = true;
   }
 };
