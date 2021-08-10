@@ -91,14 +91,17 @@ export const actions = {
       });
   },
   async logout({ commit }) {
-       await this.$fireModule
+    await this.$fireModule
       .auth()
       .signOut()
-        .then(() => {
+      .then(() => {
+        this.$router.push({ name: "index" });
+      })
+      .then(() => {
         commit("LOGOUT");
-       })
+      })
       .catch(error => {
-        // An error happened.
+        commit("errors/LOG_ERROR", error, { root: true });
       });
   },
   //* check if user is authenticated
@@ -144,6 +147,7 @@ export const mutations = {
   CHECK_AUTHENTICATION: (state, user) => {
     if (state.user === null) {
       //      console.log(user);
+      localStorage.setItem("loggedIn", true);
       state.user = {
         email: user.email,
         emailVerified: user.emailVerified,
@@ -154,6 +158,8 @@ export const mutations = {
   LOGIN: (state, user) => {
     if (state.user === null) {
       //      console.log(user);
+      localStorage.setItem("loggedIn", true);
+
       state.user = {
         email: user.email,
         emailVerified: user.emailVerified,
@@ -162,6 +168,7 @@ export const mutations = {
     }
   },
   LOGOUT: state => {
+    localStorage.setItem("loggedIn", false);
     state.user = null;
     state.userAthenticated = false;
     state.profile = {};
