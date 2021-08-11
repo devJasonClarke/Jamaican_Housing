@@ -13,7 +13,12 @@
       <p class="px-0 body-1 grey--text text--darken-1">
         Welcome back! Great to see that you're onboard.
       </p>
-      <v-form ref="form" v-model="valid"   @submit.prevent="validate" lazy-validation>
+      <v-form
+        ref="form"
+        v-model="valid"
+        @submit.prevent="validate"
+        lazy-validation
+      >
         <v-text-field
           :rules="emailRules"
           v-model="credentials.email"
@@ -39,15 +44,23 @@
           hint="At least 8 characters"
           @click:append="show1 = !show1"
         ></v-text-field>
-        <p>   <nuxt-link :to="{ name: 'reset-password' }">Reset Password</nuxt-link></p>
-       
-        <v-btn :loading='loading' large color="success" depressed block type="submit">{{
-          authState
-        }}</v-btn>
+        <p>
+          <nuxt-link :to="{ name: 'reset-password' }">Reset Password</nuxt-link>
+        </p>
+
+        <v-btn
+          :loading="loading"
+          large
+          color="success"
+          depressed
+          block
+          type="submit"
+          >{{ authState }}</v-btn
+        >
       </v-form>
       <p class="middle-text mt-3 grey--text">or</p>
 
-      <v-btn block large depressed>
+      <v-btn block large depressed @click="googleLogin">
         <v-img
           :src="require('~/assets/images/svg/google.svg')"
           max-width="30"
@@ -75,31 +88,32 @@ export default {
       authState: "Login",
 
       show1: false,
-   credentials: {
+      credentials: {
         email: "",
-        password: "",
+        password: ""
       },
-      valid: false,
+      valid: false
     };
   },
   methods: {
     ...mapActions({
-      login: "authentication/login"
+      login: "authentication/login",
+      googleLogin: "authentication/googleLogin"
     }),
     validate() {
       if (this.$refs.form.validate()) {
         console.log("valid");
-        this.login(this.credentials)
+        this.login(this.credentials);
       } else {
         console.log("not");
       }
     }
   },
-    computed: {
+  computed: {
     ...mapGetters({
       passwordRules: "inputRules/passwordRules",
       emailRules: "inputRules/emailRules",
-          loading: "authentication/loading"
+      loading: "authentication/loading"
     })
   }
 };

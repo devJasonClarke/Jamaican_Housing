@@ -121,7 +121,7 @@
                     </v-form>
                     <p class="middle-text mt-3 grey--text">or</p>
 
-                    <v-btn block large depressed>
+                    <v-btn block large depressed  @click="googleLogin">
                       <v-img
                         :src="require('~/assets/images/svg/google.svg')"
                         max-width="30"
@@ -157,7 +157,10 @@
               v-on="on"
               color="green accent-4"
               ><v-icon class="mr-1">mdi-account</v-icon>
-              {{ profile["first name"] }}
+              <span v-if="profile['first name']">{{
+                profile["first name"]
+              }}</span>
+              <span v-else>{{ profile["display name"] }}</span>
             </v-btn>
           </template>
 
@@ -308,7 +311,7 @@
                   >
                 </v-form>
                 <p class="middle-text mt-3 grey--text">or</p>
-                <v-btn block large depressed>
+                <v-btn block large depressed  @click="googleLogin">
                   <v-img
                     :src="require('~/assets/images/svg/google.svg')"
                     max-width="30"
@@ -412,7 +415,8 @@ export default {
       getIpInfo: "api/getIPInfo",
       toggleTheme: "colorTheme/toggleTheme",
       login: "authentication/login",
-      logout: "authentication/logout"
+      logout: "authentication/logout",
+      googleLogin: "authentication/googleLogin"
     }),
     numberWithCommas(x) {
       x = Math.round((x + Number.EPSILON) * 100) / 100;

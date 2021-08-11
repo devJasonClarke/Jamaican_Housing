@@ -77,7 +77,7 @@
             ></v-skeleton-loader>
 
             <v-list-item-title v-else class="text-h6 px-0 text-center">
-              {{ `${profile["first name"]} ${profile["last name"]}` }}
+              <span>{{profile['display name'] }}</span>
               <VerifiedSymbol role="realtor" />
             </v-list-item-title>
           </v-list-item-content>
@@ -164,9 +164,12 @@
               class="d-block mx-0 rounded-circle"
               type="image"
             ></v-skeleton-loader>
-            <v-avatar color="green" size="36" v-else>
-              <span class="white--text ">{{ profile["initials"] }}</span>
+            <span v-else>
+              <v-avatar color="green" size="36" >
+              <span class="white--text " v-if="profile['initials']">{{ profile["initials"] }}</span>
+            <v-icon v-else>mdi-account mdi-24px</v-icon>
             </v-avatar>
+            </span>
           </v-btn>
         </template>
         <v-card>

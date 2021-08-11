@@ -1,6 +1,7 @@
 export const state = () => ({
   user: null,
   userAthenticated: false,
+  googleAuth: false,
   profile: {},
   loading: false
 });
@@ -41,6 +42,7 @@ export const actions = {
           .doc(userCredential.user.uid)
           .set({
             email: email,
+            "display name": `${firstName} ${lastName}`,
             "first name": firstName,
             "last name": lastName,
             uid: userCredential.user.uid,
@@ -69,6 +71,70 @@ export const actions = {
         commit("LOADING_STATE", false);
         console.log(error);
         // ..
+      });
+  },
+  googleLogin({ commit }) {
+    let provider = new this.$fireModule.auth.GoogleAuthProvider();
+    let theResults;
+    this.$fireModule
+      .auth()
+      .signInWithPopup(provider)
+      .then(result => {
+        theResults = result.user;
+        return this.$fire.firestore
+          .collection("users")
+          .doc(result.user.uid)
+          .get()
+          .then(doc => {
+            if (doc.exists) {
+              console.log("Doc EXIsts");
+              commit("SET_PROFILE", doc.data());
+            } else {
+              console.log("setting google document");
+              console.log(result.user);
+              this.$fire.firestore
+                .collection("users")
+                .doc(result.user.uid)
+                .set({
+                  email: result.user.email,
+                  "display name": result.user.displayName,
+                  uid: result.user.uid,
+                  emailVerified: result.user.emailVerified
+                });
+            }
+          });
+
+        // ...
+      })
+      .then(() => {
+        console.log("Checking and setting document");
+        this.$fire.firestore
+          .collection("users")
+          .doc(theResults.uid)
+          .get()
+          .then(doc => {
+            if (doc.exists) {
+              commit("SET_PROFILE", doc.data());
+            }
+          });
+      })
+      .then(() => {
+        this.$fireModule.auth().onAuthStateChanged(user => {
+          if (user) {
+            commit("LOGIN", user);
+            commit("LOADING_STATE", false);
+          } else {
+            // User is signed out
+            // ...
+          }
+        });
+      })
+      .then(() => {
+        this.$router.push({ name: "dashboard" });
+      })
+      .catch(error => {
+        commit("errors/LOG_ERROR", error.message, { root: true });
+        // ...
       });
   },
   async login({ commit }, credentials) {
@@ -137,7 +203,7 @@ export const actions = {
               }
             })
             .catch(error => {
-              console.log("Error getting documents: ", error);
+              commit("errors/LOG_ERROR", error, { root: true });
             });
         } else {
           // User is signed out

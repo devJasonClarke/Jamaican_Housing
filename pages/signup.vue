@@ -54,7 +54,7 @@
       </v-form>
       <p class="middle-text mt-3 grey--text">or</p>
 
-      <v-btn block large depressed>
+      <v-btn block large depressed @click="googleLogin">
         <v-img
           :src="require('~/assets/images/svg/google.svg')"
           max-width="30"
@@ -280,7 +280,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      signup: "authentication/signup"
+      signup: "authentication/signup",
+      googleLogin: "authentication/googleLogin"
     }),
     validate() {
       if (this.$refs.form.validate()) {
