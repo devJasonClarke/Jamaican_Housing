@@ -70,7 +70,7 @@
         </v-list-item>
 
         <v-list-item v-if="!miniVariant">
-          <v-list-item-content>
+          <v-list-item-content> 
             <v-skeleton-loader
               v-if="!userAthenticated"
               type="text"
@@ -167,7 +167,7 @@
             <span v-else>
               <v-avatar color="green" size="36" >
               <span class="white--text " v-if="profile['initials']">{{ profile["initials"] }}</span>
-            <v-icon v-else>mdi-account mdi-24px</v-icon>
+            <v-icon v-else color="white">mdi-account mdi-24px</v-icon>
             </v-avatar>
             </span>
           </v-btn>
