@@ -52,15 +52,13 @@
               Enter you email address to receive the top real estate deals
               currently on the market
             </p>
-            <v-form ref="form" v-model="valid" @submit.prevent="sendEmail">
+            <v-form ref="form" v-model="valid" @submit.prevent="validate">
               <v-text-field
                 label="Your Email Address"
                 :rules="rules"
                 hide-details="auto"
                 v-model="email"
                 prepend-inner-icon="mdi-email"
-                append-outer-icon="mdi-check"
-                @click:append-outer="sendEmail"
                 outlined
                 dense
                 :loading="loading"
@@ -136,24 +134,25 @@ export default {
     },
     validate() {
       this.$refs.form.validate();
-    },
-    sendEmail() {
-      if (this.valid === true) {
+      if (this.$refs.form.validate()) {
         this.loading = true;
 
-        this.$OneSignal
-          .push(() => {
-            this.$OneSignal.setEmail(this.email);
-          })
-          .then(() => {
-            this.submitMessage = "Success!";
-            this.loading = false;
-          })
-          .catch(err => {
-            this.submitMessage = err;
-            this.formStatus = "red";
-            this.loading = false;
-          });
+        this.$OneSignal.push(() => {
+          this.$OneSignal
+            .setEmail(this.email)
+            .then(() => {
+              this.submitMessage = "Success!";
+              this.loading = false;
+            })
+            .then(() => {
+              this.$OneSignal.logoutEmail();
+            })
+            .catch(err => {
+              this.submitMessage = err;
+              this.formStatus = "red";
+              this.loading = false;
+            });
+        });
       }
     }
   },

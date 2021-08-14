@@ -13,7 +13,7 @@
       <p class="px-0 body-1 grey--text text--darken-1">
         Welcome back! Great to see that you're onboard.
       </p>
-      <v-form ref="form" v-model="valid" lazy-validation>
+      <v-form ref="form" v-model="valid"    @submit.prevent="validate" lazy-validation>
         <v-text-field
           :rules="emailRules"
           v-model="email"
@@ -35,7 +35,7 @@
           color="success"
           depressed
           block
-          @click="validate"
+       
           >Send Email</v-btn
         >
       </v-form>
