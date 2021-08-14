@@ -141,17 +141,17 @@ export default {
           this.$OneSignal
             .setEmail(this.email)
             .then(() => {
-              this.submitMessage = "Success!";
+              this.submitMessage = "Success! Thank you for signing up";
               this.loading = false;
             })
-            .then(() => {
-              this.$OneSignal.logoutEmail();
-            })
             .catch(err => {
-              this.submitMessage = err;
+              this.submitMessage = "Unsuccessful";
+              console.log(err);
               this.formStatus = "red";
               this.loading = false;
             });
+
+          this.$OneSignal.logoutEmail();
         });
       }
     }

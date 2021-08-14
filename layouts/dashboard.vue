@@ -70,14 +70,14 @@
         </v-list-item>
 
         <v-list-item v-if="!miniVariant">
-          <v-list-item-content> 
+          <v-list-item-content>
             <v-skeleton-loader
               v-if="!userAthenticated"
               type="text"
             ></v-skeleton-loader>
 
             <v-list-item-title v-else class="text-h6 px-0 text-center">
-              <span>{{profile['display name'] }}</span>
+              <span>{{ profile["display name"] }}</span>
               <VerifiedSymbol role="realtor" />
             </v-list-item-title>
           </v-list-item-content>
@@ -145,18 +145,18 @@
         </v-icon>
       </v-badge>
 
-      <div>
-        <v-icon v-if="$vuetify.theme.dark" @click="toggleTheme" class="mr-6"
+      <div class="mr-3">
+        <v-icon v-if="$vuetify.theme.dark" @click="toggleTheme" 
           >mdi-weather-sunny</v-icon
         >
-        <v-icon v-else @click="toggleTheme" class="mr-6"
+        <v-icon v-else @click="toggleTheme" 
           >mdi-weather-night</v-icon
         >
       </div>
 
       <v-menu bottom min-width="200px" rounded offset-y>
         <template v-slot:activator="{ on }">
-          <v-btn icon x-large v-on="on">
+          <v-btn icon x-large v-on="on" class="mr-1">
             <v-skeleton-loader
               v-if="!userAthenticated"
               width="36"
@@ -165,10 +165,14 @@
               type="image"
             ></v-skeleton-loader>
             <span v-else>
-              <v-avatar color="green" size="36" >
-              <span class="white--text " v-if="profile['initials']">{{ profile["initials"] }}</span>
-            <v-icon v-else color="white">mdi-account mdi-24px</v-icon>
-            </v-avatar>
+              <v-avatar color="green" size="36">
+                <span class="white--text " v-if="profile['initials']">{{
+                  profile["initials"]
+                }}</span>
+                <v-icon v-else color="grey lighten-3"
+                  >mdi-account mdi-24px</v-icon
+                >
+              </v-avatar>
             </span>
           </v-btn>
         </template>
@@ -252,6 +256,11 @@ export default {
       messages: 8,
       routes: [
         {
+          icon: "mdi-home-outline",
+          title: "Home Page",
+          route: "index"
+        },
+        {
           icon: "mdi-apps",
           title: "Properties",
           route: "dashboard"
@@ -280,11 +289,6 @@ export default {
           icon: "mdi-cog-outline",
           title: "Settings",
           route: "dashboard-settings"
-        },
-        {
-          icon: "mdi-home-outline",
-          title: "Home Page",
-          route: "index"
         }
       ],
       flexMd: false

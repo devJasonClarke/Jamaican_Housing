@@ -13,7 +13,12 @@
       <p class="px-0 body-1 grey--text text--darken-1">
         Welcome back! Great to see that you're onboard.
       </p>
-      <v-form ref="form" v-model="valid"    @submit.prevent="validate" lazy-validation>
+      <v-form
+        ref="form"
+        v-model="valid"
+        @submit.prevent="validate"
+        lazy-validation
+      >
         <v-text-field
           :rules="emailRules"
           v-model="email"
@@ -28,14 +33,7 @@
         <v-btn v-if="sent" large color="success" depressed block
           >Sent <v-icon class="ml-3">mdi-check-circle-outline</v-icon>
         </v-btn>
-        <v-btn
-          v-else
-          :loading="loading"
-          large
-          color="success"
-          depressed
-          block
-       
+        <v-btn v-else :loading="loading" large color="success" depressed block
           >Send Email</v-btn
         >
       </v-form>
