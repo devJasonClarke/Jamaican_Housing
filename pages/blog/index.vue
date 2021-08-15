@@ -113,7 +113,7 @@
 </template>
 
 <script>
-import img from "~/assets/images/house.jpg";
+import img from "~/assets/images/houses/4.jpg";
 import { mapGetters } from "vuex";
 export default {
   async asyncData({ $content }) {

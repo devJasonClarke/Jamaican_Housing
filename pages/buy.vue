@@ -53,7 +53,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import img from "~/assets/images/house.jpg";
+import img from "~/assets/images/houses/3.jpg";
 export default {
   data() {
     return {

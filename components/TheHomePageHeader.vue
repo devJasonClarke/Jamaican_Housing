@@ -3,7 +3,7 @@
     <v-img
       :src="img"
       class="header-img"
-      gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
+      gradient="to top right, rgba(0,0,0,.3), rgba(0,0,0,.2)"
     >
       <v-container class="d-flex align-center header-text-container">
         <div class="mb-16 max-width">
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import img from "~/assets/images/house.jpg";
+import img from "~/assets/images/houses/3.jpg"; 
 export default {
   data() {
     return {

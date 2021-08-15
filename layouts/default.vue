@@ -172,12 +172,12 @@
               <v-list-item class="text-uppercase" :to="{ name: 'dashboard' }">
                 <v-list-item-title>Dashboard</v-list-item-title>
               </v-list-item>
-              <v-list-item
+          <!--     <v-list-item
                 class="text-uppercase"
                 :to="{ name: 'dashboard-user-profile' }"
               >
                 <v-list-item-title>Profile</v-list-item-title>
-              </v-list-item>
+              </v-list-item> -->
             </v-list-item-group>
           </v-list>
 
