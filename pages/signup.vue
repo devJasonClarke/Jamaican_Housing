@@ -82,7 +82,6 @@
 
     <v-stepper
       v-model="cur"
-      alt-labels
       class=" mx-auto"
       v-show="profileSetup"
       max-width="450"

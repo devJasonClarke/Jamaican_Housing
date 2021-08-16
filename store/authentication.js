@@ -15,7 +15,7 @@ export const getters = {
 
 export const actions = {
   //* sign up with crediential
-  async signup({ commit }, credentials) {
+  signup({ commit }, credentials) {
     const { email, password, firstName, lastName } = credentials;
 
     function getInitials() {
@@ -33,7 +33,7 @@ export const actions = {
     console.log(initials);
     commit("LOADING_STATE", true);
     //* sign up using firebase with credentials
-    await this.$fireModule
+    this.$fireModule
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(userCredential => {
@@ -42,10 +42,10 @@ export const actions = {
           .doc(userCredential.user.uid)
           .set({
             email: email,
-            "display name": `${firstName} ${lastName}`,
-            "first name": firstName,
-            "last name": lastName,
-            uid: userCredential.user.uid,
+            displayName: `${firstName} ${lastName}`,
+            firstName: firstName,
+            lastName: lastName,
+            userId: userCredential.user.uid,
             initials: initials
           });
       })
@@ -97,8 +97,8 @@ export const actions = {
                 .doc(result.user.uid)
                 .set({
                   email: result.user.email,
-                  "display name": result.user.displayName,
-                  uid: result.user.uid,
+                  displayName: result.user.displayName,
+                  userId: result.user.uid,
                   emailVerified: result.user.emailVerified
                 });
             }
@@ -162,8 +162,8 @@ export const actions = {
         commit("LOADING_STATE", false);
       });
   },
-  async logout({ commit }) {
-    await this.$fireModule
+  logout({ commit }) {
+    this.$fireModule
       .auth()
       .signOut()
       .then(() => {
