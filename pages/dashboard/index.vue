@@ -30,7 +30,7 @@
         </v-btn>
       </div>
     </SectionPadding>
-   <!--  {{ properties }} -->
+    <!--  {{ properties }} -->
     <TheRealEstatePropertiesListingLoader
       v-if="loading === true"
       title="sale"
@@ -56,7 +56,7 @@
     </SectionPadding>
     <div v-else>
       <div v-for="(property, i) in properties" :key="i" class="mb-6">
-      <!--   {{ property }} -->
+        <!--   {{ property }} -->
         <v-card
           nuxt
           :to="{ name: 'property' }"
@@ -146,42 +146,48 @@ import { mapGetters } from "vuex";
 
 export default {
   async fetch() {
-    const user = this.$fire.auth.currentUser;
     console.log("fetch");
-    console.log(user);
-    const db = this.$fire.firestore;
-    let properties = [];
-    this.loading = true;
-    await db
-      .collection("properties")
-      .where("owner", "==", "lxX1nHAb4TfjI1SsbhqCuDL19rk2")
-      .onSnapshot(
-        querySnapshot => {
-          properties = [];
-          querySnapshot.forEach(doc => {
-            // doc.data() is never undefined for query doc snapshots
+    await this.$fireModule.auth().onAuthStateChanged(user => {
+      if (user) {
+        console.log(user);
+        const db = this.$fire.firestore;
+        let properties = [];
+        this.loading = true;
+        db.collection("properties")
+          .where("owner", "==", user.uid)
+          .onSnapshot(
+            querySnapshot => {
+              properties = [];
+              querySnapshot.forEach(doc => {
+                // doc.data() is never undefined for query doc snapshots
 
-            properties.push([doc.data(), doc.id]);
-          });
-          this.properties = properties;
-          console.log(`Fetch properties ${properties}`);
-          this.loading = false;
-          if (this.properties === []) {
-            this.properties = "no properties";
-          }
-        },
-        error => {
-          console.log("Firebase");
-          console.log(error);
-        }
-      );
+                properties.push([doc.data(), doc.id]);
+              });
+              this.properties = properties;
+              console.log(`Fetch properties ${properties}`);
+              this.loading = false;
+              if (this.properties === []) {
+                this.properties = "no properties";
+              }
+            },
+            error => {
+              console.log("Firebase");
+              console.log(error);
+            }
+          );
+      } else {
+        // User is signed out
+        // ...
+      }
+    });
   },
 
   data() {
     return {
       loading: false,
       properties: [],
-      loading: true
+      loading: true,
+       iconColor: "rgba(0, 200, 83, 0.5)",
     };
   },
   layout: "dashboard",

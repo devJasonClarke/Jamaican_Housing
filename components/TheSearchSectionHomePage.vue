@@ -76,6 +76,20 @@
                   required
                 ></v-select>
               </v-col>
+              <v-col>
+                <v-select
+                  :items="currencyCodeList"
+                  v-model="selectedCurrency"
+                  @change="setActiveCurrency(selectedCurrency)"
+                  label="Currency"
+                  prepend-icon="mdi-currency-usd"
+                  dense
+                  outlined
+                  hide-details="true"
+                  color="green accent-4"
+                  item-color="green"
+                ></v-select>
+              </v-col>
 
               <v-col md="2">
                 <v-btn
@@ -99,7 +113,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -110,7 +124,7 @@ export default {
       selectedParish: "",
       selectedRealEstateType: "",
       selectedMaxPrice: "",
-
+      selectedCurrency: "JMD"
     };
   },
 
@@ -118,8 +132,8 @@ export default {
     changeTab(x) {
       this.tabs = x;
       this.selectedMaxPrice = "";
-            this.selectedRealEstateType= "";
-      this.selectedParish= "";
+      this.selectedRealEstateType = "";
+      this.selectedParish = "";
     },
     validate() {
       if (this.$refs.form.validate()) {
@@ -127,15 +141,30 @@ export default {
       } else {
         console.log("not");
       }
+    },
+    ...mapActions({
+      setActiveCurrency: "api/setActiveCurrency"
+    }),
+    setTheCurrency() {
+      const getCurrency = localStorage.getItem("activeCurrency");
+      //   console.log(`getCurrency: from default ${getCurrency}`);
+      if (getCurrency) {
+        this.selectedCurrency = getCurrency;
+      }
     }
   },
-    computed: {
+  mounted() {
+    this.setTheCurrency();
+  },
+  computed: {
     ...mapGetters({
       parishes: "selectOptions/parishes",
       realEstateType: "selectOptions/realEstateType",
-      maxPrices: "selectOptions/maxPrices"
+      maxPrices: "selectOptions/maxPrices",
+      currencyCodeList: "api/currencyCodeList",
+      activeCurrency: "api/activeCurrency"
     })
-  },
+  }
 };
 </script>
 
@@ -143,7 +172,7 @@ export default {
 .tabs {
   margin-top: -110px;
 }
-.tint{
-  opacity: .55;
+.tint {
+  opacity: 0.55;
 }
 </style>

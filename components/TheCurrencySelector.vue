@@ -7,7 +7,7 @@
       label="Currency"
       dense
       outlined
-       hide-details="true"
+      hide-details="true"
       class="px-2 pt-0 mt-0 mx-0 select-max-width"
       color="green accent-4"
       item-color="green"
@@ -16,8 +16,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import { mapGetters } from "vuex";
+import { mapActions , mapGetters } from "vuex";
 export default {
   data() {
     return {

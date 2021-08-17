@@ -48,7 +48,7 @@
           <v-stepper-step
             :color="iconColor"
             step="5"
-            :complete="validTours"
+            :complete="cur > 5"
             editable
           >
             Tours
@@ -353,7 +353,6 @@
                       label="Virtual Tour ID"
                       required
                       :color="iconColor"
-                      :rules="idRules"
                       counter
                       maxlength="11"
                     ></v-text-field
@@ -366,7 +365,6 @@
                       v-model="property.tours.youtube"
                       label="Youtube Video ID"
                       :color="iconColor"
-                      :rules="idRules"
                       counter
                       maxlength="11"
                     ></v-text-field
