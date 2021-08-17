@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1>Add Your Propery</h1>
+    <h1>Add Your Property</h1>
     <SectionPadding>
       <v-stepper v-model="cur">
         <v-stepper-header>
@@ -320,8 +320,8 @@
                     :color="iconColor"
                     required
                     :rules="[
-                      v => !!v || 'File is required',
-                      v => (v && v.size > 0) || 'File is required'
+                      v => (!!v && v.length > 0) || 'File is required',
+                      v => v.length < 7 || 'No more than 7 pictures'
                     ]"
                   ></v-file-input>
                 </v-row>
@@ -341,7 +341,7 @@
               </p>
               <v-form
                 v-model="validTours"
-                @submit.prevent="validateTours"
+                @submit.prevent="addProperty"
                 ref="toursForm"
               >
                 <v-row class="mb-6">
@@ -373,8 +373,8 @@
                   ></v-col>
                 </v-row>
 
-                <v-btn dark :color="iconColor" type="submit">
-                  Continue
+                <v-btn dark :color="iconColor" type="submit" :loading="loading">
+                  Add Property
                 </v-btn>
                 <v-btn text @click="cur = cur - 1">
                   back
@@ -385,6 +385,20 @@
         </v-stepper-items>
       </v-stepper>
     </SectionPadding>
+    <v-snackbar v-model="snackbar" :timeout="20000" left>
+      {{ snackbarMessage }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          :color="snackbarColor"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -395,6 +409,9 @@ export default {
   data() {
     return {
       cur: 1,
+      snackbar: false,
+      snackbarMessage: "",
+      snackbarColor: "",
       iconColor: "rgba(0, 200, 83)",
       selected: [],
       files: [],
@@ -403,6 +420,7 @@ export default {
       validAmenities: false,
       validPictures: false,
       validTours: false,
+      loading: false,
       property: {
         description: {
           name: "",
@@ -483,8 +501,43 @@ export default {
         console.log("not");
       }
     },
-    validateTours() {
-      if (this.$refs.toursForm.validate()) {
+    async addProperty() {
+      if (
+        this.$refs.descriptionForm.validate() &&
+        this.$refs.detailsForm.validate() &&
+        this.$refs.amenitiesForm.validate() &&
+        this.$refs.picturesForm.validate() &&
+        this.$refs.toursForm.validate()
+      ) {
+        this.loading = true;
+
+        await this.$fire.firestore
+          .collection("properties")
+          .add({
+            description: this.property.description,
+            details: this.property.details,
+            amenities: this.property.amenities,
+            tours: this.property.tours,
+            owner: this.user.uid,
+            timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp()
+          })
+          .then(docRef => {
+            console.log("Document written with ID: ", docRef.id);
+          })
+          .then(() => {
+            this.loading = false;
+            this.snackbar = true;
+            this.snackbarMessage = "Successfully Added";
+            this.snackbarColor = "green";
+          })
+          .catch(error => {
+            console.error("Error adding document: ", error);
+            this.loading = false;
+            this.snackbar = true;
+            this.snackbarMessage = error;
+            this.snackbarColor = "pink";
+          });
+
         console.log("valid tour");
       } else {
         console.log("not");
@@ -498,7 +551,8 @@ export default {
       amountRules: "inputRules/amountRules",
       idRules: "inputRules/idRules",
       parishes: "selectOptions/parishes",
-      realEstateType: "selectOptions/realEstateType"
+      realEstateType: "selectOptions/realEstateType",
+      user: "authentication/user"
     })
   }
 };
