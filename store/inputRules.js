@@ -13,6 +13,11 @@ export const state = () => ({
     v => v.length > 1 || "Name must be greater than 1 character",
     v => (v && !!v.trim()) || "Value cannot be blank"
   ],
+  idRules: [
+    v => !!v || "ID is required",
+    v => v.length == 11 || "Id should equal 11 characters",
+    value => !/[ ]/.test(value) || "no spaces allowed",
+  ],
   passwordRules: [
     value => !!value || "Required.",
     value => (value && !!value.trim()) || "Value cannot be blank",
@@ -27,11 +32,23 @@ export const state = () => ({
         value
       ) || "E-mail must be valid"
   ],
+  amountRules: [
+    value => !!value || "Required.",
+    value => !/[ ]/.test(value) || "no spaces allowed",
+    value => (value || "").length <= 15 || "Max 15 characters"
+
+  ],
   messageRules: [
     v => !!v || "Message is required",
     v => (v && !!v.trim()) || "Value cannot be blank",
     v => v.length >= 10 || "Message must be greater than 10 characters"
-  ]
+  ],
+  descriptionRules: [
+    v => !!v || "Description is required",
+    v => (v && !!v.trim()) || "Value cannot be blank",
+    v => v.length >= 10 || "Message must be greater than 10 characters",
+    value => (value || "").length <= 425 || "Max 425 characters",
+  ],
 });
 
 export const getters = {
@@ -39,5 +56,8 @@ export const getters = {
   nameRules: state => state.nameRules,
   passwordRules: state => state.passwordRules,
   emailRules: state => state.emailRules,
-  messageRules: state => state.messageRules
+  amountRules: state => state.amountRules,
+  messageRules: state => state.messageRules,
+  descriptionRules: state => state.descriptionRules,
+  idRules: state => state.idRules,
 };

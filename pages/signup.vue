@@ -313,7 +313,8 @@ export default {
       loading: "authentication/loading",
       nameRules: "inputRules/nameRules",
       passwordRules: "inputRules/passwordRules",
-      emailRules: "inputRules/emailRules"
+      emailRules: "inputRules/emailRules",
+     
     })
   }
 };
