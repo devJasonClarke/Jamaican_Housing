@@ -99,7 +99,7 @@
               <v-icon :color="iconColor">mdi-map-marker mdi-18px</v-icon>
               <!-- {{ card.parish }} -->
               {{ property[0].details.community }},
-              {{ property[0].details.parishes }}
+              {{ property[0].details.parish }}
             </v-card-subtitle>
 
             <v-card-text
@@ -154,14 +154,13 @@ export default {
         let properties = [];
         this.loading = true;
         db.collection("properties")
-          .where("owner", "==", user.uid)
-          .onSnapshot(
+         .where("owner", "==", user.uid)
+         
+           .onSnapshot(
             querySnapshot => {
               properties = [];
               querySnapshot.forEach(doc => {
-                // doc.data() is never undefined for query doc snapshots
-
-                properties.push([doc.data(), doc.id]);
+               properties.push([doc.data(), doc.id]);
               });
               this.properties = properties;
               console.log(`Fetch properties ${properties}`);
@@ -187,7 +186,7 @@ export default {
       loading: false,
       properties: [],
       loading: true,
-       iconColor: "rgba(0, 200, 83, 0.5)",
+      iconColor: "rgba(0, 200, 83, 0.5)"
     };
   },
   layout: "dashboard",

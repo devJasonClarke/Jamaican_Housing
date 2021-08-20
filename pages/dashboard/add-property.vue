@@ -107,7 +107,7 @@
             {{ property.details.size }}
             {{ property.details.price }}
             {{ property.details.status }}
-            {{ property.details.parishes }}
+            {{ property.details.parish }}
             {{ property.details.community }}
             {{ property.details.bedRooms }}
             {{ property.details.bathRooms }}
@@ -197,7 +197,7 @@
                       outlined
                       dense
                       label="Parish"
-                      v-model="property.details.parishes"
+                      v-model="property.details.parish"
                       :items="parishes"
                       color="green"
                       item-color="green"
@@ -321,7 +321,11 @@
                     required
                     :rules="[
                       v => (!!v && v.length > 0) || 'File is required',
-                      v => v.length < 7 || 'No more than 7 pictures'
+                      v =>
+                        !v ||
+                        !v.some(file => file.size > 1048576) ||
+                        'All pictures should be less than 1 MB in size!',
+                      v => v.length < 8 || 'No more than 7 pictures'
                     ]"
                   ></v-file-input>
                 </v-row>
@@ -401,7 +405,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   layout: "dashboard",
   data() {
@@ -430,7 +434,7 @@ export default {
           size: null,
           price: null,
           status: "",
-          parishes: "",
+          parish: "",
           community: "",
           bedRooms: null,
           bathRooms: null,
@@ -464,6 +468,9 @@ export default {
     };
   },
   methods: {
+       ...mapActions({
+      logError: "errors/logError"
+    }),
     addDropFile(e) {
       this.files.push(...Array.from(e.dataTransfer.files));
     },
@@ -512,6 +519,11 @@ export default {
         await this.$fire.firestore
           .collection("properties")
           .add({
+            price: this.property.details.price,
+            parish: this.property.details.parish,
+            type: this.property.details.propertyType,
+            bedrooms: this.property.details.bedRooms,
+
             description: this.property.description,
             details: this.property.details,
             amenities: this.property.amenities,
@@ -539,6 +551,7 @@ export default {
         console.log("valid tour");
       } else {
         console.log("not");
+        this.logError('Please complete required sections.')
       }
     }
   },
