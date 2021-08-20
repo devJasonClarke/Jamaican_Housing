@@ -85,13 +85,13 @@ export const state = () => ({
       bathroom: 2,
       price: 57400
     }
-  ],
+  ]
 });
 
 export const getters = {
-    listedToBuy: state => state.buy,
-    listedToRent: state => state.rent,
-    featuredProperties: state => state.featured,
+  listedToBuy: state => state.buy,
+  listedToRent: state => state.rent,
+  featuredProperties: state => state.featured
 };
 
 export const actions = {};

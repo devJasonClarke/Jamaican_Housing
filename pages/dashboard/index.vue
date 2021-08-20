@@ -2,34 +2,6 @@
   <v-container>
     <h1>Properties</h1>
 
-    <SectionPadding v-if="false" id="top">
-      <TheSearchSection />
-      <TheRealEstatePropertiesListingLoader v-if="loading" title="sale" />
-      <TheRealEstatePropertiesListing
-        v-else
-        title="Real Estate for Sale"
-        :card="featuredProperties"
-      />
-      <div class="d-flex justify-center align-center mt-4">
-        <v-btn
-          class="mx-2"
-          fab
-          dark
-          small
-          color="green accent-4"
-          @click="previous"
-        >
-          <v-icon dark>
-            mdi-chevron-left
-          </v-icon>
-        </v-btn>
-        <v-btn class="mx-2" fab dark small color="green accent-4" @click="next">
-          <v-icon dark>
-            mdi-chevron-right
-          </v-icon>
-        </v-btn>
-      </div>
-    </SectionPadding>
     <!--  {{ properties }} -->
     <TheRealEstatePropertiesListingLoader
       v-if="loading === true"
@@ -54,90 +26,33 @@
         >
       </v-sheet>
     </SectionPadding>
-    <div v-else>
-      <div v-for="(property, i) in properties" :key="i" class="mb-6">
-        <!--   {{ property }} -->
-        <v-card
-          nuxt
-          :to="{ name: 'property' }"
-          outlined
-          width="300"
-          elevation="0"
-          class="rounded-lg card"
+
+    <SectionPadding v-else id="top">
+      <TheSearchSection />
+      <TheRealEstatePropertiesListingFirebase
+        title="Real Estate for Sale"
+        :properties="properties"
+      />
+      <div class="d-flex justify-center align-center mt-4">
+        <v-btn
+          class="mx-2"
+          fab
+          dark
+          small
+          color="green accent-4"
+          @click="previous"
         >
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="200"
-            class="pa-3"
-          >
-            <v-chip
-              class="text-uppercase"
-              color="orange accent-4"
-              small
-              label
-              dark
-            >
-              Featured
-            </v-chip>
-            <v-chip
-              class="text-uppercase"
-              color="green accent-4"
-              small
-              label
-              dark
-            >
-              For {{ property[0].details.status }}
-            </v-chip>
-          </v-img>
-          <div>
-            <v-card-title>
-              <!-- {{ card.title }} -->
-              {{ property[0].description.name }}
-            </v-card-title>
-
-            <v-card-subtitle class="pb-4 primary-green">
-              <v-icon :color="iconColor">mdi-map-marker mdi-18px</v-icon>
-              <!-- {{ card.parish }} -->
-              {{ property[0].details.community }},
-              {{ property[0].details.parish }}
-            </v-card-subtitle>
-
-            <v-card-text
-              class=" text-uppercase section-titles-Subtitle grey--text"
-            >
-              <!--   {{ card.realEstateType }} -->
-              {{ property[0].details.propertyType }}
-            </v-card-text>
-
-            <div class="px-4 pb-2 d-flex justify-space-between primary-color">
-              <p>
-                <v-icon :color="iconColor"
-                  >mdi-ruler-square mdi-flip-v mdi-18px</v-icon
-                >
-                <!--    {{ card.squareMeters }} -->
-                {{ property[0].details.size }}
-                m<sup>2</sup>
-              </p>
-              <p>
-                <v-icon :color="iconColor">mdi-bed mdi-18px</v-icon>
-                <!--  {{ card.beds }} -->
-                {{ property[0].details.bedRooms }}
-              </p>
-              <p>
-                <v-icon :color="iconColor">mdi-shower-head mdi-18px</v-icon>
-                <!--   {{ card.bathroom }} -->
-                {{ property[0].details.bathRooms }}
-              </p>
-              <p>
-                <v-icon :color="iconColor">mdi-currency-usd mdi-18px</v-icon>
-
-                {{ shortenMoney(property[0].details.price * currencyRate) }}
-              </p>
-            </div>
-          </div>
-        </v-card>
+          <v-icon dark>
+            mdi-chevron-left
+          </v-icon>
+        </v-btn>
+        <v-btn class="mx-2" fab dark small color="green accent-4" @click="next">
+          <v-icon dark>
+            mdi-chevron-right
+          </v-icon>
+        </v-btn>
       </div>
-    </div>
+    </SectionPadding>
   </v-container>
 </template>
 
@@ -154,13 +69,13 @@ export default {
         let properties = [];
         this.loading = true;
         db.collection("properties")
-         .where("owner", "==", user.uid)
-         
-           .onSnapshot(
+          .where("owner", "==", user.uid)
+
+          .onSnapshot(
             querySnapshot => {
               properties = [];
               querySnapshot.forEach(doc => {
-               properties.push([doc.data(), doc.id]);
+                properties.push([doc.data(), doc.id]);
               });
               this.properties = properties;
               console.log(`Fetch properties ${properties}`);

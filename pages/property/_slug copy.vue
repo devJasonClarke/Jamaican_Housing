@@ -7,11 +7,12 @@
         <v-col cols="12" md="8">
           <p class="green--text text--accent-4 text-capitalize">
             <v-icon :color="iconColor">mdi-map-marker mdi-24px</v-icon>
-            catherine hall, St. James
+            {{ property.details.community }},
+            {{ property.details.parish }}
           </p>
           <h1 class="d-flex justify-space-between text-capitalize">
             <span>
-              Modern Studio apartment
+            {{property.description.name}}
 
               <v-tooltip color="blue" bottom>
                 <template v-slot:activator="{ on, attrs }">
@@ -48,22 +49,22 @@
               <v-icon :color="iconColor"
                 >mdi-ruler-square mdi-flip-v mdi-18px</v-icon
               >
-              12 m<sup>2</sup>
+              {{property.details.size}}  m<sup>2</sup>
             </p>
             <p>
               <v-icon :color="iconColor">mdi-bed mdi-18px</v-icon>
-              1 Bedroom
+              {{property.details.bedRooms}} Bedroom
             </p>
             <p>
               <v-icon :color="iconColor">mdi-shower-head mdi-18px</v-icon>
-              1 Bathroom
+              {{property.details.bathRooms}} Bathroom
             </p>
 
             <p>
               <v-icon :color="iconColor">mdi-cash-multiple mdi-18px</v-icon>
               <span v-for="(detail, i) in details" :key="`icon ${i}`">
                 <span v-if="detail.price" :class="{ 'd-none': !detail.price }">
-                  {{ shortenMoney(detail.price * currencyRate) }}
+                  {{ shortenMoney(property.details.price * currencyRate) }}
                   {{ activeCurrency }}
                 </span>
               </span>
@@ -73,12 +74,8 @@
           <div class="">
             <p class="text-h6">Description</p>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
-              animi quam blanditiis veritatis ducimus explicabo illo ex dolore a
-              atque sapiente voluptates rem reiciendis, libero perferendis
-              aspernatur esse. Voluptates, commodi! A facilis eligendi at quos
-              odit eum, itaque illum nulla quidem delectus magnam fugiat dolorum
-              sed aut pariatur sunt. Et doloremque officiis nam quos sunt!
+              {{property.description.description}}
+
             </p>
             <v-row class="mb-3">
               <v-col cols="12" sm="6"
@@ -148,18 +145,18 @@
                 :color="iconColor"
                 class="amendities-grid"
               >
-                <v-list-item v-for="(detail, i) in details" :key="i">
+                <v-list-item v-for="(detail, i) in property.details" :key="i">
                   <v-list-item-content class="mb-3">
                     <v-list-item-title
                       class="text-body-1 text-capitalize  font-weight-medium"
-                      v-text="`${detail.detail} :`"
+                      v-text="`${Object.keys(property.details).find(key => property.details[key] === detail)}`"
                     ></v-list-item-title>
 
                     <v-list-item-title
                       class="text-body-1 mt-1 font-weight-regular"
                       v-if="!detail.price"
                     >
-                      {{ detail.value }}
+                      {{ detail }}
                     </v-list-item-title>
                     <v-list-item-title
                       class="text-body-1 mt-1 font-weight-regular"
@@ -384,10 +381,57 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+  async fetch() {
+    let theParam = String(this.$route.params.slug);
+    console.log(theParam);
+    this.$fire.firestore
+      .collection("properties")
+      .doc(`${theParam}`)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          console.log("Document data:", doc.data());
+          this.property = doc.data();
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      })
+      .catch(error => {
+        console.log("Error getting document:", error);
+      });
+
+    /* let j = () => parishes.parishes.find(parish => parish.slug == theParam);
+    this.parish = j(); */
+  },
   data() {
     return {
       iconColor: "rgba(0, 200, 83, 1)",
       phoneNumber: 18763147199,
+      property: {
+        price: "",
+        timestamp: "",
+        details: {
+          bathRooms: "",
+          community: "",
+          propertyType: "",
+          price: "",
+          parish: "",
+          status: "",
+          size: "",
+          garages: "",
+          bedRooms: ""
+        },
+        parish: "",
+        tours: { virtualTour: "", youtube: "" },
+        type: "",
+        amenities: [],
+        description: {
+          name: "",
+          description: ""
+        },
+        owner: "uxYHg9Rm1WPAAXGnCwxMQ9VAxf53"
+      },
       card: {
         title: "Sunny Private Studio Apartment",
         parish: "St. James",
