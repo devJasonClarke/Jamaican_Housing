@@ -102,16 +102,17 @@
           </v-stepper-content>
 
           <v-stepper-content step="2">
-            {{ property.details.propertyId }}
-            {{ property.details.propertyType }}
-            {{ property.details.size }}
-            {{ property.details.price }}
-            {{ property.details.status }}
-            {{ property.details.parish }}
-            {{ property.details.community }}
-            {{ property.details.bedRooms }}
-            {{ property.details.bathRooms }}
-            {{ property.details.garages }}
+            {{ property.details[0].value }}
+            {{ property.details[1].value }}
+            {{ property.details[2].value }}
+            {{ property.details[3].value }}
+            {{ property.details[4].value }}
+            {{ property.details[5].value }}
+            {{ property.details[6].value }}
+            {{ property.details[7].value }}
+            {{ property.details[8].value }}
+            {{ property.details[9].value }}
+            {{ property.details[10].value }}
             <v-container>
               <p class="text-h6 pb-6">
                 Please enter your property details
@@ -122,21 +123,13 @@
                 ref="detailsForm"
               >
                 <v-row>
-                  <v-col cols="12" sm="6">
-                    <v-text-field
-                      outlined
-                      dense
-                      label="Property ID (optional)"
-                      v-model="property.details.propertyId"
-                      :color="iconColor"
-                    ></v-text-field
-                  ></v-col>
+               
                   <v-col cols="12" sm="6">
                     <v-select
                       outlined
                       dense
                       label="Property Type *"
-                      v-model="property.details.propertyType"
+                      v-model="property.details[0].value"
                       :items="realEstateType"
                       color="green"
                       item-color="green"
@@ -149,7 +142,7 @@
                       dense
                       label="Size *"
                       type="number"
-                      v-model="property.details.size"
+                      v-model="property.details[1].value"
                       :color="iconColor"
                       suffix="Square Feet"
                       :rules="amountRules"
@@ -163,7 +156,7 @@
                       type="number"
                       prefix="$"
                       suffix="JMD"
-                      v-model="property.details.price"
+                      v-model="property.details[2].value"
                       :color="iconColor"
                       :rules="amountRules"
                     ></v-text-field
@@ -173,11 +166,41 @@
                       outlined
                       dense
                       label="Property For *"
-                      v-model="property.details.status"
+                      v-model="property.details[3].value"
                       :items="status"
                       color="green"
                       item-color="green"
                       :rules="[v => !!v || 'Status is required']"
+                      required
+                    ></v-select
+                  ></v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    v-if="property.details[3].value === 'Rent'"
+                  >
+                    <v-select
+                      outlined
+                      dense
+                      label="How do you rent your property *"
+                      v-model="property.details[4].value"
+                      :items="rentType"
+                      color="green"
+                      item-color="green"
+                      :rules="[v => !!v || 'Rent type is required']"
+                      required
+                    ></v-select
+                  ></v-col>
+                  <v-col cols="12" sm="6">
+                    <v-select
+                      outlined
+                      dense
+                      label="Parish"
+                      v-model="property.details[5].value"
+                      :items="parishes"
+                      color="green"
+                      item-color="green"
+                      :rules="[v => !!v || 'Parish is required']"
                       required
                     ></v-select
                   ></v-col>
@@ -187,23 +210,10 @@
                       dense
                       label="Community"
                       required
-                      v-model="property.details.community"
+                      v-model="property.details[6].value"
                       :color="iconColor"
                       :rules="nameRules"
                     ></v-text-field
-                  ></v-col>
-                  <v-col cols="12" sm="6">
-                    <v-select
-                      outlined
-                      dense
-                      label="Parish"
-                      v-model="property.details.parish"
-                      :items="parishes"
-                      color="green"
-                      item-color="green"
-                      :rules="[v => !!v || 'Parish is required']"
-                      required
-                    ></v-select
                   ></v-col>
 
                   <v-col cols="12" sm="6">
@@ -213,7 +223,7 @@
                       label="Number of Bed Rooms"
                       required
                       type="number"
-                      v-model="property.details.bedRooms"
+                      v-model="property.details[7].value"
                       :color="iconColor"
                       :rules="amountRules"
                     ></v-text-field
@@ -225,7 +235,7 @@
                       label="Number of Bath Rooms"
                       required
                       type="number"
-                      v-model="property.details.bathRooms"
+                      v-model="property.details[8].value"
                       :color="iconColor"
                       :rules="amountRules"
                     ></v-text-field
@@ -235,11 +245,20 @@
                     <v-text-field
                       outlined
                       dense
-                      v-model="property.details.garages"
+                      v-model="property.details[9].value"
                       label="Number of Garages"
                       type="number"
                       :color="iconColor"
                       :rules="amountRules"
+                    ></v-text-field
+                  ></v-col>
+                     <v-col cols="12" sm="6">
+                    <v-text-field
+                      outlined
+                      dense
+                      label="Property ID (optional)"
+                      v-model="property.details[10].value"
+                      :color="iconColor"
                     ></v-text-field
                   ></v-col>
                 </v-row>
@@ -428,18 +447,19 @@ export default {
           name: "",
           description: ""
         },
-        details: {
-          propertyId: "",
-          propertyType: "",
-          size: null,
-          price: null,
-          status: "",
-          parish: "",
-          community: "",
-          bedRooms: null,
-          bathRooms: null,
-          garages: null
-        },
+        details: [
+          { title: "Property Type", value: "" },
+          { title: "Size", value: null },
+          { title: "Price", value: null },
+          { title: "Status", value: "" },
+          { title: "Rent Type", value: "" },
+          { title: "Parish", value: "" },
+          { title: "Community", value: "" },
+          { title: "Bed Rooms", value: null },
+          { title: "Bath Rooms", value: null },
+          { title: "Garages", value: null },
+          { title: "Property Id", value: "" }
+        ],
         amenities: [],
         tours: {
           youtube: "",
@@ -464,11 +484,12 @@ export default {
         { title: "Generator", icon: "mdi-flash" },
         { title: "Water Tank", icon: "mdi-water" }
       ],
-      status: ["rent", "sale"]
+      status: ["Rent", "Sale"],
+      rentType: ["Per night", "Per month"]
     };
   },
   methods: {
-       ...mapActions({
+    ...mapActions({
       logError: "errors/logError"
     }),
     addDropFile(e) {
@@ -519,10 +540,10 @@ export default {
         await this.$fire.firestore
           .collection("properties")
           .add({
-            price: this.property.details.price,
-            parish: this.property.details.parish,
-            type: this.property.details.propertyType,
-            bedrooms: this.property.details.bedRooms,
+            price: this.property.details[3].value,
+            parish: this.property.details[6].value,
+            type: this.property.details[1].value,
+            bedrooms: this.property.details[8].value,
 
             description: this.property.description,
             details: this.property.details,
@@ -551,7 +572,7 @@ export default {
         console.log("valid tour");
       } else {
         console.log("not");
-        this.logError('Please complete required sections.')
+        this.logError("Please complete required sections.");
       }
     }
   },

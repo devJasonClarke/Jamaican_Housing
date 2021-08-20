@@ -4,15 +4,31 @@
 
     <v-container class="mt-6 mb-9">
       <v-row>
-        <v-col cols="12" md="8">
+        <v-col cols="12" md="8" v-if="property.details.size === ''">
+          <v-skeleton-loader
+            max-width="50%"
+            type="paragraph,sentences"
+          ></v-skeleton-loader>
+          <v-divider class="my-4"></v-divider>
+          <v-skeleton-loader type="paragraph,sentences"></v-skeleton-loader>
+          <v-divider class="my-4"></v-divider>
+          <v-skeleton-loader
+            type="list-item-avatar-two-line,list-item-avatar-two-line,list-item-avatar-two-line"
+          ></v-skeleton-loader>
+          <v-divider class="my-4"></v-divider>
+          <v-skeleton-loader type="image"></v-skeleton-loader>
+          <v-divider class="my-4"></v-divider>
+          <v-skeleton-loader type="image"></v-skeleton-loader>
+        </v-col>
+        <v-col cols="12" md="8" v-else>
           <p class="green--text text--accent-4 text-capitalize">
             <v-icon :color="iconColor">mdi-map-marker mdi-24px</v-icon>
-            {{ property.details.community }},
-            {{ property.details.parish }}
+            {{ property.details[7].value }},
+            {{ property.details[6].value }}
           </p>
           <h1 class="d-flex justify-space-between text-capitalize">
             <span>
-            {{property.description.name}}
+              {{ property.description.name }}
 
               <v-tooltip color="blue" bottom>
                 <template v-slot:activator="{ on, attrs }">
@@ -49,22 +65,25 @@
               <v-icon :color="iconColor"
                 >mdi-ruler-square mdi-flip-v mdi-18px</v-icon
               >
-              {{property.details.size}}  m<sup>2</sup>
+              {{ property.details[2].value }} m<sup>2</sup>
             </p>
             <p>
               <v-icon :color="iconColor">mdi-bed mdi-18px</v-icon>
-              {{property.details.bedRooms}} Bedroom
+              {{ property.details[8].value }} Bedroom<span
+                v-if="property.details[8].value > 1"
+                >s</span
+              >
             </p>
             <p>
               <v-icon :color="iconColor">mdi-shower-head mdi-18px</v-icon>
-              {{property.details.bathRooms}} Bathroom
+              {{ property.details[9].value }} Bathroom
             </p>
 
             <p>
               <v-icon :color="iconColor">mdi-cash-multiple mdi-18px</v-icon>
               <span v-for="(detail, i) in details" :key="`icon ${i}`">
                 <span v-if="detail.price" :class="{ 'd-none': !detail.price }">
-                  {{ shortenMoney(property.details.price * currencyRate) }}
+                  {{ shortenMoney(property.details[3].value * currencyRate) }}
                   {{ activeCurrency }}
                 </span>
               </span>
@@ -74,8 +93,7 @@
           <div class="">
             <p class="text-h6">Description</p>
             <p>
-              {{property.description.description}}
-
+              {{ property.description.description }}
             </p>
             <v-row class="mb-3">
               <v-col cols="12" sm="6"
@@ -84,7 +102,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://twitter.com/share?url=https://jamaican-housing.pages.dev/property&text=Have a look at this property:`
+                    `https://twitter.com/share?url=https://jamaican-housing.pages.dev/property/${this.$route.params.slug}&text=Have a look at this property:`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
@@ -95,7 +113,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://www.facebook.com/sharer.php?=https://jamaican-housing.pages.dev/property`
+                    `https://www.facebook.com/sharer.php?=https://jamaican-housing.pages.dev/property/${this.$route.params.slug}`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
@@ -107,7 +125,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    ` https://t.me/share/url?url=https://jamaican-housing.pages.dev/property&text=Have a look at this property:`
+                    ` https://t.me/share/url?url=https://jamaican-housing.pages.dev/property/${this.$route.params.slug}&text=Have a look at this property:`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
@@ -118,7 +136,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://wa.me/?text=Look at this offer https://jamaican-housing.pages.dev/property`
+                    `https://wa.me/?text=Look at this offer https://jamaican-housing.pages.dev/property/${this.$route.params.slug}`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
@@ -146,25 +164,27 @@
                 class="amendities-grid"
               >
                 <v-list-item v-for="(detail, i) in property.details" :key="i">
-                  <v-list-item-content class="mb-3">
+                  <v-list-item-content class="mb-3"  v-if="detail.value">
+
                     <v-list-item-title
                       class="text-body-1 text-capitalize  font-weight-medium"
-                      v-text="`${Object.keys(property.details).find(key => property.details[key] === detail)}`"
+                      v-text="`${detail.title}`"
+                     
                     ></v-list-item-title>
 
                     <v-list-item-title
                       class="text-body-1 mt-1 font-weight-regular"
-                      v-if="!detail.price"
+                      v-if="detail.title === 'Price'"
                     >
-                      {{ detail }}
+                      <!-- {{ country.currencySymbol }}  -->
+                      $ {{ numberWithCommas(detail.value * currencyRate) }}
+                      {{ activeCurrency }}
                     </v-list-item-title>
                     <v-list-item-title
                       class="text-body-1 mt-1 font-weight-regular"
                       v-else
                     >
-                      <!-- {{ country.currencySymbol }}  -->
-                      $ {{ numberWithCommas(detail.price * currencyRate) }}
-                      {{ activeCurrency }}
+                      {{ detail.value }}
                     </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
@@ -177,7 +197,7 @@
 
             <v-list dense flat :class="{ 'py-4': $vuetify.theme.dark }">
               <v-list-item-group :color="iconColor" class="amendities-grid">
-                <v-list-item v-for="(item, i) in items" :key="i">
+                <v-list-item v-for="(item, i) in property.amenities" :key="i">
                   <v-list-item-icon>
                     <v-icon v-text="item.icon" :color="iconColor"></v-icon>
                   </v-list-item-icon>
@@ -185,7 +205,7 @@
                   <v-list-item-content>
                     <v-list-item-title
                       class="text-body-1 font-weight-regular"
-                      v-text="item.text"
+                      v-text="item.title"
                     ></v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
@@ -218,8 +238,21 @@
             ></iframe>
           </div>
         </v-col>
-        <v-col cols="12" md="4">
+        <v-col cols="12" md="4" v-if="property.details.size === ''">
           <v-card class="pa-6 ml-sm-3 mb-6" outlined>
+            <v-skeleton-loader
+              type="image, list-item-three-line"
+            ></v-skeleton-loader>
+            <v-divider class="my-2"></v-divider>
+            <v-skeleton-loader type="table-tfoot"></v-skeleton-loader>
+            <v-divider class="my-2"></v-divider>
+            <v-skeleton-loader
+              type="list-item-three-line,list-item-three-line,list-item-three-line,card-heading, card-heading,card-heading"
+            ></v-skeleton-loader>
+          </v-card>
+        </v-col>
+        <v-col cols="12" md="4" else>
+          <v-card class="pa-6 ml-sm-3 mb-6 " outlined>
             <nuxt-link :to="{ name: 'profile' }">
               <v-img
                 height="150"
@@ -231,12 +264,12 @@
 
             <div class="text-center d-flex flex-column">
               <nuxt-link :to="{ name: 'profile' }" class="text-h6  mt-4 mb-0">
-                Jason Clarke
+                {{ owner["display name"] }}
                 <VerifiedSymbol role="realtor" />
               </nuxt-link>
-              <a href="mailto:JasonClarke@gmail.com" class="text-subtitle-1"
-                >Jasonclarke@gmail.com</a
-              >
+              <a :href="`mailto:${owner['email']}`" class="text-subtitle-1">{{
+                owner["email"]
+              }}</a>
               <a
                 target="_blank"
                 rel="nofollow noopener"
@@ -392,9 +425,11 @@ export default {
         if (doc.exists) {
           console.log("Document data:", doc.data());
           this.property = doc.data();
+          this.getUser();
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
+          this.$router.push({ name: "error" });
         }
       })
       .catch(error => {
@@ -409,7 +444,7 @@ export default {
       iconColor: "rgba(0, 200, 83, 1)",
       phoneNumber: 18763147199,
       property: {
-         timestamp: "",
+        timestamp: "",
         details: {
           bathRooms: "",
           community: "",
@@ -429,8 +464,9 @@ export default {
           name: "",
           description: ""
         },
-        owner: "uxYHg9Rm1WPAAXGnCwxMQ9VAxf53"
+        owner: "sss"
       },
+      owner: {},
       card: {
         title: "Sunny Private Studio Apartment",
         parish: "St. James",
@@ -506,6 +542,25 @@ export default {
     };
   },
   methods: {
+    async getUser() {
+      await this.$fire.firestore
+        .collection("users")
+        .doc(this.property.owner)
+        .get()
+        .then(doc => {
+          if (doc.exists) {
+            console.log("Document data exits:", doc.data());
+            this.owner = doc.data();
+            console.log(doc.data());
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
     print() {
       window.print();
     },
@@ -574,7 +629,7 @@ export default {
 
 <style>
 .icons-max-width {
-  max-width: 400px;
+  max-width: 450px;
 }
 .amendities-grid {
   display: grid;
