@@ -60,7 +60,7 @@
             </p>
 
             <p>
-              <v-icon :color="iconColor">mdi-cash-multiple mdi-18px</v-icon>
+              <v-icon :color="iconColor">mdi-currency-usd mdi-18px</v-icon>
               <span v-for="(detail, i) in details" :key="`icon ${i}`">
                 <span v-if="detail.price" :class="{ 'd-none': !detail.price }">
                   {{ shortenNumber(detail.price * currencyRate) }}

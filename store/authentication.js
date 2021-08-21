@@ -46,7 +46,20 @@ export const actions = {
             firstName: firstName,
             lastName: lastName,
             userId: userCredential.user.uid,
-            initials: initials
+            initials: initials,
+            emailVerified: false,
+            verified: false,
+            role: {
+              realtor: false,
+              owner: false,
+              admin: false
+            },
+            realEstateFirm: "",
+            socialMedia: [],
+            contact: {
+              email: "",
+              phoneNumber: null
+            }
           });
       })
       //* check user and add user to state
@@ -98,8 +111,22 @@ export const actions = {
                 .set({
                   email: result.user.email,
                   displayName: result.user.displayName,
+                  firstName: "",
+                  lastName: "",
                   userId: result.user.uid,
-                  emailVerified: result.user.emailVerified
+                  emailVerified: result.user.emailVerified,
+                  verified: false,
+                  verifiedRoles: {
+                    realtor: false,
+                    owner: false,
+                    admin: false
+                  },
+                  realEstateFirm: "",
+                  socialMedia: [],
+                  contact: {
+                    email: "",
+                    phoneNumber: null
+                  }
                 });
             }
           });

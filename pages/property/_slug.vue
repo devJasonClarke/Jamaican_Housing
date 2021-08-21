@@ -9,22 +9,22 @@
             max-width="50%"
             type="paragraph,sentences"
           ></v-skeleton-loader>
-          <v-divider class="my-4"></v-divider>
+          <v-divider class="my-6"></v-divider>
           <v-skeleton-loader type="paragraph,sentences"></v-skeleton-loader>
-          <v-divider class="my-4"></v-divider>
+          <v-divider class="my-6"></v-divider>
           <v-skeleton-loader
             type="list-item-avatar-two-line,list-item-avatar-two-line,list-item-avatar-two-line"
           ></v-skeleton-loader>
-          <v-divider class="my-4"></v-divider>
+          <v-divider class="my-6"></v-divider>
           <v-skeleton-loader type="image"></v-skeleton-loader>
-          <v-divider class="my-4"></v-divider>
+          <v-divider class="my-6"></v-divider>
           <v-skeleton-loader type="image"></v-skeleton-loader>
         </v-col>
         <v-col cols="12" md="8" v-else>
           <p class="green--text text--accent-4 text-capitalize">
             <v-icon :color="iconColor">mdi-map-marker mdi-24px</v-icon>
-            {{ property.details[5].value }},
-            {{ property.details[4].value }}
+            {{ property.details.community }},
+            {{ property.details.parish }}
           </p>
           <h1 class="d-flex justify-space-between text-capitalize">
             <span>
@@ -65,25 +65,28 @@
               <v-icon :color="iconColor"
                 >mdi-ruler-square mdi-flip-v mdi-18px</v-icon
               >
-              {{ shortenNumber(property.details[1].value * 1) }} sq. ft
+              {{ shortenNumber(property.details.size * 1) }} Sq. Ft
             </p>
             <p>
               <v-icon :color="iconColor">mdi-bed mdi-18px</v-icon>
-              {{ property.details[7].value }} Bedroom<span
-                v-if="property.details[7].value > 1"
+              {{ property.details.bedrooms }} Bedroom<span
+                v-if="property.details.bedrooms > 1 || property.details.bedrooms == 0"
                 >s</span
               >
             </p>
             <p>
               <v-icon :color="iconColor">mdi-shower-head mdi-18px</v-icon>
-              {{ property.details[8].value }} Bathroom
+              {{ property.details.bathrooms }} Bathroom<span
+                v-if="property.details.bathrooms > 1 || property.details.bathrooms == 0"
+                >s</span
+              >
             </p>
 
             <p>
-              <v-icon :color="iconColor">mdi-cash-multiple mdi-18px</v-icon>
+              <v-icon :color="iconColor">mdi-currency-usd mdi-18px</v-icon>
               <span v-for="(detail, i) in details" :key="`icon ${i}`">
                 <span v-if="detail.price" :class="{ 'd-none': !detail.price }">
-                  {{ shortenNumber(property.details[2].value * currencyRate) }}
+                  {{ shortenNumber(property.details.price * currencyRate) }}
                   {{ activeCurrency }}
                 </span>
               </span>
@@ -136,7 +139,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://wa.me/?text=Look at this offer https://jamaican-housing.pages.dev/property/${this.$route.params.slug}`
+                    `https://wa.me/?text=Have a look at this property: https://jamaican-housing.pages.dev/property/${this.$route.params.slug}`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
@@ -153,7 +156,7 @@
               </v-col>
             </v-row>
           </div>
-          <v-divider class="mt-2 mb-4"></v-divider>
+          <v-divider class="mt-1 mb-6"></v-divider>
 
           <div :class="{ 'mb-5': $vuetify.theme.dark }">
             <p class="text-h6">Details</p>
@@ -163,49 +166,140 @@
                 :color="iconColor"
                 class="amendities-grid"
               >
-                <div v-for="(detail, i) in property.details" :key="i">
-                  <v-list-item v-if="detail.value">
-                    <v-list-item-content class="mb-3" v-if="detail.value">
-                      <v-list-item-title
-                        class="text-body-1 text-capitalize  font-weight-medium"
-                        v-text="`${detail.title}`"
-                      ></v-list-item-title>
+                <v-list-item class="mb-3">
+                  <v-list-item-content class="  text-capitalize">
+                    <v-list-item-title class="text-body-1   font-weight-medium"
+                      >Property Type :</v-list-item-title
+                    >
+                    {{ property.details.propertyType }}
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item class="mb-3">
+                  <v-list-item-content class="  text-capitalize">
+                    <v-list-item-title class="text-body-1   font-weight-medium"
+                      >Parish :</v-list-item-title
+                    >
+                    {{ property.details.parish }}
+                  </v-list-item-content>
+                </v-list-item>
 
-                      <v-list-item-title
-                        class="text-body-1 mt-1 font-weight-regular"
-                        v-if="detail.title === 'Price'"
+                <v-list-item class="mb-3">
+                  <v-list-item-content class="  text-capitalize">
+                    <v-list-item-title class="text-body-1   font-weight-medium"
+                      >Community :</v-list-item-title
+                    >
+                    {{ property.details.community }}
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item class="mb-3">
+                  <v-list-item-content class="  text-capitalize">
+                    <v-list-item-title class="text-body-1   font-weight-medium"
+                      >Bedroom<span v-if="property.details.bedrooms > 1 || property.details.bedrooms == 0"
+                        >s</span
                       >
-                        <!-- {{ country.currencySymbol }}  -->
-                        $ {{ numberWithCommas(detail.value * currencyRate) }}
-                        {{ activeCurrency }}
-                      </v-list-item-title>
-                      <v-list-item-title
-                        class="text-body-1 mt-1 font-weight-regular"
-                        v-else-if="detail.title === 'Size'"
+                      :</v-list-item-title
+                    >
+                    {{ property.details.bedrooms }}
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item class="mb-3">
+                  <v-list-item-content class="  text-capitalize">
+                    <v-list-item-title class="text-body-1   font-weight-medium"
+                      >Bathroom<span v-if="property.details.bathrooms > 1 || property.details.bathrooms == 0"
+                        >s</span
                       >
-                        <!-- {{ country.currencySymbol }}  -->
-                       {{detail.value}} sq. ft.
-                      
-                      </v-list-item-title>
-                      <v-list-item-title
-                        class="text-body-1 mt-1 font-weight-regular"
-                        v-else
-                      >
-                        {{ detail.value }}
-                      </v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                </div>
+                      :</v-list-item-title
+                    >
+                    {{ property.details.bathrooms }}
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item class="mb-3">
+                  <v-list-item-content class="  text-capitalize">
+                    <v-list-item-title class="text-body-1   font-weight-medium"
+                      >Garage<span v-if="property.details.garages > 1 || property.details.garages == 0">s</span>
+                      :</v-list-item-title
+                    >
+                    {{ property.details.garages }}
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item class="mb-3">
+                  <v-list-item-content class="  text-capitalize">
+                    <v-list-item-title class="text-body-1   font-weight-medium"
+                      >Price :</v-list-item-title
+                    >
+                    $
+                    {{
+                      numberWithCommas(property.details.price * currencyRate)
+                    }}
+                    {{ activeCurrency }}
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item class="mb-3">
+                  <v-list-item-content class="  text-capitalize">
+                    <v-list-item-title class="text-body-1   font-weight-medium"
+                      >Property Status :</v-list-item-title
+                    >
+                    For {{ property.details.propertyFor }}
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item v-if="property.details.rentType" class="mb-3">
+                  <v-list-item-content class="  text-capitalize">
+                    <v-list-item-title class="text-body-1   font-weight-medium"
+                      >Rent Type :</v-list-item-title
+                    >
+                    {{ property.details.rentType }}
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item class="mb-3">
+                  <v-list-item-content class="  text-capitalize">
+                    <v-list-item-title class="text-body-1   font-weight-medium"
+                      >Size :</v-list-item-title
+                    >
+                    {{ property.details.size }} sq. ft.
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item v-if="property.details.propertyId" class="mb-3">
+                  <v-list-item-content class="  text-capitalize">
+                    <v-list-item-title class="text-body-1   font-weight-medium">
+                     MLS ID :</v-list-item-title
+                    >
+                    {{ property.details.propertyId }}
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item class="mb-3" v-if="property.featured">
+                  <v-list-item-content class="  text-capitalize">
+                    <v-list-item-title class="text-body-1   font-weight-medium"
+                      >Featured :</v-list-item-title
+                    >
+                    {{ `${property.featured}` }}
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item class="mb-3" v-if="property.verified">
+                  <v-list-item-content class="  text-capitalize ">
+                    <v-list-item-title class="text-body-1 font-weight-medium"
+                      >Verified :</v-list-item-title
+                    >
+                    {{ property.verified }}
+                  </v-list-item-content>
+                </v-list-item>
               </v-list-item-group>
             </v-list>
           </div>
-          <v-divider class="mt-2 mb-4"></v-divider>
+          <v-divider class="mt-1 mb-6"></v-divider>
           <div :class="{ 'mb-5': $vuetify.theme.dark }">
             <p class="text-h6">Amenities</p>
 
             <v-list dense flat :class="{ 'py-4': $vuetify.theme.dark }">
               <v-list-item-group :color="iconColor" class="amendities-grid">
-                <v-list-item v-for="(item, i) in property.amenities" :key="i">
+                <v-list-item
+                  v-for="(item, i) in property.amenities"
+                  :key="i"
+                  class="mb-3"
+                >
                   <v-list-item-icon>
                     <v-icon v-text="item.icon" :color="iconColor"></v-icon>
                   </v-list-item-icon>
@@ -220,26 +314,26 @@
               </v-list-item-group>
             </v-list>
           </div>
-          <v-divider class="mt-2 mb-4"></v-divider>
+          <v-divider class="mt-1 mb-6"></v-divider>
 
-          <div>
+          <div v-if="property.tours.virtualTour">
             <p class="text-h6">Virtual Tour</p>
             <iframe
               width="100%"
-              height="480"
-              src="https://my.matterport.com/show/?m=a8wno1TmcYb"
+              height="430"
+              :src="property.tours.virtualTour"
               frameborder="0"
               allowfullscreen
               allow="xr-spatial-tracking"
             ></iframe>
           </div>
-          <v-divider class="mt-2 mb-4"></v-divider>
-          <div>
+          <v-divider v-if="property.tours.youtube" class="mt-6 mb-6"></v-divider>
+          <div  v-if="property.tours.youtube">
             <p class="text-h6 ">Video</p>
             <iframe
-              height="480"
+              height="430"
               width="100%"
-              src="https://www.youtube.com/embed/oiM0o1gop2Y"
+              :src="`https://www.youtube.com/embed/${property.tours.youtube}`"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
@@ -275,9 +369,11 @@
                 {{ uploader["display name"] }}
                 <VerifiedSymbol role="realtor" />
               </nuxt-link>
-              <a :href="`mailto:${uploader['email']}`" class="text-subtitle-1">{{
-                uploader["email"]
-              }}</a>
+              <a
+                :href="`mailto:${uploader['email']}`"
+                class="text-subtitle-1"
+                >{{ uploader["email"] }}</a
+              >
               <a
                 target="_blank"
                 rel="nofollow noopener"
@@ -286,7 +382,7 @@
                 >{{ formattedNumber }}</a
               >
             </div>
-            <v-divider class="mt-2 mb-4"></v-divider>
+            <v-divider class="my-3"></v-divider>
             <div class="d-flex justify-center">
               <a
                 target="_blank"
@@ -325,7 +421,7 @@
                 </v-btn>
               </a>
             </div>
-            <v-divider class="mt-2 mb-4"></v-divider>
+            <v-divider class="my-3"></v-divider>
             <v-form class="mt-6" @submit.prevent="">
               <v-text-field
                 outlined

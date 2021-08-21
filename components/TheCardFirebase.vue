@@ -16,7 +16,7 @@
           Featured
         </v-chip>
         <v-chip class="text-uppercase" color="green accent-4" small label dark>
-          For  {{ property[0].cardDetails.status }}
+          For  {{ property[0].details.propertyFor }}
         </v-chip>
       </v-img>
       <div>
@@ -28,12 +28,13 @@
         <v-card-subtitle class="pb-4 primary-green">
           <v-icon :color="iconColor">mdi-map-marker mdi-18px</v-icon>
           <!-- {{ card.parish }} -->
-          {{ property[0].cardDetails.location }}
+          {{ property[0].details.community }}, 
+          {{ property[0].details.parish }}
         </v-card-subtitle>
 
         <v-card-text class=" text-uppercase section-titles-Subtitle grey--text">
           <!--   {{ card.realEstateType }} -->
-          {{ property[0].cardDetails.type }}
+          {{ property[0].details.propertyType }}
         </v-card-text>
 
         <div
@@ -44,23 +45,23 @@
               >mdi-ruler-square mdi-flip-v mdi-18px</v-icon
             >
             <!--    {{ card.squareMeters }} -->
-            {{ shortenNumber(property[0].cardDetails.size * 1) }}
+            {{ shortenNumber(property[0].details.size * 1) }}
             ft<sup>2</sup>
           </p>
           <p>
             <v-icon :color="iconColor">mdi-bed mdi-18px</v-icon>
             <!--  {{ card.beds }} -->
-            {{ property[0].cardDetails.bedrooms }}
+            {{ property[0].details.bedrooms }}
           </p>
           <p>
             <v-icon :color="iconColor">mdi-shower-head mdi-18px</v-icon>
             <!--   {{ card.bathroom }} -->
-            {{ property[0].cardDetails.bathrooms }}
+            {{ property[0].details.bathrooms }}
           </p>
           <p>
             <v-icon :color="iconColor">mdi-currency-usd mdi-18px</v-icon>
 
-            {{ shortenNumber(property[0].cardDetails.price * currencyRate) }}
+            {{ shortenNumber(property[0].details.price * currencyRate) }}
           </p>
         </div>
       </div>

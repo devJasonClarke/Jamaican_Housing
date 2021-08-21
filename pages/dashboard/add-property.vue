@@ -102,18 +102,18 @@
           </v-stepper-content>
 
           <v-stepper-content step="2">
-            {{ `Property Type ${property.details[0].value}` }} <br />
-            {{ `Size ${property.details[1].value}` }} <br />
-            {{ `Price ${property.details[2].value}` }} <br />
-            {{ `Status ${property.details[3].value}` }} <br />
+            {{ `Property Type ${property.details.propertyType}` }} <br />
+            {{ `Size ${property.details.size}` }} <br />
+            {{ `Price ${property.details.price}` }} <br />
+            {{ `Property For ${property.details.propertyFor}` }} <br />
+            {{ `Rent Type ${property.details.rentType}` }} <br />
 
-            {{ `Parish ${property.details[4].value}` }} <br />
-            {{ `Community ${property.details[5].value}` }} <br />
-            {{ `Bed Rooms ${property.details[6].value}` }} <br />
-            {{ `Bath Rooms ${property.details[7].value}` }} <br />
-            {{ `Garages ${property.details[8].value}` }} <br />
-            {{ `Rent Type ${property.details[9].value}` }} <br />
-            {{ `Property Id ${property.details[10].value}` }} <br />
+            {{ `Parish ${property.details.parish}` }} <br />
+            {{ `Community ${property.details.community}` }} <br />
+            {{ `Bed Rooms ${property.details.bedrooms}` }} <br />
+            {{ `Bath Rooms ${property.details.bathrooms}` }} <br />
+            {{ `Garages ${property.details.garages}` }} <br />
+            {{ `Property Id ${property.details.propertyId}` }} <br />
 
             <v-container>
               <p class="text-h6 pb-6">
@@ -130,7 +130,7 @@
                       outlined
                       dense
                       label="Property Type *"
-                      v-model="property.details[0].value"
+                      v-model="property.details.propertyType"
                       :items="realEstateType"
                       color="green"
                       item-color="green"
@@ -143,7 +143,7 @@
                       dense
                       label="Size *"
                       type="number"
-                      v-model="property.details[1].value"
+                      v-model="property.details.size"
                       :color="iconColor"
                       suffix="Square Feet"
                       :rules="amountRules"
@@ -157,7 +157,7 @@
                       type="number"
                       prefix="$"
                       suffix="JMD"
-                      v-model="property.details[2].value"
+                      v-model="property.details.price"
                       :color="iconColor"
                       :rules="amountRules"
                     ></v-text-field
@@ -167,7 +167,7 @@
                       outlined
                       dense
                       label="Property For *"
-                      v-model="property.details[3].value"
+                      v-model="property.details.propertyFor"
                       :items="status"
                       color="green"
                       item-color="green"
@@ -178,13 +178,13 @@
                   <v-col
                     cols="12"
                     sm="6"
-                    v-if="property.details[3].value === 'Rent'"
+                    v-if="property.details.propertyFor === 'Rent'"
                   >
                     <v-select
                       outlined
                       dense
                       label="How do you rent your property *"
-                      v-model="property.details[9].value"
+                      v-model="property.details.rentType"
                       :items="rentType"
                       color="green"
                       item-color="green"
@@ -197,7 +197,7 @@
                       outlined
                       dense
                       label="Parish"
-                      v-model="property.details[4].value"
+                      v-model="property.details.parish"
                       :items="parishes"
                       color="green"
                       item-color="green"
@@ -211,7 +211,7 @@
                       dense
                       label="Community"
                       required
-                      v-model="property.details[5].value"
+                      v-model="property.details.community"
                       :color="iconColor"
                       :rules="nameRules"
                     ></v-text-field
@@ -224,7 +224,7 @@
                       label="Number of Bed Rooms"
                       required
                       type="number"
-                      v-model="property.details[6].value"
+                      v-model="property.details.bedrooms"
                       :color="iconColor"
                       :rules="amountRules"
                     ></v-text-field
@@ -236,7 +236,7 @@
                       label="Number of Bath Rooms"
                       required
                       type="number"
-                      v-model="property.details[7].value"
+                      v-model="property.details.bathrooms"
                       :color="iconColor"
                       :rules="amountRules"
                     ></v-text-field
@@ -246,7 +246,7 @@
                     <v-text-field
                       outlined
                       dense
-                      v-model="property.details[8].value"
+                      v-model="property.details.garages"
                       label="Number of Garages"
                       type="number"
                       :color="iconColor"
@@ -257,8 +257,9 @@
                     <v-text-field
                       outlined
                       dense
-                      label="Property ID (optional)"
-                      v-model="property.details[10].value"
+                      label="
+Multiple Listing Service ID (optional)"
+                      v-model="property.details.propertyId"
                       :color="iconColor"
                     ></v-text-field
                   ></v-col>
@@ -374,11 +375,11 @@
                       outlined
                       dense
                       v-model="property.tours.virtualTour"
-                      label="Virtual Tour ID"
+                      label="Virtual Tour URL"
                       required
                       :color="iconColor"
                       counter
-                      maxlength="11"
+                      maxlength="80"
                     ></v-text-field
                   ></v-col>
 
@@ -448,19 +449,19 @@ export default {
           name: "",
           description: ""
         },
-        details: [
-          { title: "Property Type", value: "" },
-          { title: "Size", value: null },
-          { title: "Price", value: null },
-          { title: "Status", value: "" },
-          { title: "Parish", value: "" },
-          { title: "Community", value: "" },
-          { title: "Bed Rooms", value: null },
-          { title: "Bath Rooms", value: null },
-          { title: "Garages", value: null },
-          { title: "Rent Type", value: "" },
-          { title: "Property Id", value: "" }
-        ],
+        details: {
+          propertyType: "",
+          size: null,
+          price: null,
+          propertyFor: "",
+          parish: "",
+          community: "",
+          bedrooms: null,
+          bathrooms: null,
+          garages: null,
+          rentType: "",
+          propertyId: ""
+        },
         amenities: [],
         tours: {
           youtube: "",
@@ -486,7 +487,7 @@ export default {
         { title: "Water Tank", icon: "mdi-water" }
       ],
       status: ["Rent", "Sale"],
-      rentType: ["Per night", "Per month"]
+      rentType: ["Per Night", "Per Month"]
     };
   },
   methods: {
@@ -541,20 +542,12 @@ export default {
         await this.$fire.firestore
           .collection("properties")
           .add({
-            price: this.property.details[2].value,
-            parish: this.property.details[4].value,
-            type: this.property.details[0].value,
-            bedrooms: this.property.details[6].value,
+            price: this.property.details.price,
+            parish: this.property.details.parish,
+            type: this.property.details.propertyType,
+            bedrooms: this.property.details.bedrooms,
             featured: false,
-            cardDetails: {
-              location: `${this.property.details[5].value}, ${this.property.details[4].value}`,
-              type: this.property.details[0].value,
-              bedrooms: this.property.details[6].value,
-              bathrooms: this.property.details[7].value,
-              size: this.property.details[1].value,
-              price: this.property.details[2].value,
-              status: this.property.details[3].value
-            },
+            verified: false,
 
             description: this.property.description,
             details: this.property.details,
