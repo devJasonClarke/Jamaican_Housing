@@ -23,8 +23,8 @@
         <v-col cols="12" md="8" v-else>
           <p class="green--text text--accent-4 text-capitalize">
             <v-icon :color="iconColor">mdi-map-marker mdi-24px</v-icon>
-            {{ property.details[7].value }},
-            {{ property.details[6].value }}
+            {{ property.details[5].value }},
+            {{ property.details[4].value }}
           </p>
           <h1 class="d-flex justify-space-between text-capitalize">
             <span>
@@ -65,25 +65,25 @@
               <v-icon :color="iconColor"
                 >mdi-ruler-square mdi-flip-v mdi-18px</v-icon
               >
-              {{ property.details[2].value }} m<sup>2</sup>
+              {{ shortenNumber(property.details[1].value * 1) }} sq. ft
             </p>
             <p>
               <v-icon :color="iconColor">mdi-bed mdi-18px</v-icon>
-              {{ property.details[8].value }} Bedroom<span
-                v-if="property.details[8].value > 1"
+              {{ property.details[7].value }} Bedroom<span
+                v-if="property.details[7].value > 1"
                 >s</span
               >
             </p>
             <p>
               <v-icon :color="iconColor">mdi-shower-head mdi-18px</v-icon>
-              {{ property.details[9].value }} Bathroom
+              {{ property.details[8].value }} Bathroom
             </p>
 
             <p>
               <v-icon :color="iconColor">mdi-cash-multiple mdi-18px</v-icon>
               <span v-for="(detail, i) in details" :key="`icon ${i}`">
                 <span v-if="detail.price" :class="{ 'd-none': !detail.price }">
-                  {{ shortenMoney(property.details[3].value * currencyRate) }}
+                  {{ shortenNumber(property.details[2].value * currencyRate) }}
                   {{ activeCurrency }}
                 </span>
               </span>
@@ -163,31 +163,39 @@
                 :color="iconColor"
                 class="amendities-grid"
               >
-                <v-list-item v-for="(detail, i) in property.details" :key="i">
-                  <v-list-item-content class="mb-3"  v-if="detail.value">
+                <div v-for="(detail, i) in property.details" :key="i">
+                  <v-list-item v-if="detail.value">
+                    <v-list-item-content class="mb-3" v-if="detail.value">
+                      <v-list-item-title
+                        class="text-body-1 text-capitalize  font-weight-medium"
+                        v-text="`${detail.title}`"
+                      ></v-list-item-title>
 
-                    <v-list-item-title
-                      class="text-body-1 text-capitalize  font-weight-medium"
-                      v-text="`${detail.title}`"
-                     
-                    ></v-list-item-title>
-
-                    <v-list-item-title
-                      class="text-body-1 mt-1 font-weight-regular"
-                      v-if="detail.title === 'Price'"
-                    >
-                      <!-- {{ country.currencySymbol }}  -->
-                      $ {{ numberWithCommas(detail.value * currencyRate) }}
-                      {{ activeCurrency }}
-                    </v-list-item-title>
-                    <v-list-item-title
-                      class="text-body-1 mt-1 font-weight-regular"
-                      v-else
-                    >
-                      {{ detail.value }}
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
+                      <v-list-item-title
+                        class="text-body-1 mt-1 font-weight-regular"
+                        v-if="detail.title === 'Price'"
+                      >
+                        <!-- {{ country.currencySymbol }}  -->
+                        $ {{ numberWithCommas(detail.value * currencyRate) }}
+                        {{ activeCurrency }}
+                      </v-list-item-title>
+                      <v-list-item-title
+                        class="text-body-1 mt-1 font-weight-regular"
+                        v-else-if="detail.title === 'Size'"
+                      >
+                        <!-- {{ country.currencySymbol }}  -->
+                       {{detail.value}} sq. ft.
+                      
+                      </v-list-item-title>
+                      <v-list-item-title
+                        class="text-body-1 mt-1 font-weight-regular"
+                        v-else
+                      >
+                        {{ detail.value }}
+                      </v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </div>
               </v-list-item-group>
             </v-list>
           </div>
@@ -264,11 +272,11 @@
 
             <div class="text-center d-flex flex-column">
               <nuxt-link :to="{ name: 'profile' }" class="text-h6  mt-4 mb-0">
-                {{ owner["display name"] }}
+                {{ uploader["display name"] }}
                 <VerifiedSymbol role="realtor" />
               </nuxt-link>
-              <a :href="`mailto:${owner['email']}`" class="text-subtitle-1">{{
-                owner["email"]
+              <a :href="`mailto:${uploader['email']}`" class="text-subtitle-1">{{
+                uploader["email"]
               }}</a>
               <a
                 target="_blank"
@@ -464,9 +472,9 @@ export default {
           name: "",
           description: ""
         },
-        owner: "sss"
+        uploader: "sss"
       },
-      owner: {},
+      uploader: {},
       card: {
         title: "Sunny Private Studio Apartment",
         parish: "St. James",
@@ -545,12 +553,12 @@ export default {
     async getUser() {
       await this.$fire.firestore
         .collection("users")
-        .doc(this.property.owner)
+        .doc(this.property.uploader)
         .get()
         .then(doc => {
           if (doc.exists) {
             console.log("Document data exits:", doc.data());
-            this.owner = doc.data();
+            this.uploader = doc.data();
             console.log(doc.data());
           } else {
             // doc.data() will be undefined in this case
@@ -569,7 +577,7 @@ export default {
       this.likeLoading = !this.likeLoading;
       setTimeout(() => (this.likeLoading = !this.likeLoading), 1000);
     },
-    shortenMoney(num) {
+    shortenNumber(num) {
       num = Math.round((num + Number.EPSILON) * 100) / 100;
 
       if (num < 1000) {
@@ -629,7 +637,7 @@ export default {
 
 <style>
 .icons-max-width {
-  max-width: 450px;
+  max-width: 470px;
 }
 .amendities-grid {
   display: grid;

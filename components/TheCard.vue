@@ -48,7 +48,7 @@
         <p>
           <v-icon :color="iconColor">mdi-currency-usd mdi-18px</v-icon>
 
-          {{ shortenMoney(card.price * currencyRate) }}
+          {{ shortenNumber(card.price * currencyRate) }}
         </p>
       </div>
     </div>
@@ -70,7 +70,7 @@ export default {
     };
   },
   methods: {
-    shortenMoney(num) {
+    shortenNumber(num) {
       num = Math.round((num + Number.EPSILON) * 100) / 100;
 
       if (num < 1000) {

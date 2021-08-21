@@ -63,7 +63,7 @@
               <v-icon :color="iconColor">mdi-cash-multiple mdi-18px</v-icon>
               <span v-for="(detail, i) in details" :key="`icon ${i}`">
                 <span v-if="detail.price" :class="{ 'd-none': !detail.price }">
-                  {{ shortenMoney(detail.price * currencyRate) }}
+                  {{ shortenNumber(detail.price * currencyRate) }}
                   {{ activeCurrency }}
                 </span>
               </span>
@@ -471,7 +471,7 @@ export default {
       this.likeLoading = !this.likeLoading;
       setTimeout(() => (this.likeLoading = !this.likeLoading), 1000);
     },
-    shortenMoney(num) {
+    shortenNumber(num) {
       num = Math.round((num + Number.EPSILON) * 100) / 100;
 
       if (num < 1000) {

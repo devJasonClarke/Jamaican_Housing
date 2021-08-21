@@ -102,17 +102,19 @@
           </v-stepper-content>
 
           <v-stepper-content step="2">
-            {{ property.details[0].value }}
-            {{ property.details[1].value }}
-            {{ property.details[2].value }}
-            {{ property.details[3].value }}
-            {{ property.details[4].value }}
-            {{ property.details[5].value }}
-            {{ property.details[6].value }}
-            {{ property.details[7].value }}
-            {{ property.details[8].value }}
-            {{ property.details[9].value }}
-            {{ property.details[10].value }}
+            {{ `Property Type ${property.details[0].value}` }} <br />
+            {{ `Size ${property.details[1].value}` }} <br />
+            {{ `Price ${property.details[2].value}` }} <br />
+            {{ `Status ${property.details[3].value}` }} <br />
+
+            {{ `Parish ${property.details[4].value}` }} <br />
+            {{ `Community ${property.details[5].value}` }} <br />
+            {{ `Bed Rooms ${property.details[6].value}` }} <br />
+            {{ `Bath Rooms ${property.details[7].value}` }} <br />
+            {{ `Garages ${property.details[8].value}` }} <br />
+            {{ `Rent Type ${property.details[9].value}` }} <br />
+            {{ `Property Id ${property.details[10].value}` }} <br />
+
             <v-container>
               <p class="text-h6 pb-6">
                 Please enter your property details
@@ -123,7 +125,6 @@
                 ref="detailsForm"
               >
                 <v-row>
-               
                   <v-col cols="12" sm="6">
                     <v-select
                       outlined
@@ -183,7 +184,7 @@
                       outlined
                       dense
                       label="How do you rent your property *"
-                      v-model="property.details[4].value"
+                      v-model="property.details[9].value"
                       :items="rentType"
                       color="green"
                       item-color="green"
@@ -196,7 +197,7 @@
                       outlined
                       dense
                       label="Parish"
-                      v-model="property.details[5].value"
+                      v-model="property.details[4].value"
                       :items="parishes"
                       color="green"
                       item-color="green"
@@ -210,7 +211,7 @@
                       dense
                       label="Community"
                       required
-                      v-model="property.details[6].value"
+                      v-model="property.details[5].value"
                       :color="iconColor"
                       :rules="nameRules"
                     ></v-text-field
@@ -223,7 +224,7 @@
                       label="Number of Bed Rooms"
                       required
                       type="number"
-                      v-model="property.details[7].value"
+                      v-model="property.details[6].value"
                       :color="iconColor"
                       :rules="amountRules"
                     ></v-text-field
@@ -235,7 +236,7 @@
                       label="Number of Bath Rooms"
                       required
                       type="number"
-                      v-model="property.details[8].value"
+                      v-model="property.details[7].value"
                       :color="iconColor"
                       :rules="amountRules"
                     ></v-text-field
@@ -245,14 +246,14 @@
                     <v-text-field
                       outlined
                       dense
-                      v-model="property.details[9].value"
+                      v-model="property.details[8].value"
                       label="Number of Garages"
                       type="number"
                       :color="iconColor"
                       :rules="amountRules"
                     ></v-text-field
                   ></v-col>
-                     <v-col cols="12" sm="6">
+                  <v-col cols="12" sm="6">
                     <v-text-field
                       outlined
                       dense
@@ -452,12 +453,12 @@ export default {
           { title: "Size", value: null },
           { title: "Price", value: null },
           { title: "Status", value: "" },
-          { title: "Rent Type", value: "" },
           { title: "Parish", value: "" },
           { title: "Community", value: "" },
           { title: "Bed Rooms", value: null },
           { title: "Bath Rooms", value: null },
           { title: "Garages", value: null },
+          { title: "Rent Type", value: "" },
           { title: "Property Id", value: "" }
         ],
         amenities: [],
@@ -540,16 +541,26 @@ export default {
         await this.$fire.firestore
           .collection("properties")
           .add({
-            price: this.property.details[3].value,
-            parish: this.property.details[6].value,
-            type: this.property.details[1].value,
-            bedrooms: this.property.details[8].value,
+            price: this.property.details[2].value,
+            parish: this.property.details[4].value,
+            type: this.property.details[0].value,
+            bedrooms: this.property.details[6].value,
+            featured: false,
+            cardDetails: {
+              location: `${this.property.details[5].value}, ${this.property.details[4].value}`,
+              type: this.property.details[0].value,
+              bedrooms: this.property.details[6].value,
+              bathrooms: this.property.details[7].value,
+              size: this.property.details[1].value,
+              price: this.property.details[2].value,
+              status: this.property.details[3].value
+            },
 
             description: this.property.description,
             details: this.property.details,
             amenities: this.property.amenities,
             tours: this.property.tours,
-            owner: this.user.uid,
+            uploader: this.user.uid,
             timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp()
           })
           .then(docRef => {

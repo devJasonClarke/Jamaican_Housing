@@ -1,6 +1,5 @@
 <template>
   <div class="">
-    {{ property[1] }}
     <v-card
       nuxt
       :to="{ name: 'property-slug', params: { slug: property[1] } }"
@@ -13,11 +12,11 @@
         height="200"
         class="pa-3"
       >
-        <v-chip class="text-uppercase" color="orange accent-4" small label dark>
+        <v-chip class="text-uppercase" color="orange accent-4" small label dark v-if="property[0].featured">
           Featured
         </v-chip>
         <v-chip class="text-uppercase" color="green accent-4" small label dark>
-          For Rent
+          For  {{ property[0].cardDetails.status }}
         </v-chip>
       </v-img>
       <div>
@@ -29,13 +28,12 @@
         <v-card-subtitle class="pb-4 primary-green">
           <v-icon :color="iconColor">mdi-map-marker mdi-18px</v-icon>
           <!-- {{ card.parish }} -->
-          {{ property[0].details.community }},
-          {{ property[0].details.parish }}
+          {{ property[0].cardDetails.location }}
         </v-card-subtitle>
 
         <v-card-text class=" text-uppercase section-titles-Subtitle grey--text">
           <!--   {{ card.realEstateType }} -->
-          {{ property[0].details.propertyType }}
+          {{ property[0].cardDetails.type }}
         </v-card-text>
 
         <div
@@ -46,23 +44,23 @@
               >mdi-ruler-square mdi-flip-v mdi-18px</v-icon
             >
             <!--    {{ card.squareMeters }} -->
-            {{ property[0].details.size }}
-            m<sup>2</sup>
+            {{ shortenNumber(property[0].cardDetails.size * 1) }}
+            ft<sup>2</sup>
           </p>
           <p>
             <v-icon :color="iconColor">mdi-bed mdi-18px</v-icon>
             <!--  {{ card.beds }} -->
-            {{ property[0].details.bedRooms }}
+            {{ property[0].cardDetails.bedrooms }}
           </p>
           <p>
             <v-icon :color="iconColor">mdi-shower-head mdi-18px</v-icon>
             <!--   {{ card.bathroom }} -->
-            {{ property[0].details.bathRooms }}
+            {{ property[0].cardDetails.bathrooms }}
           </p>
           <p>
             <v-icon :color="iconColor">mdi-currency-usd mdi-18px</v-icon>
 
-            {{ shortenMoney(property[0].details.price * currencyRate) }}
+            {{ shortenNumber(property[0].cardDetails.price * currencyRate) }}
           </p>
         </div>
       </div>
@@ -85,7 +83,7 @@ export default {
     };
   },
   methods: {
-    shortenMoney(num) {
+    shortenNumber(num) {
       num = Math.round((num + Number.EPSILON) * 100) / 100;
 
       if (num < 1000) {

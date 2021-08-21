@@ -69,7 +69,7 @@ export default {
         let properties = [];
         this.loading = true;
         db.collection("properties")
-          .where("owner", "==", user.uid)
+          .where("uploader", "==", user.uid)
 
           .onSnapshot(
             querySnapshot => {
@@ -117,7 +117,7 @@ export default {
     })
   },
   methods: {
-    shortenMoney(num) {
+    shortenNumber(num) {
       num = Math.round((num + Number.EPSILON) * 100) / 100;
 
       if (num < 1000) {
