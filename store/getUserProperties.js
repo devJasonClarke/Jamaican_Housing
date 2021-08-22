@@ -28,8 +28,9 @@ export const actions = {
         .limit(1)
         .onSnapshot(
           querySnapshot => {
-            theLastVisible =
-              querySnapshot.docs[querySnapshot.docs.length - 1].id;
+            theLastVisible = querySnapshot.docs[
+              querySnapshot.docs.length - 1
+            ];
             console.log("last", theLastVisible);
 
             propertiesArray = [];
@@ -72,8 +73,8 @@ export const actions = {
     db.collection("properties")
       .where("uploader", "==", rootState.authentication.user.uid)
       .orderBy("timestamp", "desc")
+      .startAfter(theStateLastVisible)
       .limit(1)
-      .startAt(theStateLastVisible)
       .onSnapshot(
         querySnapshot => {
           var theLastVisible =
