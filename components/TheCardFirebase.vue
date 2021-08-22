@@ -18,7 +18,7 @@
           small
           label
           dark
-          v-if="property[0].featured"
+          v-if="property[0].verified"
         >
           Verified Property
         </v-chip>
