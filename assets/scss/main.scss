@@ -188,3 +188,11 @@ input[type="number"] {
 .page-leave-to {
   opacity: 0;
 }
+
+.error-background{
+  background-image: linear-gradient(rgba(0, 0, 0,.7) , rgba(0, 0, 0, 0.7)), url('../images/houses/7.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: calc(100vh - 64px) ;
+}
