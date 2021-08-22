@@ -30,7 +30,7 @@
             <span>
               {{ property.description.name }}
 
-              <v-tooltip color="blue" bottom>
+              <v-tooltip color="blue" bottom v-if="property.verified">
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon color="blue" dark v-bind="attrs" v-on="on">
                     mdi-check-decagram mdi-36px

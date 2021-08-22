@@ -12,11 +12,34 @@
         height="200"
         class="pa-3"
       >
-        <v-chip class="text-uppercase" color="orange accent-4" small label dark v-if="property[0].featured">
+        <v-chip
+          class="text-uppercase mb-2 mr-1"
+          color="blue"
+          small
+          label
+          dark
+          v-if="property[0].featured"
+        >
+          Verified Property
+        </v-chip>
+        <v-chip
+          class="text-uppercase mb-2 mr-1"
+          color="orange accent-4"
+          small
+          label
+          dark
+          v-if="property[0].featured"
+        >
           Featured
         </v-chip>
-        <v-chip class="text-uppercase" color="green accent-4" small label dark>
-          For  {{ property[0].details.propertyFor }}
+        <v-chip
+          class="text-uppercase mb-2 mr-1"
+          color="green accent-4"
+          small
+          label
+          dark
+        >
+          For {{ property[0].details.propertyFor }}
         </v-chip>
       </v-img>
       <div>
@@ -28,7 +51,7 @@
         <v-card-subtitle class="pb-4 primary-green">
           <v-icon :color="iconColor">mdi-map-marker mdi-18px</v-icon>
           <!-- {{ card.parish }} -->
-          {{ property[0].details.community }}, 
+          {{ property[0].details.community }},
           {{ property[0].details.parish }}
         </v-card-subtitle>
 

@@ -1,17 +1,13 @@
 <template>
-  <div class="">
-    <div v-if="errorMessage">
-      <v-snackbar v-model="error" :timeout="20000" left>
-        {{ errorMessage }}
+  <v-snackbar v-if="errorMessage" v-model="error" :timeout="20000" left>
+    {{ errorMessage }}
 
-        <template v-slot:action="{ attrs }">
-          <v-btn color="pink" text v-bind="attrs" @click="resetError">
-            Close
-          </v-btn>
-        </template>
-      </v-snackbar>
-    </div>
-  </div>
+    <template v-slot:action="{ attrs }">
+      <v-btn color="pink" text v-bind="attrs" @click="resetError">
+        Close
+      </v-btn>
+    </template>
+  </v-snackbar>
 </template>
 
 <script>
@@ -25,8 +21,12 @@ export default {
     };
   },
   methods: {
+    ...mapActions({
+      removeError: "errors/removeError"
+    }),
     resetError() {
       this.error = false;
+      this.removeError();
     }
   },
   computed: {
@@ -37,6 +37,12 @@ export default {
   watch: {
     errorMessage: function() {
       this.error = true;
+    },
+    error: function() {
+      if (this.error === false) {
+        //    console.log('Remove watcher')
+        this.removeError();
+      }
     }
   }
 };

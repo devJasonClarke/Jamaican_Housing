@@ -40,13 +40,21 @@
           dark
           small
           color="green accent-4"
-          @click="previous"
+          @click="$vuetify.goTo('#top')"
         >
           <v-icon dark>
             mdi-chevron-left
           </v-icon>
         </v-btn>
-        <v-btn class="mx-2" fab dark small color="green accent-4" @click="next">
+        <v-btn
+          class="mx-2"
+          fab
+          :dark="paginateNext.dark"
+          small
+          color="green accent-4"
+          @click="next"
+          :disabled="paginateNext.disabled"
+        >
           <v-icon dark>
             mdi-chevron-right
           </v-icon>
@@ -61,52 +69,119 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   async fetch() {
-    this.setLoading(true);
-
     console.log("fetch");
-    await this.$fireModule.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.user = user;
-        console.log(user);
-
-        this.getTheProperties(user);
-      } else {
-        this.setLoading(false);
-        // User is signed out
-        // ...
-      }
-    });
+    await this.loadProperties();
   },
 
   data() {
     return {
-      // loading: false,
-      //  properties: [],
-      //  loading: true,
-      user: {},
+      loading: false,
+      properties: [],
+      lastVisible: null,
+      loading: true,
+      paginateNext: {
+        disabled: false,
+        dark: true
+      },
       iconColor: "rgba(0, 200, 83, 0.5)"
     };
   },
   layout: "dashboard",
   computed: {
-    target() {
-      const value = "#top";
-      return value;
-    },
     ...mapGetters({
       featuredProperties: "properties/featuredProperties",
       user: "authentication/user",
-      currencyRate: "api/currencyRate",
-      properties: "getUserProperties/properties",
-      loading: "getUserProperties/loading"
+      currencyRate: "api/currencyRate"
     })
   },
   methods: {
     ...mapActions({
-      getTheProperties: "getUserProperties/getTheProperties",
-      getTheNextProperties: "getUserProperties/next",
-      setLoading: "getUserProperties/setLoading"
+      logError: "errors/logError"
     }),
+    async loadProperties() {
+      await this.$fireModule.auth().onAuthStateChanged(user => {
+        this.loading = true;
+        if (user) {
+          console.log("lastVisible");
+          console.log(this.lastVisible);
+
+          const ref = this.$fire.firestore
+            .collection("properties")
+            .where("uploader", "==", user.uid)
+            .orderBy("timestamp", "desc")
+            .startAfter(
+              this.lastVisible || {
+                parish: "St. Ann",
+                details: {
+                  propertyFor: "Sale",
+                  community: "Big Mango",
+                  garages: "0",
+                  bathrooms: "0",
+                  propertyId: "",
+                  bedrooms: "0",
+                  rentType: "",
+                  price: "100000000",
+                  parish: "St. Ann",
+                  size: "1000",
+                  propertyType: "Farm/Agriculture"
+                },
+                timestamp: { seconds: 1629599693, nanoseconds: 943000000 },
+                tours: { virtualTour: "", youtube: "" },
+                uploader: "Zm29pU2QULXXuFgQrNB2s5bHXTq1",
+                price: "100000000",
+                verified: false,
+                amenities: [
+                  { title: "Wifi", icon: "mdi-wifi" },
+                  { title: "Furnished", icon: "mdi-sofa" },
+                  { title: "24 Hour Security", icon: "mdi-cctv" },
+                  { title: "Swimming Pool", icon: "mdi-pool" }
+                ],
+                bedrooms: "0",
+                type: "Farm/Agriculture",
+                featured: false,
+                description: {
+                  name: "Jason Clarke Residential",
+                  description: "Jason Clarke Residential"
+                }
+              }
+            )
+            .limit(2);
+
+          ref.get().then(
+            querySnapshot => {
+              this.lastVisible =
+                querySnapshot.docs[querySnapshot.docs.length - 1];
+
+              if (querySnapshot.empty) {
+                console.log("Empty Rass");
+                this.paginateNext = {
+                  disabled: true,
+                  dark: false
+                };
+                this.logError("You have no more properties.");
+              }
+
+              querySnapshot.forEach(doc => {
+                this.properties.push([doc.data(), doc.id]);
+              });
+
+              console.log(`Fetch properties ${this.properties}`);
+              this.loading = false;
+              if (this.properties === []) {
+                this.properties = "no properties";
+                this.loading = false;
+              }
+            },
+            error => {
+              console.log("Firebase");
+              console.log(error);
+            }
+          );
+        } else {
+          this.loading = false;
+        }
+      });
+    },
     shortenNumber(num) {
       num = Math.round((num + Number.EPSILON) * 100) / 100;
 
@@ -132,18 +207,13 @@ export default {
         si[i].s
       );
     },
-    previous() {
-      this.loading = true;
-      this.$vuetify.goTo(this.target);
-      setTimeout(() => (this.loading = false), 3000);
-    },
-   next() {
-   
-    this.getTheNextProperties();
+    next() {
+      console.log("next");
+      this.loadProperties();
 
-      /*  this.loading = true;
-      this.$vuetify.goTo(this.target);
-      setTimeout(() => (this.loading = false), 3000); */
+      // this.loading = true;
+      //  this.$vuetify.goTo(this.target);
+      //  setTimeout(() => (this.loading = false), 3000);
     }
   }
 };
