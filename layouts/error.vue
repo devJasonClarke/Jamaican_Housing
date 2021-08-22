@@ -1,13 +1,24 @@
 <template>
-  <v-container class="error-background ma-0 pa-0 d-flex justify-center align-center flex-column text-center" fluid>
+  <v-container
+    class="error-background ma-0 pa-0 d-flex justify-center align-center flex-column text-center"
+    fluid
+  >
     <h1 class="text-h3 text-md-h1 white--text" v-if="error.statusCode === 404">
       {{ pageNotFound }}
     </h1>
-    <h1 class="text-h3 text-md-h1" v-else>
+    <h1 class="text-h3 text-md-h1 white--text" v-else>
       {{ otherError }}
     </h1>
 
-    <v-btn link nuxt :to="{name: 'index'}" flat dark color="green" class="mt-9">
+    <v-btn
+      link
+      nuxt
+      :to="{ name: 'index' }"
+      elevation="0"
+      dark
+      color="green"
+      class="mt-9"
+    >
       Return to home page
     </v-btn>
   </v-container>
@@ -50,5 +61,4 @@ h1 {
 .page-leave-to {
   opacity: 0;
 }
-
 </style>

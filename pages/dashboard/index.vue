@@ -57,39 +57,21 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   async fetch() {
+    this.setLoading(true);
+
     console.log("fetch");
     await this.$fireModule.auth().onAuthStateChanged(user => {
       if (user) {
+        this.user = user;
         console.log(user);
-        const db = this.$fire.firestore;
-        let properties = [];
-        this.loading = true;
-        db.collection("properties")
-          .where("uploader", "==", user.uid)
 
-          .onSnapshot(
-            querySnapshot => {
-              properties = [];
-              querySnapshot.forEach(doc => {
-                properties.push([doc.data(), doc.id]);
-              });
-              this.properties = properties;
-              console.log(`Fetch properties ${properties}`);
-              this.loading = false;
-              if (this.properties === []) {
-                this.properties = "no properties";
-              }
-            },
-            error => {
-              console.log("Firebase");
-              console.log(error);
-            }
-          );
+        this.getTheProperties(user);
       } else {
+        this.setLoading(false);
         // User is signed out
         // ...
       }
@@ -98,9 +80,10 @@ export default {
 
   data() {
     return {
-      loading: false,
-      properties: [],
-      loading: true,
+      // loading: false,
+      //  properties: [],
+      //  loading: true,
+      user: {},
       iconColor: "rgba(0, 200, 83, 0.5)"
     };
   },
@@ -113,10 +96,17 @@ export default {
     ...mapGetters({
       featuredProperties: "properties/featuredProperties",
       user: "authentication/user",
-      currencyRate: "api/currencyRate"
+      currencyRate: "api/currencyRate",
+      properties: "getUserProperties/properties",
+      loading: "getUserProperties/loading"
     })
   },
   methods: {
+    ...mapActions({
+      getTheProperties: "getUserProperties/getTheProperties",
+      getTheNextProperties: "getUserProperties/next",
+      setLoading: "getUserProperties/setLoading"
+    }),
     shortenNumber(num) {
       num = Math.round((num + Number.EPSILON) * 100) / 100;
 
@@ -147,11 +137,13 @@ export default {
       this.$vuetify.goTo(this.target);
       setTimeout(() => (this.loading = false), 3000);
     },
-    next() {
-      console.log("next");
-      this.loading = true;
+   next() {
+   
+    this.getTheNextProperties();
+
+      /*  this.loading = true;
       this.$vuetify.goTo(this.target);
-      setTimeout(() => (this.loading = false), 3000);
+      setTimeout(() => (this.loading = false), 3000); */
     }
   }
 };

@@ -20,7 +20,7 @@
         </v-chip>
       </v-img>
       <div>
-        <v-card-title>
+        <v-card-title class="hyphens">
           <!-- {{ card.title }} -->
           {{ property[0].description.name }}
         </v-card-title>
@@ -126,5 +126,11 @@ export default {
   &:hover {
     transform: scale(1.04);
   }
+}
+.hyphens {
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
 }
 </style>

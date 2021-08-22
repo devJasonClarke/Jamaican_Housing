@@ -197,6 +197,7 @@ export const actions = {
         this.$router.push({ name: "index" });
       })
       .then(() => {
+        commit("getUserProperties/PROPERTIES", [], { root: true });
         commit("LOGOUT");
         commit("LOADING_STATE", false);
       })

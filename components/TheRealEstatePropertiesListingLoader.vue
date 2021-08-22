@@ -11,12 +11,12 @@
         :md="[flexMd ? 6 : 3]"
         class="mb-4"
       >
-        <v-sheet class="pa-3 rounded-lg">
+        <v-card outlined class="pa-3 rounded-lg">
           <v-skeleton-loader
             class="mx-auto "
             type="image,article"
           ></v-skeleton-loader>
-        </v-sheet>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
