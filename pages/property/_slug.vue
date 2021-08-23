@@ -450,7 +450,7 @@
                 outlined
                 name="input-7-4"
                 label="Message *"
-                value="Hi Jason, I am interested in this property."
+                :value="`Hi ${uploader['displayName']}, I am interested in this property.`"
                 :color="iconColor"
               ></v-textarea>
               <v-btn
