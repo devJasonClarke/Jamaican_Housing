@@ -158,6 +158,8 @@ export default {
                   disabled: true,
                   dark: false
                 };
+              }
+              if (querySnapshot.empty && this.properties.length) {
                 this.logError("You have no more properties.");
               }
 
