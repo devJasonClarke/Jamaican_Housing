@@ -75,7 +75,6 @@ export default {
 
   data() {
     return {
-      loading: false,
       properties: [],
       lastVisible: null,
       loading: true,
@@ -100,7 +99,6 @@ export default {
     }),
     async loadProperties() {
       await this.$fireModule.auth().onAuthStateChanged(user => {
-        this.loading = true;
         if (user) {
           console.log("lastVisible");
           console.log(this.lastVisible);
