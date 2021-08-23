@@ -366,7 +366,7 @@
 
             <div class="text-center d-flex flex-column">
               <nuxt-link :to="{ name: 'profile' }" class="text-h6  mt-4 mb-0">
-                {{ uploader["display name"] }}
+                {{ uploader["displayName"] }}
                 <VerifiedSymbol role="realtor" />
               </nuxt-link>
               <a
