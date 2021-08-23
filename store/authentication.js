@@ -49,11 +49,7 @@ export const actions = {
             initials: initials,
             emailVerified: false,
             verified: false,
-            role: {
-              realtor: false,
-              owner: false,
-              admin: false
-            },
+            role: "user",
             realEstateFirm: "",
             socialMedia: [],
             contact: {
@@ -116,11 +112,7 @@ export const actions = {
                   userId: result.user.uid,
                   emailVerified: result.user.emailVerified,
                   verified: false,
-                  verifiedRoles: {
-                    realtor: false,
-                    owner: false,
-                    admin: false
-                  },
+                  role: "user",
                   realEstateFirm: "",
                   socialMedia: [],
                   contact: {

@@ -30,7 +30,7 @@
             <span>
               {{ property.description.name }}
 
-              <v-tooltip color="blue" bottom v-if="property.verified">
+              <v-tooltip color="blue" top v-if="property.verified">
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon color="blue" dark v-bind="attrs" v-on="on">
                     mdi-check-decagram mdi-36px
@@ -367,7 +367,7 @@
             <div class="text-center d-flex flex-column">
               <nuxt-link :to="{ name: 'profile' }" class="text-h6  mt-4 mb-0">
                 {{ uploader["displayName"] }}
-                <VerifiedSymbol role="realtor" />
+                <VerifiedSymbol v-if="uploader['verified']" :role="uploader['role']" />
               </nuxt-link>
               <a
                 :href="`mailto:${uploader['email']}`"
@@ -450,7 +450,7 @@
                 outlined
                 name="input-7-4"
                 label="Message *"
-                :value="`Hi ${uploader['displayName']}, I am interested in this property.`"
+                :value="`Hi ${uploader['firstName'] || uploader['displayName']}, I am interested in this property.`"
                 :color="iconColor"
               ></v-textarea>
               <v-btn
