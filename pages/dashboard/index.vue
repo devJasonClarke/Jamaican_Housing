@@ -4,9 +4,9 @@
     <div v-for="(property, i) in properties" :key="i">
       {{ property[1] }}
     </div>
-    <div>{{properties}}</div>
+    <div>{{ properties }}</div>
     <TheRealEstatePropertiesListingLoader
-      v-if="loading == true"
+      v-if="loading === true"
       title="sale"
     />
     <SectionPadding v-else-if="!properties.length">
@@ -72,18 +72,22 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   async fetch() {
     console.log("fetch");
-     await this.getUserProperties();
+    if (this.properties.length < 1) {
+      await this.loadProperties();
+    } else {
+      this.loading = false;
+    }
   },
 
   data() {
     return {
-      //  properties: [],
+      //    properties: [],
       //  lastVisible: null,
-      //    loading: true,
-      /*    paginateNext: {
+      loading: true,
+      paginateNext: {
         disabled: false,
         dark: true
-      }, */
+      },
       iconColor: "rgba(0, 200, 83, 0.5)"
     };
   },
@@ -94,16 +98,16 @@ export default {
       user: "authentication/user",
       currencyRate: "api/currencyRate",
       properties: "getUserProperties/properties",
-      lastVisible: "getUserProperties/lastVisible",
-      loading: "getUserProperties/loading",
-      paginateNext: "getUserProperties/paginateNext"
+      lastVisible: "getUserProperties/lastVisible"
+      /* loading: "getUserProperties/loading",
+      paginateNext: "getUserProperties/paginateNext" */
     })
   },
   methods: {
     ...mapActions({
       logError: "errors/logError",
-      getUserProperties: 'getUserProperties/getUserProperties',
-      nextProps: 'getUserProperties/next',
+      setUserProperties: "getUserProperties/setUserProperties",
+      setLastVisible: "getUserProperties/setLastVisible"
     }),
     async loadProperties() {
       await this.$fireModule.auth().onAuthStateChanged(user => {
@@ -116,40 +120,7 @@ export default {
             .where("uploader", "==", user.uid)
             .orderBy("timestamp", "desc")
             .startAfter(
-              this.lastVisible || {
-                parish: "St. Ann",
-                details: {
-                  propertyFor: "Sale",
-                  community: "Big Mango",
-                  garages: "0",
-                  bathrooms: "0",
-                  propertyId: "",
-                  bedrooms: "0",
-                  rentType: "",
-                  price: "100000000",
-                  parish: "St. Ann",
-                  size: "1000",
-                  propertyType: "Farm/Agriculture"
-                },
-                timestamp: { seconds: 1629599693, nanoseconds: 943000000 },
-                tours: { virtualTour: "", youtube: "" },
-                uploader: "Zm29pU2QULXXuFgQrNB2s5bHXTq1",
-                price: "100000000",
-                verified: false,
-                amenities: [
-                  { title: "Wifi", icon: "mdi-wifi" },
-                  { title: "Furnished", icon: "mdi-sofa" },
-                  { title: "24 Hour Security", icon: "mdi-cctv" },
-                  { title: "Swimming Pool", icon: "mdi-pool" }
-                ],
-                bedrooms: "0",
-                type: "Farm/Agriculture",
-                featured: false,
-                description: {
-                  name: "Jason Clarke Residential",
-                  description: "Jason Clarke Residential"
-                }
-              }
+              this.lastVisible || {}
             )
             .limit(2);
 
@@ -157,6 +128,9 @@ export default {
             querySnapshot => {
               this.lastVisible =
                 querySnapshot.docs[querySnapshot.docs.length - 1];
+              this.setLastVisible(
+                Object.freeze(querySnapshot.docs[querySnapshot.docs.length - 1])
+              );
 
               if (querySnapshot.empty) {
                 console.log("Empty Rass");
@@ -171,13 +145,14 @@ export default {
 
               querySnapshot.forEach(doc => {
                 console.log(`This Document was fetched ${doc.id}`);
-                this.properties.push([doc.data(), doc.id]);
+                //     this.properties.push([doc.data(), doc.id]);
+                this.setUserProperties([doc.data(), doc.id]);
               });
 
               console.log(`Fetch properties ${this.properties}`);
               this.loading = false;
               if (this.properties === []) {
-                this.properties = "no properties";
+                this.setUserProperties("no properties");
                 this.loading = false;
               }
             },
@@ -218,7 +193,7 @@ export default {
     },
     async next() {
       console.log("next");
-     await this.getUserProperties();
+      await this.loadProperties();
 
       // this.loading = true;
       //  this.$vuetify.goTo(this.target);
