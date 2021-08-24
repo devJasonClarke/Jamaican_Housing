@@ -50,7 +50,7 @@ export const actions = {
             emailVerified: false,
             verified: false,
             role: "user",
-            realEstateFirm: "",
+            realEstateFirm: { name: "", uid: "" },
             socialMedia: [],
             contact: {
               email: "",
@@ -113,7 +113,7 @@ export const actions = {
                   emailVerified: result.user.emailVerified,
                   verified: false,
                   role: "user",
-                  realEstateFirm: "",
+                  realEstateFirm: { name: "", uid: "" },
                   socialMedia: [],
                   contact: {
                     email: "",

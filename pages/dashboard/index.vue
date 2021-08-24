@@ -1,13 +1,15 @@
 <template>
   <v-container>
     <h1>Properties</h1>
-
-    <!--  {{ properties }} -->
+    <div v-for="(property, i) in properties" :key="i">
+      {{ property[1] }}
+    </div>
+    <div>{{properties}}</div>
     <TheRealEstatePropertiesListingLoader
-      v-if="loading === true"
+      v-if="loading == true"
       title="sale"
     />
-    <SectionPadding v-else-if="properties.length < 1">
+    <SectionPadding v-else-if="!properties.length">
       <v-sheet
         height="200px"
         class="d-flex justify-center align-center flex-column"
@@ -70,18 +72,18 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   async fetch() {
     console.log("fetch");
-    await this.loadProperties();
+     await this.getUserProperties();
   },
 
   data() {
     return {
-      properties: [],
-      lastVisible: null,
-      loading: true,
-      paginateNext: {
+      //  properties: [],
+      //  lastVisible: null,
+      //    loading: true,
+      /*    paginateNext: {
         disabled: false,
         dark: true
-      },
+      }, */
       iconColor: "rgba(0, 200, 83, 0.5)"
     };
   },
@@ -90,12 +92,18 @@ export default {
     ...mapGetters({
       featuredProperties: "properties/featuredProperties",
       user: "authentication/user",
-      currencyRate: "api/currencyRate"
+      currencyRate: "api/currencyRate",
+      properties: "getUserProperties/properties",
+      lastVisible: "getUserProperties/lastVisible",
+      loading: "getUserProperties/loading",
+      paginateNext: "getUserProperties/paginateNext"
     })
   },
   methods: {
     ...mapActions({
-      logError: "errors/logError"
+      logError: "errors/logError",
+      getUserProperties: 'getUserProperties/getUserProperties',
+      nextProps: 'getUserProperties/next',
     }),
     async loadProperties() {
       await this.$fireModule.auth().onAuthStateChanged(user => {
@@ -162,6 +170,7 @@ export default {
               }
 
               querySnapshot.forEach(doc => {
+                console.log(`This Document was fetched ${doc.id}`);
                 this.properties.push([doc.data(), doc.id]);
               });
 
@@ -207,9 +216,9 @@ export default {
         si[i].s
       );
     },
-    next() {
+    async next() {
       console.log("next");
-      this.loadProperties();
+     await this.getUserProperties();
 
       // this.loading = true;
       //  this.$vuetify.goTo(this.target);
