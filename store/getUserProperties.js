@@ -151,7 +151,7 @@ export const mutations = {
     };
   },
   REMOVE_USER_PROPERTY_STATE: state => {
-    console.log('LOG OUt From Remove User')
+    console.log("LOG OUt From Remove User");
     state.properties = [];
     state.lastVisible = null;
     state.loading = true;

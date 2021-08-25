@@ -66,11 +66,11 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
-  async fetch() {
+   fetch() {
     console.log("fetch");
     console.log(this.properties);
     if (this.properties.length == 0) {
-      await this.getUserProperties();
+       this.getUserProperties();
     } else {
       this.setLoading(false);
     }

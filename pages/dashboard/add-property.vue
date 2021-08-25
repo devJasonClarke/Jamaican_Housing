@@ -104,10 +104,10 @@
           <v-stepper-content step="2">
             {{ `Property Type ${property.details.propertyType}` }} <br />
             {{ `Size ${property.details.size}` }} <br />
-            {{ `Price ${property.details.price}` }} <br />
             {{ `Property For ${property.details.propertyFor}` }} <br />
             {{ `Rent Type ${property.details.rentType}` }} <br />
-
+            {{ `Price ${property.details.price}` }} <br />
+            
             {{ `Parish ${property.details.parish}` }} <br />
             {{ `Community ${property.details.community}` }} <br />
             {{ `Bed Rooms ${property.details.bedrooms}` }} <br />
@@ -150,19 +150,6 @@
                     ></v-text-field
                   ></v-col>
                   <v-col cols="12" sm="6">
-                    <v-text-field
-                      outlined
-                      dense
-                      label="Price (IN JMD)"
-                      type="number"
-                      prefix="$"
-                      suffix="JMD"
-                      v-model="property.details.price"
-                      :color="iconColor"
-                      :rules="amountRules"
-                    ></v-text-field
-                  ></v-col>
-                  <v-col cols="12" sm="6">
                     <v-select
                       outlined
                       dense
@@ -191,6 +178,19 @@
                       :rules="[v => !!v || 'Rent type is required']"
                       required
                     ></v-select
+                  ></v-col>
+                  <v-col cols="12" sm="6">
+                    <v-text-field
+                      outlined
+                      dense
+                      label="Price (IN JMD)"
+                      type="number"
+                      prefix="$"
+                      suffix="JMD"
+                      v-model="property.details.price"
+                      :color="iconColor"
+                      :rules="amountRules"
+                    ></v-text-field
                   ></v-col>
                   <v-col cols="12" sm="6">
                     <v-select
