@@ -286,6 +286,14 @@
                     {{ property.verified }}
                   </v-list-item-content>
                 </v-list-item>
+                <v-list-item class="mb-3" v-if="property.timestamp">
+                  <v-list-item-content class="  text-capitalize ">
+                    <v-list-item-title class="text-body-1 font-weight-medium"
+                      >Date Added :</v-list-item-title
+                    >
+                    {{ property.timestamp.toDate() }}
+                  </v-list-item-content>
+                </v-list-item>
               </v-list-item-group>
             </v-list>
           </div>
@@ -518,7 +526,6 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-    fetchOnServer: false,
   async fetch() {
     let theParam = String(this.$route.params.slug);
     console.log(theParam);
