@@ -518,6 +518,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+    fetchOnServer: false,
   async fetch() {
     let theParam = String(this.$route.params.slug);
     console.log(theParam);

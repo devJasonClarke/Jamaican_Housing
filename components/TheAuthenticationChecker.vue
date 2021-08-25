@@ -5,15 +5,26 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
+    fetchOnServer: false,
+  fetch() {
+    if (this.user === null) {
+      this.checkAuth();
+    } else {
+      console.log("User Signed In");
+    }
+  },
+
+  computed: {
+    ...mapGetters({
+      user: "authentication/user"
+    })
+  },
   methods: {
     ...mapActions({
       checkAuth: "authentication/checkAuthentication"
     })
-  },
-  mounted() {
-    this.checkAuth();
   }
 };
 </script>

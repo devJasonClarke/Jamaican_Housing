@@ -56,7 +56,9 @@
 import parishes from "~/assets/parishes/parishes";
 import { mapGetters } from "vuex";
 export default {
+    fetchOnServer: false,
   data() {
+
     return {
       parish: "",
       loading: false,

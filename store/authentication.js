@@ -126,18 +126,6 @@ export const actions = {
         // ...
       })
       .then(() => {
-        console.log("Checking and setting document");
-        this.$fire.firestore
-          .collection("users")
-          .doc(theResults.uid)
-          .get()
-          .then(doc => {
-            if (doc.exists) {
-              commit("SET_PROFILE", doc.data());
-            }
-          });
-      })
-      .then(() => {
         this.$fireModule.auth().onAuthStateChanged(user => {
           if (user) {
             commit("LOGIN", user);
@@ -156,10 +144,10 @@ export const actions = {
         // ...
       });
   },
-  async login({ commit }, credentials) {
+  login({ commit }, credentials) {
     const { email, password } = credentials;
     commit("LOADING_STATE", true);
-    await this.$fireModule
+    this.$fireModule
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
@@ -189,7 +177,9 @@ export const actions = {
         this.$router.push({ name: "index" });
       })
       .then(() => {
-        commit("getUserProperties/REMOVE_USER_PROPERTY_STATE",'' , { root: true });
+        commit("getUserProperties/REMOVE_USER_PROPERTY_STATE", "", {
+          root: true
+        });
         commit("LOGOUT");
         commit("LOADING_STATE", false);
       })
@@ -198,12 +188,10 @@ export const actions = {
       });
   },
   //* check if user is authenticated
-  async checkAuthentication({ commit, state }) {
-    let currentState = state.user;
-
+  checkAuthentication({ commit, state }) {
     //* if user is not in state, check indexdb if user is present
-    if (currentState === null) {
-      await this.$fireModule.auth().onAuthStateChanged(user => {
+    if (state.user === null) {
+      this.$fireModule.auth().onAuthStateChanged(user => {
         if (user) {
           console.log(user);
           commit("CHECK_AUTHENTICATION", user);
