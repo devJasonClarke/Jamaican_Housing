@@ -183,6 +183,9 @@ export const actions = {
         commit("LOGOUT");
         commit("LOADING_STATE", false);
       })
+      .then(() => {
+        return location.reload();
+      })
       .catch(error => {
         commit("errors/LOG_ERROR", error, { root: true });
       });
