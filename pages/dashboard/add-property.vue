@@ -143,6 +143,7 @@
                       dense
                       label="Size *"
                       type="number"
+               
                       v-model="property.details.size"
                       :color="iconColor"
                       suffix="Square Feet"

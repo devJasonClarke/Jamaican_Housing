@@ -16,7 +16,7 @@ export const state = () => ({
   idRules: [
     v => !!v || "ID is required",
     v => v.length == 11 || "Id should equal 11 characters",
-    value => !/[ ]/.test(value) || "no spaces allowed",
+    value => !/[ ]/.test(value) || "no spaces allowed"
   ],
   passwordRules: [
     value => !!value || "Required.",
@@ -35,8 +35,8 @@ export const state = () => ({
   amountRules: [
     value => !!value || "Required.",
     value => !/[ ]/.test(value) || "no spaces allowed",
-    value => (value || "").length <= 15 || "Max 15 characters"
-
+    value => (value || "").length <= 15 || "Max 15 characters",
+    value => value >= 0 || "No negative amounts"
   ],
   messageRules: [
     v => !!v || "Message is required",
@@ -47,8 +47,8 @@ export const state = () => ({
     v => !!v || "Description is required",
     v => (v && !!v.trim()) || "Value cannot be blank",
     v => v.length >= 10 || "Message must be greater than 10 characters",
-    value => (value || "").length <= 425 || "Max 425 characters",
-  ],
+    value => (value || "").length <= 425 || "Max 425 characters"
+  ]
 });
 
 export const getters = {
@@ -59,5 +59,5 @@ export const getters = {
   amountRules: state => state.amountRules,
   messageRules: state => state.messageRules,
   descriptionRules: state => state.descriptionRules,
-  idRules: state => state.idRules,
+  idRules: state => state.idRules
 };
