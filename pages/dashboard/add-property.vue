@@ -1,6 +1,7 @@
 <template>
   <v-container id="top">
     <h1>Add Your Property</h1>
+    {{ imageUrls }}
     <SectionPadding>
       <v-stepper v-model="cur">
         <v-stepper-header>
@@ -257,8 +258,7 @@
                     <v-text-field
                       outlined
                       dense
-                      label="
-Multiple Listing Service ID (optional)"
+                      label="Multiple Listing Service ID (optional)"
                       v-model="property.details.propertyId"
                       :color="iconColor"
                     ></v-text-field
@@ -375,7 +375,7 @@ Multiple Listing Service ID (optional)"
               </p>
               <v-form
                 v-model="validTours"
-                @submit.prevent="addProperty"
+                @submit.prevent="uploadPictures"
                 ref="toursForm"
               >
                 <v-row class="mb-6">
@@ -421,8 +421,8 @@ Multiple Listing Service ID (optional)"
       <div v-show="urls.length !== 0">
         <div v-for="(url, i) in urls" :key="url">
           <div>
-            <p>Picture {{ i + 1 }}</p>
-            <p>File name: {{ files[i].name }}</p>
+            <p class="text-h6">Picture {{ i + 1 }}</p>
+            <p class="text-subtitle-1">File name: {{ files[i].name }}</p>
             <img :src="url" :alt="files[i].name" width="100%" height="100%" />
           </div>
           <v-divider class="my-9"></v-divider>
@@ -512,7 +512,8 @@ export default {
         { title: "Water Tank", icon: "mdi-water" }
       ],
       status: ["Rent", "Sale"],
-      rentType: ["Per Night", "Per Month"]
+      rentType: ["Per Night", "Per Month"],
+      imageUrls: []
     };
   },
   methods: {
@@ -566,7 +567,7 @@ export default {
       }
       this.$vuetify.goTo("#photos");
     },
-    async addProperty() {
+    uploadPictures() {
       if (
         this.$refs.descriptionForm.validate() &&
         this.$refs.detailsForm.validate() &&
@@ -576,7 +577,53 @@ export default {
       ) {
         this.loading = true;
 
-        await this.$fire.firestore
+        let storage = this.$fire.storage.ref();
+        let ref = storage
+          .child(`images/${this.files[0].name}`)
+          .put(this.files[0]);
+
+        ref.on(
+          "state_changed",
+          snapshot => {},
+          error => {
+            console.log(error);
+            this.logError(error);
+          },
+          () => {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            // let image = [];
+            ref.snapshot.ref
+              .getDownloadURL()
+              .then(downloadURL => {
+                console.log("File available at", downloadURL);
+                this.imageUrls.push(downloadURL);
+              })
+              .then(() => {
+                console.log("it is ready");
+                console.log(this.imageUrls);
+                this.addProperty();
+              });
+
+            console.log("success");
+          }
+        );
+      } else {
+        console.log("not");
+        this.logError("Please complete required sections.");
+      }
+    },
+    addProperty() {
+      if (
+        this.$refs.descriptionForm.validate() &&
+        this.$refs.detailsForm.validate() &&
+        this.$refs.amenitiesForm.validate() &&
+        this.$refs.picturesForm.validate() &&
+        this.$refs.toursForm.validate()
+      ) {
+        this.loading = true;
+
+        this.$fire.firestore
           .collection("properties")
           .add({
             price: this.property.details.price,
@@ -591,7 +638,8 @@ export default {
             amenities: this.property.amenities,
             tours: this.property.tours,
             uploader: this.user.uid,
-            timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp()
+            timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
+            images: this.imageUrls
           })
           .then(docRef => {
             console.log("Document written with ID: ", docRef.id);
