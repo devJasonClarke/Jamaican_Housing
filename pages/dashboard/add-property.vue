@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container id="top">
     <h1>Add Your Property</h1>
     <SectionPadding>
       <v-stepper v-model="cur">
@@ -351,8 +351,13 @@ Multiple Listing Service ID (optional)"
                     ]"
                   ></v-file-input>
                 </v-row>
-                <v-btn :dark='urls.length == 0' :color="iconColor" :disabled='urls.length > 0' @click="previewPictures">
-                  See Photo Previews
+                <v-btn
+                  :dark="urls.length == 0"
+                  :color="iconColor"
+                  :disabled="urls.length > 0"
+                  @click="previewPictures"
+                >
+                  Preview Pictures
                 </v-btn>
                 <v-btn dark :color="iconColor" type="submit">
                   Continue
@@ -412,16 +417,21 @@ Multiple Listing Service ID (optional)"
         </v-stepper-items>
       </v-stepper>
     </SectionPadding>
-    <div v-show="urls.length !== 0" id="photos">
-      <div v-for="(url, i) in urls" :key="url">
-        <div>
-          <p>Picture {{ i + 1 }}</p>
-          <p>File name: {{ files[i].name }}</p>
-          <v-img :src="url" alt="" width="100%" height="100%" />
+    <SectionPadding class="pt-0" id="photos">
+      <div v-show="urls.length !== 0">
+        <div v-for="(url, i) in urls" :key="url">
+          <div>
+            <p>Picture {{ i + 1 }}</p>
+            <p>File name: {{ files[i].name }}</p>
+            <img :src="url" :alt="files[i].name" width="100%" height="100%" />
+          </div>
+          <v-divider class="my-9"></v-divider>
         </div>
-        <v-divider class="my-9"></v-divider>
+        <v-btn dark :color="iconColor" @click="$vuetify.goTo('#top')"
+          >Go To Top</v-btn
+        >
       </div>
-    </div>
+    </SectionPadding>
     <v-snackbar v-model="snackbar" :timeout="20000" left>
       {{ snackbarMessage }}
 
