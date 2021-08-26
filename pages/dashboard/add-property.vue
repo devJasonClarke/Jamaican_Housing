@@ -107,7 +107,7 @@
             {{ `Property For ${property.details.propertyFor}` }} <br />
             {{ `Rent Type ${property.details.rentType}` }} <br />
             {{ `Price ${property.details.price}` }} <br />
-            
+
             {{ `Parish ${property.details.parish}` }} <br />
             {{ `Community ${property.details.community}` }} <br />
             {{ `Bed Rooms ${property.details.bedrooms}` }} <br />
@@ -143,7 +143,6 @@
                       dense
                       label="Size *"
                       type="number"
-               
                       v-model="property.details.size"
                       :color="iconColor"
                       suffix="Square Feet"
@@ -338,6 +337,7 @@ Multiple Listing Service ID (optional)"
                     maxlength="7"
                     prepend-icon="mdi-image"
                     v-model="files"
+                    @change="resetURL"
                     label="Upload pictures of your property"
                     :color="iconColor"
                     required
@@ -351,6 +351,9 @@ Multiple Listing Service ID (optional)"
                     ]"
                   ></v-file-input>
                 </v-row>
+                <v-btn :dark='urls.length == 0' :color="iconColor" :disabled='urls.length > 0' @click="previewPictures">
+                  See Photo Previews
+                </v-btn>
                 <v-btn dark :color="iconColor" type="submit">
                   Continue
                 </v-btn>
@@ -409,6 +412,16 @@ Multiple Listing Service ID (optional)"
         </v-stepper-items>
       </v-stepper>
     </SectionPadding>
+    <div v-show="urls.length !== 0" id="photos">
+      <div v-for="(url, i) in urls" :key="url">
+        <div>
+          <p>Picture {{ i + 1 }}</p>
+          <p>File name: {{ files[i].name }}</p>
+          <v-img :src="url" alt="" width="100%" height="100%" />
+        </div>
+        <v-divider class="my-9"></v-divider>
+      </div>
+    </div>
     <v-snackbar v-model="snackbar" :timeout="20000" left>
       {{ snackbarMessage }}
 
@@ -439,6 +452,7 @@ export default {
       iconColor: "rgba(0, 200, 83)",
       selected: [],
       files: [],
+      urls: [],
       validDescription: false,
       validDetails: false,
       validAmenities: false,
@@ -496,7 +510,11 @@ export default {
       logError: "errors/logError"
     }),
     addDropFile(e) {
+      this.urls = [];
       this.files.push(...Array.from(e.dataTransfer.files));
+    },
+    resetURL() {
+      this.urls = [];
     },
     validateDescription() {
       if (this.$refs.descriptionForm.validate()) {
@@ -525,10 +543,18 @@ export default {
     validatePictures() {
       if (this.$refs.picturesForm.validate()) {
         console.log("valid pic");
+
         this.cur++;
       } else {
         console.log("not");
       }
+    },
+    previewPictures() {
+      for (let i = 0; i < this.files.length; i++) {
+        /* console.log(this.files[i]) */
+        this.urls.push(URL.createObjectURL(this.files[i]));
+      }
+      this.$vuetify.goTo("#photos");
     },
     async addProperty() {
       if (
