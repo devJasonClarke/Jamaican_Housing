@@ -1,7 +1,6 @@
 <template>
   <v-container id="top">
     <h1>Add Your Property</h1>
-    {{ imageUrls }}
     <SectionPadding>
       <v-stepper v-model="cur">
         <v-stepper-header>
@@ -412,6 +411,9 @@
                   back
                 </v-btn>
               </v-form>
+              <div v-if="fileBeingUploaded">
+                <p class="text-h6 mt-6">Uploading: {{ fileBeingUploaded }}</p>
+              </div>
             </v-container>
           </v-stepper-content>
         </v-stepper-items>
@@ -513,7 +515,8 @@ export default {
       ],
       status: ["Rent", "Sale"],
       rentType: ["Per Night", "Per Month"],
-      imageUrls: []
+      imageUrls: [],
+      fileBeingUploaded: ""
     };
   },
   methods: {
@@ -578,36 +581,47 @@ export default {
         this.loading = true;
 
         let storage = this.$fire.storage.ref();
-        let ref = storage
-          .child(`images/${this.files[0].name}`)
-          .put(this.files[0]);
 
-        ref.on(
-          "state_changed",
-          snapshot => {},
-          error => {
-            console.log(error);
-            this.logError(error);
-          },
-          () => {
-            // Handle successful uploads on complete
-            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-            // let image = [];
-            ref.snapshot.ref
-              .getDownloadURL()
-              .then(downloadURL => {
-                console.log("File available at", downloadURL);
-                this.imageUrls.push(downloadURL);
-              })
-              .then(() => {
-                console.log("it is ready");
-                console.log(this.imageUrls);
-                this.addProperty();
-              });
+        for (let i = 0; i < this.files.length; i++) {
+          let ref = storage
+            .child(
+              `property_images/${this.user.uid}/${Date.now()}_${
+                this.files[i].name
+              }`
+            )
+            .put(this.files[i]);
 
-            console.log("success");
-          }
-        );
+          ref.on(
+            "state_changed",
+            snapshot => {},
+            error => {
+              console.log(error);
+              this.logError(error);
+            },
+            () => {
+              // Handle successful uploads on complete
+              // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+              // let image = [];
+              ref.snapshot.ref
+                .getDownloadURL()
+                .then(downloadURL => {
+                  console.log("File available at", downloadURL);
+                  this.imageUrls.push(downloadURL);
+                  this.fileBeingUploaded = this.files[i].name;
+                })
+                .then(() => {
+                  console.log("it is ready");
+                  console.log(this.imageUrls);
+
+                  if (this.imageUrls.length === this.files.length) {
+                    this.addProperty();
+                  }
+                });
+
+              console.log("success");
+            }
+          );
+        }
       } else {
         console.log("not");
         this.logError("Please complete required sections.");
@@ -646,6 +660,7 @@ export default {
           })
           .then(() => {
             this.loading = false;
+            this.fileBeingUploaded = "";
             this.snackbar = true;
             this.snackbarMessage = "Successfully Added";
             this.snackbarColor = "green";

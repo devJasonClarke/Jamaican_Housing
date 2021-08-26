@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ThePropertySwiper />
+    <ThePropertySwiperFirebase :images="property.images" />
 
     <v-container class="mt-6 mb-9">
       <v-row>
@@ -70,14 +70,20 @@
             <p>
               <v-icon :color="iconColor">mdi-bed mdi-18px</v-icon>
               {{ property.details.bedrooms }} Bedroom<span
-                v-if="property.details.bedrooms > 1 || property.details.bedrooms == 0"
+                v-if="
+                  property.details.bedrooms > 1 ||
+                    property.details.bedrooms == 0
+                "
                 >s</span
               >
             </p>
             <p>
               <v-icon :color="iconColor">mdi-shower-head mdi-18px</v-icon>
               {{ property.details.bathrooms }} Bathroom<span
-                v-if="property.details.bathrooms > 1 || property.details.bathrooms == 0"
+                v-if="
+                  property.details.bathrooms > 1 ||
+                    property.details.bathrooms == 0
+                "
                 >s</span
               >
             </p>
@@ -195,7 +201,11 @@
                 <v-list-item class="mb-3">
                   <v-list-item-content class="  text-capitalize">
                     <v-list-item-title class="text-body-1   font-weight-medium"
-                      >Bedroom<span v-if="property.details.bedrooms > 1 || property.details.bedrooms == 0"
+                      >Bedroom<span
+                        v-if="
+                          property.details.bedrooms > 1 ||
+                            property.details.bedrooms == 0
+                        "
                         >s</span
                       >
                       :</v-list-item-title
@@ -206,7 +216,11 @@
                 <v-list-item class="mb-3">
                   <v-list-item-content class="  text-capitalize">
                     <v-list-item-title class="text-body-1   font-weight-medium"
-                      >Bathroom<span v-if="property.details.bathrooms > 1 || property.details.bathrooms == 0"
+                      >Bathroom<span
+                        v-if="
+                          property.details.bathrooms > 1 ||
+                            property.details.bathrooms == 0
+                        "
                         >s</span
                       >
                       :</v-list-item-title
@@ -218,7 +232,13 @@
                 <v-list-item class="mb-3">
                   <v-list-item-content class="  text-capitalize">
                     <v-list-item-title class="text-body-1   font-weight-medium"
-                      >Garage<span v-if="property.details.garages > 1 || property.details.garages == 0">s</span>
+                      >Garage<span
+                        v-if="
+                          property.details.garages > 1 ||
+                            property.details.garages == 0
+                        "
+                        >s</span
+                      >
                       :</v-list-item-title
                     >
                     {{ property.details.garages }}
@@ -264,7 +284,7 @@
                 <v-list-item v-if="property.details.propertyId" class="mb-3">
                   <v-list-item-content class="  text-capitalize">
                     <v-list-item-title class="text-body-1   font-weight-medium">
-                     MLS ID :</v-list-item-title
+                      MLS ID :</v-list-item-title
                     >
                     {{ property.details.propertyId }}
                   </v-list-item-content>
@@ -335,8 +355,11 @@
               allow="xr-spatial-tracking"
             ></iframe>
           </div>
-          <v-divider v-if="property.tours.youtube" class="mt-6 mb-6"></v-divider>
-          <div  v-if="property.tours.youtube">
+          <v-divider
+            v-if="property.tours.youtube"
+            class="mt-6 mb-6"
+          ></v-divider>
+          <div v-if="property.tours.youtube">
             <p class="text-h6 ">Video</p>
             <iframe
               height="430"
@@ -375,7 +398,10 @@
             <div class="text-center d-flex flex-column">
               <nuxt-link :to="{ name: 'profile' }" class="text-h6  mt-4 mb-0">
                 {{ uploader["displayName"] }}
-                <VerifiedSymbol v-if="uploader['verified']" :role="uploader['role']" />
+                <VerifiedSymbol
+                  v-if="uploader['verified']"
+                  :role="uploader['role']"
+                />
               </nuxt-link>
               <a
                 :href="`mailto:${uploader['email']}`"
@@ -458,7 +484,10 @@
                 outlined
                 name="input-7-4"
                 label="Message *"
-                :value="`Hi ${uploader['firstName'] || uploader['displayName']}, I am interested in this property.`"
+                :value="
+                  `Hi ${uploader['firstName'] ||
+                    uploader['displayName']}, I am interested in this property.`
+                "
                 :color="iconColor"
               ></v-textarea>
               <v-btn

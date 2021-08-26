@@ -8,7 +8,7 @@
       class="rounded-lg card"
     >
       <v-img
-        src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+        :src="property[0].images[0]"
         height="200"
         class="pa-3"
       >
