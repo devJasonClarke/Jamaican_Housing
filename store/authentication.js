@@ -174,9 +174,6 @@ export const actions = {
       .auth()
       .signOut()
       .then(() => {
-        this.$router.push({ name: "index" });
-      })
-      .then(() => {
         commit("getUserProperties/REMOVE_USER_PROPERTY_STATE", "", {
           root: true
         });
