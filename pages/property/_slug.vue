@@ -692,7 +692,6 @@ export default {
           if (doc.exists) {
             console.log("Document data exits:", doc.data());
             this.uploader = doc.data();
-            console.log(doc.data());
           } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
