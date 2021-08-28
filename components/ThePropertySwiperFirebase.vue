@@ -1,16 +1,36 @@
 <template>
-  <swiper class="swiper" :options="propertySwiperOptions">
-    <swiper-slide class="sliide" v-for="(img, i) in images" :key="i">
-      <img class="img" :src="img" height="450" width="100%" />
-    </swiper-slide>
-    <div class="swiper-button-prev" slot="button-prev"></div>
-    <div class="swiper-button-next" slot="button-next"></div>
-    <div class="swiper-pagination" slot="pagination"></div>
-  </swiper>
+  <section>
+    <swiper class="swiper" :options="propertySwiperOptions">
+      <swiper-slide class="sliide" v-for="(img, i) in images" :key="i">
+        <img
+          class="img"
+          :src="img"
+          height="450"
+          width="100%"
+          @click="showImg(i)"
+        />
+      </swiper-slide>
+      <div class="swiper-button-prev" slot="button-prev"></div>
+      <div class="swiper-button-next" slot="button-next"></div>
+      <div class="swiper-pagination" slot="pagination"></div>
+    </swiper>
+
+    <vue-easy-lightbox
+      :visible="visible"
+      :imgs="images"
+      :index="index"
+      :loop="true"
+      @hide="handleHide"
+    ></vue-easy-lightbox>
+  </section>
 </template>
 
 <script>
+import VueEasyLightbox from "vue-easy-lightbox";
 export default {
+  components: {
+    VueEasyLightbox
+  },
   props: {
     images: {
       type: Array,
@@ -19,6 +39,8 @@ export default {
   },
   data() {
     return {
+      visible: false,
+      index: 0, // default: 0,
       propertySwiperOptions: {
         slidesPerView: 1,
         loop: true,
@@ -49,8 +71,22 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    showImg(i) {
+      console.log(`show: ${i}`);
+      this.index = i;
+      this.visible = true;
+    },
+    handleHide() {
+      this.visible = false;
+    }
   }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.img {
+  cursor: pointer;
+}
+</style>

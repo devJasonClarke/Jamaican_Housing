@@ -21,7 +21,8 @@
     "firebase": "^8.6.7",
     "nuxt": "^2.15.3",
     "swiper": "^5.4.5",
-    "vue-awesome-swiper": "^4.1.1"
+    "vue-awesome-swiper": "^4.1.1",
+    "vue-easy-lightbox": "^0.16.1"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.3"
