@@ -43,13 +43,13 @@ export default {
       index: 2,
       propertySwiperOptions: {
         slidesPerView: 1,
-        loop: true,
-        /*         mousewheel: true, */
+       // loop: true,
+        /*       mousewheel: true, */
         spaceBetween: 0,
         /*  autoplay: {
-          delay: 2500,
+          delay: 10000,
           disableOnInteraction: false
-        },  */
+        }, */ 
         pagination: {
           el: ".swiper-pagination",
           clickable: true,

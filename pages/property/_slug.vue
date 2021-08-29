@@ -456,13 +456,20 @@
               </a>
             </div>
             <v-divider class="my-3"></v-divider>
-            <v-form class="mt-6" @submit.prevent="">
+
+            <v-form
+              class="mt-6"
+              @submit.prevent="validateMessage"
+              ref="messageForm"
+            >
               <v-text-field
                 outlined
                 dense
                 label="Full Name *"
                 required
                 :color="iconColor"
+                :rules="nameRules"
+                v-model="fullName"
               ></v-text-field>
               <v-text-field
                 outlined
@@ -470,7 +477,9 @@
                 label="Phone Number *"
                 type="number"
                 required
+                :rules="phoneNumberRules"
                 :color="iconColor"
+                v-model="phoneNumber"
               ></v-text-field>
               <v-text-field
                 outlined
@@ -478,17 +487,17 @@
                 label="Email Address *"
                 type="email"
                 required
+                :rules="emailRules"
                 :color="iconColor"
+                v-model="email"
               ></v-text-field>
               <v-textarea
                 outlined
                 name="input-7-4"
                 label="Message *"
-                :value="
-                  `Hi ${uploader['firstName'] ||
-                    uploader['displayName']}, I am interested in this property.`
-                "
+                :rules="messageRules"
                 :color="iconColor"
+                v-model="message"
               ></v-textarea>
               <v-btn
                 class="mb-6"
@@ -496,13 +505,18 @@
                 type="submit"
                 :color="iconColor"
                 block
-                dark
+                :dark="!sent"
                 depressed
+                :loading="loading"
+                :disabled="sent"
               >
-                Send Message
-                <v-icon right>
-                  mdi-send mdi-rotate-315
-                </v-icon>
+                <span v-if="sent">
+                  <v-icon left>mdi-check-circle-outline mdi-24px </v-icon>
+                  Message Sent
+                </span>
+                <span v-else>
+                  Send Message<v-icon right>mdi-send </v-icon></span
+                >
               </v-btn>
               <a :href="`tel:${phoneNumber}`" class="text-subtitle-1">
                 <v-btn
@@ -549,6 +563,20 @@
 
       <TheFeaturedProperties />
     </SectionPadding>
+    <v-snackbar v-model="snackbar" :timeout="20000" left>
+      {{ snackbarMessage }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          :color="snackbarColor"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -556,11 +584,11 @@
 import { mapGetters } from "vuex";
 export default {
   async fetch() {
-    let theParam = String(this.$route.params.slug);
-    console.log(theParam);
-    this.$fire.firestore
+    this.theParam = this.$route.params.slug;
+    console.log(this.theParam);
+    await this.$fire.firestore
       .collection("properties")
-      .doc(`${theParam}`)
+      .doc(this.theParam)
       .get()
       .then(doc => {
         if (doc.exists) {
@@ -582,8 +610,17 @@ export default {
   },
   data() {
     return {
+      fullName: "",
+      email: "",
+      phoneNumber: "",
       iconColor: "rgba(0, 200, 83, 1)",
-      phoneNumber: 18763147199,
+      snackbar: false,
+      snackbarMessage: "",
+      snackbarColor: "",
+      theParam: "",
+      message: "",
+      sent: false,
+      loading: false,
       property: {
         timestamp: "",
         details: {
@@ -692,6 +729,10 @@ export default {
           if (doc.exists) {
             console.log("Document data exits:", doc.data());
             this.uploader = doc.data();
+
+            let message = `Hi ${doc.data().firstName ||
+              doc.data().displayName}, I am interested in this property.`;
+            this.message = message;
           } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
@@ -701,6 +742,7 @@ export default {
           console.log(error);
         });
     },
+
     print() {
       window.print();
     },
@@ -742,13 +784,59 @@ export default {
       let pattern = /(-?\d+)(\d{3})/;
       while (pattern.test(x)) x = x.replace(pattern, "$1,$2");
       return x;
+    },
+    validateMessage() {
+      if (this.$refs.messageForm.validate()) {
+        this.sendMessage();
+      }
+    },
+    sendMessage() {
+      this.loading = true;
+
+      this.$fire.firestore
+        .collection("messages")
+        .add({
+          sender: this.fullName,
+          recipient: this.uploader.uid,
+          email: this.email,
+          phoneNumber: this.phoneNumber,
+          timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
+          message: this.message,
+          property: `https://jamaican-housing.pages.dev/${this.theParam}`,
+          read: false
+        })
+        .then(docRef => {
+          console.log("Document written with ID: ", docRef.id);
+        })
+        .then(() => {
+          this.sent = true;
+          this.loading = false;
+          this.snackbar = true;
+          this.snackbarMessage = "Message Successfully Sent";
+          this.fullName = "";
+          this.email = "";
+          this.phoneNumber = "";
+          this.message = "";
+          this.snackbarColor = "green";
+        })
+        .catch(error => {
+          console.error("Error adding document: ", error);
+          this.loading = false;
+          this.snackbar = true;
+          this.snackbarMessage = error;
+          this.snackbarColor = "pink";
+        });
     }
   },
   computed: {
     ...mapGetters({
       country: "api/country",
       activeCurrency: "api/activeCurrency",
-      currencyRate: "api/currencyRate"
+      currencyRate: "api/currencyRate",
+      nameRules: "inputRules/nameRules",
+      phoneNumberRules: "inputRules/phoneNumberRules",
+      emailRules: "inputRules/emailRules",
+      messageRules: "inputRules/messageRules"
     }),
 
     formattedNumber() {

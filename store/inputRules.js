@@ -41,12 +41,12 @@ export const state = () => ({
   messageRules: [
     v => !!v || "Message is required",
     v => (v && !!v.trim()) || "Value cannot be blank",
-    v => v.length >= 10 || "Message must be greater than 10 characters"
+    v => v.length >= 10 || "Message must be atleast 10 characters long"
   ],
   descriptionRules: [
     v => !!v || "Description is required",
     v => (v && !!v.trim()) || "Value cannot be blank",
-    v => v.length >= 10 || "Message must be greater than 10 characters",
+    v => v.length >= 10 || "Description must be atleast 10 characters long",
     value => (value || "").length <= 425 || "Max 425 characters"
   ]
 });

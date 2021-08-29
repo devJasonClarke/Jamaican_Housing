@@ -346,7 +346,9 @@
                         !v ||
                         !v.some(file => file.size > 1048576) ||
                         'All pictures should be less than 1 MB in size!',
-                      v => v.length < 8 || 'No more than 7 pictures'
+                      v => v.length < 8 || 'No more than 7 pictures',
+                      v =>
+                        v.length > 2 || 'A minimum of 3 pictures are required'
                     ]"
                   ></v-file-input>
                 </v-row>
