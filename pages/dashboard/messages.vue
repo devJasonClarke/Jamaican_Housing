@@ -1,16 +1,16 @@
 <template>
   <v-container>
     <h1>Messages</h1>
-    <SectionPadding v-if="messages.length > 0">
+    <SectionPadding v-if="newMessages.length > 0">
       <v-expansion-panels focusable>
-        <v-expansion-panel v-for="(message, index) in messages" :key="index">
+        <v-expansion-panel v-for="(message, index) in newMessages" :key="index">
           <v-expansion-panel-header
             disable-icon-rotate
             @click="readMessage(index)"
-            >From: {{ message.name }}
+            >From: {{ message[0].sender }}
 
             <template v-slot:actions>
-              <v-icon color="green" v-if="message.read">
+              <v-icon color="green" v-if="message[0].read">
                 mdi-message
               </v-icon>
               <v-icon color="green" v-else>
@@ -19,24 +19,24 @@
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <p class="mt-6">Name: {{ message.name }}</p>
+            <p class="mt-6">Name: {{ message[0].sender }}</p>
             <p>
               Email:
-              <a :href="`mailto:${message.email}`" target="_blank">{{
-                message.email
+              <a :href="`mailto:${message[0].email}`" target="_blank">{{
+                message[0].email
               }}</a>
             </p>
             <p>
               Phone Number:
-              <a :href="`tel:${message.phone}`" target="_blank">
-                {{ message.phone }}</a
+              <a :href="`tel:${message[0].phoneNumber}`" target="_blank">
+                {{ message[0].phoneNumber }}</a
               >
             </p>
-            <p>Date: {{ message.date }}</p>
-            <p>Message: {{ message.message }}</p>
+            <p>Date: {{ message[0].timestamp }}</p>
+            <p>Message: {{ message[0].message }}</p>
             <v-btn
               link
-              :href="`mailto:${message.email}`"
+              :href="`mailto:${message[0].email}`"
               target="_blank"
               dark
               color="green"
@@ -46,7 +46,7 @@
             >
             <v-btn
               link
-              :href="`tel:${message.phone}`"
+              :href="`tel:${message[0].phoneNumber}`"
               target="_blank"
               dark
               color="green"
@@ -83,19 +83,29 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   layout: "dashboard",
+   fetch() {
+    console.log("fetch");
+    console.log(this.newMessages);
+    if (this.newMessages.length == 0) {
+      this.getNewMessages();
+    } else {
+      this.setLoading(false);
+    }
+  },
   data() {
     return {};
   },
   methods: {
     ...mapActions({
+      getNewMessages: 'messages/getNewMessages',
       readMessage: "messages/readMessage",
       deleteMessage: "messages/deleteMessage"
     })
   },
   computed: {
     ...mapGetters({
-      messages: "messages/allMessages",
-      unReadMessages: "messages/unReadMessages"
+      newMessages: "messages/newMessages",
+    //  unReadMessages: "messages/unReadMessages"
     })
   }
 };

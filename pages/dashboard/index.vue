@@ -66,7 +66,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
-  fetchOnServer: false,
+  //fetchOnServer: false,
   fetch() {
     console.log("fetch");
     console.log(this.properties);
