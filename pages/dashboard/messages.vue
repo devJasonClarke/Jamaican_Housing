@@ -4,6 +4,7 @@
 
     <SectionPadding v-if="loading == true">
       <v-skeleton-loader type="paragraph@4"></v-skeleton-loader>
+      <v-skeleton-loader class='mx-auto mt-6'  max-width="300" type="text"></v-skeleton-loader>
     </SectionPadding>
     <SectionPadding v-else-if="!newMessages.length">
       <v-sheet
@@ -81,6 +82,7 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
+      <v-btn color="success" @click="getNewMessages" class="mt-6 d-block mx-auto">Load More Messages</v-btn>
     </SectionPadding>
   </v-container>
 </template>
@@ -100,7 +102,8 @@ export default {
     ...mapActions({
       readMessage: "messages/readMessage",
       deleteMessage: "messages/deleteMessage",
-      setLoading: "messages/setLoading"
+      setLoading: "messages/setLoading",
+      getNewMessages: "messages/getNewMessages"
     })
   },
   computed: {
