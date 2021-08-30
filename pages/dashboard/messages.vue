@@ -1,7 +1,21 @@
 <template>
   <v-container>
     <h1>Messages</h1>
-    <SectionPadding v-if="newMessages.length > 0">
+
+    <SectionPadding v-if="loading == true">
+      <v-skeleton-loader type="paragraph@4"></v-skeleton-loader>
+    </SectionPadding>
+    <SectionPadding v-else-if="!newMessages.length">
+      <v-sheet
+        height="200px"
+        class="d-flex justify-center align-center "
+        outlined
+        ><p class="text-h6 text-center font-weight-regular">
+          No messages as yet.
+        </p>
+      </v-sheet>
+    </SectionPadding>
+    <SectionPadding v-else>
       <v-expansion-panels focusable>
         <v-expansion-panel v-for="(message, index) in newMessages" :key="index">
           <v-expansion-panel-header
@@ -32,7 +46,9 @@
                 {{ message[0].phoneNumber }}</a
               >
             </p>
-            <p>Date: {{ message[0].timestamp }}</p>
+            <p>
+              Date: {{ message[0].timestamp.toDate().toLocaleDateString() }}
+            </p>
             <p>Message: {{ message[0].message }}</p>
             <v-btn
               link
@@ -66,16 +82,6 @@
         </v-expansion-panel>
       </v-expansion-panels>
     </SectionPadding>
-    <SectionPadding v-else>
-      <v-sheet
-        height="200px"
-        class="d-flex justify-center align-center "
-        outlined
-        ><p class="text-h6 text-center font-weight-regular">
-          No messages as yet.
-        </p>
-      </v-sheet>
-    </SectionPadding>
   </v-container>
 </template>
 
@@ -83,29 +89,25 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   layout: "dashboard",
-   fetch() {
+  fetch() {
     console.log("fetch");
     console.log(this.newMessages);
-    if (this.newMessages.length == 0) {
-      this.getNewMessages();
-    } else {
-      this.setLoading(false);
-    }
   },
   data() {
     return {};
   },
   methods: {
     ...mapActions({
-      getNewMessages: 'messages/getNewMessages',
       readMessage: "messages/readMessage",
-      deleteMessage: "messages/deleteMessage"
+      deleteMessage: "messages/deleteMessage",
+      setLoading: "messages/setLoading"
     })
   },
   computed: {
     ...mapGetters({
       newMessages: "messages/newMessages",
-    //  unReadMessages: "messages/unReadMessages"
+      loading: "messages/loading"
+      //  unReadMessages: "messages/unReadMessages"
     })
   }
 };

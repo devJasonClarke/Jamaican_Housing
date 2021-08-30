@@ -311,7 +311,7 @@
                     <v-list-item-title class="text-body-1 font-weight-medium"
                       >Date Added :</v-list-item-title
                     >
-                    {{ property.timestamp.toDate() }}
+                    {{ property.timestamp.toDate().toLocaleDateString() }}
                   </v-list-item-content>
                 </v-list-item>
               </v-list-item-group>
@@ -803,7 +803,7 @@ export default {
           timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
           message: this.message,
           property: `https://jamaican-housing.pages.dev/${this.theParam}`,
-          read: false
+          messageRead: false
         })
         .then(docRef => {
           console.log("Document written with ID: ", docRef.id);

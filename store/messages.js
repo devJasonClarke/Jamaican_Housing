@@ -19,7 +19,7 @@ export const getters = {
 
 export const actions = {
   getNewMessages({ commit, state }) {
-    console.log("getTheProperty");
+    console.log("getNewMessages");
 
     this.$fireModule.auth().onAuthStateChanged(user => {
       if (user) {
@@ -64,7 +64,7 @@ export const actions = {
 
             commit("LOADING", false);
 
-            //    this.loading = false;
+    
 
             if (state.newMessages === []) {
               commit("LOADING", false);

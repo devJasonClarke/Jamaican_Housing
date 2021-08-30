@@ -51,10 +51,18 @@ export const actions = {
             verified: false,
             role: "user",
             realEstateFirm: { name: "", uid: "" },
-            socialMedia: [],
+            socialMedia: {
+              facebook: '',
+              twitter: '',
+              instagram: '',
+              youtube: '',
+              linkedIn: ''
+            },
             contact: {
               email: "",
-              phoneNumber: null
+              phoneNumber: null,
+              whatsappNumber: null,
+              website: ''
             }
           });
       })
@@ -109,15 +117,24 @@ export const actions = {
                   displayName: result.user.displayName,
                   firstName: "",
                   lastName: "",
+                  initials: '',
                   userId: result.user.uid,
                   emailVerified: result.user.emailVerified,
                   verified: false,
                   role: "user",
                   realEstateFirm: { name: "", uid: "" },
-                  socialMedia: [],
+                  socialMedia: {
+                    facebook: '',
+                    twitter: '',
+                    instagram: '',
+                    youtube: '',
+                    linkedIn: ''
+                  },
                   contact: {
                     email: "",
-                    phoneNumber: null
+                    phoneNumber: null,
+                    whatsappNumber: null,
+                    website: ''
                   }
                 });
             }

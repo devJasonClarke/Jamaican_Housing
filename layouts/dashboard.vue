@@ -127,15 +127,15 @@
       </v-list-item>
       <v-spacer />
       <v-badge
-        :content="unReadMessages.length"
+        :content="newMessages.length"
         class="mr-6"
-        :value="unReadMessages.length"
+        :value="newMessages.length"
         overlap
         color="green"
       >
         <nuxt-link
           :to="{ name: 'dashboard-messages' }"
-          v-if="unReadMessages.length"
+          v-if="newMessages.length"
           ><v-icon>
             mdi-bell
           </v-icon></nuxt-link
@@ -146,12 +146,10 @@
       </v-badge>
 
       <div class="mr-3">
-        <v-icon v-if="$vuetify.theme.dark" @click="toggleTheme" 
+        <v-icon v-if="$vuetify.theme.dark" @click="toggleTheme"
           >mdi-weather-sunny</v-icon
         >
-        <v-icon v-else @click="toggleTheme" 
-          >mdi-weather-night</v-icon
-        >
+        <v-icon v-else @click="toggleTheme">mdi-weather-night</v-icon>
       </div>
 
       <v-menu bottom min-width="200px" rounded offset-y>
@@ -235,15 +233,11 @@ import VerifiedSymbol from "../components/VerifiedSymbol.vue";
 export default {
   middleware: ["authenticated"],
   components: { VerifiedSymbol },
-  /*  fetch() {
-    this.$fireModule.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.userID = user.uid;
-        console.log(`From fetch ${this.userID}`);
-     
-      }
-    });
-  }, */
+  fetch() {
+    if (this.newMessages.length == 0) {
+      this.getNewMessages();
+    }
+  },
   data() {
     return {
       group: null,
@@ -297,7 +291,8 @@ export default {
   methods: {
     ...mapActions({
       toggleTheme: "colorTheme/toggleTheme",
-      logout: "authentication/logout"
+      logout: "authentication/logout",
+      getNewMessages: "messages/getNewMessages"
     }),
 
     resize() {
@@ -318,7 +313,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      unReadMessages: "messages/unReadMessages",
+      newMessages: "messages/newMessages",
       profile: "authentication/profile",
       userAthenticated: "authentication/userAthenticated"
     })
