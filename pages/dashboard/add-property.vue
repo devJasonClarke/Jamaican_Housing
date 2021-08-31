@@ -611,7 +611,7 @@ export default {
                   console.log("File available at", downloadURL);
                   this.fileBeingUploaded = this.files[i].name;
                   this.imageUrls.push({
-                    url: downloadURL,
+                    src: downloadURL,
                     fileName: this.fileName
                   });
                 })

@@ -109,8 +109,7 @@
                   Are you sure you want to delete this message?
                 </v-card-title>
                 <v-card-text
-                  >We recommend that you double check and make sure that this
-                  message is not important. You may click 'Delete Message' to
+                  >We recommend that you double check and make sure that it is not important. You may click 'Delete Message' to
                   delete this message or 'Go Back' to save it for another
                   time.</v-card-text
                 >

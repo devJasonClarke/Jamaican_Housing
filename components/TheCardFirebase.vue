@@ -7,7 +7,7 @@
       elevation="0"
       class="rounded-lg card"
     >
-      <v-img :src="property[0].images[0]" height="200" class="pa-3">
+      <v-img :src="property[0].images[0].src" height="200" class="pa-3">
         <v-chip
           class="text-uppercase mb-2 mr-1"
           color="blue"

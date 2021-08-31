@@ -4,7 +4,7 @@
       <swiper-slide class="sliide" v-for="(img, i) in images" :key="i">
         <img
           class="img"
-          :src="img"
+          :src="img.src"
           height="450"
           width="100%"
           @click="showImg(i)"
