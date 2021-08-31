@@ -4,7 +4,11 @@
 
     <SectionPadding v-if="loading == true">
       <v-skeleton-loader type="paragraph@4"></v-skeleton-loader>
-      <v-skeleton-loader class='mx-auto mt-6'  max-width="300" type="text"></v-skeleton-loader>
+      <v-skeleton-loader
+        class="mx-auto mt-6"
+        max-width="300"
+        type="text"
+      ></v-skeleton-loader>
     </SectionPadding>
     <SectionPadding v-else-if="!newMessages.length">
       <v-sheet
@@ -19,20 +23,29 @@
     <SectionPadding v-else>
       <v-expansion-panels focusable>
         <v-expansion-panel v-for="(message, index) in newMessages" :key="index">
-          <v-expansion-panel-header
-            disable-icon-rotate
-            @click="readMessage(index)"
+          <v-expansion-panel-header disable-icon-rotate v-if="message[0].read"
             >From: {{ message[0].sender }}
 
             <template v-slot:actions>
-              <v-icon color="green" v-if="message[0].read">
+              <v-icon color="green">
                 mdi-message
               </v-icon>
-              <v-icon color="green" v-else>
+            </template>
+          </v-expansion-panel-header>
+
+          <v-expansion-panel-header
+            disable-icon-rotate
+            v-else
+            @click="updateMessage(message[1], index)"
+            >From: {{ message[0].sender }}
+
+            <template v-slot:actions>
+              <v-icon color="green">
                 mdi-message-outline
               </v-icon>
             </template>
           </v-expansion-panel-header>
+
           <v-expansion-panel-content>
             <p class="mt-6">Name: {{ message[0].sender }}</p>
             <p>
@@ -49,6 +62,12 @@
             </p>
             <p>
               Date: {{ message[0].timestamp.toDate().toLocaleDateString() }}
+            </p>
+            <p>
+              Property Interested In:
+              <a :href="`${message[0].property}`" target="_blank">{{
+                message[0].property
+              }}</a>
             </p>
             <p>Message: {{ message[0].message }}</p>
             <v-btn
@@ -82,7 +101,14 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
-      <v-btn color="success" @click="getNewMessages" class="mt-6 d-block mx-auto">Load More Messages</v-btn>
+      <v-btn
+        color="success"
+        @click="getNewMessages"
+        class="mt-6 d-block mx-auto"
+        :dark="paginateNext.dark"
+        :disabled="paginateNext.disabled"
+        >Load More Messages</v-btn
+      >
     </SectionPadding>
   </v-container>
 </template>
@@ -103,13 +129,21 @@ export default {
       readMessage: "messages/readMessage",
       deleteMessage: "messages/deleteMessage",
       setLoading: "messages/setLoading",
-      getNewMessages: "messages/getNewMessages"
-    })
+      getNewMessages: "messages/getNewMessages",
+      changeLocalMessageState: "messages/changeLocalMessageState"
+    }),
+    updateMessage(message, index) {
+      this.readMessage(message);
+      this.changeLocalMessageState(index);
+      console.log(message);
+      console.log(index);
+    }
   },
   computed: {
     ...mapGetters({
       newMessages: "messages/newMessages",
-      loading: "messages/loading"
+      loading: "messages/loading",
+      paginateNext: "messages/paginateNext"
       //  unReadMessages: "messages/unReadMessages"
     })
   }

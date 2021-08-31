@@ -357,13 +357,14 @@
                   :color="iconColor"
                   :disabled="urls.length > 0"
                   @click="previewPictures"
+                  class="mb-3"
                 >
                   Preview Pictures
                 </v-btn>
-                <v-btn dark :color="iconColor" type="submit">
+                <v-btn dark :color="iconColor" type="submit" class="mb-3">
                   Continue
                 </v-btn>
-                <v-btn text @click="cur = cur - 1">
+                <v-btn text @click="cur = cur - 1" class="mb-3">
                   back
                 </v-btn>
               </v-form>
@@ -518,7 +519,8 @@ export default {
       status: ["Rent", "Sale"],
       rentType: ["Per Night", "Per Month"],
       imageUrls: [],
-      fileBeingUploaded: ""
+      fileBeingUploaded: "",
+      fileName: ""
     };
   },
   methods: {
@@ -583,14 +585,13 @@ export default {
         this.loading = true;
 
         let storage = this.$fire.storage.ref();
+        let date = Date.now();
 
         for (let i = 0; i < this.files.length; i++) {
+          this.fileName = `${date.toString()}_${this.files[i].name}`;
+
           let ref = storage
-            .child(
-              `property_images/${this.user.uid}/${Date.now()}_${
-                this.files[i].name
-              }`
-            )
+            .child(`property_images/${this.user.uid}/${this.fileName}`)
             .put(this.files[i]);
 
           ref.on(
@@ -608,8 +609,11 @@ export default {
                 .getDownloadURL()
                 .then(downloadURL => {
                   console.log("File available at", downloadURL);
-                  this.imageUrls.push(downloadURL);
                   this.fileBeingUploaded = this.files[i].name;
+                  this.imageUrls.push({
+                    url: downloadURL,
+                    fileName: this.fileName
+                  });
                 })
                 .then(() => {
                   console.log("it is ready");
@@ -664,7 +668,7 @@ export default {
             this.loading = false;
             this.fileBeingUploaded = "";
             this.snackbar = true;
-            this.snackbarMessage = "Successfully Added";
+            this.snackbarMessage = "Successfully Added!";
             this.snackbarColor = "green";
           })
           .catch(error => {

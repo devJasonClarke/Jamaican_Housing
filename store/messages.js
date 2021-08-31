@@ -11,7 +11,18 @@ export const state = () => ({
 
 export const getters = {
   newMessages: state => state.newMessages,
-  oldMessages: state => state.oldMessages,
+  oldMessages: state => {
+    state.oldMessages;
+    let amount = 0;
+    for (let i = 0; i < state.newMessages.length; i++) {
+      if (state.newMessages[i][0].read == false) {
+        console.log("The Amount");
+        console.log(amount);
+        amount++;
+      }
+    }
+    return amount;
+  },
   loading: state => state.loading,
   lastVisible: state => state.lastVisible,
   paginateNext: state => state.paginateNext
@@ -52,7 +63,7 @@ export const actions = {
               commit("SET_PAGINATE_NEXT");
             }
             if (querySnapshot.empty && state.newMessages.length) {
-              commit("errors/LOG_ERROR", "You have no more new messages.", {
+              commit("errors/LOG_ERROR", "You have no more messages.", {
                 root: true
               });
             }
@@ -63,8 +74,6 @@ export const actions = {
             });
 
             commit("LOADING", false);
-
-    
 
             if (state.newMessages === []) {
               commit("LOADING", false);
@@ -80,7 +89,25 @@ export const actions = {
       }
     });
   },
+  readMessage({ commit }, messageId) {
+    console.log("read message");
+    console.log(messageId);
 
+    this.$fire.firestore
+      .collection("messages")
+      .doc(messageId)
+      .update({
+        read: true
+      });
+
+    commit("READ_MESSAGE");
+  },
+  changeLocalMessageState({ commit }, index) {
+    console.log("change local message state");
+    console.log(index);
+
+    commit("CHANGE_LOCAL_MESSAGE_STATE", index);
+  },
   setLoading({ commit }, data) {
     commit("LOADING", data);
   },
@@ -121,6 +148,13 @@ export const mutations = {
       disabled: false,
       dark: true
     };
+  },
+  CHANGE_LOCAL_MESSAGE_STATE: (state, index) => {
+    let message = [...state.newMessages];
+
+    message[index][0].read = true;
+
+    state.newMessages = message;
   },
 
   DELETE_MESSAGE: (state, index) => {

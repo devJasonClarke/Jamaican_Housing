@@ -127,15 +127,15 @@
       </v-list-item>
       <v-spacer />
       <v-badge
-        :content="newMessages.length"
+        :content="oldMessages"
         class="mr-6"
-        :value="newMessages.length"
+        :value="oldMessages"
         overlap
         color="green"
       >
         <nuxt-link
           :to="{ name: 'dashboard-messages' }"
-          v-if="newMessages.length"
+          v-if="oldMessages"
           ><v-icon>
             mdi-bell
           </v-icon></nuxt-link
@@ -314,6 +314,7 @@ export default {
   computed: {
     ...mapGetters({
       newMessages: "messages/newMessages",
+      oldMessages: "messages/oldMessages",
       profile: "authentication/profile",
       userAthenticated: "authentication/userAthenticated"
     })

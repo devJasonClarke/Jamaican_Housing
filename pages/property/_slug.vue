@@ -802,8 +802,8 @@ export default {
           phoneNumber: this.phoneNumber,
           timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
           message: this.message,
-          property: `https://jamaican-housing.pages.dev/${this.theParam}`,
-          messageRead: false
+          property: `https://jamaican-housing.pages.dev/property/${this.theParam}`,
+          read: false
         })
         .then(docRef => {
           console.log("Document written with ID: ", docRef.id);

@@ -47,7 +47,6 @@ export const actions = {
             lastName: lastName,
             userId: userCredential.user.uid,
             initials: initials,
-            emailVerified: false,
             verified: false,
             role: "user",
             realEstateFirm: { name: "", uid: "" },
@@ -119,7 +118,6 @@ export const actions = {
                   lastName: "",
                   initials: '',
                   userId: result.user.uid,
-                  emailVerified: result.user.emailVerified,
                   verified: false,
                   role: "user",
                   realEstateFirm: { name: "", uid: "" },
@@ -251,8 +249,7 @@ export const mutations = {
       localStorage.setItem("loggedIn", true);
       state.user = {
         email: user.email,
-        emailVerified: user.emailVerified,
-        uid: user.uid
+           uid: user.uid
       };
     }
   },
@@ -263,7 +260,6 @@ export const mutations = {
 
       state.user = {
         email: user.email,
-        emailVerified: user.emailVerified,
         uid: user.uid
       };
     }
