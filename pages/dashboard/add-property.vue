@@ -652,6 +652,7 @@ export default {
             bedrooms: this.property.details.bedrooms,
             featured: false,
             verified: false,
+            propertyFor: this.property.details.propertyFor,
 
             description: this.property.description,
             details: this.property.details,
