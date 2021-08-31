@@ -7,11 +7,7 @@
       elevation="0"
       class="rounded-lg card"
     >
-      <v-img
-        :src="property[0].images[0]"
-        height="200"
-        class="pa-3"
-      >
+      <v-img :src="property[0].images[0]" height="200" class="pa-3">
         <v-chip
           class="text-uppercase mb-2 mr-1"
           color="blue"
@@ -149,11 +145,5 @@ export default {
   &:hover {
     transform: scale(1.04);
   }
-}
-.hyphens {
-  overflow-wrap: anywhere;
-  word-wrap: break-word;
-  word-break: normal;
-  hyphens: auto;
 }
 </style>

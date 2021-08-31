@@ -102,11 +102,34 @@ export const actions = {
 
     commit("READ_MESSAGE");
   },
-  changeLocalMessageState({ commit }, index) {
+  changeMessageReadState({ commit }, index) {
     console.log("change local message state");
     console.log(index);
 
-    commit("CHANGE_LOCAL_MESSAGE_STATE", index);
+    commit("CHANGE_MESSAGE_READ_STATE", index);
+  },
+  deleteMessage({ commit }, messageId) {
+    console.log("read message");
+    console.log(messageId);
+
+    this.$fire.firestore
+      .collection("messages")
+      .doc(messageId)
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
+      })
+      .catch(error => {
+        commit("errors/LOG_ERROR", error, { root: true });
+      });
+
+    // commit("READ_MESSAGE");
+  },
+  removeLocalMessage({ commit }, index) {
+    console.log("REMOVE local message ");
+    console.log(index);
+
+    commit("REMOVE_LOCAL_MESSAGE", index);
   },
   setLoading({ commit }, data) {
     commit("LOADING", data);
@@ -149,10 +172,17 @@ export const mutations = {
       dark: true
     };
   },
-  CHANGE_LOCAL_MESSAGE_STATE: (state, index) => {
+  CHANGE_MESSAGE_READ_STATE: (state, index) => {
     let message = [...state.newMessages];
 
     message[index][0].read = true;
+
+    state.newMessages = message;
+  },
+  REMOVE_LOCAL_MESSAGE: (state, index) => {
+    let message = [...state.newMessages];
+
+    message.splice(index, 1);
 
     state.newMessages = message;
   },

@@ -23,6 +23,12 @@ input[type="number"] {
 .img {
   object-fit: cover;
 }
+.hyphens {
+  overflow-wrap: anywhere !important;
+  word-wrap: break-word !important;
+  word-break: normal !important;
+  hyphens: auto !important;
+}
 
 .primary-green {
   color: var(--primary-green) !important;

@@ -90,14 +90,45 @@
               class="mt-lg-0 mt-3  mr-3"
               ><v-icon left>mdi-phone mdi-18px</v-icon> Call
             </v-btn>
-            <v-btn
-              dark
-              color="error"
-              elevation="0"
-              class="mt-lg-0  mt-3 mr-3"
-              @click="deleteMessage(index)"
-              ><v-icon left>mdi-delete mdi-18px</v-icon> Delete Message</v-btn
-            >
+            <v-dialog v-model="dialog" width="500">
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  dark
+                  color="error"
+                  elevation="0"
+                  class="mt-lg-0  mt-3 mr-3"
+                  @click="dialog = true"
+                  v-bind="attrs"
+                  v-on="on"
+                  ><v-icon left>mdi-delete mdi-18px</v-icon> Delete
+                  Message</v-btn
+                >
+              </template>
+              <v-card>
+                <v-card-title class="text-h5 hyphens">
+                  Are you sure you want to delete this message?
+                </v-card-title>
+                <v-card-text
+                  >We recommend that you double check and make sure that this
+                  message is not important. You may click 'Delete Message' to
+                  delete this message or 'Go Back' to save it for another
+                  time.</v-card-text
+                >
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="green darken-1" text @click="dialog = false">
+                    Go back
+                  </v-btn>
+                  <v-btn
+                    color="red darken-1"
+                    text
+                    @click="removeMessage(message[1], index)"
+                  >
+                    Delete message
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -122,19 +153,27 @@ export default {
     console.log(this.newMessages);
   },
   data() {
-    return {};
+    return { dialog: false };
   },
   methods: {
     ...mapActions({
       readMessage: "messages/readMessage",
       deleteMessage: "messages/deleteMessage",
+      removeLocalMessage: "messages/removeLocalMessage",
       setLoading: "messages/setLoading",
       getNewMessages: "messages/getNewMessages",
-      changeLocalMessageState: "messages/changeLocalMessageState"
+      changeMessageReadState: "messages/changeMessageReadState"
     }),
     updateMessage(message, index) {
       this.readMessage(message);
-      this.changeLocalMessageState(index);
+      this.changeMessageReadState(index);
+      console.log(message);
+      console.log(index);
+    },
+    removeMessage(message, index) {
+      this.deleteMessage(message);
+      this.removeLocalMessage(index);
+      this.dialog = false;
       console.log(message);
       console.log(index);
     }
