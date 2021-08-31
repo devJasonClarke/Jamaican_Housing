@@ -65,7 +65,7 @@
             </p>
             <p>
               Property Interested In:
-              <a :href="`${message[0].property}`" target="_blank">{{
+              <a :href="`${message[0].property}`" class="hyphens" target="_blank">{{
                 message[0].property
               }}</a>
             </p>
