@@ -15,17 +15,32 @@
     <SectionPaddingAlt>
       <TheSearchSection />
     </SectionPaddingAlt>
-    <SectionPadding class="backgroundShade" id="top">
-      <TheRealEstatePropertiesListingLoader
-      
-        v-if="loading"
-        title="rent"
-      />
-      <TheRealEstatePropertiesListing
-        v-else
-        title="Homes for rent"
-        :card="featuredProperties"
-      
+    <SectionPadding v-if="loading == true"  class="pt-0"
+      ><TheRealEstatePropertiesListingLoader title="rent"
+    /></SectionPadding>
+    <SectionPadding v-else-if="!properties.length"  class="pt-0">
+      <v-sheet
+        height="200px"
+        class="d-flex justify-center align-center flex-column"
+        outlined
+        ><p class="text-h6 text-center font-weight-regular">
+         There are no properties with these criteria as yet.
+          <br />This is the perfect opprotunity to add yours!<!--  Add your first propery today! -->
+        </p>
+        <v-btn
+          nuxt
+          :to="{ name: 'dashboard-add-property' }"
+          dark
+          color="green accent-4"
+        >
+          <v-icon left>mdi-home-import-outline</v-icon> Add Property</v-btn
+        >
+      </v-sheet>
+    </SectionPadding>
+    <SectionPadding v-else id="top" class="pt-0">
+      <TheRealEstatePropertiesListingFirebase
+        title="Real Estate for Sale"
+        :properties="properties"
       />
       <div class="d-flex justify-center align-center mt-4">
         <v-btn
@@ -34,13 +49,21 @@
           dark
           small
           color="green accent-4"
-          @click="previous"
+          @click="$vuetify.goTo('#top')"
         >
           <v-icon dark>
             mdi-chevron-left
           </v-icon>
         </v-btn>
-        <v-btn class="mx-2" fab dark small color="green accent-4" @click="next">
+        <v-btn
+          class="mx-2"
+          fab
+          :dark="paginateNext.dark"
+          small
+          color="green accent-4"
+          @click="next"
+          :disabled="paginateNext.disabled"
+        >
           <v-icon dark>
             mdi-chevron-right
           </v-icon>
@@ -51,24 +74,23 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import img from "~/assets/images/houses/2.jpg";
 export default {
+  fetch() {
+    console.log("fetch");
+    console.log(this.properties);
+    if (this.properties.length == 0) {
+      this.getPropertiesForRent();
+    } else {
+      this.setLoading(false);
+    }
+  },
   data() {
     return {
       title: "Rent A Home | Jamaica Housing",
       description: "rent",
-      img: img,
-      loading: false,
-      card: {
-        title: "Sunny Private Studio Apartment",
-        parish: "St. James",
-        realEstateType: "Apartment",
-        squareMeters: 80,
-        beds: 3,
-        bathroom: 2,
-        price: 70
-      }
+      img: img
     };
   },
   computed: {
@@ -77,21 +99,27 @@ export default {
       return value;
     },
     ...mapGetters({
-      featuredProperties: "properties/featuredProperties"
+      properties: "getPropertiesForRent/properties",
+      lastVisible: "getPropertiesForRent/lastVisible",
+      loading: "getPropertiesForRent/loading",
+      paginateNext: "getPropertiesForRent/paginateNext"
     })
   },
   methods: {
+    ...mapActions({
+      logError: "errors/logError",
+      getPropertiesForRent: "getPropertiesForRent/getPropertiesForRent",
+      setLoading: "getPropertiesForRent/setLoading"
+    }),
     previous() {
       console.log("previous");
-      this.loading = true;
+
       this.$vuetify.goTo(this.target);
       setTimeout(() => (this.loading = false), 3000);
     },
     next() {
       console.log("next");
-      this.loading = true;
-      this.$vuetify.goTo(this.target);
-      setTimeout(() => (this.loading = false), 3000);
+      this.getPropertiesForRent();
     }
   }
 };

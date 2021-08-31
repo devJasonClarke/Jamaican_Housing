@@ -16,35 +16,28 @@
       <TheSearchSection />
     </SectionPaddingAlt>
 
-    <!-- <SectionPadding class="backgroundShade" id="top">
-      <TheRealEstatePropertiesListingLoader v-if="loading" title="sale" />
-      <TheRealEstatePropertiesListing
-        v-else
-        title="Real Estate for Sale"
-        :card="featuredProperties"
-      />
-      <div class="d-flex justify-center align-center mt-4">
+    <SectionPadding v-if="loading == true"  class="pt-0"><TheRealEstatePropertiesListingLoader  title="sale" /></SectionPadding>
+    <SectionPadding v-else-if="!properties.length"  class="pt-0">
+      <v-sheet
+        height="200px"
+        class="d-flex justify-center align-center flex-column"
+        outlined
+        ><p class="text-h6 text-center font-weight-regular">
+          No properties with these criteria as yet.
+          <br />This is your perfect opprotunity!<!--  Add your first propery today! -->
+        </p>
         <v-btn
-          class="mx-2"
-          fab
+          nuxt
+          :to="{ name: 'dashboard-add-property' }"
           dark
-          small
           color="green accent-4"
-          @click="previous"
         >
-          <v-icon dark>
-            mdi-chevron-left
-          </v-icon>
-        </v-btn>
-        <v-btn class="mx-2" fab dark small color="green accent-4" @click="next">
-          <v-icon dark>
-            mdi-chevron-right
-          </v-icon>
-        </v-btn>
-      </div>
-    </SectionPadding> -->
-    <SectionPadding  id="top">
-         <TheRealEstatePropertiesListingFirebase
+          <v-icon left>mdi-home-import-outline</v-icon> Add Property</v-btn
+        >
+      </v-sheet>
+    </SectionPadding>
+    <SectionPadding v-else id="top" class="pt-0">
+      <TheRealEstatePropertiesListingFirebase
         title="Real Estate for Sale"
         :properties="properties"
       />
@@ -97,7 +90,6 @@ export default {
       title: "Buy Real Estate | Jamaica Housing",
       description: "buy",
       img: img,
-      loading: false
     };
   },
   computed: {
@@ -106,7 +98,6 @@ export default {
       return value;
     },
     ...mapGetters({
-      featuredProperties: "properties/featuredProperties",
       properties: "getPropertiesForSale/properties",
       lastVisible: "getPropertiesForSale/lastVisible",
       loading: "getPropertiesForSale/loading",

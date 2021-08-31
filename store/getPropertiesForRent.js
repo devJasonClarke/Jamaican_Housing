@@ -2,6 +2,7 @@ export const state = () => ({
   properties: [],
   lastVisible: null,
   loading: true,
+  userSearch: false,
   paginateNext: {
     disabled: false,
     dark: true
@@ -16,67 +17,69 @@ export const getters = {
 };
 
 export const actions = {
-  getUserProperties({ commit, state }) {
+  getPropertiesForRent({ commit, state }) {
     console.log("getTheProperty");
 
-    this.$fireModule.auth().onAuthStateChanged(user => {
-      if (user) {
-        console.log("Get User: User");
-        console.log(user);
-        // console.log(`Properties: ${state.properties.length}`);
+    console.log("Get User: User");
 
-        // console.log("lastVisible");
+    // console.log(`Properties: ${state.properties.length}`);
+
+    // console.log("lastVisible");
+    console.log(state.lastVisible);
+
+    const ref = this.$fire.firestore
+      .collection("properties")
+      // .where("bedrooms", "==", "2")
+      // .where("price", "<=", "500000")
+      // .where("type", "==", "Development Land (Commercial)")
+      .where("propertyFor", "==", "Rent")
+      //.orderBy("price", "desc")
+      .orderBy("timestamp", "desc")
+      .startAfter(state.lastVisible || {})
+      .limit(3);
+
+    ref.get().then(
+      querySnapshot => {
+        commit(
+          "SET_LAST_VISIBLE",
+          Object.freeze(querySnapshot.docs[querySnapshot.docs.length - 1])
+        );
+        //    console.log("lastVisible_2");
         //  console.log(state.lastVisible);
 
-        const ref = this.$fire.firestore
-          .collection("properties")
-          .where("uploader", "==", user.uid)
-          .orderBy("timestamp", "desc")
-          .startAfter(state.lastVisible || {})
-          .limit(3);
+        if (querySnapshot.empty) {
+          console.log("Empty");
 
-        ref.get().then(
-          querySnapshot => {
-            commit(
-              "SET_LAST_VISIBLE",
-              Object.freeze(querySnapshot.docs[querySnapshot.docs.length - 1])
-            );
-            //    console.log("lastVisible_2");
-            //  console.log(state.lastVisible);
-
-            if (querySnapshot.empty) {
-              console.log("Empty");
-
-              commit("SET_PAGINATE_NEXT");
+          commit("SET_PAGINATE_NEXT");
+        }
+        if (querySnapshot.empty && state.properties.length) {
+          commit(
+            "errors/LOG_ERROR",
+            "Looks like we've run out of properties to show you.",
+            {
+              root: true
             }
-            if (querySnapshot.empty && state.properties.length) {
-              commit("errors/LOG_ERROR", "You have no more properties.", {
-                root: true
-              });
-            }
+          );
+        }
 
-            querySnapshot.forEach(doc => {
-              console.log(`This Document was fetched ${doc.id}`);
-              commit("SET_PROPERTIES", [doc.data(), doc.id]);
-            });
+        querySnapshot.forEach(doc => {
+          console.log(`This Document was fetched ${doc.id}`);
+          commit("SET_PROPERTIES", [doc.data(), doc.id]);
+        });
 
-            commit("LOADING", false);
-
-            //    this.loading = false;
-
-            if (state.properties === []) {
-              commit("LOADING", false);
-            }
-          },
-          error => {
-            console.log("Firebase");
-            console.log(error);
-          }
-        );
-      } else {
         commit("LOADING", false);
+
+        //    this.loading = false;
+
+        if (state.properties === []) {
+          commit("LOADING", false);
+        }
+      },
+      error => {
+        console.log("Firebase");
+        console.log(error);
       }
-    });
+    );
   },
 
   setLoading({ commit }, data) {
