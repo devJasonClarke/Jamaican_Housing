@@ -78,7 +78,7 @@
 
             <v-list-item-title v-else class="text-h6 px-0 text-center">
               <span>{{ profile["displayName"] }}</span>
-              <VerifiedSymbol role="realtor" />
+              <VerifiedSymbol :role="profile.role" v-if='profile.verified'/>
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -245,7 +245,7 @@ export default {
       drawer: true,
       fixed: false,
       miniVariant: false,
-      userID: "",
+      uid: "",
       title: "nope",
       messages: 8,
       routes: [

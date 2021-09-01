@@ -30,10 +30,10 @@ export const actions = {
     const ref = this.$fire.firestore
       .collection("properties")
       //.where("parish", "==", "Hanover")
-     // .where("bedrooms", "==", "2")
-     // .where("price", "<=", "500000")
-     // .where("type", "==", "Development Land (Commercial)")
-      .where("propertyFor", "==", "Buy")
+      // .where("bedrooms", "==", "2")
+      // .where("price", "<=", "500000")
+      // .where("type", "==", "Development Land (Commercial)")
+      .where("propertyFor", "==", "Sale")
       //.orderBy("price", "desc")
       .orderBy("timestamp", "desc")
       .startAfter(state.lastVisible || {})
@@ -54,9 +54,13 @@ export const actions = {
           commit("SET_PAGINATE_NEXT");
         }
         if (querySnapshot.empty && state.properties.length) {
-          commit("errors/LOG_ERROR", "Looks like we've run out of properties to show you.", {
-            root: true
-          });
+          commit(
+            "errors/LOG_ERROR",
+            "Looks like we've run out of properties to show you.",
+            {
+              root: true
+            }
+          );
         }
 
         querySnapshot.forEach(doc => {

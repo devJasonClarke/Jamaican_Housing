@@ -45,23 +45,23 @@ export const actions = {
             displayName: `${firstName} ${lastName}`,
             firstName: firstName,
             lastName: lastName,
-            userId: userCredential.user.uid,
+            uid: userCredential.user.uid,
             initials: initials,
             verified: false,
             role: "user",
             realEstateFirm: { name: "", uid: "" },
             socialMedia: {
-              facebook: '',
-              twitter: '',
-              instagram: '',
-              youtube: '',
-              linkedIn: ''
+              facebook: "",
+              twitter: "",
+              instagram: "",
+              youtube: "",
+              linkedIn: ""
             },
             contact: {
               email: "",
               phoneNumber: null,
               whatsappNumber: null,
-              website: ''
+              website: ""
             }
           });
       })
@@ -116,23 +116,23 @@ export const actions = {
                   displayName: result.user.displayName,
                   firstName: "",
                   lastName: "",
-                  initials: '',
-                  userId: result.user.uid,
+                  initials: "",
+                  uid: result.user.uid,
                   verified: false,
                   role: "user",
                   realEstateFirm: { name: "", uid: "" },
                   socialMedia: {
-                    facebook: '',
-                    twitter: '',
-                    instagram: '',
-                    youtube: '',
-                    linkedIn: ''
+                    facebook: "",
+                    twitter: "",
+                    instagram: "",
+                    youtube: "",
+                    linkedIn: ""
                   },
                   contact: {
                     email: "",
                     phoneNumber: null,
                     whatsappNumber: null,
-                    website: ''
+                    website: ""
                   }
                 });
             }
@@ -144,21 +144,21 @@ export const actions = {
         this.$fireModule.auth().onAuthStateChanged(user => {
           if (user) {
             this.$fire.firestore
-            .collection("users")
-            .doc(user.uid)
-            .get()
-            .then(doc => {
-              if (doc.exists) {
-                console.log("Document data exits:", doc.data());
-                commit("SET_PROFILE", doc.data());
-              } else {
-                // doc.data() will be undefined in this case
-                console.log("No such document!");
-              }
-            })
-            .catch(error => {
-              commit("errors/LOG_ERROR", error, { root: true });
-            });
+              .collection("users")
+              .doc(user.uid)
+              .get()
+              .then(doc => {
+                if (doc.exists) {
+                  console.log("Document data exits:", doc.data());
+                  commit("SET_PROFILE", doc.data());
+                } else {
+                  // doc.data() will be undefined in this case
+                  console.log("No such document!");
+                }
+              })
+              .catch(error => {
+                commit("errors/LOG_ERROR", error, { root: true });
+              });
           } else {
             // User is signed out
             // ...
@@ -263,7 +263,7 @@ export const mutations = {
       localStorage.setItem("loggedIn", true);
       state.user = {
         email: user.email,
-           uid: user.uid
+        uid: user.uid
       };
     }
   },

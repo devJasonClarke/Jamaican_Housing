@@ -19,12 +19,13 @@
       ><TheRealEstatePropertiesListingLoader title="rent"
     /></SectionPadding>
     <SectionPadding v-else-if="!properties.length"  class="pt-0">
+       <v-container>
       <v-sheet
         height="200px"
         class="d-flex justify-center align-center flex-column"
         outlined
         ><p class="text-h6 text-center font-weight-regular">
-         There are no properties with these criteria as yet.
+         There are no properties as yet.
           <br />This is the perfect opprotunity to add yours!<!--  Add your first propery today! -->
         </p>
         <v-btn
@@ -36,6 +37,7 @@
           <v-icon left>mdi-home-import-outline</v-icon> Add Property</v-btn
         >
       </v-sheet>
+       </v-container>
     </SectionPadding>
     <SectionPadding v-else id="top" class="pt-0">
       <TheRealEstatePropertiesListingFirebase

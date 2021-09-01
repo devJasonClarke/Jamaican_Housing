@@ -399,8 +399,8 @@
               <nuxt-link :to="{ name: 'profile' }" class="text-h6  mt-4 mb-0">
                 {{ uploader["displayName"] }}
                 <VerifiedSymbol
-                  v-if="uploader['verified']"
-                  :role="uploader['role']"
+                  v-if="uploader.verified"
+                  :role="uploader.role"
                 />
               </nuxt-link>
               <a

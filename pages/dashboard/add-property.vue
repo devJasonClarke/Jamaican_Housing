@@ -580,7 +580,8 @@ export default {
         this.$refs.detailsForm.validate() &&
         this.$refs.amenitiesForm.validate() &&
         this.$refs.picturesForm.validate() &&
-        this.$refs.toursForm.validate()
+        this.$refs.toursForm.validate() &&
+        this.profile.displayName
       ) {
         this.loading = true;
 
@@ -695,7 +696,8 @@ export default {
       idRules: "inputRules/idRules",
       parishes: "selectOptions/parishes",
       realEstateType: "selectOptions/realEstateType",
-      user: "authentication/user"
+      user: "authentication/user",
+      profile: "authentication/profile"
     })
   }
 };

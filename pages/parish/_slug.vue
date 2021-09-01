@@ -16,28 +16,30 @@
     <SectionPaddingAlt>
       <TheSearchSectionParishPage />
     </SectionPaddingAlt>
-    {{ properties }}
+    <!--   {{ properties }} -->
     <SectionPadding v-if="loading == true" class="pt-0"
       ><TheRealEstatePropertiesListingLoader title="sale"
     /></SectionPadding>
     <SectionPadding v-else-if="!properties.length" class="pt-0">
-      <v-sheet
-        height="200px"
-        class="d-flex justify-center align-center flex-column"
-        outlined
-        ><p class="text-h6 text-center font-weight-regular">
-          No properties with these criteria as yet.
-          <br />This is your perfect opprotunity!<!--  Add your first propery today! -->
-        </p>
-        <v-btn
-          nuxt
-          :to="{ name: 'dashboard-add-property' }"
-          dark
-          color="green accent-4"
-        >
-          <v-icon left>mdi-home-import-outline</v-icon> Add Property</v-btn
-        >
-      </v-sheet>
+      <v-container>
+        <v-sheet
+          height="200px"
+          class="d-flex justify-center align-center flex-column"
+          outlined
+          ><p class="text-h6 text-center font-weight-regular">
+         There are no properties as yet.
+          <br />This is the perfect opprotunity to add yours<!--  Add your first propery today! -->
+          </p>
+          <v-btn
+            nuxt
+            :to="{ name: 'dashboard-add-property' }"
+            dark
+            color="green accent-4"
+          >
+            <v-icon left>mdi-home-import-outline</v-icon> Add Property</v-btn
+          >
+        </v-sheet>
+      </v-container>
     </SectionPadding>
     <SectionPadding v-else id="top" class="pt-0">
       <TheRealEstatePropertiesListingFirebase
@@ -141,7 +143,7 @@ export default {
     },
     next() {
       console.log("next");
-      this.getParishProperties();
+      this.getParishProperties(this.parish.name);
     }
   }
 };
