@@ -1,8 +1,8 @@
 export const state = () => ({
   properties: [],
   lastVisible: null,
-  userSearch: false,
   loading: true,
+  userSearch: false,
   paginateNext: {
     disabled: false,
     dark: true
@@ -18,26 +18,24 @@ export const getters = {
 
 export const actions = {
   getParishProperties({ commit, state }) {
-   // let parish = theParish;
-    console.log("getParishProperty");
+    console.log("getTheProperty");
 
+    console.log("Get User: User");
 
     // console.log(`Properties: ${state.properties.length}`);
 
     // console.log("lastVisible");
     console.log(state.lastVisible);
 
-   // console.log(parish);
-
     const ref = this.$fire.firestore
-    .collection("properties")
-    .where("parish", "==", "St. James")
-      // .where("bedrooms", "==", "2")
-      // .where("price", "<=", "500000")
-      // .where("type", "==", "Development Land (Commercial)")
-      //  .where("propertyFor", "==", "Buy")
+      .collection("properties")
+      .where("parish", "==", "Hanover")
+     // .where("bedrooms", "==", "2")
+     // .where("price", "<=", "500000")
+     // .where("type", "==", "Development Land (Commercial)")
+    //  .where("propertyFor", "==", "Buy")
       //.orderBy("price", "desc")
-     // .orderBy("timestamp", "desc")
+      .orderBy("timestamp", "desc")
       .startAfter(state.lastVisible || {})
       .limit(3);
 
@@ -56,13 +54,9 @@ export const actions = {
           commit("SET_PAGINATE_NEXT");
         }
         if (querySnapshot.empty && state.properties.length) {
-          commit(
-            "errors/LOG_ERROR",
-            "Looks like we've run out of properties to show you.",
-            {
-              root: true
-            }
-          );
+          commit("errors/LOG_ERROR", "Looks like we've run out of properties to show you.", {
+            root: true
+          });
         }
 
         querySnapshot.forEach(doc => {

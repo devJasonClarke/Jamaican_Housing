@@ -143,8 +143,22 @@ export const actions = {
       .then(() => {
         this.$fireModule.auth().onAuthStateChanged(user => {
           if (user) {
-            commit("LOGIN", user);
-            commit("LOADING_STATE", false);
+            this.$fire.firestore
+            .collection("users")
+            .doc(user.uid)
+            .get()
+            .then(doc => {
+              if (doc.exists) {
+                console.log("Document data exits:", doc.data());
+                commit("SET_PROFILE", doc.data());
+              } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+              }
+            })
+            .catch(error => {
+              commit("errors/LOG_ERROR", error, { root: true });
+            });
           } else {
             // User is signed out
             // ...
