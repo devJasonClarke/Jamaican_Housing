@@ -61,11 +61,20 @@
             :width="[miniVariant ? 40 : 120]"
             class="mx-0 px-0 green"
           >
-            <!--   <span :class="[miniVariant ? 'text-h6':'text-h4', 'white--text' ]">{{profile["initials"]}}</span> -->
-
-            <v-img
-              src="https://source.unsplash.com/t7waxpkDD4g/240x240"
-            ></v-img>
+            <v-img v-if="profile.photoUrl" :src="profile.photoUrl"></v-img>
+            <span
+              v-else-if="profile.initials"
+              :class="[miniVariant ? 'text-h6' : 'text-h4', 'white--text']"
+              >{{ profile["initials"] }}</span
+            >
+            <div v-else>
+              <v-icon v-if="miniVariant" color="grey lighten-3"
+                >mdi-account mdi-24px</v-icon
+              >
+              <v-icon v-else color="grey lighten-4"
+                >mdi-account mdi-48px</v-icon
+              >
+            </div>
           </v-list-item-avatar>
         </v-list-item>
 
@@ -78,7 +87,7 @@
 
             <v-list-item-title v-else class="text-h6 px-0 text-center">
               <span>{{ profile["displayName"] }}</span>
-              <VerifiedSymbol :role="profile.role" v-if='profile.verified'/>
+              <VerifiedSymbol :role="profile.role" v-if="profile.verified" />
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -133,9 +142,7 @@
         overlap
         color="green"
       >
-        <nuxt-link
-          :to="{ name: 'dashboard-messages' }"
-          v-if="oldMessages"
+        <nuxt-link :to="{ name: 'dashboard-messages' }" v-if="oldMessages"
           ><v-icon>
             mdi-bell
           </v-icon></nuxt-link
@@ -164,7 +171,8 @@
             ></v-skeleton-loader>
             <span v-else>
               <v-avatar color="green" size="36">
-                <span class="white--text " v-if="profile['initials']">{{
+                <v-img v-if="profile.photoUrl" :src="profile.photoUrl"></v-img>
+                <span class="white--text " v-else-if="profile['initials']">{{
                   profile["initials"]
                 }}</span>
                 <v-icon v-else color="grey lighten-3"

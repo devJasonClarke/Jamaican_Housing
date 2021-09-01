@@ -43,6 +43,7 @@ export const actions = {
           .set({
             email: email,
             displayName: `${firstName} ${lastName}`,
+            photoUrl: '',
             firstName: firstName,
             lastName: lastName,
             uid: userCredential.user.uid,
@@ -114,6 +115,7 @@ export const actions = {
                 .set({
                   email: result.user.email,
                   displayName: result.user.displayName,
+                  photoUrl: '',
                   firstName: "",
                   lastName: "",
                   initials: "",
