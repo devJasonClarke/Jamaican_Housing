@@ -3,6 +3,7 @@
     <ThePropertySwiperFirebase :images="property.images" />
 
     <v-container class="mt-6 mb-9">
+      {{ favourites }}
       <v-row>
         <v-col cols="12" md="8" v-if="property.details.size === ''">
           <v-skeleton-loader
@@ -44,14 +45,24 @@
                 <v-btn
                   v-bind="attrs"
                   v-on="on"
-                  :loading="likeLoading"
                   class="mt-1"
                   icon
                   color="red"
-                  @click="likeProperty"
+                  @click="removeFromFavourites"
+                  v-if="liked"
                 >
                   <v-icon color="red" v-if="liked"> mdi-heart</v-icon>
-                  <v-icon color="red" v-else>mdi-heart-outline</v-icon>
+                </v-btn>
+                <v-btn
+                  v-bind="attrs"
+                  v-on="on"
+                  class="mt-1"
+                  icon
+                  color="red"
+                  @click="addToFavourites"
+                  v-else
+                >
+                  <v-icon color="red">mdi-heart-outline</v-icon>
                 </v-btn>
               </template>
               <span>Favourites</span>
@@ -581,7 +592,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   async fetch() {
     this.theParam = this.$route.params.slug;
@@ -714,12 +725,15 @@ export default {
           detail: "Parish",
           value: "St. James"
         }
-      ],
-      liked: false,
-      likeLoading: false
+      ]
     };
   },
   methods: {
+    ...mapActions({
+      removeFavourites: "favourites/removeFavourites",
+      addFavourites: "favourites/addFavourites",
+      logError: "errors/logError"
+    }),
     async getUser() {
       await this.$fire.firestore
         .collection("users")
@@ -746,10 +760,11 @@ export default {
     print() {
       window.print();
     },
-    likeProperty() {
-      this.liked = !this.liked;
-      this.likeLoading = !this.likeLoading;
-      setTimeout(() => (this.likeLoading = !this.likeLoading), 1000);
+    addToFavourites() {
+      this.addFavourites(this.theParam);
+    },
+    removeFromFavourites() {
+      this.removeFavourites(this.theParam);
     },
     shortenNumber(num) {
       num = Math.round((num + Number.EPSILON) * 100) / 100;
@@ -836,8 +851,17 @@ export default {
       nameRules: "inputRules/nameRules",
       phoneNumberRules: "inputRules/phoneNumberRules",
       emailRules: "inputRules/emailRules",
-      messageRules: "inputRules/messageRules"
+      messageRules: "inputRules/messageRules",
+      favourites: "favourites/favourites"
     }),
+
+    liked() {
+      if (this.favourites.includes(this.theParam)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
 
     formattedNumber() {
       /* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */

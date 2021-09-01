@@ -50,6 +50,7 @@ export const actions = {
             initials: initials,
             verified: false,
             role: "user",
+            favourites: [],
             realEstateFirm: { name: "", uid: "" },
             socialMedia: {
               facebook: "",
@@ -106,6 +107,7 @@ export const actions = {
             if (doc.exists) {
               console.log("Doc EXIsts");
               commit("SET_PROFILE", doc.data());
+              commit("favourites/SET_FAVOURITES", doc.data().favourites, { root: true });
             } else {
               console.log("setting google document");
               console.log(result.user);
@@ -122,6 +124,7 @@ export const actions = {
                   uid: result.user.uid,
                   verified: false,
                   role: "user",
+                  favourites: [],
                   realEstateFirm: { name: "", uid: "" },
                   socialMedia: {
                     facebook: "",
@@ -153,6 +156,7 @@ export const actions = {
                 if (doc.exists) {
                   console.log("Document data exits:", doc.data());
                   commit("SET_PROFILE", doc.data());
+                  commit("favourites/SET_FAVOURITES", doc.data().favourites, { root: true });
                 } else {
                   // doc.data() will be undefined in this case
                   console.log("No such document!");
@@ -236,6 +240,7 @@ export const actions = {
               if (doc.exists) {
                 console.log("Document data exits:", doc.data());
                 commit("SET_PROFILE", doc.data());
+                commit("favourites/SET_FAVOURITES", doc.data().favourites, { root: true });
               } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
