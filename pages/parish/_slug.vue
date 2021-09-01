@@ -13,6 +13,7 @@
     </SectionPadding>
 
     <v-divider></v-divider>
+       <v-container class="px-6 px-sm-0">
     <SectionPaddingAlt>
       <TheSearchSectionParishPage />
     </SectionPaddingAlt>
@@ -74,6 +75,7 @@
         </v-btn>
       </div>
     </SectionPadding>
+       </v-container>
   </div>
 </template>
 
