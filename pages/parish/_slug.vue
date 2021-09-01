@@ -16,7 +16,7 @@
     <SectionPaddingAlt>
       <TheSearchSectionParishPage />
     </SectionPaddingAlt>
-
+    {{ properties }}
     <SectionPadding v-if="loading == true" class="pt-0"
       ><TheRealEstatePropertiesListingLoader title="sale"
     /></SectionPadding>
@@ -80,9 +80,26 @@ import parishes from "~/assets/parishes/parishes";
 import { mapGetters, mapActions } from "vuex";
 export default {
   fetchOnServer: false,
+  fetch() {
+    let theParam = String(this.$route.params.slug);
+    let j = () => parishes.parishes.find(parish => parish.slug == theParam);
+    this.parish = j();
+
+    console.log(this.parish.name);
+
+    if (this.properties.length == 0) {
+      this.getParishProperties();
+    } else {
+      this.setLoading(false);
+    }
+  },
   data() {
     return {
-      parish: "",
+      parish: {
+        name: "",
+        image: "",
+        description: ""
+      },
       title: `The Best Real Estate`,
       card: {
         title: "Sunny Private Studio Apartment",
@@ -95,17 +112,7 @@ export default {
       }
     };
   },
-  async fetch() {
-    let theParam = String(this.$route.params.slug);
-    let j = () => parishes.parishes.find(parish => parish.slug == theParam);
-    this.parish = j();
 
-    if (this.properties.length == 0) {
-      await this.getParishProperties(j().name);
-    } else {
-      this.setLoading(false);
-    }
-  },
   computed: {
     target() {
       const value = "#top";
@@ -134,7 +141,7 @@ export default {
     },
     next() {
       console.log("next");
-      this.getParishProperties(this.parish.name);
+      this.getParishProperties();
     }
   }
 };

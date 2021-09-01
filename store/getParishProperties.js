@@ -17,27 +17,27 @@ export const getters = {
 };
 
 export const actions = {
-  getParishProperties({ commit, state }, parish) {
-    console.log("getTheProperty");
+  getParishProperties({ commit, state }) {
+   // let parish = theParish;
+    console.log("getParishProperty");
 
-    console.log("Get User: User");
 
     // console.log(`Properties: ${state.properties.length}`);
 
     // console.log("lastVisible");
     console.log(state.lastVisible);
 
-    console.log(parish)
+   // console.log(parish);
 
     const ref = this.$fire.firestore
-      .collection("properties")
-      .where("parish", "==", parish)
+    .collection("properties")
+    .where("parish", "==", "St. James")
       // .where("bedrooms", "==", "2")
       // .where("price", "<=", "500000")
       // .where("type", "==", "Development Land (Commercial)")
       //  .where("propertyFor", "==", "Buy")
       //.orderBy("price", "desc")
-      .orderBy("timestamp", "desc")
+     // .orderBy("timestamp", "desc")
       .startAfter(state.lastVisible || {})
       .limit(3);
 
