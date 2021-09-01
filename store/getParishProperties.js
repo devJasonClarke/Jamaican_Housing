@@ -17,7 +17,7 @@ export const getters = {
 };
 
 export const actions = {
-  getParishProperties({ commit, state }) {
+  getParishProperties({ commit, state }, parish) {
     console.log("getTheProperty");
 
     console.log("Get User: User");
@@ -29,7 +29,7 @@ export const actions = {
 
     const ref = this.$fire.firestore
       .collection("properties")
-      .where("parish", "==", "Hanover")
+      .where("parish", "==", parish)
      // .where("bedrooms", "==", "2")
      // .where("price", "<=", "500000")
      // .where("type", "==", "Development Land (Commercial)")

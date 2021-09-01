@@ -88,7 +88,7 @@ export default {
     console.log(this.parish.name);
 
     if (this.properties.length == 0) {
-      this.getParishProperties();
+      this.getParishProperties(this.parish.name);
     } else {
       this.setLoading(false);
     }
