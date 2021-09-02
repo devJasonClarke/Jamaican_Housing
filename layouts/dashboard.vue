@@ -64,7 +64,10 @@
             <v-img v-if="profile.photoUrl" :src="profile.photoUrl"></v-img>
             <span
               v-else-if="profile.initials"
-              :class="[miniVariant ? 'text-h6 font-weight-regular' : 'text-h4', 'white--text']"
+              :class="[
+                miniVariant ? 'text-h6 font-weight-regular' : 'text-h4',
+                'white--text'
+              ]"
               >{{ profile["initials"] }}</span
             >
             <span v-else>
@@ -142,14 +145,14 @@
         overlap
         color="green"
       >
-        <nuxt-link :to="{ name: 'dashboard-messages' }" v-if="oldMessages"
-          ><v-icon>
+        <nuxt-link :to="{ name: 'dashboard-messages' }"
+          ><v-icon v-if="oldMessages">
             mdi-bell
-          </v-icon></nuxt-link
-        >
-        <v-icon v-else>
-          mdi-bell-outline
-        </v-icon>
+          </v-icon>
+          <v-icon v-else>
+            mdi-bell-outline
+          </v-icon>
+        </nuxt-link>
       </v-badge>
 
       <div class="mr-3">

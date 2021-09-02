@@ -2,13 +2,15 @@
   <section>
     <swiper class="swiper" :options="propertySwiperOptions">
       <swiper-slide class="sliide" v-for="(img, i) in images" :key="i">
-        <v-img
+        <img
           :src="img.src"
+          class="img"
           height="450"
           width="100%"
           @click="showImg(i)"
-        >
-        </v-img>
+          :alt="`Property Image ${i}`"
+        />
+      
 
       </swiper-slide>
       <div class="swiper-button-prev" slot="button-prev"></div>
