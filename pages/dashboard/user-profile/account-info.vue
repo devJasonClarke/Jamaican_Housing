@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1>Personal Info</h1>
+    <h1>Account Info</h1>
   </v-container>
 </template>
 

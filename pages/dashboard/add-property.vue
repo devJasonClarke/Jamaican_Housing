@@ -15,16 +15,16 @@
         class="d-flex justify-center align-center flex-column"
         outlined
         ><p class="text-h6 text-center font-weight-regular">
-          No properties as yet.
-          <br />Add your first propery today!
+        9 out of 10 users optimized their accounts for better results.
+       <br>These accounts receive 93% more interactions.
         </p>
         <v-btn
           nuxt
-          :to="{ name: 'dashboard-add-property' }"
+          :to="{ name: 'dashboard-user-profile-account-info' }"
           dark
           color="green accent-4"
         >
-          <v-icon left>mdi-home-import-outline</v-icon> Add Property</v-btn
+          <v-icon left>mdi-account-outline</v-icon> Optimize your account</v-btn
         >
       </v-sheet>
     </SectionPadding>

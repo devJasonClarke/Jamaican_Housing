@@ -41,10 +41,10 @@ export default {
     return {
       items: [
         {
-          title: "Personal Info",
+          title: "Account Info",
           text: "Manage your Personal info and settings here.",
           icon: "mdi-account-outline",
-          route: "dashboard-user-profile-personal-info"
+          route: "dashboard-user-profile-account-info"
         },
         {
           title: "Login & Security",
