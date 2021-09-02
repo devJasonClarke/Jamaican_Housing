@@ -3,7 +3,6 @@
     <ThePropertySwiperFirebase :images="property.images" />
 
     <v-container class="mt-6 mb-9">
-
       <v-row>
         <v-col cols="12" md="8" v-if="property.details.size === ''">
           <v-skeleton-loader
@@ -408,7 +407,7 @@
 
             <div class="text-center d-flex flex-column">
               <nuxt-link :to="{ name: 'profile' }" class="text-h6  mt-4 mb-0">
-                {{ uploader["displayName"] }}
+                {{ uploader.name.displayName }}
                 <VerifiedSymbol
                   v-if="uploader.verified"
                   :role="uploader.role"
@@ -417,12 +416,12 @@
               <a
                 :href="`mailto:${uploader['email']}`"
                 class="text-subtitle-1"
-                >{{ uploader["email"] }}</a
+                >{{ uploader.contact.email }}</a
               >
               <a
                 target="_blank"
                 rel="nofollow noopener"
-                :href="`tel:${phoneNumber}`"
+                :href="`tel:${uploader.contact.phoneNumber}`"
                 class="text-subtitle-1"
                 >{{ formattedNumber }}</a
               >
@@ -655,7 +654,41 @@ export default {
         },
         uploader: "sss"
       },
-      uploader: {},
+      uploader: {
+        verified: true,
+        role: "user",
+        lastName: "",
+        socialMedia: {
+          linkedIn: "",
+          facebook: "",
+          youtube: "",
+          twitter: "",
+          instagram: ""
+        },
+        initials: "JC",
+        realEstateFirm: {
+          uid: "",
+          name: ""
+        },
+        displayName: "Jason Clarke",
+        favourites: ["ytnkT0sDxquL6TjjsA2U"],
+        email: "jettison100@gmail.com",
+        firstName: "",
+        name: {
+          lastName: "Clarke",
+          displayName: "Jason Clarke",
+          initials: "JC",
+          firstName: "J dawg"
+        },
+        contact: {
+          whatsappNumber: null,
+          email: "asd@sdf.asdf",
+          website: "",
+          phoneNumber: 23234234234
+        },
+        photoUrl: "https://avatars.githubusercontent.com/u/53666196?v=4",
+        uid: "qhdYBX7tVfOcUyV6bYtFOP9JGiD2"
+      },
       card: {
         title: "Sunny Private Studio Apartment",
         parish: "St. James",
@@ -745,7 +778,7 @@ export default {
             this.uploader = doc.data();
 
             let message = `Hi ${doc.data().firstName ||
-              doc.data().displayName}, I am interested in this property.`;
+              doc.data().name.displayName}, I am interested in this property.`;
             this.message = message;
           } else {
             // doc.data() will be undefined in this case
@@ -867,11 +900,11 @@ export default {
       /* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */
 
       var phone = [
-        this.phoneNumber.toString().slice(0, 4),
+        this.uploader.contact.phoneNumber.toString().slice(0, 4),
         "-",
-        this.phoneNumber.toString().slice(4, 7),
+        this.uploader.contact.phoneNumber.toString().slice(4, 7),
         "-",
-        this.phoneNumber.toString().slice(7)
+        this.uploader.contact.phoneNumber.toString().slice(7)
       ].join("");
       return phone;
     }

@@ -2,7 +2,42 @@ export const state = () => ({
   user: null,
   userAthenticated: false,
   googleAuth: false,
-  profile: {},
+  profile: {
+    loading: true,
+    verified: false,
+    role: "",
+    lastName: "",
+    socialMedia: {
+      linkedIn: "",
+      facebook: "",
+      youtube: "",
+      twitter: "",
+      instagram: ""
+    },
+    initials: "",
+    realEstateFirm: {
+      uid: "",
+      name: ""
+    },
+    displayName: "",
+    favourites: [],
+    email: "",
+    firstName: "",
+    name: {
+      lastName: "",
+      displayName: "",
+      initials: "",
+      firstName: ""
+    },
+    contact: {
+      whatsappNumber: null,
+      email: "",
+      website: "",
+      phoneNumber: null
+    },
+    photoUrl: "",
+    uid: ""
+  },
   loading: false
 });
 
@@ -41,20 +76,20 @@ export const actions = {
           .collection("users")
           .doc(userCredential.user.uid)
           .set({
-            email: email,
-            displayName: `${firstName} ${lastName}`,
             photoUrl: "",
-            firstName: firstName,
-            lastName: lastName,
             uid: userCredential.user.uid,
-            initials: initials,
             verified: false,
             role: "user",
             favourites: [],
+            name: {
+              displayName: `${firstName} ${lastName}`,
+              firstName: firstName,
+              lastName: lastName,
+              initials: initials
+            },
             realEstateFirm: { name: "", uid: "" },
             socialMedia: {
               facebook: "",
-              twitter: "",
               instagram: "",
               youtube: "",
               linkedIn: ""
@@ -107,7 +142,9 @@ export const actions = {
             if (doc.exists) {
               console.log("Doc EXIsts");
               commit("SET_PROFILE", doc.data());
-              commit("favourites/SET_FAVOURITES", doc.data().favourites, { root: true });
+              commit("favourites/SET_FAVOURITES", doc.data().favourites, {
+                root: true
+              });
             } else {
               console.log("setting google document");
               console.log(result.user);
@@ -115,12 +152,13 @@ export const actions = {
                 .collection("users")
                 .doc(result.user.uid)
                 .set({
-                  email: result.user.email,
-                  displayName: result.user.displayName,
                   photoUrl: "",
-                  firstName: "",
-                  lastName: "",
-                  initials: "",
+                  name: {
+                    displayName: result.user.displayName,
+                    firstName: "",
+                    lastName: "",
+                    initials: ""
+                  },
                   uid: result.user.uid,
                   verified: false,
                   role: "user",
@@ -156,7 +194,9 @@ export const actions = {
                 if (doc.exists) {
                   console.log("Document data exits:", doc.data());
                   commit("SET_PROFILE", doc.data());
-                  commit("favourites/SET_FAVOURITES", doc.data().favourites, { root: true });
+                  commit("favourites/SET_FAVOURITES", doc.data().favourites, {
+                    root: true
+                  });
                 } else {
                   // doc.data() will be undefined in this case
                   console.log("No such document!");
@@ -240,10 +280,12 @@ export const actions = {
               if (doc.exists) {
                 console.log("Document data exits:", doc.data());
                 commit("SET_PROFILE", doc.data());
-                commit("favourites/SET_FAVOURITES", doc.data().favourites, { root: true });
+                commit("favourites/SET_FAVOURITES", doc.data().favourites, {
+                  root: true
+                });
               } else {
                 // doc.data() will be undefined in this case
-                console.log("No such document!");
+             console.log("No such document!");
               }
             })
             .catch(error => {

@@ -86,7 +86,7 @@
             ></v-skeleton-loader>
 
             <v-list-item-title v-else class="text-h6 px-0 text-center">
-              <span>{{ profile["displayName"] }}</span>
+              <span>{{ profile.name.displayName }}</span>
               <VerifiedSymbol :role="profile.role" v-if="profile.verified" />
             </v-list-item-title>
           </v-list-item-content>

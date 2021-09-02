@@ -160,7 +160,7 @@
               <span v-if="profile['first name']">{{
                 profile["first name"]
               }}</span>
-              <span v-else>{{ profile["displayName"] }}</span>
+              <span v-else>{{ profile.name.displayName }}</span>
             </v-btn>
           </template>
 
