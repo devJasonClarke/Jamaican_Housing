@@ -257,13 +257,9 @@
                 <v-list-item class="mb-3">
                   <v-list-item-content class="  text-capitalize">
                     <v-list-item-title class="text-body-1   font-weight-medium"
-                      >Price :</v-list-item-title
+                      >Size :</v-list-item-title
                     >
-                    $
-                    {{
-                      numberWithCommas(property.details.price * currencyRate)
-                    }}
-                    {{ activeCurrency }}
+                    {{ property.details.size }} sq. ft.
                   </v-list-item-content>
                 </v-list-item>
                 <v-list-item class="mb-3">
@@ -285,27 +281,22 @@
                 <v-list-item class="mb-3">
                   <v-list-item-content class="  text-capitalize">
                     <v-list-item-title class="text-body-1   font-weight-medium"
-                      >Size :</v-list-item-title
+                      >Price :</v-list-item-title
                     >
-                    {{ property.details.size }} sq. ft.
+                    $
+                    {{
+                      numberWithCommas(property.details.price * currencyRate)
+                    }}
+                    {{ activeCurrency }}
                   </v-list-item-content>
                 </v-list-item>
 
-                <v-list-item v-if="property.details.propertyId" class="mb-3">
-                  <v-list-item-content class="  text-capitalize">
-                    <v-list-item-title class="text-body-1   font-weight-medium">
-                      MLS ID :</v-list-item-title
+                <v-list-item class="mb-3" v-if="property.timestamp">
+                  <v-list-item-content class="  text-capitalize ">
+                    <v-list-item-title class="text-body-1 font-weight-medium"
+                      >Date Added :</v-list-item-title
                     >
-                    {{ property.details.propertyId }}
-                  </v-list-item-content>
-                </v-list-item>
-
-                <v-list-item class="mb-3" v-if="property.featured">
-                  <v-list-item-content class="  text-capitalize">
-                    <v-list-item-title class="text-body-1   font-weight-medium"
-                      >Featured :</v-list-item-title
-                    >
-                    {{ `${property.featured}` }}
+                    {{ property.timestamp.toDate().toLocaleDateString() }}
                   </v-list-item-content>
                 </v-list-item>
                 <v-list-item class="mb-3" v-if="property.verified">
@@ -316,12 +307,21 @@
                     {{ property.verified }}
                   </v-list-item-content>
                 </v-list-item>
-                <v-list-item class="mb-3" v-if="property.timestamp">
-                  <v-list-item-content class="  text-capitalize ">
-                    <v-list-item-title class="text-body-1 font-weight-medium"
-                      >Date Added :</v-list-item-title
+                <v-list-item class="mb-3" v-if="property.featured">
+                  <v-list-item-content class="  text-capitalize">
+                    <v-list-item-title class="text-body-1   font-weight-medium"
+                      >Featured :</v-list-item-title
                     >
-                    {{ property.timestamp.toDate().toLocaleDateString() }}
+                    {{ `${property.featured}` }}
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item v-if="property.details.propertyId" class="mb-3">
+                  <v-list-item-content class="  text-capitalize">
+                    <v-list-item-title class="text-body-1   font-weight-medium">
+                      MLS ID :</v-list-item-title
+                    >
+                    {{ property.details.propertyId }}
                   </v-list-item-content>
                 </v-list-item>
               </v-list-item-group>

@@ -10,7 +10,7 @@
       elevation="0"
     >
       <v-card-title class="px-0 text-h4 font-weight-bold">
-        {{ authState }} {{ user }}
+        {{ authState }} 
       </v-card-title>
       <p class="px-0 body-1 grey--text text--darken-1">
         We won't charge you a milion dollars, It's Free! Discover the best
