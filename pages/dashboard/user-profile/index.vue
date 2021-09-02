@@ -47,16 +47,16 @@ export default {
           route: "dashboard-user-profile-personal-info"
         },
         {
-          title: "Login & security",
+          title: "Login & Security",
           text: "Manage your Login & security and settings here.",
           icon: "mdi-login-variant",
           route: "dashboard-user-profile-login-&-security"
         },
         {
-          title: "Privacy & Sharing",
+          title: "Verify Account",
           text: "Control what you share and what users sees it",
-          icon: "mdi-tune-vertical",
-          route: "dashboard-user-profile-privacy-&-sharing"
+          icon: "mdi-check-decagram-outline",
+          route: "dashboard-user-profile-verify-account"
         },
         {
           title: "Payments",

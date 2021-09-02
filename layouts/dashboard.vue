@@ -64,7 +64,7 @@
             <v-img v-if="profile.photoUrl" :src="profile.photoUrl"></v-img>
             <span
               v-else-if="profile.initials"
-              :class="[miniVariant ? 'text-h6' : 'text-h4', 'white--text']"
+              :class="[miniVariant ? 'text-h6 font-weight-regular' : 'text-h4', 'white--text']"
               >{{ profile["initials"] }}</span
             >
             <span v-else>
