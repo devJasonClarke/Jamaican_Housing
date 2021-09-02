@@ -72,7 +72,18 @@
           </v-btn>
         </div>
       </SectionPadding>
+      
     </v-container>
+   <SectionPadding class="backgroundShade">
+      <SectionTitles
+        subTitle="FIND YOUR HOME TODAY"
+        mainTitle="Featured listings around you"
+        linkMessage="See all featured listings "
+        route="featured"
+      />
+
+      <TheFeaturedProperties />
+    </SectionPadding>
   </div>
 </template>
 
