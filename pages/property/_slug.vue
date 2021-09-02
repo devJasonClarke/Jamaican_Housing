@@ -3,7 +3,7 @@
     <ThePropertySwiperFirebase :images="property.images" />
 
     <v-container class="mt-6 mb-9">
-      {{ favourites }}
+
       <v-row>
         <v-col cols="12" md="8" v-if="property.details.size === ''">
           <v-skeleton-loader
