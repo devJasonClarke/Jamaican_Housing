@@ -59,7 +59,7 @@
             v-else
             :height="[miniVariant ? 40 : 120]"
             :width="[miniVariant ? 40 : 120]"
-            class="mx-0 px-0 green"
+            class="mx-0 d-flex justify-center align-center green"
           >
             <v-img v-if="profile.photoUrl" :src="profile.photoUrl"></v-img>
             <span
@@ -67,14 +67,14 @@
               :class="[miniVariant ? 'text-h6' : 'text-h4', 'white--text']"
               >{{ profile["initials"] }}</span
             >
-            <div v-else>
+            <span v-else>
               <v-icon v-if="miniVariant" color="grey lighten-3"
                 >mdi-account mdi-24px</v-icon
               >
               <v-icon v-else color="grey lighten-4"
                 >mdi-account mdi-48px</v-icon
               >
-            </div>
+            </span>
           </v-list-item-avatar>
         </v-list-item>
 
