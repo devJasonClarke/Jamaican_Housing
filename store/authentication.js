@@ -1,50 +1,11 @@
 export const state = () => ({
   user: null,
-  userAthenticated: false,
   googleAuth: false,
-  profile: {
-    loading: true,
-    verified: false,
-    role: "",
-    lastName: "",
-    socialMedia: {
-      linkedIn: "",
-      facebook: "",
-      youtube: "",
-      twitter: "",
-      instagram: ""
-    },
-    initials: "",
-    realEstateFirm: {
-      uid: "",
-      name: ""
-    },
-    displayName: "",
-    favourites: [],
-    email: "",
-    firstName: "",
-    name: {
-      lastName: "",
-      displayName: "",
-      initials: "",
-      firstName: ""
-    },
-    contact: {
-      whatsappNumber: null,
-      email: "",
-      website: "",
-      phoneNumber: null
-    },
-    photoUrl: "",
-    uid: ""
-  },
   loading: false
 });
 
 export const getters = {
   user: state => state.user,
-  profile: state => state.profile,
-  userAthenticated: state => state.userAthenticated,
   loading: state => state.loading
 };
 
@@ -80,6 +41,7 @@ export const actions = {
             uid: userCredential.user.uid,
             verified: false,
             role: "user",
+            numberOfProperties: 0,
             favourites: [],
             name: {
               displayName: `${firstName} ${lastName}`,
@@ -141,7 +103,7 @@ export const actions = {
           .then(doc => {
             if (doc.exists) {
               console.log("Doc EXIsts");
-              commit("SET_PROFILE", doc.data());
+              commit("profile/SET_PROFILE", doc.data(), { root: true });
               commit("favourites/SET_FAVOURITES", doc.data().favourites, {
                 root: true
               });
@@ -153,16 +115,17 @@ export const actions = {
                 .doc(result.user.uid)
                 .set({
                   photoUrl: "",
+                  uid: result.user.uid,
+                  verified: false,
+                  role: "user",
+                  favourites: [],
+                  numberOfProperties: 0,
                   name: {
                     displayName: result.user.displayName,
                     firstName: "",
                     lastName: "",
                     initials: ""
                   },
-                  uid: result.user.uid,
-                  verified: false,
-                  role: "user",
-                  favourites: [],
                   realEstateFirm: { name: "", uid: "" },
                   socialMedia: {
                     facebook: "",
@@ -193,7 +156,7 @@ export const actions = {
               .then(doc => {
                 if (doc.exists) {
                   console.log("Document data exits:", doc.data());
-                  commit("SET_PROFILE", doc.data());
+                  commit("profile/SET_PROFILE", doc.data(), { root: true });
                   commit("favourites/SET_FAVOURITES", doc.data().favourites, {
                     root: true
                   });
@@ -279,13 +242,13 @@ export const actions = {
             .then(doc => {
               if (doc.exists) {
                 console.log("Document data exits:", doc.data());
-                commit("SET_PROFILE", doc.data());
+                commit("profile/SET_PROFILE", doc.data(), { root: true });
                 commit("favourites/SET_FAVOURITES", doc.data().favourites, {
                   root: true
                 });
               } else {
                 // doc.data() will be undefined in this case
-             console.log("No such document!");
+                console.log("No such document!");
               }
             })
             .catch(error => {
@@ -330,13 +293,8 @@ export const mutations = {
   LOGOUT: state => {
     localStorage.setItem("loggedIn", false);
     state.user = null;
-    state.userAthenticated = false;
-    state.profile = {};
   },
-  SET_PROFILE: (state, data) => {
-    state.profile = data;
-    state.userAthenticated = true;
-  },
+
   LOADING_STATE: (state, value) => {
     state.loading = value;
   }

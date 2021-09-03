@@ -35,8 +35,10 @@ export const state = () => ({
   amountRules: [
     value => !!value || "Required.",
     value => !/[ ]/.test(value) || "no spaces allowed",
-    value => (value || "").length <= 15 || "Max 15 characters",
-    value => value >= 0 || "No negative amounts"
+    value =>
+      (value || "").toString().length <= 15 ||
+      "Max 15 digits. 16 digits are a Quadrillion, Please contact our team.",
+    value => (value || "").toString() > 0 || "No negative amounts"
   ],
   messageRules: [
     v => !!v || "Message is required",

@@ -450,8 +450,8 @@ export default {
       currencies: "api/currencies",
       currencyRate: "api/currencyRate",
       colorTheme: "colorTheme/theme",
-      profile: "authentication/profile",
-      userAthenticated: "authentication/userAthenticated",
+      profile: "profile/profile",
+      userAthenticated: "profile/userAthenticated",
       passwordRules: "inputRules/passwordRules",
       emailRules: "inputRules/emailRules",
       loading: "authentication/loading"

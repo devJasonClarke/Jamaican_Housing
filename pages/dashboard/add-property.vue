@@ -1,6 +1,7 @@
 <template>
   <v-container id="top">
     <h1>Add Your Property</h1>
+    {{`typeOf price: ${typeof property.details.price}`}}
     <!--   {{profile}} -->
     <SectionPadding v-if="profile.loading">
       <v-skeleton-loader
@@ -174,7 +175,7 @@
                         dense
                         label="Size *"
                         type="number"
-                        v-model="property.details.size"
+                        v-model.number="property.details.size"
                         :color="iconColor"
                         suffix="Square Feet"
                         :rules="amountRules"
@@ -218,7 +219,7 @@
                         type="number"
                         prefix="$"
                         suffix="JMD"
-                        v-model="property.details.price"
+                        v-model.number="property.details.price"
                         :color="iconColor"
                         :rules="amountRules"
                       ></v-text-field
@@ -255,7 +256,7 @@
                         label="Number of Bed Rooms"
                         required
                         type="number"
-                        v-model="property.details.bedrooms"
+                        v-model.number="property.details.bedrooms"
                         :color="iconColor"
                         :rules="amountRules"
                       ></v-text-field
@@ -267,7 +268,8 @@
                         label="Number of Bath Rooms"
                         required
                         type="number"
-                        v-model="property.details.bathrooms"
+                        min="4"
+                        v-model.number="property.details.bathrooms"
                         :color="iconColor"
                         :rules="amountRules"
                       ></v-text-field
@@ -277,7 +279,7 @@
                       <v-text-field
                         outlined
                         dense
-                        v-model="property.details.garages"
+                        v-model.number="property.details.garages"
                         label="Number of Garages"
                         type="number"
                         :color="iconColor"
@@ -734,7 +736,7 @@ export default {
       parishes: "selectOptions/parishes",
       realEstateType: "selectOptions/realEstateType",
       user: "authentication/user",
-      profile: "authentication/profile"
+      profile: "profile/profile"
     })
   }
 };

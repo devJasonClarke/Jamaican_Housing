@@ -326,8 +326,8 @@ export default {
     ...mapGetters({
       newMessages: "messages/newMessages",
       oldMessages: "messages/oldMessages",
-      profile: "authentication/profile",
-      userAthenticated: "authentication/userAthenticated"
+      profile: "profile/profile",
+      userAthenticated: "profile/userAthenticated"
     })
   }
 };
