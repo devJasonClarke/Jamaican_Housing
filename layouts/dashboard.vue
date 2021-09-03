@@ -63,12 +63,12 @@
           >
             <v-img v-if="profile.photoUrl" :src="profile.photoUrl"></v-img>
             <span
-              v-else-if="profile.initials"
+              v-else-if="profile.name.initials"
               :class="[
                 miniVariant ? 'text-h6 font-weight-regular' : 'text-h4',
                 'white--text'
               ]"
-              >{{ profile["initials"] }}</span
+              >{{ profile.name.initials }}</span
             >
             <span v-else>
               <v-icon v-if="miniVariant" color="grey lighten-3"
@@ -88,7 +88,7 @@
               type="text"
             ></v-skeleton-loader>
 
-            <v-list-item-title v-else class="text-h6 px-0 text-center">
+            <v-list-item-title v-else class="text-h6 px-0 text-center text-capitalize">
               <span>{{ profile.name.displayName }}</span>
               <VerifiedSymbol :role="profile.role" v-if="profile.verified" />
             </v-list-item-title>
@@ -175,8 +175,8 @@
             <span v-else>
               <v-avatar color="green" size="36">
                 <v-img v-if="profile.photoUrl" :src="profile.photoUrl"></v-img>
-                <span class="white--text " v-else-if="profile['initials']">{{
-                  profile["initials"]
+                <span class="white--text  " v-else-if="profile.name.initials">{{
+                  profile.name.initials
                 }}</span>
                 <v-icon v-else color="grey lighten-3"
                   >mdi-account mdi-24px</v-icon
