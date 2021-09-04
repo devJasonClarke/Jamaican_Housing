@@ -362,7 +362,7 @@
                     @dragover.prevent
                   >
                     <v-file-input
-                      accept="image/png, image/jpeg, image/jpg"
+                      accept="image/png, image/jpeg"
                       small-chips
                       show-size
                       counter
@@ -651,7 +651,8 @@ export default {
             snapshot => {},
             error => {
               console.log(error);
-              this.logError(error);
+              this.logError("Unable to upload pictures, please check your internet and ensure that your pictures use either the JPG or PNG format.");
+              this.loading = false;
             },
             () => {
               // Handle successful uploads on complete
