@@ -446,6 +446,7 @@
                     :color="iconColor"
                     type="submit"
                     :loading="loading"
+                    :disabled='disabled'
                   >
                     Add Property
                   </v-btn>
@@ -514,6 +515,7 @@ export default {
       validPictures: false,
       validTours: false,
       loading: false,
+      disabled: false,
       property: {
         description: {
           name: "",
@@ -720,6 +722,7 @@ export default {
           })
           .then(() => {
             this.loading = false;
+            this.disabled = true;
             this.fileBeingUploaded = "";
             this.snackbar = true;
             this.snackbarMessage = "Successfully Added!";
