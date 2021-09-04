@@ -564,7 +564,7 @@ export default {
         { title: "Schools Near By", icon: "mdi-school" },
         { title: "Supermarket Near By", icon: "mdi-shopping" },
         { title: "Movie Theater Near By", icon: "mdi-theater" },
-        { title: "Restaurants Near By", icon: "mdi-silverware-fork-knife" },
+        { title: "Restaurants Near By", icon: "mdi-silverware-fork-knife" }
       ],
       status: ["Rent", "Sale"],
       rentType: ["Per Night", "Per Month"],
@@ -663,7 +663,7 @@ export default {
                   this.fileBeingUploaded = this.files[i].name;
                   this.imageUrls.push({
                     src: downloadURL,
-                    fileName: this.fileName
+                    fileName: `${date.toString()}_${this.fileBeingUploaded}`
                   });
                 })
                 .then(() => {

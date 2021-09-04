@@ -48,6 +48,7 @@
                   icon
                   color="red"
                   @click="removeFromFavourites"
+                  :loading="likeLoading"
                   v-if="liked"
                 >
                   <v-icon color="red" v-if="liked"> mdi-heart</v-icon>
@@ -59,6 +60,7 @@
                   icon
                   color="red"
                   @click="addToFavourites"
+                  :loading="likeLoading"
                   v-else
                 >
                   <v-icon color="red">mdi-heart-outline</v-icon>
@@ -631,6 +633,7 @@ export default {
       message: "",
       sent: false,
       loading: false,
+      likeLoading: false,
       property: {
         timestamp: "",
         details: {
@@ -794,10 +797,14 @@ export default {
       window.print();
     },
     addToFavourites() {
+      this.likeLoading = !this.likeLoading;
       this.addFavourites(this.theParam);
+      setTimeout(() => (this.likeLoading = !this.likeLoading), 1000);
     },
     removeFromFavourites() {
+      this.likeLoading = !this.likeLoading;
       this.removeFavourites(this.theParam);
+      setTimeout(() => (this.likeLoading = !this.likeLoading), 1000);
     },
     shortenNumber(num) {
       num = Math.round((num + Number.EPSILON) * 100) / 100;
