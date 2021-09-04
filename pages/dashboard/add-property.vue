@@ -1,7 +1,7 @@
 <template>
   <v-container id="top">
     <h1>Add Your Property</h1>
-    {{`typeOf price: ${typeof property.details.price}`}}
+    {{ `typeOf price: ${typeof property.details.price}` }}
     <!--   {{profile}} -->
     <SectionPadding v-if="profile.loading">
       <v-skeleton-loader
@@ -118,7 +118,7 @@
                         clear-icon="mdi-close-circle"
                         label="Property Description *"
                         counter
-                        maxlength="425"
+                        maxlength="500"
                         required
                         :color="iconColor"
                         v-model="property.description.description"
@@ -547,13 +547,24 @@ export default {
         { title: "Gated Community", icon: "mdi-security" },
         { title: "Parking", icon: "mdi-car" },
         { title: "Furnished", icon: "mdi-sofa" },
+        { title: "Smart Home", icon: "mdi-home-assistant" },
         { title: "24 Hour Security", icon: "mdi-cctv" },
         { title: "Family Oriented", icon: "mdi-home-heart" },
         { title: "Grilled", icon: "mdi-shield-home" },
         { title: "Water Heater", icon: "mdi-thermometer-high" },
         { title: "Swimming Pool", icon: "mdi-pool" },
         { title: "Generator", icon: "mdi-flash" },
-        { title: "Water Tank", icon: "mdi-water" }
+        { title: "Water Tank", icon: "mdi-water" },
+        { title: "Gym", icon: "mdi-dumbbell" },
+        { title: "Tennis Court", icon: "mdi-tennis" },
+        { title: "Basketball Court", icon: "mdi-basketball" },
+        { title: "Park Near By", icon: "mdi-nature-people" },
+        { title: "Church Near By", icon: "mdi-church" },
+        { title: "Hospital Near By", icon: "mdi-hospital-building" },
+        { title: "Schools Near By", icon: "mdi-school" },
+        { title: "Supermarket Near By", icon: "mdi-shopping" },
+        { title: "Movie Theater Near By", icon: "mdi-theater" },
+        { title: "Restaurants Near By", icon: "mdi-silverware-fork-knife" },
       ],
       status: ["Rent", "Sale"],
       rentType: ["Per Night", "Per Month"],
@@ -620,7 +631,7 @@ export default {
         this.$refs.amenitiesForm.validate() &&
         this.$refs.picturesForm.validate() &&
         this.$refs.toursForm.validate() &&
-        this.profile.displayName
+        this.profile.name.displayName
       ) {
         this.loading = true;
 

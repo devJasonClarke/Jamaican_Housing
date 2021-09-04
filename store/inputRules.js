@@ -49,7 +49,7 @@ export const state = () => ({
     v => !!v || "Description is required",
     v => (v && !!v.trim()) || "Value cannot be blank",
     v => v.length >= 10 || "Description must be atleast 10 characters long",
-    value => (value || "").length <= 425 || "Max 425 characters"
+    value => (value || "").length <= 500 || "Max 500 characters"
   ]
 });
 
