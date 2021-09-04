@@ -1,6 +1,7 @@
 <template>
   <v-container id="top">
-    <h1>Add Your Property</h1>
+    <TheMetaTags :title="title" :description="description" />
+    <h1>Add Property</h1>
     {{ `typeOf price: ${typeof property.details.price}` }}
     <!--   {{profile}} -->
     <SectionPadding v-if="profile.loading">
@@ -748,7 +749,13 @@ export default {
       realEstateType: "selectOptions/realEstateType",
       user: "authentication/user",
       profile: "profile/profile"
-    })
+    }),
+    title() {
+      return `${this.profile.name.displayName} | Add Property`;
+    },
+    description() {
+      return "Add Property";
+    }
   }
 };
 </script>

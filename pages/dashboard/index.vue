@@ -1,5 +1,6 @@
 <template>
   <v-container>
+        <TheMetaTags :title="title" :description="description" />
     <h1>Properties</h1>
     <div v-for="(property, i) in properties" :key="i">
       {{ property[1] }}
@@ -88,8 +89,15 @@ export default {
       properties: "getUserProperties/properties",
       lastVisible: "getUserProperties/lastVisible",
       loading: "getUserProperties/loading",
-      paginateNext: "getUserProperties/paginateNext"
-    })
+      paginateNext: "getUserProperties/paginateNext",
+        profile: "profile/profile"
+    }),
+      title() {
+      return `${this.profile.name.displayName} | Properties`;
+    },
+    description() {
+      return  `${this.profile.name.displayName} amazing properties.`;
+    }
   },
   methods: {
     ...mapActions({

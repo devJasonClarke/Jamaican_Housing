@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <TheMetaTags :title="title" :description="description" />
     <h1>User Profile</h1>
     <SectionPadding>
       <v-row dense>
@@ -11,7 +12,7 @@
           sm="6"
         >
           <v-sheet outlined color="rgba(0, 200, 83, 0.2)" rounded>
-            <v-card flat elevation="0"  :to="{ name: item.route }">
+            <v-card flat elevation="0" :to="{ name: item.route }">
               <v-card-text>
                 <v-avatar
                   size="56"
@@ -30,11 +31,11 @@
         </v-col>
       </v-row>
     </SectionPadding>
-     
   </v-container>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   layout: "dashboard",
   data() {
@@ -67,6 +68,18 @@ export default {
       ],
       iconColor: "rgba(0, 200, 83)"
     };
+  },
+  computed: {
+    ...mapGetters({
+      user: "authentication/user",
+      profile: "profile/profile"
+    }),
+    title() {
+      return `${this.profile.name.displayName} | User Profile`;
+    },
+    description() {
+      return `The user profile for ${this.profile.name.displayName}`;
+    }
   }
 };
 </script>

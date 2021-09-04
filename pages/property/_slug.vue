@@ -1,5 +1,6 @@
 <template>
   <div>
+    <TheMetaTags :title="title" :description="description" />
     <ThePropertySwiperFirebase :images="property.images" />
 
     <v-container class="mt-6 mb-9">
@@ -902,7 +903,12 @@ export default {
         return false;
       }
     },
-
+    title() {
+      return `${this.property.description.name} | Real Estate Jamaica`;
+    },
+    description() {
+      return `${this.property.description.description}`;
+    },
     formattedNumber() {
       /* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */
 

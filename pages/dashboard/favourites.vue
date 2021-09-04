@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <TheMetaTags :title="title" :description="description" />
     <h1>Favourites</h1>
 
     <SectionPadding v-if="false" id="top">
@@ -40,12 +41,8 @@
           No favourites as yet.
           <br />Find a property you like today!
         </p>
-        <v-btn
-          nuxt
-          :to="{ name: 'buy' }"
-          dark
-          color="green accent-4"
-          > <v-icon left>mdi-magnify</v-icon>Search</v-btn
+        <v-btn nuxt :to="{ name: 'buy' }" dark color="green accent-4">
+          <v-icon left>mdi-magnify</v-icon>Search</v-btn
         >
       </v-sheet>
     </SectionPadding>
@@ -68,8 +65,15 @@ export default {
       return value;
     },
     ...mapGetters({
-      featuredProperties: "properties/featuredProperties"
-    })
+      featuredProperties: "properties/featuredProperties",
+      profile: "profile/profile"
+    }),
+    title() {
+      return `${this.profile.name.displayName} | Favourite Properties`;
+    },
+    description() {
+      return `The favourite properties of ${this.profile.name.displayName}`;
+    }
   },
   methods: {
     previous() {

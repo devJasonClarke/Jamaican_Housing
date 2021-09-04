@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <TheMetaTags :title="title" :description="description" />
     <h1>Messages</h1>
 
     <SectionPadding v-if="loading == true">
@@ -65,9 +66,12 @@
             </p>
             <p>
               Property Interested In:
-              <a :href="`${message[0].property}`" class="hyphens" target="_blank">{{
-                message[0].property
-              }}</a>
+              <a
+                :href="`${message[0].property}`"
+                class="hyphens"
+                target="_blank"
+                >{{ message[0].property }}</a
+              >
             </p>
             <p>Message: {{ message[0].message }}</p>
             <v-btn
@@ -109,9 +113,9 @@
                   Are you sure you want to delete this message?
                 </v-card-title>
                 <v-card-text
-                  >We recommend that you double check and make sure that it is not important. You may click 'Delete Message' to
-                  delete this message or 'Go Back' to save it for another
-                  time.</v-card-text
+                  >We recommend that you double check and make sure that it is
+                  not important. You may click 'Delete Message' to delete this
+                  message or 'Go Back' to save it for another time.</v-card-text
                 >
                 <v-card-actions>
                   <v-spacer></v-spacer>
@@ -181,9 +185,16 @@ export default {
     ...mapGetters({
       newMessages: "messages/newMessages",
       loading: "messages/loading",
-      paginateNext: "messages/paginateNext"
-      //  unReadMessages: "messages/unReadMessages"
-    })
+      paginateNext: "messages/paginateNext",
+      //  unReadMessages: "messages/unReadMessages",
+      profile: "profile/profile"
+    }),
+    title() {
+      return `${this.profile.name.displayName} | Messages`;
+    },
+    description() {
+      return "Messages";
+    }
   }
 };
 </script>

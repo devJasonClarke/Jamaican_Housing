@@ -272,7 +272,7 @@ export default {
         },
         {
           icon: "mdi-home-import-outline",
-          title: "Add A Property",
+          title: "Add Property",
           route: "dashboard-add-property"
         },
         {
