@@ -111,9 +111,7 @@ export const actions = {
         console.log(user);
       } else {
         // User is signed out
-        commit("errors/LOG_ERROR", "Please login to update profile.", {
-          root: true
-        });
+
         commit("SET_DETAILS_LOADER", false);
       }
     });
@@ -148,9 +146,7 @@ export const actions = {
         console.log(user);
       } else {
         // User is signed out
-        commit("errors/LOG_ERROR", "Please login to update profile.", {
-          root: true
-        });
+
         commit("SET_SOCIAL_LOADER", false);
       }
     });

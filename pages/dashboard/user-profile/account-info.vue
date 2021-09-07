@@ -31,7 +31,7 @@
           </p>
           <p class="text-body-2 mb-9">
             The email address and phone number entered here will be accessible
-            to all users who are interested in your property.
+            to users who are interested in your property.
           </p>
           <v-form ref="descriptionForm" @submit.prevent="validateFields">
             <v-row

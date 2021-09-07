@@ -9,8 +9,20 @@
       class="py-sm-6 px-sm-9 pa-6 mx-auto"
       elevation="0"
     >
-      <v-card-title class="px-0 text-h4 font-weight-bold">
-        {{ authState }} 
+      <v-card-title
+        class="px-0 text-h4 font-weight-bold d-flex justify-space-between align-center"
+      >
+        <span>{{ authState }}</span>
+        <v-btn
+          elevation="0"
+          fab
+          dark
+          small
+          color="success"
+          nuxt
+          :to="{ name: 'index' }"
+          ><v-icon color="white">mdi-home</v-icon>
+        </v-btn>
       </v-card-title>
       <p class="px-0 body-1 grey--text text--darken-1">
         We won't charge you a milion dollars, It's Free! Discover the best
@@ -155,6 +167,9 @@
               </v-row>
               <v-btn dark :color="iconColor" type="submit">
                 Continue
+              </v-btn>
+              <v-btn @click="profileSetup = !profileSetup" text>
+                back
               </v-btn>
             </v-form>
           </v-container>
@@ -313,8 +328,7 @@ export default {
       loading: "authentication/loading",
       nameRules: "inputRules/nameRules",
       passwordRules: "inputRules/passwordRules",
-      emailRules: "inputRules/emailRules",
-     
+      emailRules: "inputRules/emailRules"
     })
   }
 };
