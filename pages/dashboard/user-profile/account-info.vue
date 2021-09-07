@@ -2,7 +2,7 @@
   <v-container>
     <TheMetaTags :title="title" :description="description" />
     <h1>Account Details</h1>
-<!--     {{ email }} <br />
+    <!--     {{ email }} <br />
     {{ firstName }} <br />
     {{ lastName }} <br />
     {{ phoneNumber }} <br />
@@ -13,7 +13,12 @@
     {{ youtube }} <br />
     {{ instagram }} <br /> -->
     <SectionPadding>
-      <v-tabs v-model="tab" background-color="transparent" :color="iconColor" show-arrows>
+      <v-tabs
+        v-model="tab"
+        background-color="transparent"
+        :color="iconColor"
+        show-arrows
+      >
         <v-tab v-for="item in items" :key="item">
           {{ item }}
         </v-tab>
@@ -21,6 +26,13 @@
 
       <v-tabs-items v-model="tab" class="py-12 px-6">
         <v-tab-item>
+          <p class="text-h6 ">
+            Please enter your information.
+          </p>
+          <p class="text-body-2 mb-9">
+            The email address and phone number entered here will be accessible
+            to all users who are interested in your property.
+          </p>
           <v-form ref="descriptionForm" @submit.prevent="validateFields">
             <v-row
               ><v-col cols="12" md="6">
@@ -49,7 +61,7 @@
                 <v-text-field
                   outlined
                   dense
-                  label="Email Address (Will be shown on property)*"
+                  label="Email Address *"
                   required
                   v-model="email"
                   :color="iconColor"
@@ -60,7 +72,7 @@
                 <v-text-field
                   outlined
                   dense
-                  label="Phone Number (Will be shown on property)*"
+                  label="Phone Number *"
                   required
                   v-model="phoneNumber"
                   :color="iconColor"

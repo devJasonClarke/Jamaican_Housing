@@ -3,7 +3,7 @@ export const state = () => ({
     v => !!v || "Phone number is required.",
     value => {
       if (!!value)
-        return (value || "").toString().length > 10 || "10 Digit Dialing";
+        return (value || "").toString().length >= 10 || "10 Digit Dialing";
     },
     value => (value || "").toString().length < 12 || "10 Digit Dialing",
     value => {
@@ -19,7 +19,7 @@ export const state = () => ({
   
     value => {
       if (!!value)
-        return (value || "").toString().length > 10 || "10 Digit Dialing";
+        return (value || "").toString().length >= 10 || "10 Digit Dialing";
     },
     value => (value || "").toString().length < 12 || "10 Digit Dialing",
     value => {

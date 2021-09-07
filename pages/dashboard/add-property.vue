@@ -11,7 +11,7 @@
       ></v-skeleton-loader>
     </SectionPadding>
     <SectionPadding
-      v-else-if="!profile.contact.email && !profile.contact.phoneNumber"
+      v-else-if="!profile.contact.email || !profile.contact.phoneNumber"
     >
       <v-sheet
         height="250px"
