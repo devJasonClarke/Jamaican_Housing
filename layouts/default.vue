@@ -2,6 +2,7 @@
   <v-app class="wrapper">
     <TheAPICalls />
     <TheErrorLogger />
+    <TheSuccessLogger />
     <TheAuthenticationChecker />
     <v-toolbar flat>
       <v-app-bar-nav-icon
@@ -121,7 +122,7 @@
                     </v-form>
                     <p class="middle-text mt-3 grey--text">or</p>
 
-                    <v-btn block large depressed  @click="googleLogin">
+                    <v-btn block large depressed @click="googleLogin">
                       <v-img
                         :src="require('~/assets/images/svg/google.svg')"
                         max-width="30"
@@ -158,7 +159,7 @@
               color="green accent-4"
               ><v-icon class="mr-1">mdi-account</v-icon>
               <span v-if="profile.name.firstName">{{
-              profile.name.firstName
+                profile.name.firstName
               }}</span>
               <span v-else>{{ profile.name.displayName }}</span>
             </v-btn>
@@ -172,7 +173,7 @@
               <v-list-item class="text-uppercase" :to="{ name: 'dashboard' }">
                 <v-list-item-title>Dashboard</v-list-item-title>
               </v-list-item>
-          <!--     <v-list-item
+              <!--     <v-list-item
                 class="text-uppercase"
                 :to="{ name: 'dashboard-user-profile' }"
               >
@@ -311,7 +312,7 @@
                   >
                 </v-form>
                 <p class="middle-text mt-3 grey--text">or</p>
-                <v-btn block large depressed  @click="googleLogin">
+                <v-btn block large depressed @click="googleLogin">
                   <v-img
                     :src="require('~/assets/images/svg/google.svg')"
                     max-width="30"

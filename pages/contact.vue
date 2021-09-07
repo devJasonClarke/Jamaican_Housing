@@ -166,7 +166,8 @@ export default {
     ...mapGetters({
       emailRules: "inputRules/emailRules",
       nameRules: "inputRules/nameRules",
-      messageRules: "inputRules/messageRules"
+      messageRules: "inputRules/messageRules",
+       
     })
   }
 };

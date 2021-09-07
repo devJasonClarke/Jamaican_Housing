@@ -20,7 +20,7 @@
         ><p class="text-sm-h6 text-subtitle-1 text-center font-weight-regular">
           8 out of 10 users optimized their accounts before adding properties.
           <br />
-          These accounts receive 98% more property views.
+          These accounts received 98% more property views.
         </p>
         <v-btn
           nuxt

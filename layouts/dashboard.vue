@@ -3,6 +3,7 @@
     <TheAuthenticationChecker />
     <TheAPICalls />
     <TheErrorLogger />
+    <TheSuccessLogger />
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"

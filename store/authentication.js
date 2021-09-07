@@ -129,7 +129,7 @@ export const actions = {
                   realEstateFirm: { name: "", uid: "" },
                   socialMedia: {
                     facebook: "",
-                    twitter: "",
+                
                     instagram: "",
                     youtube: "",
                     linkedIn: ""
