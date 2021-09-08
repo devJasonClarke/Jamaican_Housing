@@ -1,5 +1,7 @@
 export const state = () => ({
   profile: {
+    about: "",
+    achievements: [],
     loading: true,
     verified: false,
     role: "",
@@ -51,6 +53,9 @@ export const actions = {
   setFirstName({ commit }, value) {
     commit("SET_FIRST_NAME", value);
   },
+  setAbout({ commit }, value) {
+    commit("SET_ABOUT", value);
+  },
   setLastName({ commit }, value) {
     commit("SET_LAST_NAME", value);
   },
@@ -86,6 +91,7 @@ export const actions = {
           .collection("users")
           .doc(user.uid)
           .update({
+            about: state.profile.about,
             "name.displayName": `${state.profile.name.firstName} ${state.profile.name.lastName}`,
             "name.initials": initials,
             "name.firstName": state.profile.name.firstName,
@@ -96,11 +102,9 @@ export const actions = {
           .then(() => {
             console.log("Successfully updated!");
 
-            commit(
-              "success/LOG_SUCCESS",
-              "Account Details successfully updated!",
-              { root: true }
-            );
+            commit("success/LOG_SUCCESS", "Successfully updated!", {
+              root: true
+            });
             commit("SET_DETAILS_LOADER", false);
             commit("SET_NAME", initials);
           })
@@ -170,6 +174,9 @@ export const mutations = {
   SET_PROFILE: (state, data) => {
     state.profile = data;
     state.userAthenticated = true;
+  },
+  SET_ABOUT: (state, value) => {
+    state.profile.about = value;
   },
   SET_EMAIL: (state, value) => {
     state.profile.contact.email = value;

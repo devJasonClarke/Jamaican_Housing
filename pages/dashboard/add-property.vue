@@ -368,7 +368,7 @@
                       counter
                       multiple
                       maxlength="7"
-                      prepend-icon="mdi-image"
+                      prepend-icon="mdi-image-multiple"
                       v-model="files"
                       @change="resetURL"
                       label="Upload pictures of your property"

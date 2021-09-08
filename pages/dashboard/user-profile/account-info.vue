@@ -2,9 +2,11 @@
   <v-container>
     <TheMetaTags :title="title" :description="description" />
     <h1>Account Details</h1>
+
     <!--     {{ email }} <br />
     {{ firstName }} <br />
     {{ lastName }} <br />
+     {{about}} <br />
     {{ phoneNumber }} <br />
     {{ whatsapp }} <br />
     {{ website }} <br />
@@ -39,6 +41,7 @@
                 <v-text-field
                   outlined
                   dense
+                  prepend-icon="mdi-account"
                   label="First Name*"
                   required
                   v-model="firstName"
@@ -50,6 +53,7 @@
                 <v-text-field
                   outlined
                   dense
+                  prepend-icon="mdi-account"
                   label="Last Name *"
                   required
                   v-model="lastName"
@@ -61,6 +65,7 @@
                 <v-text-field
                   outlined
                   dense
+                  prepend-icon="mdi-email"
                   label="Email Address *"
                   required
                   v-model="email"
@@ -72,19 +77,35 @@
                 <v-text-field
                   outlined
                   dense
+                  prepend-icon="mdi-phone"
                   label="Phone Number *"
                   required
-                  v-model="phoneNumber"
+                  v-model.number="phoneNumber"
                   :color="iconColor"
                   type="number"
                   :rules="phoneNumberRules"
                 ></v-text-field
               ></v-col>
-
+              <v-col cols="12">
+                <v-textarea
+                  outlined
+                  dense
+                    v-model="about"
+                  prepend-icon="mdi-text"
+                  clearable
+                  clear-icon="mdi-close-circle"
+                  label="About Me (Optional)"
+                  counter
+                  maxlength="250"
+                  required
+                  :color="iconColor"
+                ></v-textarea
+              ></v-col>
               <v-col cols="12" md="6">
                 <v-text-field
                   outlined
                   dense
+                  prepend-icon="mdi-check-decagram"
                   label="Account Verified"
                   required
                   v-model="profile.verified"
@@ -96,6 +117,7 @@
                 <v-text-field
                   outlined
                   dense
+                  prepend-icon="mdi-card-bulleted-outline"
                   label="Real Estate Ja User ID"
                   required
                   v-model="profile.uid"
@@ -106,6 +128,7 @@
               <v-col cols="12" md="6" v-if="profile.verified === true">
                 <v-text-field
                   outlined
+                  prepend-icon="mdi-image"
                   dense
                   label="Upload Profile Picture *"
                   required
@@ -132,8 +155,9 @@
                 <v-text-field
                   outlined
                   dense
-                  label="Facebook URL (optional)"
+                  label="Facebook Account URL (optional)"
                   required
+                  prepend-icon="mdi-facebook"
                   validate-on-blur
                   v-model="facebook"
                   :color="iconColor"
@@ -143,8 +167,9 @@
               <v-col cols="12" md="6">
                 <v-text-field
                   outlined
+                  prepend-icon="mdi-instagram"
                   dense
-                  label="Instagram URL (optional)"
+                  label="Instagram Account URL (optional)"
                   required
                   validate-on-blur
                   v-model="instagram"
@@ -156,7 +181,8 @@
                 <v-text-field
                   outlined
                   dense
-                  label="LinkedIn URL (optional)"
+                  prepend-icon="mdi-linkedin"
+                  label="LinkedIn Account URL (optional)"
                   required
                   validate-on-blur
                   v-model="linkedIn"
@@ -168,7 +194,8 @@
                 <v-text-field
                   outlined
                   dense
-                  label="Youtube URL (optional)"
+                  prepend-icon="mdi-youtube"
+                  label="Youtube Account URL (optional)"
                   required
                   validate-on-blur
                   v-model="youtube"
@@ -179,6 +206,7 @@
               <v-col cols="12" md="6">
                 <v-text-field
                   outlined
+                  prepend-icon="mdi-whatsapp"
                   dense
                   validate-on-blur
                   label="Whatsapp Number (optional)"
@@ -192,6 +220,7 @@
               <v-col cols="12" md="6">
                 <v-text-field
                   outlined
+                  prepend-icon="mdi-web"
                   dense
                   validate-on-blur
                   label="Website URL (optional)"
@@ -262,6 +291,14 @@ export default {
       },
       set(value) {
         this.setFirstName(value);
+      }
+    },
+    about: {
+      get() {
+        return this.profile.about;
+      },
+      set(value) {
+        this.setAbout(value);
       }
     },
     lastName: {
@@ -335,6 +372,7 @@ export default {
       setEmail: "profile/setEmail",
       setFirstName: "profile/setFirstName",
       setLastName: "profile/setLastName",
+      setAbout: "profile/setAbout",
       setPhoneNumber: "profile/setPhoneNumber",
       setwhatsappNumber: "profile/setwhatsappNumber",
       setwebsite: "profile/setwebsite",
@@ -359,7 +397,7 @@ export default {
     },
     validateSocial() {
       if (this.$refs.socialMediaForm.validate()) {
-        this.updateAccountDetails();
+        this.updateAccountSocials();
         console.log("validate social");
         this.disableUpdateSocial = !this.disableUpdateSocial;
         setTimeout(

@@ -37,6 +37,8 @@ export const actions = {
           .collection("users")
           .doc(userCredential.user.uid)
           .set({
+            about: "",
+            achievements: [],
             photoUrl: "",
             uid: userCredential.user.uid,
             verified: false,
@@ -114,6 +116,8 @@ export const actions = {
                 .collection("users")
                 .doc(result.user.uid)
                 .set({
+                  about: "",
+                  achievements: [],
                   photoUrl: "",
                   uid: result.user.uid,
                   verified: false,
@@ -129,7 +133,7 @@ export const actions = {
                   realEstateFirm: { name: "", uid: "" },
                   socialMedia: {
                     facebook: "",
-                
+
                     instagram: "",
                     youtube: "",
                     linkedIn: ""

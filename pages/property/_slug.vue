@@ -367,21 +367,32 @@
               allowfullscreen
               allow="xr-spatial-tracking"
             ></iframe>
+            <v-divider class="mt-1 mb-6"></v-divider>
           </div>
-          <v-divider
-            v-if="property.tours.youtube"
-            class="mt-6 mb-6"
-          ></v-divider>
+
           <div v-if="property.tours.youtube">
             <p class="text-h6 ">Video</p>
             <iframe
               height="430"
               width="100%"
+              class="mb-3"
               :src="`https://www.youtube.com/embed/${property.tours.youtube}`"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
             ></iframe>
+            <a
+              :href="
+                `https://www.youtube.com/watch?v=${property.tours.youtube}`
+              "
+              target="_blank"
+              rel="noopener noreferrer"
+              class="blue--text"
+              >Source:
+              {{
+                `https://www.youtube.com/watch?v=${property.tours.youtube}`
+              }}</a
+            >
           </div>
         </v-col>
         <v-col cols="12" md="4" v-if="property.details.size === ''">
@@ -397,7 +408,7 @@
             ></v-skeleton-loader>
           </v-card>
         </v-col>
-        <v-col cols="12" md="4" else>
+        <v-col cols="12" md="4" v-else>
           <v-card class="pa-6 ml-sm-3 mb-6 " outlined>
             <nuxt-link :to="{ name: 'profile' }">
               <v-img
@@ -409,7 +420,10 @@
             </nuxt-link>
 
             <div class="text-center d-flex flex-column">
-              <nuxt-link :to="{ name: 'profile' }" class="text-h6  mt-4 mb-0">
+              <nuxt-link
+                :to="{ name: 'profile' }"
+                class="text-h6 blue--text mt-4 mb-0"
+              >
                 {{ uploader.name.displayName }}
                 <VerifiedSymbol
                   v-if="uploader.verified"
@@ -417,24 +431,33 @@
                 />
               </nuxt-link>
               <a
-                :href="`mailto:${uploader['email']}`"
-                class="text-subtitle-1"
+                :href="`mailto:${uploader.contact.email}`"
+                class="text-subtitle-1 blue--text "
                 >{{ uploader.contact.email }}</a
               >
               <a
                 target="_blank"
                 rel="nofollow noopener"
                 :href="`tel:${uploader.contact.phoneNumber}`"
-                class="text-subtitle-1"
+                class="text-subtitle-1 blue--text "
                 >{{ formattedNumber }}</a
               >
             </div>
-            <v-divider class="my-3"></v-divider>
+            <v-divider
+              class="my-3"
+              v-if="
+                uploader.socialMedia.facebook ||
+                  uploader.socialMedia.instagram ||
+                  uploader.socialMedia.linkedIn ||
+                  uploader.socialMedia.youtube
+              "
+            ></v-divider>
             <div class="d-flex justify-center">
               <a
                 target="_blank"
                 rel="nofollow noopener"
-                href="https://gen3d.netlify.app/"
+                :href="uploader.socialMedia.facebook"
+                v-if="uploader.socialMedia.facebook"
               >
                 <v-btn icon color="blue darken-3" x-large>
                   <v-icon>mdi-facebook </v-icon>
@@ -443,7 +466,8 @@
               <a
                 target="_blank"
                 rel="nofollow noopener"
-                href="https://www.instagram.com/jasonclarke.dev/"
+                :href="uploader.socialMedia.instagram"
+                v-if="uploader.socialMedia.instagram"
               >
                 <v-btn icon color="pink darken-1" x-large>
                   <v-icon>mdi-instagram </v-icon>
@@ -452,7 +476,18 @@
               <a
                 target="_blank"
                 rel="nofollow noopener"
-                href="https://www.linkedin.com/in/devjasonclarke/"
+                :href="uploader.contact.website"
+                v-if="uploader.contact.website"
+              >
+                <v-btn icon color="green accent-4" x-large>
+                  <v-icon>mdi-earth</v-icon>
+                </v-btn>
+              </a>
+              <a
+                target="_blank"
+                rel="nofollow noopener"
+                :href="uploader.socialMedia.linkedIn"
+                v-if="uploader.socialMedia.linkedIn"
               >
                 <v-btn icon color="blue darken-2" x-large>
                   <v-icon>mdi-linkedin </v-icon>
@@ -461,10 +496,11 @@
               <a
                 target="_blank"
                 rel="nofollow noopener"
-                :href="`https://wa.me/${phoneNumber}`"
+                :href="uploader.socialMedia.youtube"
+                v-if="uploader.socialMedia.youtube"
               >
-                <v-btn icon color="green" x-large>
-                  <v-icon>mdi-whatsapp </v-icon>
+                <v-btn icon color="red darken-1" x-large>
+                  <v-icon>mdi-youtube </v-icon>
                 </v-btn>
               </a>
             </div>
@@ -531,7 +567,10 @@
                   Send Message<v-icon right>mdi-send </v-icon></span
                 >
               </v-btn>
-              <a :href="`tel:${phoneNumber}`" class="text-subtitle-1">
+              <a
+                :href="`tel:${uploader.contact.phoneNumber}`"
+                class="text-subtitle-1"
+              >
                 <v-btn
                   class="mb-6"
                   x-large
@@ -546,7 +585,12 @@
                   Call
                 </v-btn>
               </a>
-              <a :href="`https://wa.me/${phoneNumber}`">
+              <a
+                target="_blank"
+                rel="nofollow noopener"
+                :href="`https://wa.me/${uploader.contact.whatsappNumber}`"
+                v-if="uploader.contact.whatsappNumber"
+              >
                 <v-btn
                   class="mb-6"
                   x-large
