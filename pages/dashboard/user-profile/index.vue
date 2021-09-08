@@ -43,19 +43,19 @@ export default {
       items: [
         {
           title: "Account Info",
-          text: "Manage your Personal info and settings here.",
+          text: "Manage your personal data and optimize your account here",
           icon: "mdi-account-outline",
           route: "dashboard-user-profile-account-info"
         },
         {
           title: "Login & Security",
-          text: "Manage your Login & security and settings here.",
+          text: "Manage your login & security and settings here",
           icon: "mdi-login-variant",
           route: "dashboard-user-profile-login-&-security"
         },
         {
           title: "Verify Account",
-          text: "Control what you share and what users sees it",
+          text: "Verify your account to reap additional benefits",
           icon: "mdi-check-decagram-outline",
           route: "dashboard-user-profile-verify-account"
         },

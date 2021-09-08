@@ -31,7 +31,7 @@
           <p class="text-h6 ">
             Please enter your information.
           </p>
-          <p class="text-body-2 mb-9">
+          <p class="text-body-2 mb-12">
             The email address and phone number entered here will be accessible
             to users who are interested in your property.
           </p>

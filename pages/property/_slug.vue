@@ -1,6 +1,7 @@
 <template>
   <div>
     <TheMetaTags :title="title" :description="description" />
+
     <ThePropertySwiperFirebase :images="property.images" />
 
     <v-container class="mt-6 mb-9">

@@ -42,6 +42,14 @@
         <v-card-title class="hyphens">
           <!-- {{ card.title }} -->
           {{ property[0].description.name }}
+          <v-tooltip color="blue " v-if="property[0].verified" top>
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon color="blue" dark v-bind="attrs" v-on="on" class="ml-2">
+                mdi-check-decagram mdi-18px
+              </v-icon>
+            </template>
+            <span>Verified</span>
+          </v-tooltip>
         </v-card-title>
 
         <v-card-subtitle class="pb-4 primary-green">

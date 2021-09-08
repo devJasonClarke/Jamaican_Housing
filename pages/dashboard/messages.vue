@@ -14,11 +14,12 @@
     <SectionPadding v-else-if="!newMessages.length">
       <v-sheet
         height="200px"
-        class="d-flex justify-center align-center "
+        class="d-flex justify-center align-center flex-column"
         outlined
         ><p class="text-h6 text-center font-weight-regular">
-          No messages as yet.
+          No messages received as yet.
         </p>
+        <v-icon>mdi-message-outline mdi-36px</v-icon>
       </v-sheet>
     </SectionPadding>
     <SectionPadding v-else>
