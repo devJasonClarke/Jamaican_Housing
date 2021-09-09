@@ -88,6 +88,11 @@ export const actions = {
   },
   removeUserPropertyState({ commit }) {
     commit("REMOVE_USER_PROPERTY_STATE");
+  },
+  deleteProperty({commit}, data){
+    console.log(data.id)
+    console.log(data.property)
+console.log('Delete the property')
   }
 };
 

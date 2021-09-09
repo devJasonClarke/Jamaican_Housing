@@ -39,7 +39,7 @@
         </v-chip>
       </v-img>
       <div>
-        <v-card-title class="hyphens">
+        <v-card-title class="hyphens text-capitalize">
           <!-- {{ card.title }} -->
           {{ property[0].description.name }}
           <v-tooltip color="blue " v-if="property[0].verified" top>

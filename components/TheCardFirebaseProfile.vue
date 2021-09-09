@@ -39,7 +39,7 @@
         </v-chip>
       </v-img>
       <div>
-        <v-card-title class="hyphens">
+        <v-card-title class="hyphens text-capitalize">
           <!-- {{ card.title }} -->
           {{ property[0].description.name }}
           <v-tooltip color="blue " v-if="property[0].verified" top>
@@ -93,7 +93,7 @@
         </div>
       </div>
     </v-card>
-    <v-sheet class="d-flex justify-space-between pa-3">
+    <div class="d-flex justify-space-between pa-3">
       <v-btn
         dark
         v-bind="attrs"
@@ -108,18 +108,41 @@
         ><v-icon>mdi-pencil</v-icon> Edit</v-btn
       >
 
-      <v-btn dark v-bind="attrs" v-on="on" elevation="0" color="red"
-        ><v-icon>mdi-delete</v-icon> Delete</v-btn
-      >
+      <v-dialog v-model="dialog" width="500">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn dark v-bind="attrs" v-on="on" elevation="0" color="red"
+            ><v-icon>mdi-delete</v-icon> Delete</v-btn
+          >
+        </template>
+        <v-card>
+          <v-card-title class="text-h5 hyphens">
+            Are you sure you want to delete this property?
+          </v-card-title>
+          <v-card-text
+            >We recommend that you double check and ensure that this is the
+            correct property. Deleting a property can not be
+            reversed.</v-card-text
+          >
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="green darken-1" text @click="dialog = false">
+              Go back
+            </v-btn>
+            <v-btn color="red darken-1" text @click="deleteThisProperty">
+              Delete Property
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
 
       <!--    <v-btn icon :color="iconColor"><v-icon>mdi-id-card</v-icon></v-btn> -->
-    </v-sheet>
+    </div>
     <v-divider></v-divider>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   props: {
     property: {
@@ -129,10 +152,20 @@ export default {
   },
   data() {
     return {
-      iconColor: "rgba(0, 200, 83, 0.5)"
+      iconColor: "rgba(0, 200, 83, 0.5)",
+      dialog: false
     };
   },
   methods: {
+    ...mapActions({
+      deleteProperty: "getUserProperties/deleteProperty"
+    }),
+    deleteThisProperty() {
+      this.deleteProperty({
+        property: this.property[0],
+        id: this.property[1]
+      });
+    },
     shortenNumber(num) {
       num = Math.round((num + Number.EPSILON) * 100) / 100;
 

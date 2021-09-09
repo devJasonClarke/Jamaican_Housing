@@ -1,7 +1,17 @@
 <template>
   <v-container id="top">
     <TheMetaTags :title="title" :description="description" />
-    <h1>Edit Property: {{ property.description.name }}</h1>
+    <h1 class="text-capitalize">
+      Edit Property: {{ property.description.name }}
+            <v-tooltip color="blue " v-if="property.verified" top>
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon color="blue" dark v-bind="attrs" v-on="on">
+                mdi-check-decagram mdi-36px
+              </v-icon>
+            </template>
+            <span>Verified</span>
+          </v-tooltip>
+    </h1>
 
     <!--   {{profile}} -->
     <SectionPadding v-if="profile.loading">
@@ -861,10 +871,10 @@ export default {
       profile: "profile/profile"
     }),
     title() {
-      return `${this.profile.personalDetails.displayName} | Add Property | Dashboard`;
+      return `${this.profile.personalDetails.displayName} | Edit Property | Dashboard`;
     },
     description() {
-      return "Add Property";
+      return "Edit Property";
     }
     /*     allImages(){
       let a = [...this.property.images];
