@@ -84,7 +84,7 @@ export const actions = {
       })
       //* catch and log error in error module
       .catch(error => {
-        commit("errors/LOG_ERROR", error, { root: true });
+        commit("errors/LOG_ERROR", error.message, { root: true });
         commit("LOADING_STATE", false);
         console.log(error);
         // ..
@@ -170,7 +170,7 @@ export const actions = {
                 }
               })
               .catch(error => {
-                commit("errors/LOG_ERROR", error, { root: true });
+                commit("errors/LOG_ERROR", error.message, { root: true });
               });
           } else {
             // User is signed out
@@ -207,7 +207,7 @@ export const actions = {
         this.$router.push({ name: "dashboard" });
       })
       .catch(error => {
-        commit("errors/LOG_ERROR", error, { root: true });
+        commit("errors/LOG_ERROR", error.message, { root: true });
         commit("LOADING_STATE", false);
       });
   },
@@ -226,7 +226,7 @@ export const actions = {
         return location.reload();
       })
       .catch(error => {
-        commit("errors/LOG_ERROR", error, { root: true });
+        commit("errors/LOG_ERROR", error.message, { root: true });
       });
   },
   //* check if user is authenticated
@@ -256,7 +256,7 @@ export const actions = {
               }
             })
             .catch(error => {
-              commit("errors/LOG_ERROR", error, { root: true });
+              commit("errors/LOG_ERROR", error.message, { root: true });
             });
         } else {
           // User is signed out

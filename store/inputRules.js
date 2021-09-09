@@ -16,7 +16,6 @@ export const state = () => ({
     }
   ],
   whatsappNumberRules: [
-  
     value => {
       if (!!value)
         return (value || "").toString().length >= 10 || "10 Digit Dialing";

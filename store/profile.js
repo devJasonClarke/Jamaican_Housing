@@ -108,7 +108,7 @@ export const actions = {
             commit("SET_NAME", initials);
           })
           .catch(error => {
-            commit("errors/LOG_ERROR", error, { root: true });
+            commit("errors/LOG_ERROR", error.message, { root: true });
           });
 
         console.log(user);
@@ -143,7 +143,7 @@ export const actions = {
             commit("SET_SOCIAL_LOADER", false);
           })
           .catch(error => {
-            commit("errors/LOG_ERROR", error, { root: true });
+            commit("errors/LOG_ERROR", error.message, { root: true });
           });
 
         console.log(user);

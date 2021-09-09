@@ -1,8 +1,8 @@
 <template>
   <v-container id="top">
     <TheMetaTags :title="title" :description="description" />
-    <h1>Edit Property {{ theParam }}</h1>
-    {{ `typeOf price: ${typeof property.details.price}` }}
+    <h1>Edit Property: {{ property.description.name }}</h1>
+
     <!--   {{profile}} -->
     <SectionPadding v-if="profile.loading">
       <v-skeleton-loader
@@ -62,7 +62,7 @@
             <v-stepper-step
               :color="iconColor"
               step="3"
-              :complete="cur > 3"
+              :complete="cur > 3 || property.amenities.length > 0"
               editable
             >
               Amenities
@@ -367,7 +367,7 @@
                       show-size
                       counter
                       multiple
-                      :maxlength="7 - property.images.length "
+                      :maxlength="7 - property.images.length"
                       prepend-icon="mdi-image-multiple"
                       v-model="files"
                       @change="resetURL"
@@ -375,14 +375,14 @@
                       :color="iconColor"
                       required
                       :rules="[
-                        v => (!!v && v.length > 0) || 'File is required',
                         v =>
                           !v ||
                           !v.some(file => file.size > 1048576) ||
                           'All pictures should be less than 1 MB in size!',
-                        v => v.length < 7 - property.images.length  || 'No more than 7 pictures',
                         v =>
-                          v.length > 2 || 'A minimum of 3 pictures are required'
+                          v.length <= 7 - property.images.length ||
+                          `No more than ${7 - property.images.length} pictures`,
+                        v => v.length < 7 || 'No more than 7 pictures'
                       ]"
                     ></v-file-input>
                   </v-row>
@@ -442,7 +442,7 @@
                   </v-row>
 
                   <v-btn
-                    dark
+                    :dark="!disabled"
                     :color="iconColor"
                     type="submit"
                     :loading="loading"
@@ -464,9 +464,30 @@
       </SectionPadding>
       <SectionPadding class="pt-0" id="photos">
         <div v-show="property.images.length !== 0">
+          <div v-show="urls.length !== 0">
+            <div v-for="(url, i) in urls" :key="url">
+              <div>
+                <p class="text-h6">New Picture {{ i + 1 }}</p>
+                <p class="text-subtitle-1">File name: {{ files[i].name }}</p>
+                <img
+                  :src="url"
+                  :alt="files[i].name"
+                  width="100%"
+                  height="100%"
+                />
+              </div>
+              <v-divider class="my-9"></v-divider>
+            </div>
+            <v-btn dark :color="iconColor" @click="$vuetify.goTo('#top')"
+              >Go To Top</v-btn
+            >
+          </div>
+        </div>
+        <v-divider class="my-6"></v-divider>
+        <div v-show="property.images.length !== 0">
           <div v-for="(image, i) in property.images" :key="i">
             <div>
-              <p class="text-h6">Picture {{ i + 1 }}</p>
+              <p class="text-h6">Existing Picture</p>
               <p class="text-subtitle-1">File name: {{ image.fileName }}</p>
               <img
                 :src="image.src"
@@ -526,7 +547,6 @@ export default {
           if (doc.exists) {
             console.log("Document data:", doc.data());
             this.property = doc.data();
-            this.files = doc.data().images;
           } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
@@ -535,6 +555,7 @@ export default {
         })
         .catch(error => {
           console.log("Error getting document:", error);
+          this.logError(error.message);
         });
     }
   },
@@ -632,7 +653,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      logError: "errors/logError"
+      logError: "errors/logError",
+      logSuccess: "success/logSuccess"
     }),
     addDropFile(e) {
       this.urls = [];
@@ -695,49 +717,53 @@ export default {
         let storage = this.$fire.storage.ref();
         let date = Date.now();
 
-        for (let i = 0; i < this.files.length; i++) {
-          this.fileName = `${date.toString()}_${this.files[i].name}`;
+        if (this.files.length > 0) {
+          for (let i = 0; i < this.files.length; i++) {
+            this.fileName = `${date.toString()}_${this.files[i].name}`;
 
-          let ref = storage
-            .child(`property_images/${this.user.uid}/${this.fileName}`)
-            .put(this.files[i]);
+            let ref = storage
+              .child(`property_images/${this.user.uid}/${this.fileName}`)
+              .put(this.files[i]);
 
-          ref.on(
-            "state_changed",
-            snapshot => {},
-            error => {
-              console.log(error);
-              this.logError(
-                "Unable to upload pictures, please check your internet and ensure that your pictures use either the JPG or PNG format."
-              );
-              this.loading = false;
-            },
-            () => {
-              // Handle successful uploads on complete
-              // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-              // let image = [];
-              ref.snapshot.ref
-                .getDownloadURL()
-                .then(downloadURL => {
-                  console.log("File available at", downloadURL);
-                  this.fileBeingUploaded = this.files[i].name;
-                  this.imageUrls.push({
-                    src: downloadURL,
-                    fileName: `${date.toString()}_${this.fileBeingUploaded}`
+            ref.on(
+              "state_changed",
+              snapshot => {},
+              error => {
+                console.log(error);
+                this.logError(
+                  "Unable to upload pictures, please check your internet and ensure that your pictures use either the JPG or PNG format."
+                );
+                this.loading = false;
+              },
+              () => {
+                // Handle successful uploads on complete
+                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                // let image = [];
+                ref.snapshot.ref
+                  .getDownloadURL()
+                  .then(downloadURL => {
+                    console.log("File available at", downloadURL);
+                    this.fileBeingUploaded = this.files[i].name;
+                    this.imageUrls.push({
+                      src: downloadURL,
+                      fileName: `${date.toString()}_${this.fileBeingUploaded}`
+                    });
+                  })
+                  .then(() => {
+                    console.log("it is ready");
+                    console.log(this.imageUrls);
+
+                    if (this.imageUrls.length === this.files.length) {
+                      this.addProperty();
+                    }
                   });
-                })
-                .then(() => {
-                  console.log("it is ready");
-                  console.log(this.imageUrls);
 
-                  if (this.imageUrls.length === this.files.length) {
-                    this.addProperty();
-                  }
-                });
-
-              console.log("success");
-            }
-          );
+                console.log("success");
+              }
+            );
+          }
+        } else {
+          this.addProperty();
         }
       } else {
         console.log("not");
@@ -756,7 +782,8 @@ export default {
 
         this.$fire.firestore
           .collection("properties")
-          .add({
+          .doc(this.theParam)
+          .update({
             price: this.property.details.price,
             parish: this.property.details.parish,
             type: this.property.details.propertyType,
@@ -771,25 +798,17 @@ export default {
             tours: this.property.tours,
             uploader: this.user.uid,
             timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
-            images: this.imageUrls
-          })
-          .then(docRef => {
-            console.log("Document written with ID: ", docRef.id);
+            images: this.property.images.concat(this.imageUrls)
           })
           .then(() => {
             this.loading = false;
             this.disabled = true;
             this.fileBeingUploaded = "";
-            this.snackbar = true;
-            this.snackbarMessage = "Successfully Added!";
-            this.snackbarColor = "green";
+            this.logSuccess("Property Updated");
           })
           .catch(error => {
-            console.error("Error adding document: ", error);
             this.loading = false;
-            this.snackbar = true;
-            this.snackbarMessage = error;
-            this.snackbarColor = "pink";
+            this.logError(error.message);
           });
 
         console.log("valid tour");
@@ -821,10 +840,12 @@ export default {
             src: src
           });
           this.property.images.splice(index, 1);
+          this.logSuccess("Image deleted");
         })
         .catch(error => {
           console.log("delete error");
           console.log(error);
+          this.logError(error.message);
         });
     }
   },
@@ -845,6 +866,12 @@ export default {
     description() {
       return "Add Property";
     }
+    /*     allImages(){
+      let a = [...this.property.images];
+      let b = [...this.imageUrls];
+      let finalArray = a.concat(b);
+      return finalArray;
+    } */
   }
 };
 </script>

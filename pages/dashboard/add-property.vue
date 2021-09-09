@@ -62,7 +62,7 @@
             <v-stepper-step
               :color="iconColor"
               step="3"
-              :complete="cur > 3"
+        :complete="cur > 3 || property.amenities.length > 0"
               editable
             >
               Amenities

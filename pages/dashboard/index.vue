@@ -29,7 +29,7 @@
 
     <SectionPadding v-else id="top">
       <TheSearchSection />
-      <TheRealEstatePropertiesListingFirebase
+      <TheRealEstatePropertiesListingFirebaseProfile
         title="Real Estate for Sale"
         :properties="properties"
       />

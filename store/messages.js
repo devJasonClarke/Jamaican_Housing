@@ -120,7 +120,7 @@ export const actions = {
         console.log("Document successfully deleted!");
       })
       .catch(error => {
-        commit("errors/LOG_ERROR", error, { root: true });
+        commit("errors/LOG_ERROR", error.message, { root: true });
       });
 
     // commit("READ_MESSAGE");

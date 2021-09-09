@@ -93,6 +93,28 @@
         </div>
       </div>
     </v-card>
+    <v-sheet class="d-flex justify-space-between pa-3">
+      <v-btn
+        dark
+        v-bind="attrs"
+        v-on="on"
+        elevation="0"
+        color="blue"
+        nuxt
+        :to="{
+          name: 'dashboard-edit-property',
+          params: { slug: property[1] }
+        }"
+        ><v-icon>mdi-pencil</v-icon> Edit</v-btn
+      >
+
+      <v-btn dark v-bind="attrs" v-on="on" elevation="0" color="red"
+        ><v-icon>mdi-delete</v-icon> Delete</v-btn
+      >
+
+      <!--    <v-btn icon :color="iconColor"><v-icon>mdi-id-card</v-icon></v-btn> -->
+    </v-sheet>
+    <v-divider></v-divider>
   </div>
 </template>
 
