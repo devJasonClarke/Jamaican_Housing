@@ -93,6 +93,47 @@
         </div>
       </div>
     </v-card>
+    <v-sheet class="d-flex justify-space-between pa-3">
+      <v-tooltip color="blue " bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            fab
+            dark
+            x-small
+            v-bind="attrs"
+            v-on="on"
+            elevation="0"
+            color="blue"
+            nuxt
+            :to="{
+              name: 'dashboard-edit-property',
+              params: { slug: property[1] }
+            }"
+            ><v-icon>mdi-pencil</v-icon></v-btn
+          >
+        </template>
+        <span>Edit</span>
+      </v-tooltip>
+
+      <v-tooltip color="red " bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            fab
+            dark
+            x-small
+            v-bind="attrs"
+            v-on="on"
+            elevation="0"
+            color="red"
+            ><v-icon>mdi-trash-can</v-icon></v-btn
+          >
+        </template>
+        <span>Delete</span>
+      </v-tooltip>
+
+      <!--    <v-btn icon :color="iconColor"><v-icon>mdi-id-card</v-icon></v-btn> -->
+    </v-sheet>
+    <v-divider></v-divider>
   </div>
 </template>
 
