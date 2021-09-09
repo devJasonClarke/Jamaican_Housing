@@ -30,43 +30,19 @@
                 md="1"
                 class="d-flex justify-center align-center pr-3 pr-md-9 pb-6 pb-md-3"
               >
-                <v-dialog v-model="dialog" width="500">
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                      small
-                      v-bind="attrs"
-                      v-on="on"
-                      fab
-                      color="red"
-                      class="ml-3 ml-md-0"
-                      dark
-                      ><v-icon>mdi-delete mdi-18px</v-icon></v-btn
-                    >
-                  </template>
-                  <v-card>
-                    <v-card-title class="text-h5 hyphens">
-                      Are you sure you want to remove property from favourites?
-                    </v-card-title>
-
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn
-                        color="green darken-1"
-                        text
-                        @click="dialog = false"
-                      >
-                        Go back
-                      </v-btn>
-                      <v-btn
-                        color="red darken-1"
-                        text
-                        @click="removeFromFavourites(favourite)"
-                      >
-                        Remove Property
-                      </v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
+                <v-btn
+                  small
+                  v-bind="attrs"
+                  v-on="on"
+                  fab
+                  elevation="0"
+                  icon
+                  color="red"
+                  class="ml-3 ml-md-0"
+                  dark
+                  @click="removeFromFavourites(favourite)"
+                  ><v-icon color="red">mdi-heart mdi-18px</v-icon></v-btn
+                >
               </v-col>
             </v-row>
             <v-divider class="my-3"></v-divider>
