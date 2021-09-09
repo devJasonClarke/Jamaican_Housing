@@ -1,6 +1,7 @@
 export const state = () => ({
   properties: [],
   lastVisible: null,
+  deleteLoading: false,
   loading: true,
   paginateNext: {
     disabled: false,
@@ -12,7 +13,8 @@ export const getters = {
   properties: state => state.properties,
   loading: state => state.loading,
   lastVisible: state => state.lastVisible,
-  paginateNext: state => state.paginateNext
+  paginateNext: state => state.paginateNext,
+  deleteLoading: state => state.deleteLoading
 };
 
 export const actions = {
@@ -82,6 +84,9 @@ export const actions = {
   setLoading({ commit }, data) {
     commit("LOADING", data);
   },
+  setDeleteLoading({ commit }, data) {
+    commit("DELETE_LOADING", data);
+  },
 
   setPaginateNext({ commit }, data) {
     commit("SET_PAGINATE_NEXT", data);
@@ -89,10 +94,24 @@ export const actions = {
   removeUserPropertyState({ commit }) {
     commit("REMOVE_USER_PROPERTY_STATE");
   },
-  deleteProperty({commit}, data){
-    console.log(data.id)
-    console.log(data.property)
-console.log('Delete the property')
+  deleteProperty({ commit }, data) {
+    commit("DELETE_LOADING", true);
+    console.log(data.id);
+    console.log(data.property);
+    console.log("Delete the property");
+    this.$fireModule.auth().onAuthStateChanged(user => {
+      if (user) {
+        console.log(user.uid);
+        for (let i = 0; i < data.property.images.length; i++) {
+          console.log(data.property.images[i]);
+        }
+      } else {
+        commit("errors/LOG_ERROR", "Please log in to delete property", {
+          root: true
+        });
+      }
+    });
+    //  commit("DELETE_LOADING", false);
   }
 };
 
@@ -108,6 +127,9 @@ export const mutations = {
   },
   LOADING: (state, data) => {
     state.loading = data;
+  },
+  DELETE_LOADING: (state, data) => {
+    state.deleteLoading = data;
   },
   SET_PAGINATE_NEXT: state => {
     state.paginateNext = {
