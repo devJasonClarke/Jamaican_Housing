@@ -121,11 +121,12 @@
             <v-row class="mb-3">
               <v-col cols="12" sm="6"
                 >Share:
+
                 <a
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://twitter.com/share?url=https://jamaican-housing.pages.dev/property/${this.$route.params.slug}&text=Have a look at this property:`
+                    `https://twitter.com/share?url=https://jamaican-housing.pages.dev/property/${this.$route.params.slug}&text=Have a look at this property from Real Estate Ja:`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
@@ -143,23 +144,23 @@
                     <v-icon color="blue darken-3">mdi-facebook</v-icon>
                   </v-btn>
                 </a>
-
                 <a
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    ` https://t.me/share/url?url=https://jamaican-housing.pages.dev/property/${this.$route.params.slug}&text=Have a look at this property:`
+                    `mailto:?subject=Have a look at this property from Real Estate Ja&amp;body=The property: https://jamaican-housing.pages.dev/property/${this.$route.params.slug}.`
                   "
+                  title="Share by Email"
                 >
                   <v-btn class="d-inline" small icon fab color="white">
-                    <v-icon color="blue darken-2">mdi-telegram</v-icon>
+                    <v-icon color="green">mdi-email</v-icon>
                   </v-btn>
                 </a>
                 <a
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://wa.me/?text=Have a look at this property: https://jamaican-housing.pages.dev/property/${this.$route.params.slug}`
+                    `https://wa.me/?text=Have a look at this property from Real Estate Ja: https://jamaican-housing.pages.dev/property/${this.$route.params.slug}`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
@@ -396,6 +397,7 @@
             >
           </div>
         </v-col>
+
         <v-col cols="12" md="4" v-if="property.details.size === ''">
           <v-card class="pa-6 ml-sm-3 mb-6" outlined>
             <v-skeleton-loader
@@ -409,15 +411,30 @@
             ></v-skeleton-loader>
           </v-card>
         </v-col>
-        <v-col cols="12" md="4" v-else>
+        <v-col cols="12" md="4" v-else class="mt-9 mt-md-0">
           <v-card class="pa-6 ml-sm-3 mb-6 " outlined>
             <nuxt-link :to="{ name: 'profile' }">
-              <v-img
+              <!--     <v-img
                 height="150"
                 width="150"
                 src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-                class="rounded-circle mx-auto my-0"
-              ></v-img>
+                class="rounded-circle "
+              ></v-img> -->
+              <v-list-item-avatar
+                height="120"
+                width="120"
+                class="mx-auto my-0 d-flex justify-center align-center green"
+              >
+                <v-img
+                  v-if="uploader.photoUrl"
+                  :src="uploader.photoUrl"
+                ></v-img>
+                <span v-else>
+                  <v-icon color="grey lighten-4 text-h1"
+                    >mdi-account mdi-48px</v-icon
+                  >
+                </span>
+              </v-list-item-avatar>
             </nuxt-link>
 
             <div class="text-center d-flex flex-column">
@@ -735,8 +752,8 @@ export default {
           website: "",
           phoneNumber: 23234234234
         },
-        photoUrl: "https://avatars.githubusercontent.com/u/53666196?v=4",
-        uid: "qhdYBX7tVfOcUyV6bYtFOP9JGiD2"
+        photoUrl: "",
+        uid: ""
       },
       card: {
         title: "Sunny Private Studio Apartment",

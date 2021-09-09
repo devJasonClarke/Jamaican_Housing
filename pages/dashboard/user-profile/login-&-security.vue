@@ -3,6 +3,8 @@
     <TheMetaTags :title="title" :description="description" />
     <h1>Login & security</h1>
     <SectionPadding>
+      {{ firstPassword }}
+      {{ secondPassword }}
       <v-tabs
         v-model="tab"
         background-color="transparent"
@@ -20,42 +22,15 @@
             Reset your Real Estate Ja password.
           </p>
           <p class="text-body-2 mb-12">
-            Feel free to reset your password if you forgot it or would like to change it.
+            Feel free to reset your password if you forgot it or would like to
+            change it.
           </p>
-          <v-form ref="descriptionForm" @submit.prevent="validateFields">
-            <v-row
-              ><v-col cols="12" md="6">
-                <v-text-field
-                  outlined
-                  dense
-                  prepend-icon="mdi-lock-outline"
-                  label="Enter New Password*"
-                  required
-                  v-model="firstName"
-                  :color="iconColor"
-                  :rules="nameRules"
-                ></v-text-field
-              ></v-col>
-              <v-col cols="12" md="6">
-                <v-text-field
-                  outlined
-                  dense
-                  prepend-icon="mdi-lock-outline"
-                  label="Confirm Password *"
-                  required
-                  v-model="lastName"
-                  :color="iconColor"
-                  :rules="nameRules"
-                ></v-text-field
-              ></v-col>
-     
-            </v-row>
-            <v-btn
-              color="success"
-              type="submit"
-              :disabled="disableUpdateAccount"
-              :loading="updateDetailsLoader"
-              >Save</v-btn
+          <v-form ref="descriptionForm" @submit.prevent="sendCode">
+            <v-btn v-if="sent" large color="success" depressed
+              >Sent <v-icon class="ml-3">mdi-check-circle-outline</v-icon>
+            </v-btn>
+            <v-btn color="success" :loading="loading" type="submit" v-else
+              >Send Password Reset Email</v-btn
             >
           </v-form>
         </v-tab-item>
@@ -65,15 +40,52 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   layout: "dashboard",
   data() {
     return {
       tab: null,
       items: ["Password Reset"],
-      iconColor: "rgba(0, 200, 83)"
+      iconColor: "rgba(0, 200, 83)",
+      firstPassword: "",
+      secondPassword: "",
+      loading: false,
+      sent: false
     };
+  },
+  methods: {
+    ...mapActions({
+      logError: "errors/logError",
+      logSuccess: "success/logSuccess"
+    }),
+    sendCode() {
+      this.loading = true;
+
+      this.$fireModule.auth().onAuthStateChanged(user => {
+        if (user) {
+          this.$fireModule
+            .auth()
+            .sendPasswordResetEmail(user.email)
+            .then(() => {
+              // Password reset email sent!
+              // ..
+              this.loading = false;
+              this.logSuccess(
+                "Please check your email for link to reset password."
+              );
+              console.log("sent to email");
+              this.sent = true;
+            })
+            .catch(error => {
+              var errorMessage = error.message;
+              // ..
+              this.logError(errorMessage);
+              this.loading = false;
+            });
+        }
+      });
+    }
   },
   computed: {
     ...mapGetters({
