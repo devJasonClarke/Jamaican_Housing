@@ -949,7 +949,7 @@ export default {
       }
     },
     title() {
-      return `${this.property.description.name} | Real Estate Jamaica`;
+      return `${this.property.description.name} | Real Estate Jamaica | Property`;
     },
     description() {
       return `${this.property.description.description}`;

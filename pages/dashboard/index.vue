@@ -93,7 +93,7 @@ export default {
         profile: "profile/profile"
     }),
       title() {
-      return `${this.profile.name.displayName} | Properties`;
+      return `${this.profile.name.displayName} | User Properties`;
     },
     description() {
       return  `${this.profile.name.displayName} amazing properties.`;

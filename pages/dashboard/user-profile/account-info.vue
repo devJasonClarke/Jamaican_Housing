@@ -149,6 +149,13 @@
         </v-tab-item>
 
         <v-tab-item>
+                  <p class="text-h6 ">
+            Please enter your information.
+          </p>
+          <p class="text-body-2 mb-12">
+            The social media details entered here will be accessible
+            to users who are interested in your property.
+          </p>
           <v-form ref="socialMediaForm" @submit.prevent="validateSocial">
             <v-row
               ><v-col cols="12" md="6">
