@@ -92,7 +92,7 @@ export default {
   data() {
     return {
       selectedItem: [],
-      dialog: false
+
     };
   },
   computed: {
