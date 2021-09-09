@@ -1,6 +1,5 @@
 export const state = () => ({
   profile: {
-    about: "",
     achievements: [],
     loading: true,
     verified: false,
@@ -12,17 +11,17 @@ export const state = () => ({
       youtube: "",
       instagram: ""
     },
-    initials: "",
     realEstateFirm: {
       uid: "",
       name: ""
     },
     favourites: [],
-    name: {
+    personalDetails: {
       lastName: "",
       displayName: "",
       initials: "",
-      firstName: ""
+      firstName: "",
+      about: ''
     },
     contact: {
       whatsappNumber: null,
@@ -72,7 +71,7 @@ export const actions = {
     commit("SET_DETAILS_LOADER", true);
 
     function getInitials() {
-      return `${state.profile.name.firstName} ${state.profile.name.lastName}`;
+      return `${state.profile.personalDetails.firstName} ${state.profile.personalDetails.lastName}`;
     }
 
     let rgx = new RegExp(/(\p{L}{1})\p{L}+/, "gu");
@@ -91,11 +90,11 @@ export const actions = {
           .collection("users")
           .doc(user.uid)
           .update({
-            about: state.profile.about,
-            "name.displayName": `${state.profile.name.firstName} ${state.profile.name.lastName}`,
-            "name.initials": initials,
-            "name.firstName": state.profile.name.firstName,
-            "name.lastName": state.profile.name.lastName,
+            "personalDetails.about": state.profile.personalDetails.about,
+            "personalDetails.displayName": `${state.profile.personalDetails.firstName} ${state.profile.personalDetails.lastName}`,
+            "personalDetails.initials": initials,
+            "personalDetails.firstName": state.profile.personalDetails.firstName,
+            "personalDetails.lastName": state.profile.personalDetails.lastName,
             "contact.email": state.profile.contact.email,
             "contact.phoneNumber": state.profile.contact.phoneNumber
           })
@@ -176,16 +175,16 @@ export const mutations = {
     state.userAthenticated = true;
   },
   SET_ABOUT: (state, value) => {
-    state.profile.about = value;
+    state.profile.personalDetails.about = value;
   },
   SET_EMAIL: (state, value) => {
     state.profile.contact.email = value;
   },
   SET_FIRST_NAME: (state, value) => {
-    state.profile.name.firstName = value;
+    state.profile.personalDetails.firstName = value;
   },
   SET_LAST_NAME: (state, value) => {
-    state.profile.name.lastName = value;
+    state.profile.personalDetails.lastName = value;
   },
   SET_PHONE_NUMBER: (state, value) => {
     state.profile.contact.phoneNumber = value;
@@ -210,8 +209,8 @@ export const mutations = {
     state.profile.socialMedia.youtube = value;
   },
   SET_NAME: (state, value) => {
-    state.profile.name.displayName = `${state.profile.name.firstName} ${state.profile.name.lastName}`;
-    state.profile.name.initials = value;
+    state.profile.personalDetails.displayName = `${state.profile.personalDetails.firstName} ${state.profile.personalDetails.lastName}`;
+    state.profile.personalDetails.initials = value;
   },
   SET_DETAILS_LOADER: (state, value) => {
     state.updateDetailsLoader = value;

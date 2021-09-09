@@ -691,7 +691,7 @@
         </p>
         <p class="body-2">
           These Terms shall be governed by and defined following the laws of
-          Jamaica. Jamaica Housing and yourself irrevocably consent that the
+          Jamaica. Real Estate Ja and yourself irrevocably consent that the
           courts of Jamaica shall have exclusive jurisdiction to resolve any
           dispute which may arise in connection with these terms.
         </p>
@@ -924,7 +924,7 @@ export default {
   data() {
     return {
       img: img,
-      title: "Terms of Conditions | Jamaica Housing",
+      title: "Terms of Conditions | Real Estate Ja",
       description: "Terms of Conditions"
     };
   }

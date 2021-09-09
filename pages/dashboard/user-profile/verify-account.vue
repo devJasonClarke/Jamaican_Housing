@@ -26,10 +26,10 @@ export default {
       profile: "profile/profile"
     }),
     title() {
-      return `${this.profile.name.displayName} | Verify Account`;
+      return `${this.profile.personalDetails.displayName} | Verify Account | Dashboard`;
     },
     description() {
-      return `Verify your account ${this.profile.name.displayName}`;
+      return `Verify your account ${this.profile.personalDetails.displayName}`;
     }
   }
 };

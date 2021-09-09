@@ -102,7 +102,7 @@ export default {
   },
   data() {
     return {
-      title: "Rent A Home | Jamaica Housing",
+      title: "Rent A Home | Real Estate Ja",
       description: "rent",
       img: img
     };

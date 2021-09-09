@@ -442,7 +442,7 @@
                 :to="{ name: 'profile' }"
                 class="text-h6 blue--text mt-4 mb-0"
               >
-                {{ uploader.name.displayName }}
+                {{ uploader.personalDetails.displayName }}
                 <VerifiedSymbol
                   v-if="uploader.verified"
                   :role="uploader.role"
@@ -740,7 +740,7 @@ export default {
         favourites: ["ytnkT0sDxquL6TjjsA2U"],
         email: "jettison100@gmail.com",
         firstName: "",
-        name: {
+        personalDetails: {
           lastName: "Clarke",
           displayName: "Jason Clarke",
           initials: "JC",
@@ -844,7 +844,7 @@ export default {
             this.uploader = doc.data();
 
             let message = `Hi ${doc.data().firstName ||
-              doc.data().name.displayName}, I am interested in this property.`;
+              doc.data().personalDetails.displayName}, I am interested in this property.`;
             this.message = message;
           } else {
             // doc.data() will be undefined in this case

@@ -120,7 +120,7 @@ import img from "~/assets/images/houses/3.jpg";
 export default {
   data() {
     return {
-      title: "Contact | Jamaica Housing",
+      title: "Contact | Real Estate Ja",
       description: "Contact",
       img: img,
       iconColor: "rgba(0, 200, 83, 1)",

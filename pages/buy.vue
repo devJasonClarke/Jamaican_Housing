@@ -102,7 +102,7 @@ export default {
   },
   data() {
     return {
-      title: "Buy Real Estate | Jamaica Housing",
+      title: "Buy Real Estate | Real Estate Ja",
       description: "buy",
       img: img
     };

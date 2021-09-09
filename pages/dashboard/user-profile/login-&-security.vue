@@ -22,8 +22,7 @@
             Reset your Real Estate Ja password.
           </p>
           <p class="text-body-2 mb-12">
-            Feel free to reset your password if you forgot it or would like to
-            change it.
+            Feel free to reset your password.
           </p>
           <v-form ref="descriptionForm" @submit.prevent="sendCode">
             <v-btn v-if="sent" large color="success" depressed
@@ -72,7 +71,7 @@ export default {
               // ..
               this.loading = false;
               this.logSuccess(
-                "Please check your email for link to reset password."
+                "Please check your email for the link to reset your password."
               );
               console.log("sent to email");
               this.sent = true;
@@ -92,10 +91,10 @@ export default {
       profile: "profile/profile"
     }),
     title() {
-      return `${this.profile.name.displayName} | Login & security`;
+      return `${this.profile.personalDetails.displayName} | Login & security | Dashboard`;
     },
     description() {
-      return `${this.profile.name.displayName} login & security`;
+      return `${this.profile.personalDetails.displayName} login & security`;
     }
   }
 };

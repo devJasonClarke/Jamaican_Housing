@@ -37,7 +37,6 @@ export const actions = {
           .collection("users")
           .doc(userCredential.user.uid)
           .set({
-            about: "",
             achievements: [],
             photoUrl: "",
             uid: userCredential.user.uid,
@@ -45,11 +44,12 @@ export const actions = {
             role: "user",
             numberOfProperties: 0,
             favourites: [],
-            name: {
+            personalDetails: {
               displayName: `${firstName} ${lastName}`,
               firstName: firstName,
               lastName: lastName,
-              initials: initials
+              initials: initials,
+              about: ''
             },
             realEstateFirm: { name: "", uid: "" },
             socialMedia: {
@@ -116,7 +116,6 @@ export const actions = {
                 .collection("users")
                 .doc(result.user.uid)
                 .set({
-                  about: "",
                   achievements: [],
                   photoUrl: "",
                   uid: result.user.uid,
@@ -124,11 +123,12 @@ export const actions = {
                   role: "user",
                   favourites: [],
                   numberOfProperties: 0,
-                  name: {
+                  personalDetails: {
                     displayName: result.user.displayName,
                     firstName: "",
                     lastName: "",
-                    initials: ""
+                    initials: "",
+                    about: ''
                   },
                   realEstateFirm: { name: "", uid: "" },
                   socialMedia: {

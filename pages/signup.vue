@@ -83,7 +83,7 @@
       <v-divider class="my-6"></v-divider>
 
       <p class=" body-2 grey--text text--darken-1 ">
-        By signing up you agree to Jamaica Housing's
+        By signing up you agree to Real Estate Ja's
         <nuxt-link :to="{ name: 'terms-of-conditions' }"
           >Terms and Conditions</nuxt-link
         >
@@ -268,7 +268,7 @@ export default {
   layout: "signin",
   data() {
     return {
-      title: "Sign Up | Jamaica Housing",
+      title: "Sign Up | Real Estate Ja",
       description: "Sign Up",
       authState: "Sign Up",
       profileSetup: false,

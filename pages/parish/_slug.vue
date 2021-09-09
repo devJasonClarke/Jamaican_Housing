@@ -1,7 +1,7 @@
 <template>
   <div>
     <TheMetaTags
-      :title="`${parish.name} | Jamaica Housing`"
+      :title="`${parish.name} | Real Estate Ja`"
       :description="parish.description"
     />
     <v-img :src="parish.image" min-height="300" max-height="400"></v-img>

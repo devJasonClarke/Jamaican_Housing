@@ -268,10 +268,10 @@ export default {
   },
   computed: {
     title() {
-      return `${this.profile.name.displayName} | Account Info`;
+      return `${this.profile.personalDetails.displayName} | Account Info | Dashboard`;
     },
     description() {
-      return `${this.profile.name.displayName} Account Info`;
+      return `${this.profile.personalDetails.displayName} Account Info`;
     },
     ...mapGetters({
       profile: "profile/profile",
@@ -294,7 +294,7 @@ export default {
     },
     firstName: {
       get() {
-        return this.profile.name.firstName;
+        return this.profile.personalDetails.firstName;
       },
       set(value) {
         this.setFirstName(value);
@@ -302,7 +302,7 @@ export default {
     },
     about: {
       get() {
-        return this.profile.about;
+        return this.profile.personalDetails.about;
       },
       set(value) {
         this.setAbout(value);
@@ -310,7 +310,7 @@ export default {
     },
     lastName: {
       get() {
-        return this.profile.name.lastName;
+        return this.profile.personalDetails.lastName;
       },
       set(value) {
         this.setLastName(value);

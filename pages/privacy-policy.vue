@@ -14,7 +14,7 @@
     <SectionPadding class="backgroundShade">
       <v-container>
         <p class="body-2">
-          Thank you for choosing to be part of our community at Jamaica Housing
+          Thank you for choosing to be part of our community at Real Estate Ja
           ("Company", "we", "us", "our"). We are committed to protecting your
           personal information and your right to privacy. If you have any
           questions or concerns about this privacy notice, or our practices with
@@ -404,7 +404,7 @@ export default {
   data() {
     return {
       img: img,
-      title: "Privacy Policy | Jamaica Housing",
+      title: "Privacy Policy | Real Estate Ja",
       description: "privacy Policy"
     };
   }

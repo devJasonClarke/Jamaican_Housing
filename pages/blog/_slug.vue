@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <TheMetaTags
-      :title="`${article.title} | Jamaica Housing`"
+      :title="`${article.title} | Real Estate Ja | Blog Article`"
       :description="article.description"
     />
    <v-img v-if="$vuetify.breakpoint.xsOnly " :src="require('~/assets/images/house.jpg')" min-height="300" max-height="400"></v-img>
@@ -54,14 +54,14 @@
           </nuxt-link>
           <img
             :src="`https://source.unsplash.com/${article.image}/776x450`"
-            alt="Jamaica Housing Image"
+            alt="Real Estate Ja Image"
             width="100%"
             height="450"
             class="mt-11 mb-10 img"
           />
           <!--       <img
             :src="`https://source.unsplash.com/${article.image}/776x450`"
-            alt="Jamaica Housing Image"
+            alt="Real Estate Ja Image"
             width="100%"
             height="450"
             class="mt-11 mb-10 img"

@@ -75,10 +75,10 @@ export default {
       profile: "profile/profile"
     }),
     title() {
-      return `${this.profile.name.displayName} | User Profile`;
+      return `${this.profile.personalDetails.displayName} | User Profile | Dashboard`;
     },
     description() {
-      return `The user profile for ${this.profile.name.displayName}`;
+      return `The user profile for ${this.profile.personalDetails.displayName}`;
     }
   }
 };

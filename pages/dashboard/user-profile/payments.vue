@@ -25,10 +25,10 @@ export default {
       profile: "profile/profile"
     }),
     title() {
-      return `${this.profile.name.displayName} | Payments`;
+      return `${this.profile.personalDetails.displayName} | Payments | Dashboard`;
     },
     description() {
-      return `${this.profile.name.displayName} payments.`;
+      return `${this.profile.personalDetails.displayName} payments.`;
     }
   }
 };

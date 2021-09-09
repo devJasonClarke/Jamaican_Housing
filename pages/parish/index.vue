@@ -269,7 +269,7 @@ import img from "~/assets/images/houses/3.jpg";
 export default {
   data() {
     return {
-       title: 'Parishes | Jamaica Housing',
+       title: 'Parishes | Real Estate Ja',
       description: 'parishes',
       img: img,
       loading: false,

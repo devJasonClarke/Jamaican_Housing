@@ -93,10 +93,10 @@ export default {
         profile: "profile/profile"
     }),
       title() {
-      return `${this.profile.name.displayName} | User Properties`;
+      return `${this.profile.personalDetails.displayName} | User Properties | Dashboard`;
     },
     description() {
-      return  `${this.profile.name.displayName} amazing properties.`;
+      return  `${this.profile.personalDetails.displayName} amazing properties.`;
     }
   },
   methods: {

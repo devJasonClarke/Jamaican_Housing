@@ -1,7 +1,7 @@
 <template>
   <div>
     <TheMetaTags
-      :title="`${articles[0].author.name} | Jamaica Housing`"
+      :title="`${articles[0].author.name} | Real Estate Ja | Blog Author`"
       :description="articles[0].author.bio"
     />
     <v-container class="mt-6 mb-9">

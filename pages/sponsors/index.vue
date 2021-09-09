@@ -39,7 +39,7 @@ import img from "~/assets/images/houses/3.jpg";
 export default {
   data() {
     return {
-      title: "Sponsors | Jamaica Housing",
+      title: "Sponsors | Real Estate Ja",
       description: "Sponsors",
       img: img,
       sponsors: sponsors.sponsors

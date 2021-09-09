@@ -73,7 +73,7 @@ export default {
   layout: "signin",
   data() {
     return {
-      title: "Reset Password | Jamaica Housing",
+      title: "Reset Password | Real Estate Ja",
       description: "Reset Password ",
       authState: "Reset Password ",
       email: "",

@@ -34,7 +34,7 @@ import img from "~/assets/images/houses/3.jpg";
 export default {
   data() {
     return {
-      title: "Featured Listings | Jamaica Housing",
+      title: "Featured Listings | Real Estate Ja",
       description:
         "Premium listings that are a cut above the rest. With 10 times more exposure than regular listings, these real estate deals usually leave the market before you know it",
       img: img,

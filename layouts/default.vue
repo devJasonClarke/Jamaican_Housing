@@ -158,10 +158,10 @@
               v-on="on"
               color="green accent-4"
               ><v-icon class="mr-1">mdi-account</v-icon>
-              <span v-if="profile.name.firstName">{{
-                profile.name.firstName
+              <span v-if="profile.personalDetails.firstName">{{
+                profile.personalDetails.firstName
               }}</span>
-              <span v-else>{{ profile.name.displayName }}</span>
+              <span v-else>{{ profile.personalDetails.displayName }}</span>
             </v-btn>
           </template>
 

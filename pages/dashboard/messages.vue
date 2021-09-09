@@ -191,7 +191,7 @@ export default {
       profile: "profile/profile"
     }),
     title() {
-      return `${this.profile.name.displayName} | Messages`;
+      return `${this.profile.personalDetails.displayName} | Messages | Dashboard`;
     },
     description() {
       return "Messages";

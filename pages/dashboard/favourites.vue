@@ -105,10 +105,10 @@ export default {
       favourites: "favourites/favourites"
     }),
     title() {
-      return `${this.profile.name.displayName} | Favourite Properties`;
+      return `${this.profile.personalDetails.displayName} | Favourite Properties | Dashboard`;
     },
     description() {
-      return `The favourite properties of ${this.profile.name.displayName}`;
+      return `The favourite properties of ${this.profile.personalDetails.displayName}`;
     }
   },
   methods: {

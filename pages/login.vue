@@ -91,7 +91,7 @@ export default {
   layout: "signin",
   data() {
     return {
-      title: "Login | Jamaica Housing",
+      title: "Login | Real Estate Ja",
       description: "Login",
       authState: "Login",
 

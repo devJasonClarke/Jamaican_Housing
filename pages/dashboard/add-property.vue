@@ -634,7 +634,7 @@ export default {
         this.$refs.amenitiesForm.validate() &&
         this.$refs.picturesForm.validate() &&
         this.$refs.toursForm.validate() &&
-        this.profile.name.displayName
+        this.profile.personalDetails.displayName
       ) {
         this.loading = true;
 
@@ -755,7 +755,7 @@ export default {
       profile: "profile/profile"
     }),
     title() {
-      return `${this.profile.name.displayName} | Add Property`;
+      return `${this.profile.personalDetails.displayName} | Add Property | Dashboard`;
     },
     description() {
       return "Add Property";

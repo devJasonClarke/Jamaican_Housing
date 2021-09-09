@@ -141,7 +141,7 @@ export default {
   data() {
     return {
       img: img,
-      title: "Blog | Jamaica Housing",
+      title: "Blog | Real Estate Ja",
       description: "Blog page"
     };
   },
