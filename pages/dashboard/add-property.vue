@@ -177,10 +177,10 @@
                         dense
                         label="Size *"
                         type="number"
-                        v-model.number="property.details.size"
+                        v-model="property.details.size"
                         :color="iconColor"
                         suffix="Square Feet"
-                        :rules="amountRules"
+                        :rules="amountRulesMinOne"
                       ></v-text-field
                     ></v-col>
                     <v-col cols="12" sm="6">
@@ -221,9 +221,9 @@
                         type="number"
                         prefix="$"
                         suffix="JMD"
-                        v-model.number="property.details.price"
+                        v-model="property.details.price"
                         :color="iconColor"
-                        :rules="amountRules"
+                        :rules="amountRulesMinOne"
                       ></v-text-field
                     ></v-col>
                     <v-col cols="12" sm="6">
@@ -258,7 +258,7 @@
                         label="Number of Bed Rooms"
                         required
                         type="number"
-                        v-model.number="property.details.bedrooms"
+                        v-model="property.details.bedrooms"
                         :color="iconColor"
                         :rules="amountRules"
                       ></v-text-field
@@ -271,7 +271,7 @@
                         required
                         type="number"
                         min="4"
-                        v-model.number="property.details.bathrooms"
+                        v-model="property.details.bathrooms"
                         :color="iconColor"
                         :rules="amountRules"
                       ></v-text-field
@@ -281,7 +281,7 @@
                       <v-text-field
                         outlined
                         dense
-                        v-model.number="property.details.garages"
+                        v-model="property.details.garages"
                         label="Number of Garages"
                         type="number"
                         :color="iconColor"
@@ -443,7 +443,7 @@
                   </v-row>
 
                   <v-btn
-                    dark
+                     :dark="!disabled"
                     :color="iconColor"
                     type="submit"
                     :loading="loading"
@@ -720,10 +720,10 @@ export default {
         this.$fire.firestore
           .collection("properties")
           .add({
-            price: this.property.details.price,
+            price: parseFloat(this.property.details.price),
             parish: this.property.details.parish,
             type: this.property.details.propertyType,
-            bedrooms: this.property.details.bedrooms,
+            bedrooms: parseFloat(this.property.details.bedrooms),
             featured: false,
             verified: false,
             propertyFor: this.property.details.propertyFor,
@@ -767,6 +767,7 @@ export default {
       nameRules: "inputRules/nameRules",
       descriptionRules: "inputRules/descriptionRules",
       amountRules: "inputRules/amountRules",
+      amountRulesMinOne: "inputRules/amountRulesMinOne",
       idRules: "inputRules/idRules",
       parishes: "selectOptions/parishes",
       realEstateType: "selectOptions/realEstateType",

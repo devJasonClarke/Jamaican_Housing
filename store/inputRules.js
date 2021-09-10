@@ -54,22 +54,23 @@ export const state = () => ({
         value
       ) || "E-mail must be valid"
   ],
-
-  amountRules: [
-    // value => value.toString().length > 0 || "Required",
-  /*      value =>  {
-      if (value === null)
-        return (
-          false || "URL must be valid. Please enter full URL including HTTPS."
-        );
-    }, */
-    v => console.log(v),
-    value => (value || "").toString().length >= 1 || "Required",
+  amountRulesMinOne: [
+    value => !!value || "Required.",
     value => !/[ ]/.test(value) || "no spaces allowed",
+    value => /^(?!00)\d/.test(value) || "valid amount required",
     value =>
       (value || "").toString().length <= 15 ||
       "Max 15 digits. 16 digits are a Quadrillion, Please contact our team.",
-    value => (value || "").toString() > 0 || "No negative amounts"
+    value => value >= 1 || "valid amount required"
+  ],
+  amountRules: [
+    value => !!value || "Required.",
+    value => !/[ ]/.test(value) || "no spaces allowed",
+    value => /^(?!00)\d/.test(value) || "valid amount required",
+    value =>
+      (value || "").toString().length <= 15 ||
+      "Max 15 digits. 16 digits are a Quadrillion, Please contact our team.",
+    value => value >= 0 || "No negative amounts"
   ],
   messageRules: [
     v => !!v || "Message is required",
@@ -103,6 +104,7 @@ export const getters = {
   passwordRules: state => state.passwordRules,
   emailRules: state => state.emailRules,
   amountRules: state => state.amountRules,
+  amountRulesMinOne: state => state.amountRulesMinOne,
   messageRules: state => state.messageRules,
   descriptionRules: state => state.descriptionRules,
   idRules: state => state.idRules,
