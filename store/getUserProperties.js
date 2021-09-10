@@ -94,24 +94,82 @@ export const actions = {
   removeUserPropertyState({ commit }) {
     commit("REMOVE_USER_PROPERTY_STATE");
   },
-  deleteProperty({ commit }, data) {
+  deleteProperty({ commit, state }, data) {
     commit("DELETE_LOADING", true);
+
     console.log(data.id);
     console.log(data.property);
     console.log("Delete the property");
+
+    //let index = state.properties.indexOf([data.property, data.id]);
+
+    //  const indexs = state.properties.find( ({ name }) => name === 'cherries' );
+
+    /*   var array = [[false, 1, "label", "label value", null], [false, 2, "label1", "label1", null]],
+    checkNum = 1,;
+     */
+
+    let index = state.properties.findIndex(property => property[1] === data.id);
+
+    let storage = this.$fire.storage.ref();
+
     this.$fireModule.auth().onAuthStateChanged(user => {
       if (user) {
         console.log(user.uid);
-        for (let i = 0; i < data.property.images.length; i++) {
-          console.log(data.property.images[i]);
+        if (data.property.images.length > 0) {
+          for (let i = 0; i < data.property.images.length; i++) {
+            console.log(data.property.images[i].fileName);
+
+            let ref = storage.child(
+              `property_images/${user.uid}/${data.property.images[i].fileName}`
+            );
+
+            ref.delete().catch(error => {
+              console.log("delete error");
+              console.log(error);
+              commit("errors/LOG_ERROR", error.message, { root: true });
+            });
+          }
+
+          this.$fire.firestore
+            .collection("properties")
+            .doc(data.id)
+            .delete()
+            .then(() => {
+              commit("success/LOG_SUCCESS", "Property successfully deleted!", {
+                root: true
+              });
+              commit("DELETE_LOADING", false);
+              commit("REMOVE_PROPERTY_FROM_LOCAL_STATE", index);
+            })
+            .catch(error => {
+              commit("errors/LOG_ERROR", error.message, { root: true });
+              commit("DELETE_LOADING", false);
+            });
+        } else {
+          this.$fire.firestore
+            .collection("properties")
+            .doc(data.id)
+            .delete()
+            .then(() => {
+              commit("success/LOG_SUCCESS", "Property successfully deleted!", {
+                root: true
+              });
+              commit("DELETE_LOADING", false);
+              commit("REMOVE_PROPERTY_FROM_LOCAL_STATE", index);
+            })
+            .catch(error => {
+              commit("errors/LOG_ERROR", error.message, { root: true });
+              commit("DELETE_LOADING", false);
+            });
         }
       } else {
         commit("errors/LOG_ERROR", "Please log in to delete property", {
           root: true
         });
+        commit("DELETE_LOADING", false);
       }
     });
-    //  commit("DELETE_LOADING", false);
   }
 };
 
@@ -130,6 +188,9 @@ export const mutations = {
   },
   DELETE_LOADING: (state, data) => {
     state.deleteLoading = data;
+  },
+  REMOVE_PROPERTY_FROM_LOCAL_STATE: (state, index) => {
+    state.properties.splice(index, 1);
   },
   SET_PAGINATE_NEXT: state => {
     state.paginateNext = {

@@ -156,7 +156,7 @@ export default {
   data() {
     return {
       iconColor: "rgba(0, 200, 83, 0.5)",
-      dialog: false,
+      dialog: false
     };
   },
   methods: {
@@ -164,12 +164,11 @@ export default {
       deleteProperty: "getUserProperties/deleteProperty"
     }),
     deleteThisProperty() {
-
       this.deleteProperty({
         property: this.property[0],
         id: this.property[1]
       });
-      //  this.dialog = false;
+        this.dialog = false;
     },
     shortenNumber(num) {
       num = Math.round((num + Number.EPSILON) * 100) / 100;
@@ -202,7 +201,7 @@ export default {
       country: "api/country",
       activeCurrency: "api/activeCurrency",
       currencyRate: "api/currencyRate",
-      loading: 'getUserProperties/deleteLoading'
+      loading: "getUserProperties/deleteLoading"
     })
   }
 };
