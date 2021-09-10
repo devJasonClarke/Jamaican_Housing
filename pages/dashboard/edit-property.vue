@@ -847,6 +847,13 @@ export default {
       let storage = this.$fire.storage.ref();
       let ref = storage.child(`property_images/${this.user.uid}/${fileName}`);
 
+      let fileIndex = this.property.images.findIndex(
+        file => file.fileName === fileName
+      );
+
+      //console.log(this.property.images)
+      console.log(fileIndex);
+
       // Delete the file
       ref
         .delete()
@@ -860,12 +867,10 @@ export default {
                 src: src
               })
             });
+        })
+        .then(() => {
+          this.property.images.splice(fileIndex, 1);
 
-          let index = this.property.images.indexOf({
-            fileName: fileName,
-            src: src
-          });
-          this.property.images.splice(index, 1);
           this.logSuccess("Image deleted");
         })
         .catch(error => {
@@ -880,7 +885,7 @@ export default {
       nameRules: "inputRules/nameRules",
       descriptionRules: "inputRules/descriptionRules",
       amountRules: "inputRules/amountRules",
-        amountRulesMinOne: "inputRules/amountRulesMinOne",
+      amountRulesMinOne: "inputRules/amountRulesMinOne",
       idRules: "inputRules/idRules",
       parishes: "selectOptions/parishes",
       realEstateType: "selectOptions/realEstateType",
