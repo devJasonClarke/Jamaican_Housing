@@ -25,7 +25,7 @@ export default {
       profile: "profile/profile"
     }),
     title() {
-      return `${this.profile.personalDetails.displayName} | Payments | Settings`;
+      return `${this.profile.personalDetails.displayName} | Payments | Dashboard`;
     },
     description() {
       return `${this.profile.personalDetails.displayName} payments.`;

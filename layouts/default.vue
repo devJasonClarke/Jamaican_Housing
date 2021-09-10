@@ -149,7 +149,7 @@
           ></v-sheet>
           <TheCurrencySelector class="pb-3" />
         </v-menu>
-        <v-menu v-else offset-y :close-on-content-click="closeOnContentClick">
+        <v-menu v-else  max-width="150px" offset-y :close-on-content-click="closeOnContentClick">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               dark

@@ -268,7 +268,7 @@ export default {
   },
   computed: {
     title() {
-      return `${this.profile.personalDetails.displayName} | Account Info | Settings`;
+      return `${this.profile.personalDetails.displayName} | Account Info | Dashboard`;
     },
     description() {
       return `${this.profile.personalDetails.displayName} Account Info`;

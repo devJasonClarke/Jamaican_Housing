@@ -176,7 +176,7 @@
         <v-icon v-else @click="toggleTheme">mdi-weather-night</v-icon>
       </div>
 
-      <v-menu bottom min-width="200px" rounded offset-y>
+      <v-menu bottom max-width="150px" rounded offset-y :close-on-content-click="closeOnContentClick">
         <template v-slot:activator="{ on }">
           <v-btn icon x-large v-on="on" class="mr-1">
             <v-skeleton-loader
@@ -201,47 +201,48 @@
             </span>
           </v-btn>
         </template>
-        <v-card>
-          <v-list dense nav>
-            <v-list-item-group active-class="green--text text--accent-4">
-              <v-list-item
-                class="text-uppercase"
-                dense
-                :to="{ name: 'index' }"
-                exact
-              >
-                <v-list-item-title class="d-flex align-center">
-                  <v-list-item-icon>
-                    <v-icon>mdi-home-outline</v-icon>
-                  </v-list-item-icon>
-                  Home Page</v-list-item-title
-                >
-              </v-list-item>
 
-              <v-list-item
+       <v-list dense nav>
+            <v-list-item-group
+              v-model="signInDropDown"
+              active-class="green--text text--accent-4"
+            >
+              <v-list-item class="text-uppercase" exact :to="{ name: 'index' }">
+                <v-list-item-title>Home Page</v-list-item-title>
+              </v-list-item>
+              <!--     <v-list-item
                 class="text-uppercase"
-                dense
                 :to="{ name: 'dashboard-settings' }"
               >
-                <v-list-item-title class="d-flex align-center">
-                  <v-list-item-icon>
-                    <v-icon>mdi-cog</v-icon>
-                  </v-list-item-icon>
-                  Settings</v-list-item-title
-                >
-              </v-list-item>
+                <v-list-item-title>Profile</v-list-item-title>
+              </v-list-item> -->
+            </v-list-item-group>
+          </v-list>
 
-              <v-list-item class="text-uppercase" dense @click="logout">
-                <v-list-item-title class=" red--text d-flex align-center">
-                  <v-list-item-icon>
-                    <v-icon color="red">mdi-logout</v-icon>
-                  </v-list-item-icon>
+          <v-sheet>
+            <v-switch
+              @click="toggleTheme"
+              :input-value="colorTheme"
+              class="px-2 pt-0 mt-0"
+              inset
+              label="Dark Mode"
+              color="green accent-4"
+            ></v-switch
+          ></v-sheet>
+          <TheCurrencySelector class="mb-0" />
+          <v-list class="mt-0" dense nav>
+            <v-list-item-group
+              v-model="signInDropDown"
+              active-class="green--text text--accent-4"
+            >
+              <v-list-item class="text-uppercase" @click="logout">
+                <v-list-item-title class="red--text d-flex align-center">
                   Logout</v-list-item-title
                 >
               </v-list-item>
             </v-list-item-group>
           </v-list>
-        </v-card>
+     
       </v-menu>
     </v-app-bar>
 
@@ -270,6 +271,7 @@ export default {
   },
   data() {
     return {
+      closeOnContentClick: false, 
       group: null,
       clipped: false,
       drawer: true,

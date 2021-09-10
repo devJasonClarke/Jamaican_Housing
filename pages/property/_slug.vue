@@ -413,17 +413,13 @@
         </v-col>
         <v-col cols="12" md="4" v-else class="mt-9 mt-md-0">
           <v-card class="pa-6 ml-sm-3 mb-6 " outlined>
-            <nuxt-link :to="{ name: 'profile' }">
-              <!--     <v-img
-                height="150"
-                width="150"
-                src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-                class="rounded-circle "
-              ></v-img> -->
+           
+            <nuxt-link :to="{ name: 'profile-slug', params: { slug: uploader.uid } }">
+            
               <v-list-item-avatar
                 height="120"
                 width="120"
-                class="mx-auto my-0 d-flex justify-center align-center green"
+                class="mx-auto my-0 d-flex justify-center align-center green rounded-circle"
               >
                 <v-img
                   v-if="uploader.photoUrl"
@@ -844,7 +840,8 @@ export default {
             this.uploader = doc.data();
 
             let message = `Hi ${doc.data().firstName ||
-              doc.data().personalDetails.displayName}, I am interested in this property.`;
+              doc.data().personalDetails
+                .displayName}, I am interested in this property.`;
             this.message = message;
           } else {
             // doc.data() will be undefined in this case
