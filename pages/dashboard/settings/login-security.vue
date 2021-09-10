@@ -91,7 +91,7 @@ export default {
       profile: "profile/profile"
     }),
     title() {
-      return `${this.profile.personalDetails.displayName} | Login & security | Dashboard`;
+      return `${this.profile.personalDetails.displayName} | Login & security | Settings`;
     },
     description() {
       return `${this.profile.personalDetails.displayName} login & security`;

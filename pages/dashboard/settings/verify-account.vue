@@ -26,7 +26,7 @@ export default {
       profile: "profile/profile"
     }),
     title() {
-      return `${this.profile.personalDetails.displayName} | Verify Account | Dashboard`;
+      return `${this.profile.personalDetails.displayName} | Verify Account | Settings`;
     },
     description() {
       return `Verify your account ${this.profile.personalDetails.displayName}`;

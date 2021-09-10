@@ -75,7 +75,7 @@ export default {
       profile: "profile/profile"
     }),
     title() {
-      return `${this.profile.personalDetails.displayName} | User Profile | Dashboard`;
+      return `${this.profile.personalDetails.displayName} | User Profile | Settings`;
     },
     description() {
       return `The user profile for ${this.profile.personalDetails.displayName}`;
