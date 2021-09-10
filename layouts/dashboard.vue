@@ -207,15 +207,17 @@
               <v-list-item
                 class="text-uppercase"
                 dense
-                :to="{ name: 'dashboard-settings' }"
+                :to="{ name: 'index' }"
+                exact
               >
                 <v-list-item-title class="d-flex align-center">
                   <v-list-item-icon>
-                    <v-icon>mdi-account</v-icon>
+                    <v-icon>mdi-home-outline</v-icon>
                   </v-list-item-icon>
-                  Profile</v-list-item-title
+                  Home Page</v-list-item-title
                 >
               </v-list-item>
+
               <v-list-item
                 class="text-uppercase"
                 dense
@@ -228,6 +230,7 @@
                   Settings</v-list-item-title
                 >
               </v-list-item>
+
               <v-list-item class="text-uppercase" dense @click="logout">
                 <v-list-item-title class=" red--text d-flex align-center">
                   <v-list-item-icon>
