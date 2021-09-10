@@ -6,7 +6,7 @@
     <v-navigation-drawer v-model="drawer" fixed temporary>
       <v-list-item>
         <v-list-item-avatar>
-          <v-img src="https://www.countryflags.io/jm/flat/64.png"></v-img>
+         <img :src="require('~/assets/images/jamaican-flag.png')" alt="Jamaican flag" width="40px" height="40px"/>
         </v-list-item-avatar>
 
         <v-list-item-content>
@@ -93,11 +93,12 @@
                 </v-form>
                 <p class="middle-text mt-3 grey--text">or</p>
                 <v-btn block large depressed>
-                  <v-img
-                    :src="require('~/assets/images/svg/google.svg')"
-                    max-width="30"
-                    class="mr-3 "
-                  />
+                    <img
+                          :src="require('~/assets/images/svg/google.svg')"
+                          width="30px"
+                          height="30px"
+                          class="mr-3 "
+                        />
                   Login with Google
                 </v-btn>
               </v-card>

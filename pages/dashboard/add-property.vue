@@ -25,7 +25,7 @@
         </p>
         <v-btn
           nuxt
-          :to="{ name: 'dashboard-user-profile-account-info' }"
+          :to="{ name: 'dashboard-settings-account-info' }"
           dark
           color="green accent-4"
         >

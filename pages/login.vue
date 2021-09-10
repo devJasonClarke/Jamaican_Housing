@@ -69,11 +69,12 @@
       <p class="middle-text mt-3 grey--text">or</p>
 
       <v-btn block large depressed @click="googleLogin">
-        <v-img
-          :src="require('~/assets/images/svg/google.svg')"
-          max-width="30"
-          class="mr-3 "
-        />
+          <img
+                          :src="require('~/assets/images/svg/google.svg')"
+                          width="30px"
+                          height="30px"
+                          class="mr-3 "
+                        />
         {{ authState }} with Google
       </v-btn>
 

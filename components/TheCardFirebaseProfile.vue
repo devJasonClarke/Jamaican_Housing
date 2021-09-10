@@ -118,7 +118,7 @@
           </v-card-title>
           <v-card-text
             >We recommend that you double check and ensure that this is the
-            correct property. Deleting a property can not be
+            correct property. Deleting a property cannot be
             reversed.</v-card-text
           >
           <v-card-actions>

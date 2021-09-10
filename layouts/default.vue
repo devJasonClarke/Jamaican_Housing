@@ -123,9 +123,10 @@
                     <p class="middle-text mt-3 grey--text">or</p>
 
                     <v-btn block large depressed @click="googleLogin">
-                      <v-img
+                      <img
                         :src="require('~/assets/images/svg/google.svg')"
-                        max-width="30"
+                        width="30"
+                        height="30"
                         class="mr-3 "
                       />
                       Login with Google
@@ -175,7 +176,7 @@
               </v-list-item>
               <!--     <v-list-item
                 class="text-uppercase"
-                :to="{ name: 'dashboard-user-profile' }"
+                :to="{ name: 'dashboard-settings' }"
               >
                 <v-list-item-title>Profile</v-list-item-title>
               </v-list-item> -->
@@ -213,7 +214,7 @@
     <v-navigation-drawer v-model="drawer" fixed temporary>
       <v-list-item>
         <v-list-item-avatar>
-          <v-img src="https://www.countryflags.io/jm/flat/64.png"></v-img>
+      <img :src="require('~/assets/images/jamaican-flag.png')" alt="Jamaican flag" width="40px" height="40px"/>
         </v-list-item-avatar>
 
         <v-list-item-content>
@@ -227,6 +228,7 @@
         <v-list-item-group
           v-model="group"
           active-class="green--text text--accent-4"
+          v-if="!userAthenticated"
         >
           <v-list-item
             v-for="(route, index) in routes"
@@ -313,9 +315,10 @@
                 </v-form>
                 <p class="middle-text mt-3 grey--text">or</p>
                 <v-btn block large depressed @click="googleLogin">
-                  <v-img
+                  <img
                     :src="require('~/assets/images/svg/google.svg')"
-                    max-width="30"
+                    width="30px"
+                    height="30px"
                     class="mr-3 "
                   />
                   Login with Google
@@ -323,6 +326,39 @@
               </v-card>
             </template>
           </v-dialog>
+        </v-list-item-group>
+
+        <v-list-item-group
+          v-model="group"
+          active-class="green--text text--accent-4"
+          v-else
+        >
+          <v-list-item
+            link
+            class="text-capitalize"
+            :to="{ name: 'dashboard' }"
+            exact
+          >
+            <v-list-item-icon>
+              <v-icon>mdi-apps</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title> Dashboard</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item
+            v-for="(route, index) in routes"
+            :key="'navigationDrawer' + index"
+            link
+            class="text-capitalize"
+            :to="{ name: route.route }"
+            exact
+          >
+            <v-list-item-icon>
+              <v-icon>{{ route.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-title>{{ route.title }}</v-list-item-title>
+          </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>

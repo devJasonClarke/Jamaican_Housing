@@ -13,7 +13,12 @@
     >
       <v-list-item class=" d-flex justify-center">
         <v-list-item-avatar>
-          <v-img src="https://www.countryflags.io/jm/flat/64.png"></v-img>
+          <img
+            :src="require('~/assets/images/jamaican-flag.png')"
+            alt="Jamaican flag"
+            width="40px"
+            height="40px"
+          />
         </v-list-item-avatar>
 
         <v-list-item-content>
@@ -89,7 +94,10 @@
               type="text"
             ></v-skeleton-loader>
 
-            <v-list-item-title v-else class="text-h6 px-0 text-center text-capitalize">
+            <v-list-item-title
+              v-else
+              class="text-h6 px-0 text-center text-capitalize"
+            >
               <span>{{ profile.personalDetails.displayName }}</span>
               <VerifiedSymbol :role="profile.role" v-if="profile.verified" />
             </v-list-item-title>
@@ -129,7 +137,12 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-list-item>
         <v-list-item-avatar>
-          <v-img src="https://www.countryflags.io/jm/flat/64.png"></v-img>
+          <img
+            :src="require('~/assets/images/jamaican-flag.png')"
+            alt="Jamaican flag"
+            width="40px"
+            height="40px"
+          />
         </v-list-item-avatar>
 
         <v-list-item-content>
@@ -176,9 +189,11 @@
             <span v-else>
               <v-avatar color="green" size="36">
                 <v-img v-if="profile.photoUrl" :src="profile.photoUrl"></v-img>
-                <span class="white--text  " v-else-if="profile.personalDetails.initials">{{
-                  profile.personalDetails.initials
-                }}</span>
+                <span
+                  class="white--text  "
+                  v-else-if="profile.personalDetails.initials"
+                  >{{ profile.personalDetails.initials }}</span
+                >
                 <v-icon v-else color="grey lighten-3"
                   >mdi-account mdi-24px</v-icon
                 >
@@ -192,7 +207,7 @@
               <v-list-item
                 class="text-uppercase"
                 dense
-                :to="{ name: 'dashboard-user-profile' }"
+                :to="{ name: 'dashboard-settings' }"
               >
                 <v-list-item-title class="d-flex align-center">
                   <v-list-item-icon>
@@ -277,11 +292,6 @@ export default {
           route: "dashboard-add-property"
         },
         {
-          icon: "mdi-account-circle-outline",
-          title: "User Profile",
-          route: "dashboard-user-profile"
-        },
-        {
           icon: "mdi-message-text-outline",
           title: "Messages",
           route: "dashboard-messages"
@@ -292,7 +302,7 @@ export default {
           route: "dashboard-favourites"
         },
         {
-          icon: "mdi-cog-outline",
+          icon: "mdi-account-circle-outline",
           title: "Settings",
           route: "dashboard-settings"
         }

@@ -52,24 +52,32 @@
             <p class="mt-6">Name: {{ message[0].sender }}</p>
             <p>
               Email:
-              <a :href="`mailto:${message[0].email}`" target="_blank">{{
-                message[0].email
-              }}</a>
+              <a
+                class="blue--text"
+                :href="`mailto:${message[0].email}`"
+                target="_blank"
+                >{{ message[0].email }}</a
+              >
             </p>
             <p>
               Phone Number:
-              <a :href="`tel:${message[0].phoneNumber}`" target="_blank">
+              <a
+                class="blue--text"
+                :href="`tel:${message[0].phoneNumber}`"
+                target="_blank"
+              >
                 {{ message[0].phoneNumber }}</a
               >
             </p>
             <p>
-              Date: {{ message[0].timestamp.toDate().toLocaleDateString() }}
+              Date Sent:
+              {{ message[0].timestamp.toDate().toLocaleDateString() }}
             </p>
             <p>
               Property Interested In:
               <a
                 :href="`${message[0].property}`"
-                class="hyphens"
+                class="hyphens blue--text"
                 target="_blank"
                 >{{ message[0].property }}</a
               >
@@ -114,9 +122,9 @@
                   Are you sure you want to delete this message?
                 </v-card-title>
                 <v-card-text
-                  >We recommend that you double check and make sure that it is
-                  not important. You may click 'Delete Message' to delete this
-                  message or 'Go Back' to save it for another time.</v-card-text
+                  >We recommend that you double check to ensure that you
+                  selected the correct message and that it is not important.
+                  Deleting a message cannot be reversed.</v-card-text
                 >
                 <v-card-actions>
                   <v-spacer></v-spacer>

@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <TheMetaTags :title="title" :description="description" />
-    <h1>Payments</h1>
+    <h1>Payment History</h1>
      <SectionPadding >
       <v-sheet
         height="200px"

@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <TheMetaTags :title="title" :description="description" />
-    <h1>User Profile</h1>
+    <h1>Account Settings</h1>
     <SectionPadding>
       <v-row dense>
         <v-col
@@ -45,25 +45,25 @@ export default {
           title: "Account Info",
           text: "Manage your personal data and optimize your account here",
           icon: "mdi-account-outline",
-          route: "dashboard-user-profile-account-info"
+          route: "dashboard-settings-account-info"
         },
         {
-          title: "Login & Security",
+          title: "Login Security",
           text: "Manage your login & security and settings here",
           icon: "mdi-login-variant",
-          route: "dashboard-user-profile-login-&-security"
+          route: "dashboard-settings-login-security"
         },
         {
           title: "Verify Account",
           text: "Verify your account to reap additional benefits",
           icon: "mdi-check-decagram-outline",
-          route: "dashboard-user-profile-verify-account"
+          route: "dashboard-settings-verify-account"
         },
         {
           title: "Payments",
           text: "Review payments",
           icon: "mdi-credit-card-outline",
-          route: "dashboard-user-profile-payments"
+          route: "dashboard-settings-payments"
         }
       ],
       iconColor: "rgba(0, 200, 83)"

@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <TheMetaTags :title="title" :description="description" />
-    <h1>Login & security</h1>
+    <h1>Login Security</h1>
     <SectionPadding>
       {{ firstPassword }}
       {{ secondPassword }}
