@@ -56,7 +56,15 @@ export const state = () => ({
   ],
 
   amountRules: [
-    value => !!value || "Required.",
+    // value => value.toString().length > 0 || "Required",
+  /*      value =>  {
+      if (value === null)
+        return (
+          false || "URL must be valid. Please enter full URL including HTTPS."
+        );
+    }, */
+    v => console.log(v),
+    value => (value || "").toString().length >= 1 || "Required",
     value => !/[ ]/.test(value) || "no spaces allowed",
     value =>
       (value || "").toString().length <= 15 ||

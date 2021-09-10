@@ -3,15 +3,16 @@
     <TheMetaTags :title="title" :description="description" />
     <h1 class="text-capitalize">
       Edit Property: {{ property.description.name }}
-            <v-tooltip color="blue " v-if="property.verified" top>
-            <template v-slot:activator="{ on, attrs }">
-              <v-icon color="blue" dark v-bind="attrs" v-on="on">
-                mdi-check-decagram mdi-36px
-              </v-icon>
-            </template>
-            <span>Verified</span>
-          </v-tooltip>
+      <v-tooltip color="blue " v-if="property.verified" top>
+        <template v-slot:activator="{ on, attrs }">
+          <v-icon color="blue" dark v-bind="attrs" v-on="on">
+            mdi-check-decagram mdi-36px
+          </v-icon>
+        </template>
+        <span>Verified</span>
+      </v-tooltip>
     </h1>
+    <p class="text-body-1">Property ID: {{ this.theParam }}</p>
 
     <!--   {{profile}} -->
     <SectionPadding v-if="profile.loading">
@@ -485,6 +486,13 @@
                   width="100%"
                   height="100%"
                 />
+                <v-btn
+                  color="red"
+                  class="mt-3"
+                  dark
+                  @click="removeImage(url, files[i].name)"
+                  ><v-icon>mdi-delete</v-icon> Remove Image</v-btn
+                >
               </div>
               <v-divider class="my-9"></v-divider>
             </div>
@@ -827,6 +835,14 @@ export default {
         this.logError("Please complete required sections.");
       }
     },
+    removeImage(url, fileName) {
+      let index = this.urls.indexOf(url);
+
+      let fileIndex = this.files.findIndex(file => file.name === fileName);
+      this.urls.splice(index, 1);
+      this.files.splice(fileIndex, 1);
+      this.logSuccess("Image deleted");
+    }, 
     deleteImage(fileName, src) {
       let storage = this.$fire.storage.ref();
       let ref = storage.child(`property_images/${this.user.uid}/${fileName}`);

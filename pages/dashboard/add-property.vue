@@ -2,6 +2,7 @@
   <v-container id="top">
     <TheMetaTags :title="title" :description="description" />
     <h1>Add Property</h1>
+    {{ urls }}
     {{ `typeOf price: ${typeof property.details.price}` }}
     <!--   {{profile}} -->
     <SectionPadding v-if="profile.loading">
@@ -62,7 +63,7 @@
             <v-stepper-step
               :color="iconColor"
               step="3"
-        :complete="cur > 3 || property.amenities.length > 0"
+              :complete="cur > 3 || property.amenities.length > 0"
               editable
             >
               Amenities
@@ -446,7 +447,7 @@
                     :color="iconColor"
                     type="submit"
                     :loading="loading"
-                    :disabled='disabled'
+                    :disabled="disabled"
                   >
                     Add Property
                   </v-btn>
@@ -469,6 +470,13 @@
               <p class="text-h6">Picture {{ i + 1 }}</p>
               <p class="text-subtitle-1">File name: {{ files[i].name }}</p>
               <img :src="url" :alt="files[i].name" width="100%" height="100%" />
+              <v-btn
+                color="red"
+                class="mt-3"
+                dark
+                @click="removeImage(url, files[i].name)"
+                ><v-icon>mdi-delete</v-icon> Remove Image</v-btn
+              >
             </div>
             <v-divider class="my-9"></v-divider>
           </div>
@@ -578,7 +586,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      logError: "errors/logError"
+      logError: "errors/logError",
+      logSuccess: "success/logSuccess"
     }),
     addDropFile(e) {
       this.urls = [];
@@ -627,6 +636,14 @@ export default {
       }
       this.$vuetify.goTo("#photos");
     },
+    removeImage(url, fileName) {
+      let index = this.urls.indexOf(url);
+
+      let fileIndex = this.files.findIndex(file => file.name === fileName);
+      this.urls.splice(index, 1);
+      this.files.splice(fileIndex, 1);
+      this.logSuccess("Image deleted");
+    },
     uploadPictures() {
       if (
         this.$refs.descriptionForm.validate() &&
@@ -653,7 +670,9 @@ export default {
             snapshot => {},
             error => {
               console.log(error);
-              this.logError("Unable to upload pictures, please check your internet and ensure that your pictures use either the JPG or PNG format.");
+              this.logError(
+                "Unable to upload pictures, please check your internet and ensure that your pictures use either the JPG or PNG format."
+              );
               this.loading = false;
             },
             () => {
