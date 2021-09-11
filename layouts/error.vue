@@ -3,10 +3,13 @@
     class="error-background ma-0 pa-0 d-flex justify-center align-center flex-column text-center"
     fluid
   >
-    <h1 class="text-h3 text-md-h1 white--text" v-if="error.statusCode === 404">
-      {{ pageNotFound }}
+<div  v-if="error.statusCode === 404">
+      <h1 class="text-h3 text-md-h1 white--text">
+     404
     </h1>
-    <h1 class="text-h3 text-md-h1 white--text" v-else>
+    <p class="text-h5 text-md-h4 white--text mt-6">We've searched the entire website but could not find this page.</p>
+</div>
+    <h1 class="text-h3  white--text" v-else>
       {{ otherError }}
     </h1>
 
@@ -17,7 +20,7 @@
       elevation="0"
       dark
       color="green"
-      class="mt-9"
+      class="mt-6"
     >
       Return to home page
     </v-btn>
@@ -35,7 +38,7 @@ export default {
   },
   data() {
     return {
-      pageNotFound: "404 Property Not Found",
+      pageNotFound: "We have searched the entire website but could not find this page",
       otherError: "An unknown error has occurred"
     };
   },

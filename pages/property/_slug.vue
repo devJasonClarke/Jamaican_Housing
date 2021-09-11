@@ -445,6 +445,7 @@
                 />
               </nuxt-link>
               <a
+                     target="_blank"
                 :href="`mailto:${uploader.contact.email}`"
                 class="text-subtitle-1 blue--text "
                 >{{ uploader.contact.email }}</a
@@ -582,6 +583,7 @@
                 >
               </v-btn>
               <a
+              
                 :href="`tel:${uploader.contact.phoneNumber}`"
                 class="text-subtitle-1"
               >

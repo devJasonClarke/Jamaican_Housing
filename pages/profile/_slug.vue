@@ -1,8 +1,24 @@
 <template>
   <div>
+    <TheMetaTags :title="title" :description="description" />
     <v-container class="mt-6 mb-9">
       <v-row>
-        <v-col cols="12" md="4">
+        <v-col cols="12" md="4" v-if="user.personalDetails.displayName === ''">
+          <v-card class="pa-6 ml-sm-3 mb-6" elevation="3">
+            <v-skeleton-loader
+              type="image"
+              class=" d-block mx-auto rounded-circle"
+              width="120"
+              height="120"
+            ></v-skeleton-loader>
+            <v-skeleton-loader type="list-item-three-line"></v-skeleton-loader>
+            <v-divider class="my-3"></v-divider>
+            <v-skeleton-loader type="table-tfoot"></v-skeleton-loader>
+            <v-divider class="my-3"></v-divider>
+            <v-skeleton-loader type="list-item-three-line"></v-skeleton-loader>
+          </v-card>
+        </v-col>
+        <v-col cols="12" md="4" v-else>
           <v-card class="pa-6 ml-sm-3 mb-6" elevation="3">
             <v-list-item-avatar
               height="120"
@@ -19,16 +35,19 @@
             <div class="text-center d-flex flex-column">
               <p class="text-h5 font-weight-bold mt-4 mb-0">
                 {{ user.personalDetails.displayName }}
-                       <VerifiedSymbol
-                  v-if="user.verified"
-                  :role="user.role"
-                />
-        
+                <VerifiedSymbol v-if="user.verified" :role="user.role" />
               </p>
               <a
                 :href="`mailto:${user.contact.email}`"
+                target="_blank"
                 class="text-subtitle-1 blue--text "
                 >{{ user.contact.email }}</a
+              >
+              <a
+                :href="user.contact.website"
+                target="_blank"
+                class="text-subtitle-1 blue--text "
+                >{{ user.contact.website }}</a
               >
               <a
                 target="_blank"
@@ -38,7 +57,7 @@
                 >{{ formattedNumber }}</a
               >
             </div>
-             <v-divider
+            <v-divider
               class="my-3"
               v-if="
                 user.socialMedia.facebook ||
@@ -99,8 +118,14 @@
                 </v-btn>
               </a>
             </div>
-            <v-divider class="mt-2 mb-4" v-if="user.achievements.length > 0"></v-divider>
-            <div class="max-width mx-auto my-0" v-if="user.achievements.length > 0">
+            <v-divider
+              class="mt-2 mb-4"
+              v-if="user.achievements.length > 0"
+            ></v-divider>
+            <div
+              class="max-width mx-auto my-0"
+              v-if="user.achievements.length > 0"
+            >
               <div class="d-flex align-center mb-3">
                 <v-avatar
                   size="46"
@@ -175,12 +200,18 @@
                 <p class="mb-0">Top Performer</p>
               </div>
             </div>
-            <v-divider class="mt-2 mb-4" v-if="user.verified && user.role == 'realtor'"></v-divider>
-            <div class="max-width mx-auto my-0" v-if="user.verified && user.role == 'realtor'">
+            <v-divider
+              class="mt-2 mb-4"
+              v-if="user.verified && user.role == 'realtor'"
+            ></v-divider>
+            <div
+              class="max-width mx-auto my-0"
+              v-if="user.verified && user.role == 'realtor'"
+            >
               <p class="mb-2 text-h6 font-weight-bold">Jason Provided</p>
               <ul class="body-1">
                 <li class="grey--text text--darken-2">&#8226; Government ID</li>
-                <li class="grey--text text--darken-2" >
+                <li class="grey--text text--darken-2">
                   &#8226; Realtor License
                 </li>
                 <li class="grey--text text--darken-2">&#8226; Email address</li>
@@ -190,17 +221,54 @@
           </v-card>
         </v-col>
 
-        <v-col cols="12" md="8">
-          <p class="text-h4 font-weight-bold">Hello, I'm {{user.personalDetails.firstName || user.personalDetails.displayName}}</p>
-          <p class="body-1">
-            {{user.personalDetails.about}}
+        <v-col cols="12" md="8" v-if="user.personalDetails.displayName === ''">
+          <v-skeleton-loader type="paragraph,sentences"></v-skeleton-loader>
+          <TheRealEstatePropertiesListingLoader />
+        </v-col>
+
+        <v-col cols="12" md="8" v-else>
+          <p class="text-h4 font-weight-bold" id="top">
+            Hello, I'm
+            {{
+              user.personalDetails.firstName || user.personalDetails.displayName
+            }}
           </p>
-          <TheRealEstatePropertiesListingLoader v-if="loading" title="sale" />
-          <TheRealEstatePropertiesListingProfile
-            v-else
-            title="Real Estate"
-            :card="featuredProperties"
+          <p class="body-1">
+            {{ user.personalDetails.about }}
+          </p>
+
+          <v-divider class="my-6"></v-divider>
+
+          <TheRealEstatePropertiesListingFirebaseGetUser
+            :properties="properties"
           />
+          <div class="d-flex justify-center align-center mt-4">
+            <v-btn
+              class="mx-2"
+              fab
+              dark
+              small
+              color="green accent-4"
+              @click="$vuetify.goTo('#top')"
+            >
+              <v-icon dark>
+                mdi-chevron-left
+              </v-icon>
+            </v-btn>
+            <v-btn
+              class="mx-2"
+              fab
+              :dark="paginateNext.dark"
+              small
+              color="green accent-4"
+              @click="next"
+              :disabled="paginateNext.disabled"
+            >
+              <v-icon dark>
+                mdi-chevron-right
+              </v-icon>
+            </v-btn>
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -218,7 +286,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   async fetch() {
     this.theParam = this.$route.params.slug;
@@ -231,7 +299,7 @@ export default {
         if (doc.exists) {
           console.log("Document data:", doc.data());
           this.user = doc.data();
-          this.getUser();
+          this.loadUserProperties();
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
@@ -247,6 +315,13 @@ export default {
   },
   data() {
     return {
+      properties: [],
+      lastVisible: null,
+      loading: true,
+      paginateNext: {
+        disabled: false,
+        dark: true
+      },
       iconColor: "rgba(0, 200, 83, 1)",
       phoneNumber: 18763147199,
       loading: false,
@@ -268,7 +343,7 @@ export default {
           uid: "",
           name: ""
         },
-      
+
         personalDetails: {
           lastName: "",
           displayName: "",
@@ -287,16 +362,61 @@ export default {
       }
     };
   },
-  methods: {},
-  computed: {
-    target() {
-      const value = "#top";
-      return value;
+  methods: {
+    ...mapActions({
+      logError: "errors/logError"
+    }),
+
+    async loadUserProperties() {
+      const ref = await this.$fire.firestore
+        .collection("properties")
+        .where("uploader", "==", this.user.uid)
+        .orderBy("timestamp", "desc")
+        .startAfter(this.lastVisible || {})
+        .limit(2);
+      ref.get().then(
+        querySnapshot => {
+          this.lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
+          if (querySnapshot.empty) {
+            console.log("Empty Profile");
+            this.paginateNext = {
+              disabled: true,
+              dark: false
+            };
+          }
+          if (querySnapshot.empty && this.properties.length) {
+            this.logError("This user has have no more properties.");
+          }
+          querySnapshot.forEach(doc => {
+            this.properties.push([doc.data(), doc.id]);
+          });
+          console.log(`Fetch properties ${this.properties}`);
+          this.loading = false;
+          if (this.properties === []) {
+            this.properties = "no properties";
+            this.loading = false;
+          }
+        },
+        error => {
+          console.log("Firebase");
+          console.log(error);
+        }
+      );
     },
+    next() {
+      this.loadUserProperties();
+    }
+  },
+  computed: {
     ...mapGetters({
       featuredProperties: "properties/featuredProperties"
     }),
-
+    title() {
+      return `${this.user.personalDetails.displayName} | Profile`;
+    },
+    description() {
+      return `${this.user.personalDetails.about}`;
+    },
     formattedNumber() {
       /* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */
       var phone = [
