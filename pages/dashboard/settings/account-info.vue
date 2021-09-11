@@ -234,13 +234,13 @@
             >
           </v-form>
         </v-tab-item>
-        <v-tab-item>
-          <p class="text-h6 "   id="top">
+        <v-tab-item v-if="profile.verified">
+          <p class="text-h6 " id="top">
             Please upload your profile picture.
           </p>
           <p class="text-body-2">
-            Profile pictures must have a maximum size of 200 KB. We recommend a
-            400px x 400px resolution.
+            Profile pictures must have a maximum size of 200 KB. <br> We recommend a photo resolution of
+            400px x 400px.
           </p>
 
           <v-col cols="12" md="6" v-if="profile.verified === true">
@@ -254,7 +254,6 @@
                 v-cloak
                 @drop.prevent="addDropFile"
                 @dragover.prevent
-              
               >
                 <v-file-input
                   v-if="profile.profilePicture.src"
@@ -384,6 +383,18 @@
               </div>
             </SectionPadding>
           </v-col>
+        </v-tab-item>
+        <v-tab-item v-else>
+                <v-sheet
+        height="200px"
+        class="d-flex justify-center align-center flex-column"
+        outlined
+        ><p class="text-h6 text-center font-weight-regular">
+          Verify account to change profile picture.
+        </p>
+
+        <v-icon >mdi-check-decagram mdi-36px</v-icon>
+      </v-sheet>
         </v-tab-item>
       </v-tabs-items>
     </SectionPadding>
