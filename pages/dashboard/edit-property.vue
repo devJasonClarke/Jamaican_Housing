@@ -662,7 +662,7 @@ export default {
         { title: "Movie Theater Near By", icon: "mdi-theater" },
         { title: "Restaurants Near By", icon: "mdi-silverware-fork-knife" }
       ],
-      status: ["Rent", "Sale"],
+      status: ["Rent", "Sale", "Off the market"],
       rentType: ["Per Night", "Per Month"],
       imageUrls: [],
       fileBeingUploaded: "",

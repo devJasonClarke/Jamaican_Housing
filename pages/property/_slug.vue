@@ -270,9 +270,9 @@
                 <v-list-item class="mb-3">
                   <v-list-item-content class="  text-capitalize">
                     <v-list-item-title class="text-body-1   font-weight-medium"
-                      >Property Status :</v-list-item-title
+                      >Property For :</v-list-item-title
                     >
-                    For {{ property.details.propertyFor }}
+                     {{ property.details.propertyFor }}
                   </v-list-item-content>
                 </v-list-item>
                 <v-list-item v-if="property.details.rentType" class="mb-3">
@@ -413,9 +413,9 @@
         </v-col>
         <v-col cols="12" md="4" v-else class="mt-9 mt-md-0">
           <v-card class="pa-6 ml-sm-3 mb-6 " outlined>
-           
-            <nuxt-link :to="{ name: 'profile-slug', params: { slug: uploader.uid } }">
-            
+            <nuxt-link
+              :to="{ name: 'profile-slug', params: { slug: uploader.uid } }"
+            >
               <v-list-item-avatar
                 height="120"
                 width="120"
@@ -445,7 +445,7 @@
                 />
               </nuxt-link>
               <a
-                     target="_blank"
+                target="_blank"
                 :href="`mailto:${uploader.contact.email}`"
                 class="text-subtitle-1 blue--text "
                 >{{ uploader.contact.email }}</a
@@ -564,6 +564,22 @@
                 v-model="message"
               ></v-textarea>
               <v-btn
+                v-if="property.details.propertyFor == 'Off the market'"
+                class="mb-6"
+                x-large
+                :color="iconColor"
+                :dark='false'
+                block
+                depressed
+                :disabled="true"
+              >
+                <span>
+                  Property is <br> {{ property.details.propertyFor }}</span
+                >
+              </v-btn>
+
+              <v-btn
+                v-else
                 class="mb-6"
                 x-large
                 type="submit"
@@ -583,7 +599,6 @@
                 >
               </v-btn>
               <a
-              
                 :href="`tel:${uploader.contact.phoneNumber}`"
                 class="text-subtitle-1"
               >
@@ -751,8 +766,8 @@ export default {
           phoneNumber: 23234234234
         },
         profilePicture: {
-          src: '',
-          fileName: ''
+          src: "",
+          fileName: ""
         },
         uid: ""
       },
