@@ -1,34 +1,20 @@
 export const state = () => ({
   phoneNumberRules: [
     v => !!v || "Phone number is required.",
-    value => {
-      if (!!value)
-        return (value || "").toString().length >= 10 || "10 Digit Dialing";
-    },
+    value => (value || "").toString().length >= 10 || "10 Digit Dialing",
     value => (value || "").toString().length < 12 || "10 Digit Dialing",
-    value => {
-      if (!!value)
-        return (
-          /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/i.test(
-            value
-          ) || "Phone number must be valid"
-        );
-    }
+    value =>
+      /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/i.test(
+        value
+      ) || "Phone number must be valid"
   ],
   whatsappNumberRules: [
-    value => {
-      if (!!value)
-        return (value || "").toString().length >= 10 || "10 Digit Dialing";
-    },
+    value => (value || "").toString().length >= 10 || "10 Digit Dialing",
     value => (value || "").toString().length < 12 || "10 Digit Dialing",
-    value => {
-      if (!!value)
-        return (
-          /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/i.test(
-            value
-          ) || "Phone number must be valid"
-        );
-    }
+    value =>
+      /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/i.test(
+        value
+      ) || "Phone number must be valid"
   ],
   nameRules: [
     v => !!v || "Name is required",

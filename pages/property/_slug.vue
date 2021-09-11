@@ -422,8 +422,8 @@
                 class="mx-auto my-0 d-flex justify-center align-center green rounded-circle"
               >
                 <v-img
-                  v-if="uploader.photoUrl"
-                  :src="uploader.photoUrl"
+                  v-if="uploader.profilePicture.src"
+                  :src="uploader.profilePicture.src"
                 ></v-img>
                 <span v-else>
                   <v-icon color="grey lighten-4 text-h1"
@@ -750,7 +750,10 @@ export default {
           website: "",
           phoneNumber: 23234234234
         },
-        photoUrl: "",
+        profilePicture: {
+          src: '',
+          fileName: ''
+        },
         uid: ""
       },
       card: {

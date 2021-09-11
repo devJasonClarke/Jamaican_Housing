@@ -389,7 +389,7 @@
                         v =>
                           !v ||
                           !v.some(file => file.size > 1048576) ||
-                          'All pictures should be less than 1 MB in size!',
+                          'All pictures should be 1 MB or less in size!',
                         v =>
                           v.length <= 7 - property.images.length ||
                           `No more than ${7 - property.images.length} pictures`,

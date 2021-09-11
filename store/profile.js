@@ -21,7 +21,7 @@ export const state = () => ({
       displayName: "",
       initials: "",
       firstName: "",
-      about: ''
+      about: ""
     },
     contact: {
       whatsappNumber: null,
@@ -29,11 +29,15 @@ export const state = () => ({
       website: "",
       phoneNumber: null
     },
-    photoUrl: "",
+    profilePicture: {
+      src: "",
+      fileName: ""
+    },
     uid: ""
   },
   updateDetailsLoader: false,
   updateSocialLoader: false,
+
   userAthenticated: false
 });
 
@@ -93,7 +97,8 @@ export const actions = {
             "personalDetails.about": state.profile.personalDetails.about,
             "personalDetails.displayName": `${state.profile.personalDetails.firstName} ${state.profile.personalDetails.lastName}`,
             "personalDetails.initials": initials,
-            "personalDetails.firstName": state.profile.personalDetails.firstName,
+            "personalDetails.firstName":
+              state.profile.personalDetails.firstName,
             "personalDetails.lastName": state.profile.personalDetails.lastName,
             "contact.email": state.profile.contact.email,
             "contact.phoneNumber": state.profile.contact.phoneNumber
@@ -154,6 +159,12 @@ export const actions = {
       }
     });
   },
+  setProfilePicture({ commit }, picture) {
+    commit("SET_PROFILE_PICTURE", picture);
+  },
+  removeProfilePicture({ commit }) {
+    commit("REMOVE_PROFILE_PICTURE");
+  },
   setFacebook({ commit }, value) {
     commit("SET_FACEBOOK", value);
   },
@@ -194,6 +205,15 @@ export const mutations = {
   },
   SET_WEBSITE: (state, value) => {
     state.profile.contact.website = value;
+  },
+  SET_PROFILE_PICTURE: (state, picture) => {
+    state.profile.profilePicture = picture;
+  },
+  REMOVE_PROFILE_PICTURE: state => {
+    state.profile.profilePicture = {
+      src: "",
+      fileName: ""
+    };
   },
 
   SET_FACEBOOK: (state, value) => {

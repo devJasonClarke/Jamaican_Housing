@@ -38,7 +38,10 @@ export const actions = {
           .doc(userCredential.user.uid)
           .set({
             achievements: [],
-            photoUrl: "",
+            profilePicture: {
+              src: "",
+              fileName: ""
+            },
             uid: userCredential.user.uid,
             verified: false,
             role: "user",
@@ -49,7 +52,7 @@ export const actions = {
               firstName: firstName,
               lastName: lastName,
               initials: initials,
-              about: ''
+              about: ""
             },
             realEstateFirm: { name: "", uid: "" },
             socialMedia: {
@@ -117,7 +120,10 @@ export const actions = {
                 .doc(result.user.uid)
                 .set({
                   achievements: [],
-                  photoUrl: "",
+                  profilePicture: {
+                    src: "",
+                    fileName: ""
+                  },
                   uid: result.user.uid,
                   verified: false,
                   role: "user",
@@ -128,7 +134,7 @@ export const actions = {
                     firstName: "",
                     lastName: "",
                     initials: "",
-                    about: ''
+                    about: ""
                   },
                   realEstateFirm: { name: "", uid: "" },
                   socialMedia: {

@@ -25,7 +25,7 @@
               width="120"
               class="mx-auto my-0 d-flex justify-center align-center green rounded-circle"
             >
-              <v-img v-if="user.photoUrl" :src="user.photoUrl"></v-img>
+              <v-img v-if="user.profilePicture.src" :src="user.profilePicture.src"></v-img>
               <span v-else>
                 <v-icon color="grey lighten-4 text-h1"
                   >mdi-account mdi-48px</v-icon
@@ -357,7 +357,10 @@ export default {
           website: "",
           phoneNumber: 23234234234
         },
-        photoUrl: "",
+        profilePicture: {
+          src: '',
+          fileName: ''
+        },
         uid: ""
       }
     };

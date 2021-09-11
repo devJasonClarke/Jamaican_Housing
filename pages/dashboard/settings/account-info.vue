@@ -32,8 +32,8 @@
             Please enter your information.
           </p>
           <p class="text-body-2 mb-12">
-            The information entered here will be accessible
-            to users who are interested in your property.
+            The information entered here will be accessible to users who are
+            interested in your property.
           </p>
           <v-form ref="descriptionForm" @submit.prevent="validateFields">
             <v-row
@@ -90,7 +90,7 @@
                 <v-textarea
                   outlined
                   dense
-                    v-model="about"
+                  v-model="about"
                   prepend-icon="mdi-text"
                   clearable
                   clear-icon="mdi-close-circle"
@@ -125,18 +125,6 @@
                   disabled
                 ></v-text-field
               ></v-col>
-              <v-col cols="12" md="6" v-if="profile.verified === true">
-                <v-text-field
-                  outlined
-                  prepend-icon="mdi-image"
-                  dense
-                  label="Upload Profile Picture *"
-                  required
-                  v-model="lastName"
-                  :color="iconColor"
-                  :rules="nameRules"
-                ></v-text-field
-              ></v-col>
             </v-row>
             <v-btn
               color="success"
@@ -149,12 +137,12 @@
         </v-tab-item>
 
         <v-tab-item>
-                  <p class="text-h6 ">
+          <p class="text-h6 ">
             Please enter your information.
           </p>
           <p class="text-body-2 mb-12">
-              The information entered here will be accessible
-            to users who are interested in your property.
+            The information entered here will be accessible to users who are
+            interested in your property.
           </p>
           <v-form ref="socialMediaForm" @submit.prevent="validateSocial">
             <v-row
@@ -246,6 +234,157 @@
             >
           </v-form>
         </v-tab-item>
+        <v-tab-item>
+          <p class="text-h6 "   id="top">
+            Please upload your profile picture.
+          </p>
+          <p class="text-body-2">
+            Profile pictures must have a maximum size of 200 KB. We recommend a
+            400px x 400px resolution.
+          </p>
+
+          <v-col cols="12" md="6" v-if="profile.verified === true">
+            <v-form
+              v-model="validPictures"
+              @submit.prevent="validatePictures"
+              ref="picturesForm"
+            >
+              <v-row
+                class="mb-6"
+                v-cloak
+                @drop.prevent="addDropFile"
+                @dragover.prevent
+              
+              >
+                <v-file-input
+                  v-if="profile.profilePicture.src"
+                  accept="image/png, image/jpeg"
+                  small-chips
+                  show-size
+                  counter
+                  multiple
+                  maxlength="0"
+                  prepend-icon="mdi-image"
+                  v-model="files"
+                  @change="resetURL"
+                  label="Only one profile picture at a time"
+                  :color="iconColor"
+                  required
+                  :rules="[
+                    v =>
+                      !v ||
+                      !v.some(file => file.size >= 209716) ||
+                      'All pictures should be 200 KB or less in size!',
+                    v => v.length < 1 || 'Only one profile picture at a time'
+                  ]"
+                ></v-file-input>
+                <v-file-input
+                  v-else
+                  accept="image/png, image/jpeg"
+                  small-chips
+                  show-size
+                  counter
+                  multiple
+                  maxlength="1"
+                  prepend-icon="mdi-image"
+                  v-model="files"
+                  @change="resetURL"
+                  label="Upload pictures of your property"
+                  :color="iconColor"
+                  required
+                  :rules="[
+                    v =>
+                      !v ||
+                      !v.some(file => file.size >= 209716) ||
+                      'All pictures should be 200 KB or less in size!',
+                    v => v.length < 2 || 'No more than 1 profile picture'
+                  ]"
+                ></v-file-input>
+              </v-row>
+              <v-btn
+                :dark="urls.length == 0"
+                :color="iconColor"
+                :disabled="urls.length > 0"
+                @click="previewPictures"
+                class="mb-3 mr-3"
+              >
+                Preview Picture
+              </v-btn>
+              <v-btn
+                dark
+                :color="iconColor"
+                :disabled="disableUpdatePicture"
+                :loading="updatePictureLoader"
+                type="submit"
+                class="mb-3"
+              >
+                Upload Picture
+              </v-btn>
+
+              <div v-if="fileBeingUploaded">
+                <p class="text-h6 mt-6">Uploading: {{ fileBeingUploaded }}</p>
+              </div>
+            </v-form>
+
+            <SectionPadding class="pt-0" id="photos">
+              <div v-show="urls.length !== 0">
+                <div v-for="(url, i) in urls" :key="url">
+                  <div>
+                    <p class="text-h6">Picture {{ i + 1 }}</p>
+                    <p class="text-subtitle-1">
+                      File name: {{ files[i].name }}
+                    </p>
+                    <div>
+                      <v-img
+                        :src="url"
+                        :alt="files[i].name"
+                        width="120px"
+                        height="120px"
+                        class="rounded-circle"
+                      ></v-img>
+                    </div>
+                    <v-btn
+                      color="red"
+                      class="mt-3"
+                      dark
+                      @click="removeImage(url, files[i].name)"
+                      ><v-icon>mdi-delete</v-icon> Remove Image</v-btn
+                    >
+                  </div>
+                  <v-divider class="my-9"></v-divider>
+                </div>
+                <v-btn dark :color="iconColor" @click="$vuetify.goTo('#top')"
+                  >Go To Top</v-btn
+                >
+              </div>
+              <v-divider class="my-6"></v-divider>
+              <div v-show="this.profile.profilePicture.fileName">
+                <div>
+                  <p class="text-h6">Existing Picture</p>
+                  <p class="text-subtitle-1">
+                    File name: {{ this.profile.profilePicture.fileName }}
+                  </p>
+                  <div>
+                    <v-img
+                      :src="this.profile.profilePicture.src"
+                      :alt="this.profile.profilePicture.fileName"
+                      width="120px"
+                      height="120px"
+                      class="rounded-circle img"
+                    ></v-img>
+                  </div>
+                  <v-btn color="red" class="mt-3" dark @click="deleteImage"
+                    ><v-icon>mdi-delete</v-icon> Delete Image</v-btn
+                  >
+                </div>
+                <v-divider class="my-9"></v-divider>
+                <v-btn dark :color="iconColor" @click="$vuetify.goTo('#top')"
+                  >Go To Top</v-btn
+                >
+              </div>
+            </SectionPadding>
+          </v-col>
+        </v-tab-item>
       </v-tabs-items>
     </SectionPadding>
   </v-container>
@@ -259,11 +398,19 @@ export default {
 
   data() {
     return {
+      files: [],
+      urls: [],
+      validPictures: false,
       tab: null,
-      items: ["Account Details", "Social Media"],
+      items: ["Account Details", "Social Media", "Profile Picture"],
       disableUpdateAccount: false,
       disableUpdateSocial: false,
-      iconColor: "rgba(0, 200, 83)"
+      disableUpdatePicture: false,
+      updatePictureLoader: false,
+      iconColor: "rgba(0, 200, 83)",
+      imageUrls: [],
+      fileBeingUploaded: "",
+      fileName: ""
     };
   },
   computed: {
@@ -282,7 +429,8 @@ export default {
       phoneNumberRules: "inputRules/phoneNumberRules",
       whatsappNumberRules: "inputRules/whatsappNumberRules",
       updateDetailsLoader: "profile/updateDetailsLoader",
-      updateSocialLoader: "profile/updateSocialLoader"
+      updateSocialLoader: "profile/updateSocialLoader",
+      user: "authentication/user"
     }),
     email: {
       get() {
@@ -388,7 +536,11 @@ export default {
       setLinkedIn: "profile/setLinkedIn",
       setYoutube: "profile/setYoutube",
       updateAccountDetails: "profile/updateAccountDetails",
-      updateAccountSocials: "profile/updateAccountSocials"
+      updateAccountSocials: "profile/updateAccountSocials",
+      removeProfilePicture: "profile/removeProfilePicture",
+      setProfilePicture: "profile/setProfilePicture",
+      logSuccess: "success/logSuccess",
+      logError: "errors/logError"
     }),
     validateFields() {
       if (this.$refs.descriptionForm.validate()) {
@@ -402,6 +554,97 @@ export default {
       } else {
       }
     },
+    validatePictures() {
+      if (this.$refs.picturesForm.validate() && this.files.length > 0) {
+        console.log("valid pic");
+
+        let storage = this.$fire.storage.ref();
+        let date = Date.now();
+
+        this.updatePictureLoader = true;
+
+        for (let i = 0; i < this.files.length; i++) {
+          this.fileName = `${date.toString()}_${this.files[i].name}`;
+
+          let ref = storage
+            .child(`property_images/${this.user.uid}/${this.fileName}`)
+            .put(this.files[i]);
+
+          ref.on(
+            "state_changed",
+            snapshot => {},
+            error => {
+              console.log(error);
+              this.logError(
+                "Unable to upload pictures, please check your internet and ensure that your pictures use either the JPG or PNG format."
+              );
+              this.updatePictureLoader = false;
+            },
+            () => {
+              // Handle successful uploads on complete
+              // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+              // let image = [];
+              ref.snapshot.ref
+                .getDownloadURL()
+                .then(downloadURL => {
+                  console.log("File available at", downloadURL);
+                  this.fileBeingUploaded = this.files[i].name;
+                  this.imageUrls.push({
+                    src: downloadURL,
+                    fileName: `${date.toString()}_${this.fileBeingUploaded}`
+                  });
+                })
+                .then(() => {
+                  console.log("it is ready");
+                  console.log(this.imageUrls);
+
+                  if (this.imageUrls.length === this.files.length) {
+                    console.log("Image Url");
+                    console.log(this.imageUrls[0]);
+                    this.addPictureProperty();
+                  }
+                });
+
+              console.log("success");
+            }
+          );
+        }
+      } else {
+        this.logError("Please ensure that picture is valid.");
+      }
+    },
+    addPictureProperty() {
+      this.$fireModule.auth().onAuthStateChanged(user => {
+        if (user) {
+          this.$fire.firestore
+            .collection("users")
+            .doc(user.uid)
+            .update({
+              profilePicture: this.imageUrls[0]
+            })
+            .then(() => {
+              this.updatePictureLoader = false;
+              this.setProfilePicture(this.imageUrls[0]);
+              this.files = [];
+              this.urls = [];
+              this.imageUrls = [];
+              this.fileName = "";
+              this.fileBeingUploaded = "";
+              this.logSuccess("Successfully updated profile picture!");
+              console.log("Successfully updated!");
+            })
+            .catch(error => {
+              this.logError(error.message);
+              console.log(error);
+              //   commit("errors/LOG_ERROR", error.message, { root: true });
+            });
+
+          console.log(user);
+        } else {
+          // User is signed out
+        }
+      });
+    },
     validateSocial() {
       if (this.$refs.socialMediaForm.validate()) {
         this.updateAccountSocials();
@@ -413,6 +656,59 @@ export default {
         );
       } else {
       }
+    },
+    removeImage(url, fileName) {
+      let index = this.urls.indexOf(url);
+
+      let fileIndex = this.files.findIndex(file => file.name === fileName);
+      this.urls.splice(index, 1);
+      this.files.splice(fileIndex, 1);
+      this.logSuccess("Image deleted");
+    },
+    deleteImage() {
+      let fileName = this.profile.profilePicture.fileName;
+      let storage = this.$fire.storage.ref();
+      let ref = storage.child(`property_images/${this.user.uid}/${fileName}`);
+
+      //console.log(this.property.images)
+
+      // Delete the file
+      ref
+        .delete()
+        .then(() => {
+          this.$fire.firestore
+            .collection("users")
+            .doc(this.user.uid)
+            .update({
+              profilePicture: {
+                fileName: "",
+                src: ""
+              }
+            });
+        })
+        .then(() => {
+          this.removeProfilePicture();
+          this.logSuccess("Image deleted");
+        })
+        .catch(error => {
+          console.log("delete error");
+          console.log(error);
+          this.logError(error.message);
+        });
+    },
+    addDropFile(e) {
+      this.urls = [];
+      this.files.push(...Array.from(e.dataTransfer.files));
+    },
+    resetURL() {
+      this.urls = [];
+    },
+    previewPictures() {
+      for (let i = 0; i < this.files.length; i++) {
+        /* console.log(this.files[i]) */
+        this.urls.push(URL.createObjectURL(this.files[i]));
+      }
+      this.$vuetify.goTo("#photos");
     }
   }
 };

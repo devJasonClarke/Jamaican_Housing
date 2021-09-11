@@ -67,7 +67,7 @@
             :width="[miniVariant ? 40 : 120]"
             class="mx-0 d-flex justify-center align-center green"
           >
-            <v-img v-if="profile.photoUrl" :src="profile.photoUrl"></v-img>
+            <v-img v-if="profile.profilePicture.src" :src="profile.profilePicture.src"></v-img>
             <span
               v-else-if="profile.personalDetails.initials"
               :class="[
@@ -188,7 +188,7 @@
             ></v-skeleton-loader>
             <span v-else>
               <v-avatar color="green" size="36">
-                <v-img v-if="profile.photoUrl" :src="profile.photoUrl"></v-img>
+                <v-img v-if="profile.profilePicture.src" :src="profile.profilePicture.src"></v-img>
                 <span
                   class="white--text  "
                   v-else-if="profile.personalDetails.initials"
@@ -204,7 +204,7 @@
 
        <v-list dense nav>
             <v-list-item-group
-              v-model="signInDropDown"
+           
               active-class="green--text text--accent-4"
             >
               <v-list-item class="text-uppercase" exact :to="{ name: 'index' }">
@@ -232,7 +232,7 @@
           <TheCurrencySelector class="mb-0" />
           <v-list class="mt-0" dense nav>
             <v-list-item-group
-              v-model="signInDropDown"
+        
               active-class="green--text text--accent-4"
             >
               <v-list-item class="text-uppercase" @click="logout">
@@ -343,7 +343,8 @@ export default {
       newMessages: "messages/newMessages",
       oldMessages: "messages/oldMessages",
       profile: "profile/profile",
-      userAthenticated: "profile/userAthenticated"
+      userAthenticated: "profile/userAthenticated",
+        colorTheme: "colorTheme/theme",
     })
   }
 };
