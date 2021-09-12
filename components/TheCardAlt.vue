@@ -39,7 +39,7 @@
         {{ card.beds }}
       </p>
       <p>
-        <v-icon :color="iconColor">mdi-shower-head mdi-18px</v-icon>
+        <v-icon :color="iconColor">mdi-shower mdi-flip-h mdi-18px</v-icon>
         {{ card.bathroom }}
       </p>
       <p>
