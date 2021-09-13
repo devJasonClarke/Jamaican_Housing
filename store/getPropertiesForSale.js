@@ -22,6 +22,7 @@ export const actions = {
 
     console.log("Get User: User");
 
+    let equal = '==';
     // console.log(`Properties: ${state.properties.length}`);
 
     // console.log("lastVisible");
@@ -30,10 +31,10 @@ export const actions = {
     const ref = this.$fire.firestore
       .collection("properties")
       //.where("parish", "==", "Hanover")
-      // .where("bedrooms", "==", "2")
-      // .where("price", "<=", "500000")
+      // .where("bedrooms", "==", 2)
+      // .where("price", "<=", 500000)
       // .where("type", "==", "Development Land (Commercial)")
-      .where("propertyFor", "==", "Sale")
+      .where("propertyFor", equal, "Sale")
       //.orderBy("price", "desc")
       .orderBy("timestamp", "desc")
       .startAfter(state.lastVisible || {})

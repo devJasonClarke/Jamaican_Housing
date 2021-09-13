@@ -72,14 +72,10 @@ export const state = () => ({
   websiteRules: [
     value => !/[ ]/.test(value) || "no spaces allowed",
     value => (value || "").length <= 100 || "Max 100 characters",
-    value => {
-      if (!!value)
-        return (
-          /^(https?|ftp|torrent|image|irc):\/\/(-\.)?([^\s\/?\.#-]+\.?)+(\/[^\s]*)?$/i.test(
-            value
-          ) || "URL must be valid. Please enter full URL including HTTPS."
-        );
-    }
+    /* value =>
+      /^(https?|ftp|torrent|image|irc):\/\/(-\.)?([^\s\/?\.#-]+\.?)+(\/[^\s]*)?$/i.test(
+        value
+      ) || "URL must be valid. Please enter full URL including HTTPS." */
   ]
 });
 
