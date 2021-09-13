@@ -20,61 +20,117 @@
       <SectionPadding v-if="loading == true" class="pt-0"
         ><TheRealEstatePropertiesListingLoader title="sale"
       /></SectionPadding>
-      <SectionPadding v-else-if="!properties.length" class="pt-0">
-        <v-sheet
-          height="200px"
-          class="d-flex justify-center align-center flex-column"
-          outlined
-          ><p class="text-h6 text-center font-weight-regular">
-            There are no properties as yet.
-            <br />This is the perfect opprotunity to add yours<!--  Add your first propery today! -->
-          </p>
-          <v-btn
-            nuxt
-            :to="{ name: 'dashboard-add-property' }"
-            dark
-            color="green accent-4"
-          >
-            <v-icon left>mdi-home-import-outline</v-icon> Add Property</v-btn
-          >
-        </v-sheet>
-      </SectionPadding>
-      <SectionPadding v-else id="top" class="pt-0">
-        <TheRealEstatePropertiesListingFirebase
-          title="Real Estate for Sale"
-          :properties="properties"
-        />
-        <div class="d-flex justify-center align-center mt-4">
-          <v-btn
-            class="mx-2"
-            fab
-            dark
-            small
-            color="green accent-4"
-            @click="$vuetify.goTo('#top')"
-          >
-            <v-icon dark>
-              mdi-chevron-left
-            </v-icon>
-          </v-btn>
-          <v-btn
-            class="mx-2"
-            fab
-            :dark="paginateNext.dark"
-            small
-            color="green accent-4"
-            @click="next"
-            :disabled="paginateNext.disabled"
-          >
-            <v-icon dark>
-              mdi-chevron-right
-            </v-icon>
-          </v-btn>
-        </div>
-      </SectionPadding>
-      
+      <div v-else-if="searchedProperties.length">
+        <SectionPadding class="pt-0 " v-if="!searchedProperties.length">
+          <v-sheet
+            height="200px"
+            class="d-flex justify-center align-center flex-column"
+            outlined
+            ><p class="text-h6 text-center font-weight-regular">
+              There are no properties that match these criteria as yet.
+              <br />This is the perfect opportunity to add yours!<!--  Add your first propery today! -->
+            </p>
+            <v-btn
+              nuxt
+              :to="{ name: 'dashboard-add-property' }"
+              dark
+              color="green accent-4"
+            >
+              <v-icon left>mdi-home-import-outline</v-icon> Add Property</v-btn
+            >
+          </v-sheet>
+        </SectionPadding>
+        <SectionPadding v-else id="top" class="pt-0">
+          <TheRealEstatePropertiesListingFirebase
+            title="Real Estate for Sale"
+            :properties="searchedProperties"
+          />
+          <div class="d-flex justify-center align-center mt-4">
+            <v-btn
+              class="mx-2"
+              fab
+              dark
+              small
+              color="green accent-4"
+              @click="$vuetify.goTo('#top')"
+            >
+              <v-icon dark>
+                mdi-chevron-left
+              </v-icon>
+            </v-btn>
+            <v-btn
+              class="mx-2"
+              fab
+              :dark="paginateNext.dark"
+              small
+              color="green accent-4"
+              @click="next"
+              :disabled="paginateNext.disabled"
+            >
+              <v-icon dark>
+                mdi-chevron-right
+              </v-icon>
+            </v-btn>
+          </div>
+        </SectionPadding>
+      </div>
+
+      <div v-else>
+        <SectionPadding v-if="!properties.length" class="pt-0">
+          <v-sheet
+            height="200px"
+            class="d-flex justify-center align-center flex-column"
+            outlined
+            ><p class="text-h6 text-center font-weight-regular">
+              There are no properties as yet.
+              <br />This is the perfect opportunity to add yours!<!--  Add your first propery today! -->
+            </p>
+            <v-btn
+              nuxt
+              :to="{ name: 'dashboard-add-property' }"
+              dark
+              color="green accent-4"
+            >
+              <v-icon left>mdi-home-import-outline</v-icon> Add Property</v-btn
+            >
+          </v-sheet>
+        </SectionPadding>
+        <SectionPadding v-else id="top" class="pt-0">
+          <TheRealEstatePropertiesListingFirebase
+            title="Real Estate for Sale"
+            :properties="properties"
+          />
+          <div class="d-flex justify-center align-center mt-4">
+            <v-btn
+              class="mx-2"
+              fab
+              dark
+              small
+              color="green accent-4"
+              @click="$vuetify.goTo('#top')"
+            >
+              <v-icon dark>
+                mdi-chevron-left
+              </v-icon>
+            </v-btn>
+            <v-btn
+              class="mx-2"
+              fab
+              :dark="paginateNext.dark"
+              small
+              color="green accent-4"
+              @click="next"
+              :disabled="paginateNext.disabled"
+            >
+              <v-icon dark>
+                mdi-chevron-right
+              </v-icon>
+            </v-btn>
+          </div>
+        </SectionPadding>
+      </div>
     </v-container>
-   <SectionPadding class="backgroundShade">
+    <SectionPadding class="backgroundShade">
       <SectionTitles
         subTitle="FIND YOUR HOME TODAY"
         mainTitle="Featured listings around you"
@@ -94,7 +150,16 @@ export default {
   fetch() {
     console.log("fetch");
     console.log(this.properties);
-    if (this.properties.length == 0) {
+    if(this.search.parish &&
+    this.search.type &&
+    this.search.price &&
+    this.search.bedrooms  
+    
+    ){
+      console.log('searched')
+this.getSearchedPropertiesForSale();
+    }
+   else if (this.properties.length == 0) {
       this.getPropertiesForSale();
     } else {
       this.setLoading(false);
@@ -104,7 +169,8 @@ export default {
     return {
       title: "Buy Real Estate | Real Estate Ja",
       description: "buy",
-      img: img
+      img: img,
+      sp: []
     };
   },
   computed: {
@@ -115,8 +181,14 @@ export default {
     ...mapGetters({
       properties: "getPropertiesForSale/properties",
       lastVisible: "getPropertiesForSale/lastVisible",
-      loading: "getPropertiesForSale/loading",
-      paginateNext: "getPropertiesForSale/paginateNext"
+      paginateNext: "getPropertiesForSale/paginateNext",
+      searchedProperties: "getPropertiesForSale/searchedProperties",
+      userSearch: "getPropertiesForSale/userSearch",
+         search: "selectOptions/search",
+
+      lastSearchedVisible: "getPropertiesForSale/lastSearchedVisible",
+      paginateNextSearched: "getPropertiesForSale/paginateNextSearched",
+      loading: "getPropertiesForSale/loading"
     })
   },
 
@@ -124,6 +196,7 @@ export default {
     ...mapActions({
       logError: "errors/logError",
       getPropertiesForSale: "getPropertiesForSale/getPropertiesForSale",
+      getSearchedPropertiesForSale: "getPropertiesForSale/getSearchedPropertiesForSale",
       setLoading: "getPropertiesForSale/setLoading"
     }),
     previous() {

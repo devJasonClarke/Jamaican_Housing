@@ -27,7 +27,7 @@
         outlined
         ><p class="text-h6 text-center font-weight-regular">
          There are no properties as yet.
-          <br />This is the perfect opprotunity to add yours!<!--  Add your first propery today! -->
+          <br />This is the perfect opportunity to add yours!<!--  Add your first propery today! -->
         </p>
         <v-btn
           nuxt
