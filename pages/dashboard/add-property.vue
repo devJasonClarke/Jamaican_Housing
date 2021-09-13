@@ -443,7 +443,7 @@
                   </v-row>
 
                   <v-btn
-                     :dark="!disabled"
+                    :dark="!disabled"
                     :color="iconColor"
                     type="submit"
                     :loading="loading"
@@ -716,6 +716,16 @@ export default {
         this.$refs.toursForm.validate()
       ) {
         this.loading = true;
+        let bedrooms;
+        if (this.property.details.bedrooms >= 4) {
+          bedrooms = "4 +";
+          console.log( bedrooms)
+          console.log(typeof bedrooms)
+        } else {
+          bedrooms = `${this.property.details.bedrooms}`;
+          console.log( bedrooms)
+          console.log(typeof bedrooms)
+        }
 
         this.$fire.firestore
           .collection("properties")
@@ -723,7 +733,7 @@ export default {
             price: parseFloat(this.property.details.price),
             parish: this.property.details.parish,
             type: this.property.details.propertyType,
-            bedrooms: parseFloat(this.property.details.bedrooms),
+            bedrooms: bedrooms,
             featured: false,
             verified: false,
             propertyFor: this.property.details.propertyFor,

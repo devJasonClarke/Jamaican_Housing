@@ -111,13 +111,13 @@ export const actions = {
 
    
     console.log("getTheProperty Searched");
-    console.log(rootState.selectOptions.search.parish);
-    console.log(rootState.selectOptions.search.bedrooms);
-    console.log(rootState.selectOptions.search.price);
-    console.log(rootState.selectOptions.search.type);
+    console.log(rootState.selectOptionsBuy.search.parish);
+    console.log(rootState.selectOptionsBuy.search.bedrooms);
+    console.log(rootState.selectOptionsBuy.search.price);
+    console.log(rootState.selectOptionsBuy.search.type);
     console.log("Get User: User");
 
-    let equal = "==";
+  
     // console.log(`Properties: ${state.properties.length}`);
 
     // console.log("lastVisible");
@@ -125,10 +125,10 @@ export const actions = {
 
     const ref = this.$fire.firestore
       .collection("properties")
-      .where("parish", "==", rootState.selectOptions.search.parish)
-      .where("bedrooms", "==", rootState.selectOptions.search.bedrooms)
-      .where("price", "<=", rootState.selectOptions.search.price)
-      .where("type", "==", rootState.selectOptions.search.type)
+      .where("parish", "==", rootState.selectOptionsBuy.search.parish)
+      .where("bedrooms", "==", rootState.selectOptionsBuy.search.bedrooms)
+      .where("price", "<=", rootState.selectOptionsBuy.search.price)
+      .where("type", "==", rootState.selectOptionsBuy.search.type)
       .where("propertyFor", '==', "Sale")
       .orderBy("price", "desc")
       .orderBy("timestamp", "desc")
@@ -211,6 +211,7 @@ export const mutations = {
   SET_LAST_SEARCHED_VISIBLE: (state, data) => {
     /*     console.log("Set_Last_Visible");
     console.log(data); */
+    
     state.lastSearchedVisible = data;
   },
   LOADING: (state, data) => {

@@ -14,7 +14,7 @@
     <v-divider></v-divider>
     <v-container class="px-6 px-sm-0">
       <SectionPaddingAlt>
-        <TheSearchSection />
+        <TheSearchSectionBuy />
       </SectionPaddingAlt>
 
       <SectionPadding v-if="loading == true" class="pt-0"
@@ -153,7 +153,8 @@ export default {
     if(this.search.parish &&
     this.search.type &&
     this.search.price &&
-    this.search.bedrooms  
+    this.search.bedrooms  &&
+    this.searchedProperties.length == 0
     
     ){
       console.log('searched')
@@ -184,7 +185,7 @@ this.getSearchedPropertiesForSale();
       paginateNext: "getPropertiesForSale/paginateNext",
       searchedProperties: "getPropertiesForSale/searchedProperties",
       userSearch: "getPropertiesForSale/userSearch",
-         search: "selectOptions/search",
+         search: "selectOptionsBuy/search",
 
       lastSearchedVisible: "getPropertiesForSale/lastSearchedVisible",
       paginateNextSearched: "getPropertiesForSale/paginateNextSearched",
