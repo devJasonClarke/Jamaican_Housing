@@ -199,6 +199,7 @@ export default {
       logError: "errors/logError",
       getSearchedPropertiesForRent:
         "getPropertiesForRent/getSearchedPropertiesForRent",
+      getSearchedPropertiesForRentNext: "getPropertiesForRent/getSearchedPropertiesForRentNext",
       getPropertiesForRent: "getPropertiesForRent/getPropertiesForRent",
       setLoading: "getPropertiesForRent/setLoading"
     }),
@@ -214,7 +215,7 @@ export default {
     },
     searchNext() {
       console.log("search next");
-      this.getSearchedPropertiesForRent();
+      this.getSearchedPropertiesForRentNext();
     }
   }
 };

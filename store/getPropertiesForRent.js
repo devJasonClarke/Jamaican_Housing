@@ -198,6 +198,75 @@ export const actions = {
       }
     );
   },
+  getSearchedPropertiesForRentNext({ commit, state }) {
+    console.log("getTheProperty Searched");
+    console.log(state.search.parish);
+    console.log(state.search.bedrooms);
+    console.log(state.search.price);
+    console.log(state.search.type);
+    console.log("Get User: User");
+
+    // console.log(`Properties: ${state.properties.length}`);
+    commit("SET_PROPERTY_SEARCH", true);
+    // console.log("lastVisible");
+    console.log(state.lastSearchedVisible);
+
+    const ref = this.$fire.firestore
+      .collection("properties")
+      .where("parish", "==", state.search.parish)
+      .where("bedrooms", "==", state.search.bedrooms)
+      .where("price", "<=", state.search.price)
+      .where("type", "==", state.search.type)
+      .where("propertyFor", "==", "Rent")
+      .orderBy("price", "desc")
+      .orderBy("timestamp", "desc")
+      .startAfter(state.lastSearchedVisible || {})
+      .limit(3);
+
+    ref.get().then(
+      querySnapshot => {
+        commit(
+          "SET_LAST_SEARCHED_VISIBLE",
+          Object.freeze(querySnapshot.docs[querySnapshot.docs.length - 1])
+        );
+        //    console.log("lastVisible_2");
+        //  console.log(state.lastVisible);
+
+        if (querySnapshot.empty) {
+          console.log("Empty");
+
+          commit("SET_PAGINATE_NEXT_SEARCHED");
+        }
+        if (querySnapshot.empty && state.properties.length) {
+          commit(
+            "errors/LOG_ERROR",
+            "Looks like we've run out of properties to show you.",
+            {
+              root: true
+            }
+          );
+        }
+
+        querySnapshot.forEach(doc => {
+          console.log(`This Document was fetched ${doc.id}`);
+          commit("SET_SEARCHED_PROPERTIES", [doc.data(), doc.id]);
+        });
+
+        commit("LOADING", false);
+
+        //    this.loading = false;
+
+        if (state.searchedProperties === []) {
+          commit("LOADING", false);
+        }
+      },
+      error => {
+        commit("errors/LOG_ERROR", error.message, { root: true });
+        //console.log("Firebase");
+        console.log(error);
+      }
+    );
+  },
   resetPropertySearch({ commit }) {
     console.log("change");
     commit("SET_PROPERTY_SEARCH", false);
@@ -279,6 +348,10 @@ export const mutations = {
   REMOVE_PREVIOUS_SEARCHES: state => {
     state.searchedProperties = [];
     state.loading = true;
+    state.paginateNextSearched = {
+      disabled: false,
+      dark: true
+    };
   },
   REMOVE_FILTERS: state => {
     state.searchedProperties = [];

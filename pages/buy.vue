@@ -197,6 +197,7 @@ this.getSearchedPropertiesForSale();
     ...mapActions({
       logError: "errors/logError",
       getPropertiesForSale: "getPropertiesForSale/getPropertiesForSale",
+           getSearchedPropertiesForSaleNext: "getPropertiesForSale/getSearchedPropertiesForSaleNext",
       getSearchedPropertiesForSale: "getPropertiesForSale/getSearchedPropertiesForSale",
       setLoading: "getPropertiesForSale/setLoading"
     }),
@@ -211,7 +212,7 @@ this.getSearchedPropertiesForSale();
     },
     searchNext(){
       console.log('search next');
-      this.getSearchedPropertiesForSale();
+      this.getSearchedPropertiesForSaleNext();
     }
   }
 };
