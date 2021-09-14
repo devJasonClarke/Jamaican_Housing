@@ -15,35 +15,13 @@
     <p class="text-body-1">Property ID: {{ this.theParam }}</p>
 
     <!--   {{profile}} -->
-    <SectionPadding v-if="profile.loading">
+    <SectionPadding v-if="!property.uploader">
       <v-skeleton-loader
         type="table-row-divider,image,card-heading"
         title="sale"
       ></v-skeleton-loader>
     </SectionPadding>
-    <SectionPadding
-      v-else-if="!profile.contact.email || !profile.contact.phoneNumber"
-    >
-      <v-sheet
-        height="250px"
-        class="d-flex justify-center align-center flex-column pa-3"
-        outlined
-        ><p class="text-sm-h6 text-subtitle-1 text-center font-weight-regular">
-          8 out of 10 users optimized their accounts before adding properties.
-          <br />
-          These accounts received 98% more property views.
-        </p>
-        <v-btn
-          nuxt
-          :to="{ name: 'dashboard-settings-account-info' }"
-          dark
-          color="green accent-4"
-        >
-          <v-icon left>mdi-account-outline</v-icon> Optimize your account</v-btn
-        >
-      </v-sheet>
-    </SectionPadding>
-
+   
     <section v-else>
       <SectionPadding>
         <v-stepper v-model="cur">
@@ -827,7 +805,7 @@ export default {
             amenities: this.property.amenities,
             tours: this.property.tours,
             uploader: this.user.uid,
-            timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
+            timestamp: this.property.timestamp,
             images: this.property.images.concat(this.imageUrls)
           })
           .then(() => {
