@@ -44,7 +44,7 @@
         </SectionPadding>
         <SectionPadding v-else id="top" class="pt-0">
           <TheRealEstatePropertiesListingFirebase
-            title="Real Estate for Sale"
+            title="Real Estate for Rent"
             :properties="searchedProperties"
           />
           <div class="d-flex justify-center align-center mt-4">

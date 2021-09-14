@@ -13,7 +13,7 @@ export const state = () => ({
     disabled: false,
     dark: true
   },
-  
+
   // Search
 
   search: {
@@ -22,6 +22,8 @@ export const state = () => ({
     price: "",
     bedrooms: ""
   },
+
+  propertySearch: false,
 
   // Selected
 
@@ -48,13 +50,13 @@ export const getters = {
   selectedMaxPricesRent: state => state.selectedMaxPricesRent,
   selectedBedroomsRent: state => state.selectedBedroomsRent,
 
-   // Search
-
-   parishes: state => state.parishes,
-   realEstateType: state => state.realEstateType,
-   maxPrices: state => state.maxPrices,
-   bedrooms: state => state.bedrooms,
-   search: state => state.search
+  // Search
+  propertySearch: state => state.propertySearch,
+  parishes: state => state.parishes,
+  realEstateType: state => state.realEstateType,
+  maxPrices: state => state.maxPrices,
+  bedrooms: state => state.bedrooms,
+  search: state => state.search
 };
 
 export const actions = {
@@ -133,7 +135,7 @@ export const actions = {
     console.log("Get User: User");
 
     // console.log(`Properties: ${state.properties.length}`);
-
+    commit("SET_PROPERTY_SEARCH", true);
     // console.log("lastVisible");
     console.log(state.lastSearchedVisible);
 
@@ -192,6 +194,10 @@ export const actions = {
       }
     );
   },
+  resetPropertySearch({ commit }) {
+    console.log("change");
+    commit("SET_PROPERTY_SEARCH", false);
+  },
   removeFilters({ commit }) {
     commit("REMOVE_FILTERS");
   },
@@ -209,7 +215,6 @@ export const actions = {
     commit("REMOVE_USER_PROPERTY_STATE");
   },
 
-  
   setParish({ commit }, value) {
     commit("SET_PARISH", value);
   },
@@ -249,6 +254,9 @@ export const mutations = {
   LOADING: (state, data) => {
     state.loading = data;
   },
+  SET_PROPERTY_SEARCH: (state, data) => {
+    state.propertySearch = data;
+  },
   SET_PAGINATE_NEXT: state => {
     state.paginateNext = {
       disabled: true,
@@ -261,6 +269,9 @@ export const mutations = {
       dark: false
     };
   },
+  SET_PROPERTY_SEARCH: (state, data) => {
+    state.propertySearch = data;
+  },
   REMOVE_FILTERS: state => {
     state.searchedProperties = [];
     state.lastSearchedVisible = null;
@@ -272,12 +283,13 @@ export const mutations = {
       disabled: false,
       dark: true
     };
-/*     state.search = {
+    state.propertySearch = false;
+    state.search = {
       parish: "",
       type: "",
       price: "",
       bedrooms: ""
-    }; */
+    };
   },
   REMOVE_USER_PROPERTY_STATE: state => {
     console.log("LOG out From Remove User");
@@ -296,7 +308,6 @@ export const mutations = {
     state.loading = true;
   },
 
-  
   SET_PARISH: (state, value) => {
     state.search.parish = value;
   },

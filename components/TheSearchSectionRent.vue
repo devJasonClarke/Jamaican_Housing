@@ -23,6 +23,7 @@
               color="green"
               item-color="green"
               :rules="[v => !!v || 'Item is required']"
+              @change="resetPropertySearch"
               required
             ></v-select>
           </v-col>
@@ -38,6 +39,7 @@
               color="green"
               item-color="green"
               :rules="[v => !!v || 'Item is required']"
+              @change="resetPropertySearch"
               required
             >
               <template slot="selection" slot-scope="{ item }">
@@ -63,6 +65,7 @@
               color="green"
               item-color="green"
               :rules="[v => !!v || 'Item is required']"
+              @change="resetPropertySearch"
               required
             ></v-select>
           </v-col>
@@ -78,14 +81,13 @@
               color="green"
               item-color="green"
               :rules="[v => !!v || 'Item is required']"
+              @change="resetPropertySearch"
               required
             ></v-select>
           </v-col>
-
           <v-col md="2">
-       
-             <v-btn
-              v-if="!searchedProperties.length"
+            <v-btn
+              v-if="!propertySearch"
               color="green accent-4"
               dark
               block
@@ -94,19 +96,19 @@
               >Search</v-btn
             >
             <v-btn
-            v-else
+              v-else
               color="green accent-4"
               dark
               block
               class="pa-5 "
-                 @click="$vuetify.goTo('#top')"
+              @click="$vuetify.goTo('#top')"
               >Search</v-btn
             >
           </v-col>
         </v-row></v-container
       >
     </v-form>
-        <v-btn
+    <v-btn
       v-if="searchedProperties.length > 0"
       class="text-capitalize"
       color="red"
@@ -134,7 +136,8 @@ export default {
       setBedrooms: "getPropertiesForRent/setBedrooms",
       getSearchedPropertiesForRent:
         "getPropertiesForRent/getSearchedPropertiesForRent",
-          removeFilters: "getPropertiesForRent/removeFilters"
+      removeFilters: "getPropertiesForRent/removeFilters",
+      resetPropertySearch: "getPropertiesForRent/resetPropertySearch"
     }),
 
     numberWithCommas(x) {
@@ -163,7 +166,8 @@ export default {
       search: "getPropertiesForRent/search",
       activeCurrency: "api/activeCurrency",
       currencyRate: "api/currencyRate",
-      searchedProperties: "getPropertiesForRent/searchedProperties"
+      searchedProperties: "getPropertiesForRent/searchedProperties",
+      propertySearch: "getPropertiesForRent/propertySearch"
     }),
     selectedParish: {
       get() {

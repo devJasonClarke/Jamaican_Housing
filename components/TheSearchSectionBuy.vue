@@ -23,6 +23,7 @@
               color="green"
               item-color="green"
               :rules="[v => !!v || 'Item is required']"
+              @change="resetPropertySearch"
               required
             ></v-select>
           </v-col>
@@ -35,10 +36,10 @@
               prepend-icon="mdi-cash-multiple "
               hide-details
               :items="maxPrices.buy"
-            
               color="green"
               item-color="green"
               :rules="[v => !!v || 'Item is required']"
+              @change="resetPropertySearch"
               required
             >
               <template slot="selection" slot-scope="{ item }">
@@ -64,6 +65,7 @@
               color="green"
               item-color="green"
               :rules="[v => !!v || 'Item is required']"
+              @change="resetPropertySearch"
               required
             ></v-select>
           </v-col>
@@ -79,13 +81,14 @@
               color="green"
               item-color="green"
               :rules="[v => !!v || 'Item is required']"
+              @change="resetPropertySearch"
               required
             ></v-select>
           </v-col>
 
           <v-col md="2">
             <v-btn
-              v-if="!searchedProperties.length"
+              v-if="!propertySearch"
               color="green accent-4"
               dark
               block
@@ -94,12 +97,12 @@
               >Search</v-btn
             >
             <v-btn
-            v-else
+              v-else
               color="green accent-4"
               dark
               block
               class="pa-5 "
-                 @click="$vuetify.goTo('#top')"
+              @click="$vuetify.goTo('#top')"
               >Search</v-btn
             >
           </v-col>
@@ -134,7 +137,8 @@ export default {
       setBedrooms: "getPropertiesForSale/setBedrooms",
       getSearchedPropertiesForSale:
         "getPropertiesForSale/getSearchedPropertiesForSale",
-      removeFilters: "getPropertiesForSale/removeFilters"
+      removeFilters: "getPropertiesForSale/removeFilters",
+      resetPropertySearch: "getPropertiesForSale/resetPropertySearch"
     }),
 
     numberWithCommas(x) {
@@ -163,7 +167,8 @@ export default {
       search: "getPropertiesForSale/search",
       activeCurrency: "api/activeCurrency",
       currencyRate: "api/currencyRate",
-      searchedProperties: "getPropertiesForSale/searchedProperties"
+      searchedProperties: "getPropertiesForSale/searchedProperties",
+      propertySearch: "getPropertiesForSale/propertySearch"
     }),
     selectedParish: {
       get() {

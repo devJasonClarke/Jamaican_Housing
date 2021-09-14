@@ -23,6 +23,7 @@ export const state = () => ({
     bedrooms: ""
   },
 
+  propertySearch: false,
   // Selected
 
   selectedParishBuy: "",
@@ -49,7 +50,7 @@ export const getters = {
   selectedBedroomsBuy: state => state.selectedBedroomsBuy,
 
   // Search
-
+  propertySearch: state => state.propertySearch,
   parishes: state => state.parishes,
   realEstateType: state => state.realEstateType,
   maxPrices: state => state.maxPrices,
@@ -133,7 +134,7 @@ export const actions = {
     console.log("Get User: User");
 
     // console.log(`Properties: ${state.properties.length}`);
-
+    commit("SET_PROPERTY_SEARCH", true);
     // console.log("lastVisible");
     console.log(state.lastSearchedVisible);
 
@@ -192,6 +193,10 @@ export const actions = {
       }
     );
   },
+  resetPropertySearch({ commit }) {
+    console.log("change");
+    commit("SET_PROPERTY_SEARCH", false);
+  },
   removeFilters({ commit }) {
     commit("REMOVE_FILTERS");
   },
@@ -248,6 +253,9 @@ export const mutations = {
   LOADING: (state, data) => {
     state.loading = data;
   },
+  SET_PROPERTY_SEARCH: (state, data) => {
+    state.propertySearch = data;
+  },
   SET_PAGINATE_NEXT: state => {
     state.paginateNext = {
       disabled: true,
@@ -271,12 +279,13 @@ export const mutations = {
       disabled: false,
       dark: true
     };
-  /*   state.search = {
+    state.propertySearch = false;
+    state.search = {
       parish: "",
       type: "",
       price: "",
       bedrooms: ""
-    }; */
+    };
   },
   REMOVE_USER_PROPERTY_STATE: state => {
     console.log("LOG out From Remove User");

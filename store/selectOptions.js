@@ -47,13 +47,6 @@ export const state = () => ({
     ]
   },
 
-  search: {
-    parish: "",
-    type: "",
-    price: "",
-    bedrooms: ""
-  },
-
   bedrooms: [0, 1, 2, 3, "4 +"],
   buyProperty: true
 });
@@ -62,5 +55,5 @@ export const getters = {
   parishes: state => state.parishes,
   realEstateType: state => state.realEstateType,
   maxPrices: state => state.maxPrices,
-  bedrooms: state => state.bedrooms,
+  bedrooms: state => state.bedrooms
 };
