@@ -2,6 +2,7 @@
   <div>
     <TheMetaTags :title="title" :description="description" />
     <v-img :src="img" min-height="300" max-height="400"></v-img>
+
     <SectionPadding>
       <SectionTitlesSecondary
         mainTitle="Rent A Home"
@@ -12,14 +13,14 @@
     </SectionPadding>
 
     <v-divider></v-divider>
-        <v-container class="px-6 px-sm-0">
-    <SectionPaddingAlt>
-      <TheSearchSectionRent />
-    </SectionPaddingAlt>
+    <v-container class="px-6 px-sm-0">
+      <SectionPaddingAlt>
+        <TheSearchSectionRent />
+      </SectionPaddingAlt>
 
-    <SectionPadding v-if="loading == true"  class="pt-0"
-      ><TheRealEstatePropertiesListingLoader title="rent"
-    /></SectionPadding>
+      <SectionPadding v-if="loading == true" class="pt-0"
+        ><TheRealEstatePropertiesListingLoader title="rent"
+      /></SectionPadding>
 
       <div v-else-if="searchedProperties.length">
         <SectionPadding class="pt-0 " v-if="!searchedProperties.length">
@@ -62,11 +63,11 @@
             <v-btn
               class="mx-2"
               fab
-              :dark="paginateNext.dark"
+              :dark="paginateNextSearched.dark"
               small
               color="green accent-4"
-              @click="next"
-              :disabled="paginateNext.disabled"
+              @click="searchNext"
+              :disabled="paginateNextSearched.disabled"
             >
               <v-icon dark>
                 mdi-chevron-right
@@ -130,8 +131,8 @@
           </div>
         </SectionPadding>
       </div>
-       </v-container>
-          <SectionPadding class="backgroundShade">
+    </v-container>
+    <SectionPadding class="backgroundShade">
       <SectionTitles
         subTitle="FIND YOUR HOME TODAY"
         mainTitle="Featured listings around you"
@@ -151,17 +152,16 @@ export default {
   fetch() {
     console.log("fetch");
     console.log(this.properties);
-       if(this.search.parish &&
-    this.search.type &&
-    this.search.price &&
-    this.search.bedrooms  &&
-    this.searchedProperties.length == 0
-    
-    ){
-      console.log('searched')
-this.getSearchedPropertiesForSale();
-    }
-    else if (this.properties.length == 0) {
+    if (
+      this.search.parish &&
+      this.search.type &&
+      this.search.price &&
+      this.search.bedrooms &&
+      this.searchedProperties.length == 0
+    ) {
+      console.log("searched");
+      this.getSearchedPropertiesForSale();
+    } else if (this.properties.length == 0) {
       this.getPropertiesForRent();
     } else {
       this.setLoading(false);
@@ -180,23 +180,25 @@ this.getSearchedPropertiesForSale();
       return value;
     },
     ...mapGetters({
-  properties: "getPropertiesForRent/properties",
+      properties: "getPropertiesForRent/properties",
       lastVisible: "getPropertiesForRent/lastVisible",
       paginateNext: "getPropertiesForRent/paginateNext",
       searchedProperties: "getPropertiesForRent/searchedProperties",
       userSearch: "getPropertiesForRent/userSearch",
-         search: "selectOptionsBuy/search",
+      search: "selectOptionsBuy/search",
 
       properties: "getPropertiesForRent/properties",
       lastVisible: "getPropertiesForRent/lastVisible",
       loading: "getPropertiesForRent/loading",
+      paginateNextSearched: "getPropertiesForRent/paginateNextSearched",
       paginateNext: "getPropertiesForRent/paginateNext"
     })
   },
   methods: {
     ...mapActions({
       logError: "errors/logError",
-       getSearchedPropertiesForRent: "getPropertiesForRent/getSearchedPropertiesForRent",
+      getSearchedPropertiesForRent:
+        "getPropertiesForRent/getSearchedPropertiesForRent",
       getPropertiesForRent: "getPropertiesForRent/getPropertiesForRent",
       setLoading: "getPropertiesForRent/setLoading"
     }),
@@ -209,6 +211,10 @@ this.getSearchedPropertiesForSale();
     next() {
       console.log("next");
       this.getPropertiesForRent();
+    },
+    searchNext() {
+      console.log("search next");
+      this.getSearchedPropertiesForRent();
     }
   }
 };

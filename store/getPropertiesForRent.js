@@ -108,8 +108,6 @@ export const actions = {
     );
   },
   getSearchedPropertiesForRent({ commit, state, rootState }) {
-
-   
     console.log("getTheProperty Searched");
     console.log(rootState.selectOptionsRent.search.parish);
     console.log(rootState.selectOptionsRent.search.bedrooms);
@@ -117,7 +115,6 @@ export const actions = {
     console.log(rootState.selectOptionsRent.search.type);
     console.log("Get User: User");
 
-  
     // console.log(`Properties: ${state.properties.length}`);
 
     // console.log("lastVisible");
@@ -129,7 +126,7 @@ export const actions = {
       .where("bedrooms", "==", rootState.selectOptionsRent.search.bedrooms)
       .where("price", "<=", rootState.selectOptionsRent.search.price)
       .where("type", "==", rootState.selectOptionsRent.search.type)
-      .where("propertyFor", '==', "Rent")
+      .where("propertyFor", "==", "Rent")
       .orderBy("price", "desc")
       .orderBy("timestamp", "desc")
       .startAfter(state.lastSearchedVisible || {})
@@ -147,7 +144,7 @@ export const actions = {
         if (querySnapshot.empty) {
           console.log("Empty");
 
-          commit("SET_PAGINATE_NEXT");
+          commit("SET_PAGINATE_NEXT_SEARCHED");
         }
         if (querySnapshot.empty && state.properties.length) {
           commit(
@@ -178,7 +175,9 @@ export const actions = {
       }
     );
   },
-
+  removeFilters({ commit }) {
+    commit("REMOVE_FILTERS");
+  },
   setLoading({ commit }, data) {
     commit("LOADING", data);
   },
@@ -211,7 +210,7 @@ export const mutations = {
   SET_LAST_SEARCHED_VISIBLE: (state, data) => {
     /*     console.log("Set_Last_Visible");
     console.log(data); */
-    
+
     state.lastSearchedVisible = data;
   },
   LOADING: (state, data) => {
@@ -227,6 +226,18 @@ export const mutations = {
     state.paginateNextSearched = {
       disabled: true,
       dark: false
+    };
+  },
+  REMOVE_FILTERS: state => {
+    state.searchedProperties = [];
+    state.lastSearchedVisible = null;
+    state.selectedParishBuy = "";
+    state.selectedRealEstateTypeBuy = "";
+    state.selectedMaxPricesBuy = "";
+    state.selectedBedroomsBuy = "";
+    state.paginateNextSearched = {
+      disabled: false,
+      dark: true
     };
   },
   REMOVE_USER_PROPERTY_STATE: state => {

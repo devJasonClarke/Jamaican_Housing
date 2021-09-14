@@ -35,8 +35,6 @@
               prepend-icon="mdi-cash-multiple "
               hide-details
               :items="maxPrices.rent"
-              :item-text="text"
-              :item-value="value"
               color="green"
               item-color="green"
               :rules="[v => !!v || 'Item is required']"
@@ -85,7 +83,9 @@
           </v-col>
 
           <v-col md="2">
-            <v-btn
+       
+             <v-btn
+              v-if="!searchedProperties.length"
               color="green accent-4"
               dark
               block
@@ -93,11 +93,29 @@
               @click="validate"
               >Search</v-btn
             >
+            <v-btn
+            v-else
+              color="green accent-4"
+              dark
+              block
+              class="pa-5 "
+                 @click="$vuetify.goTo('#top')"
+              >Search</v-btn
+            >
           </v-col>
         </v-row></v-container
       >
     </v-form>
- </section>
+        <v-btn
+      v-if="searchedProperties.length > 0"
+      class="text-capitalize"
+      color="red"
+      text
+      elevation="0"
+      @click="removeFilters"
+      ><v-icon>mdi-delete mdi-18px</v-icon> Remove filters</v-btn
+    >
+  </section>
 </template>
 
 <script>
@@ -115,7 +133,8 @@ export default {
       setPrice: "selectOptionsRent/setPrice",
       setBedrooms: "selectOptionsRent/setBedrooms",
       getSearchedPropertiesForRent:
-        "getPropertiesForRent/getSearchedPropertiesForRent"
+        "getPropertiesForRent/getSearchedPropertiesForRent",
+          removeFilters: "getPropertiesForRent/removeFilters"
     }),
 
     numberWithCommas(x) {
@@ -143,7 +162,8 @@ export default {
       bedrooms: "selectOptionsRent/bedrooms",
       search: "selectOptionsRent/search",
       activeCurrency: "api/activeCurrency",
-      currencyRate: "api/currencyRate"
+      currencyRate: "api/currencyRate",
+      searchedProperties: "getPropertiesForRent/searchedProperties"
     }),
     selectedParish: {
       get() {

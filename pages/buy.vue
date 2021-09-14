@@ -61,11 +61,11 @@
             <v-btn
               class="mx-2"
               fab
-              :dark="paginateNext.dark"
+              :dark="paginateNextSearched.dark"
               small
               color="green accent-4"
-              @click="next"
-              :disabled="paginateNext.disabled"
+              @click="searchNext"
+              :disabled="paginateNextSearched.disabled"
             >
               <v-icon dark>
                 mdi-chevron-right
@@ -208,6 +208,10 @@ this.getSearchedPropertiesForSale();
     next() {
       console.log("next");
       this.getPropertiesForSale();
+    },
+    searchNext(){
+      console.log('search next');
+      this.getSearchedPropertiesForSale();
     }
   }
 };

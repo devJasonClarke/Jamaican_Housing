@@ -35,8 +35,7 @@
               prepend-icon="mdi-cash-multiple "
               hide-details
               :items="maxPrices.buy"
-              :item-text="text"
-              :item-value="value"
+            
               color="green"
               item-color="green"
               :rules="[v => !!v || 'Item is required']"
@@ -86,6 +85,7 @@
 
           <v-col md="2">
             <v-btn
+              v-if="!searchedProperties.length"
               color="green accent-4"
               dark
               block
@@ -93,87 +93,28 @@
               @click="validate"
               >Search</v-btn
             >
+            <v-btn
+            v-else
+              color="green accent-4"
+              dark
+              block
+              class="pa-5 "
+                 @click="$vuetify.goTo('#top')"
+              >Search</v-btn
+            >
           </v-col>
         </v-row></v-container
       >
     </v-form>
-    <!--       <v-form ref="form" v-model="valid" lazy-validation>
-  <v-container>
-    <v-row
-      align="center"
-      justify="space-around"
-      class="flex-column flex-md-row"
+    <v-btn
+      v-if="searchedProperties.length > 0"
+      class="text-capitalize"
+      color="red"
+      text
+      elevation="0"
+      @click="removeFilters"
+      ><v-icon>mdi-delete mdi-18px</v-icon> Remove filters</v-btn
     >
-      <v-col>
-        <v-select
-          outlined
-          dense
-          label="PARISH"
-          v-model="selectedParish"
-          prepend-icon="mdi-map-marker"
-          hide-details
-          :items="parishes"
-          color="green"
-          item-color="green"
-          :rules="[v => !!v || 'Item is required']"
-          required
-        ></v-select>
-      </v-col>
-      <v-col>
-        <v-select
-          outlined
-          dense
-          label="MAX PRICE"
-          v-model="selectedMaxPrice"
-          prepend-icon="mdi-cash-multiple "
-          hide-details
-          :items="maxPrices.buy"
-          color="green"
-          item-color="green"
-          :rules="[v => !!v || 'Item is required']"
-          required
-        ></v-select>
-      </v-col>
-
-      <v-col>
-        <v-select
-          outlined
-          dense
-          label="BEDROOMS "
-          v-model="selectedBedrooms"
-          prepend-icon="mdi-bed"
-          hide-details
-          :items="bedrooms"
-          color="green"
-          item-color="green"
-          :rules="[v => !!v || 'Item is required']"
-          required
-        ></v-select>
-      </v-col>
-      <v-col>
-        <v-select
-          outlined
-          dense
-          label="TYPE"
-          v-model="selectedRealEstateType"
-          prepend-icon="mdi-home-city"
-          hide-details
-          :items="realEstateType"
-          color="green"
-          item-color="green"
-          :rules="[v => !!v || 'Item is required']"
-          required
-        ></v-select>
-      </v-col>
-
-      <v-col md="2">
-        <v-btn color="green accent-4" dark block class="pa-5 " @click="validate"
-          >Search</v-btn
-        >
-      </v-col>
-    </v-row></v-container
-  >
-      </v-form> -->
   </section>
 </template>
 
@@ -192,7 +133,8 @@ export default {
       setPrice: "selectOptionsBuy/setPrice",
       setBedrooms: "selectOptionsBuy/setBedrooms",
       getSearchedPropertiesForSale:
-        "getPropertiesForSale/getSearchedPropertiesForSale"
+        "getPropertiesForSale/getSearchedPropertiesForSale",
+      removeFilters: "getPropertiesForSale/removeFilters"
     }),
 
     numberWithCommas(x) {
@@ -220,7 +162,8 @@ export default {
       bedrooms: "selectOptionsBuy/bedrooms",
       search: "selectOptionsBuy/search",
       activeCurrency: "api/activeCurrency",
-      currencyRate: "api/currencyRate"
+      currencyRate: "api/currencyRate",
+      searchedProperties: "getPropertiesForSale/searchedProperties"
     }),
     selectedParish: {
       get() {
