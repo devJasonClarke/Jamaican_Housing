@@ -206,7 +206,7 @@ export default {
       console.log("previous");
 
       this.$vuetify.goTo(this.target);
-      setTimeout(() => (this.loading = false), 3000);
+   
     },
     next() {
       console.log("next");

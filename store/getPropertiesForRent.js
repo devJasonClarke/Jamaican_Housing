@@ -122,18 +122,20 @@ export const actions = {
       },
       error => {
         commit("errors/LOG_ERROR", error.message, { root: true });
-     //   console.log("Firebase");
+        //   console.log("Firebase");
         console.log(error);
       }
     );
   },
-  getSearchedPropertiesForRent({ commit, state, rootState }) {
+  getSearchedPropertiesForRent({ commit, state }) {
     console.log("getTheProperty Searched");
     console.log(state.search.parish);
     console.log(state.search.bedrooms);
     console.log(state.search.price);
     console.log(state.search.type);
     console.log("Get User: User");
+
+    commit("REMOVE_PREVIOUS_SEARCHES");
 
     // console.log(`Properties: ${state.properties.length}`);
     commit("SET_PROPERTY_SEARCH", true);
@@ -273,6 +275,10 @@ export const mutations = {
   },
   SET_PROPERTY_SEARCH: (state, data) => {
     state.propertySearch = data;
+  },
+  REMOVE_PREVIOUS_SEARCHES: state => {
+    state.searchedProperties = [];
+    state.loading = true;
   },
   REMOVE_FILTERS: state => {
     state.searchedProperties = [];
