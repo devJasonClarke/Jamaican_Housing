@@ -80,7 +80,9 @@ export const actions = {
       }
     });
   },
-
+  addNewUserProperty({ commit }, data) {
+    commit("ADD_NEW_USER_PROPERTY", data);
+  },
   setLoading({ commit }, data) {
     commit("LOADING", data);
   },
@@ -90,6 +92,9 @@ export const actions = {
 
   setPaginateNext({ commit }, data) {
     commit("SET_PAGINATE_NEXT", data);
+  },
+  editUserProperty({ commit }, data) {
+    commit("EDIT_USER_PROPERTY", data);
   },
   removeUserPropertyState({ commit }) {
     commit("REMOVE_USER_PROPERTY_STATE");
@@ -185,6 +190,14 @@ export const mutations = {
   },
   LOADING: (state, data) => {
     state.loading = data;
+  },
+  ADD_NEW_USER_PROPERTY: (state, data) => {
+    state.properties.unshift(data);
+  },
+  EDIT_USER_PROPERTY: (state, data) => {
+    let index = state.properties.findIndex(property => property[1] === data[1]);
+
+    state.properties[index] = data;
   },
   DELETE_LOADING: (state, data) => {
     state.deleteLoading = data;

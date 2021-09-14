@@ -1,6 +1,6 @@
 <template>
   <v-container>
-        <TheMetaTags :title="title" :description="description" />
+    <TheMetaTags :title="title" :description="description" />
     <h1>Properties</h1>
     <div v-for="(property, i) in properties" :key="i">
       {{ property[1] }}
@@ -89,13 +89,13 @@ export default {
       lastVisible: "getUserProperties/lastVisible",
       loading: "getUserProperties/loading",
       paginateNext: "getUserProperties/paginateNext",
-        profile: "profile/profile"
+      profile: "profile/profile"
     }),
-      title() {
+    title() {
       return `${this.profile.personalDetails.displayName} | User Properties | Dashboard`;
     },
     description() {
-      return  `${this.profile.personalDetails.displayName} amazing properties.`;
+      return `${this.profile.personalDetails.displayName} amazing properties.`;
     }
   },
   methods: {

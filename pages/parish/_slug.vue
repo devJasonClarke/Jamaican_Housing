@@ -5,6 +5,7 @@
       :description="parish.description"
     />
     <v-img :src="parish.image" min-height="300" max-height="400"></v-img>
+    
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish.name"

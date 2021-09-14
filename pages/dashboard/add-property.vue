@@ -587,7 +587,8 @@ export default {
   methods: {
     ...mapActions({
       logError: "errors/logError",
-      logSuccess: "success/logSuccess"
+      logSuccess: "success/logSuccess",
+      addNewUserProperty: "getUserProperties/addNewUserProperty"
     }),
     addDropFile(e) {
       this.urls = [];
@@ -719,12 +720,12 @@ export default {
         let bedrooms;
         if (this.property.details.bedrooms >= 4) {
           bedrooms = "4 +";
-          console.log( bedrooms)
-          console.log(typeof bedrooms)
+          console.log(bedrooms);
+          console.log(typeof bedrooms);
         } else {
           bedrooms = `${this.property.details.bedrooms}`;
-          console.log( bedrooms)
-          console.log(typeof bedrooms)
+          console.log(bedrooms);
+          console.log(typeof bedrooms);
         }
 
         this.$fire.firestore
@@ -748,6 +749,25 @@ export default {
           })
           .then(docRef => {
             console.log("Document written with ID: ", docRef.id);
+            this.addNewUserProperty([
+              {
+                price: parseFloat(this.property.details.price),
+                parish: this.property.details.parish,
+                type: this.property.details.propertyType,
+                bedrooms: bedrooms,
+                featured: false,
+                verified: false,
+                propertyFor: this.property.details.propertyFor,
+
+                description: this.property.description,
+                details: this.property.details,
+                amenities: this.property.amenities,
+                tours: this.property.tours,
+                uploader: this.user.uid,
+                images: this.imageUrls
+              },
+              docRef.id
+            ]);
           })
           .then(() => {
             this.loading = false;

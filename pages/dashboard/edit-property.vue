@@ -672,7 +672,8 @@ export default {
   methods: {
     ...mapActions({
       logError: "errors/logError",
-      logSuccess: "success/logSuccess"
+      logSuccess: "success/logSuccess",
+      editUserProperty: "getUserProperties/editUserProperty"
     }),
     addDropFile(e) {
       this.urls = [];
@@ -828,6 +829,27 @@ export default {
             uploader: this.user.uid,
             timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
             images: this.property.images.concat(this.imageUrls)
+          })
+          .then(() => {
+            this.editUserProperty([
+              {
+                price: parseFloat(this.property.details.price),
+                parish: this.property.details.parish,
+                type: this.property.details.propertyType,
+                bedrooms: bedrooms,
+                featured: this.property.featured,
+                verified: this.property.verified,
+                propertyFor: this.property.details.propertyFor,
+
+                description: this.property.description,
+                details: this.property.details,
+                amenities: this.property.amenities,
+                tours: this.property.tours,
+                uploader: this.user.uid,
+                images: this.property.images.concat(this.imageUrls)
+              },
+              this.theParam
+            ]);
           })
           .then(() => {
             this.loading = false;
