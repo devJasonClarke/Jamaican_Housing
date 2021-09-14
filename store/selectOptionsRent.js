@@ -28,13 +28,13 @@ export const state = () => ({
   ],
   maxPrices: {
     rent: [
-      "$ 50,000 JMD",
-      "$ 70,000 JMD",
-      "$ 150,000 JMD",
-      "$ 200,000 JMD",
-      "$ 500,000 JMD",
-      "$ 700,000 JMD",
-      "$ 1,500,000 JMD "
+      { text: "$ 50,000 JMD", value: 50000 },
+      { text: "$ 70,000 JMD", value: 70000 },
+      { text: "$ 150,000 JMD", value: 150000 },
+      { text: "$ 200,000 JMD", value: 200000 },
+      { text: "$ 500,000 JMD", value: 500000 },
+      { text: "$ 700,000 JMD", value: 700000 },
+      { text: "$ 1,500,000 JMD ", value: 1500000 }
     ],
     buy: [
       { text: "$ 5,000,000 JMD", value: 5000000 },
@@ -55,7 +55,7 @@ export const state = () => ({
   },
 
   bedrooms: [1, 2, 3, "4 +"],
-  buyProperty: true
+  rentProperty: true
 });
 
 export const getters = {

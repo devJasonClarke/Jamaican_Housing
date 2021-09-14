@@ -28,7 +28,6 @@
     </SectionPadding>
 
     <SectionPadding v-else id="top">
-      <TheSearchSection />
       <TheRealEstatePropertiesListingFirebaseProfile
         title="Real Estate for Sale"
         :properties="properties"

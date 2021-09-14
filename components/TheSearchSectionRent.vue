@@ -34,14 +34,23 @@
               v-model="selectedMaxPrice"
               prepend-icon="mdi-cash-multiple "
               hide-details
-              :items="maxPrices.buy"
-              :item-text="maxPrices.buy.text"
-              :item-value="maxPrices.buy.value"
+              :items="maxPrices.rent"
+              :item-text="text"
+              :item-value="value"
               color="green"
               item-color="green"
               :rules="[v => !!v || 'Item is required']"
               required
-            ></v-select>
+            >
+              <template slot="selection" slot-scope="{ item }">
+                $ {{ numberWithCommas(item.value * currencyRate) }}
+                {{ activeCurrency }}
+              </template>
+              <template slot="item" slot-scope="{ item }">
+                $ {{ numberWithCommas(item.value * currencyRate) }}
+                {{ activeCurrency }}
+              </template>
+            </v-select>
           </v-col>
 
           <v-col>
@@ -88,84 +97,7 @@
         </v-row></v-container
       >
     </v-form>
-    <!--       <v-form ref="form" v-model="valid" lazy-validation>
-  <v-container>
-    <v-row
-      align="center"
-      justify="space-around"
-      class="flex-column flex-md-row"
-    >
-      <v-col>
-        <v-select
-          outlined
-          dense
-          label="PARISH"
-          v-model="selectedParish"
-          prepend-icon="mdi-map-marker"
-          hide-details
-          :items="parishes"
-          color="green"
-          item-color="green"
-          :rules="[v => !!v || 'Item is required']"
-          required
-        ></v-select>
-      </v-col>
-      <v-col>
-        <v-select
-          outlined
-          dense
-          label="MAX PRICE"
-          v-model="selectedMaxPrice"
-          prepend-icon="mdi-cash-multiple "
-          hide-details
-          :items="maxPrices.buy"
-          color="green"
-          item-color="green"
-          :rules="[v => !!v || 'Item is required']"
-          required
-        ></v-select>
-      </v-col>
-
-      <v-col>
-        <v-select
-          outlined
-          dense
-          label="BEDROOMS "
-          v-model="selectedBedrooms"
-          prepend-icon="mdi-bed"
-          hide-details
-          :items="bedrooms"
-          color="green"
-          item-color="green"
-          :rules="[v => !!v || 'Item is required']"
-          required
-        ></v-select>
-      </v-col>
-      <v-col>
-        <v-select
-          outlined
-          dense
-          label="TYPE"
-          v-model="selectedRealEstateType"
-          prepend-icon="mdi-home-city"
-          hide-details
-          :items="realEstateType"
-          color="green"
-          item-color="green"
-          :rules="[v => !!v || 'Item is required']"
-          required
-        ></v-select>
-      </v-col>
-
-      <v-col md="2">
-        <v-btn color="green accent-4" dark block class="pa-5 " @click="validate"
-          >Search</v-btn
-        >
-      </v-col>
-    </v-row></v-container
-  >
-      </v-form> -->
-  </section>
+ </section>
 </template>
 
 <script>
@@ -178,16 +110,26 @@ export default {
   },
   methods: {
     ...mapActions({
-      setParish: "selectOptions/setParish",
-      setType: "selectOptions/setType",
-      setPrice: "selectOptions/setPrice",
-      setBedrooms: "selectOptions/setBedrooms",
-  getSearchedPropertiesForSale: "getPropertiesForSale/getSearchedPropertiesForSale",
+      setParish: "selectOptionsRent/setParish",
+      setType: "selectOptionsRent/setType",
+      setPrice: "selectOptionsRent/setPrice",
+      setBedrooms: "selectOptionsRent/setBedrooms",
+      getSearchedPropertiesForRent:
+        "getPropertiesForRent/getSearchedPropertiesForRent"
     }),
+
+    numberWithCommas(x) {
+      x = Math.round((x + Number.EPSILON) * 100) / 100;
+
+      x = x.toString();
+      let pattern = /(-?\d+)(\d{3})/;
+      while (pattern.test(x)) x = x.replace(pattern, "$1,$2");
+      return x;
+    },
     validate() {
       if (this.$refs.form.validate()) {
         console.log("valid");
-        this.getSearchedPropertiesForSale();
+        this.getSearchedPropertiesForRent();
       } else {
         console.log("not");
       }
@@ -195,11 +137,13 @@ export default {
   },
   computed: {
     ...mapGetters({
-      parishes: "selectOptions/parishes",
-      realEstateType: "selectOptions/realEstateType",
-      maxPrices: "selectOptions/maxPrices",
-      bedrooms: "selectOptions/bedrooms",
-      search: "selectOptions/search"
+      parishes: "selectOptionsRent/parishes",
+      realEstateType: "selectOptionsRent/realEstateType",
+      maxPrices: "selectOptionsRent/maxPrices",
+      bedrooms: "selectOptionsRent/bedrooms",
+      search: "selectOptionsRent/search",
+      activeCurrency: "api/activeCurrency",
+      currencyRate: "api/currencyRate"
     }),
     selectedParish: {
       get() {
