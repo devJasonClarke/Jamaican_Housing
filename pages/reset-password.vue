@@ -43,27 +43,6 @@
         <nuxt-link :to="{ name: 'login' }">Login</nuxt-link>
       </p>
     </v-card>
-    <div class="">
-      <v-snackbar v-model="error" :timeout="20000" left>
-        {{ errorMessage }}
-
-        <template v-slot:action="{ attrs }">
-          <v-btn color="pink" text v-bind="attrs" @click="error = !error">
-            Close
-          </v-btn>
-        </template>
-      </v-snackbar>
-
-      <v-snackbar v-model="sent" :timeout="20000" bottom>
-        Password reset sent! Check your email.
-
-        <template v-slot:action="{ attrs }">
-          <v-btn color="green" text v-bind="attrs" @click="sent = !sent">
-            Close
-          </v-btn>
-        </template>
-      </v-snackbar>
-    </div>
   </div>
 </template>
 
@@ -90,6 +69,10 @@ export default {
     };
   },
   methods: {
+    ...mapActions({
+      logError: "errors/logError",
+      logSuccess: "success/logSuccess"
+    }),
     validate() {
       if (this.$refs.form.validate()) {
         console.log("valid");
@@ -107,18 +90,17 @@ export default {
           // Password reset email sent!
           // ..
           this.loading = false;
-          console.log("sent to email");
+          this.logSuccess("Password reset sucessfully sent to your email!");
           this.sent = true;
           this.email = "";
         })
         .catch(error => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          // ..
+          this.logError(error.message);
+
           this.error = true;
           this.errorMessage = errorMessage;
           this.loading = false;
-          console.log(error);
+          //  console.log(error);
           console.log("error to email");
         });
     }

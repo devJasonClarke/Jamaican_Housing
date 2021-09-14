@@ -778,10 +778,10 @@ export default {
             this.snackbarColor = "green";
           })
           .catch(error => {
-            console.error("Error adding document: ", error);
+       this.logError(error.message);
             this.loading = false;
             this.snackbar = true;
-            this.snackbarMessage = error;
+            this.snackbarMessage = error.message;
             this.snackbarColor = "pink";
           });
 

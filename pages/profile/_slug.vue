@@ -307,7 +307,8 @@ export default {
         }
       })
       .catch(error => {
-        console.log("Error getting document:", error);
+        this.logError(error.message)
+      //  console.log("Error getting document:", error);
       });
 
     /* let j = () => parishes.parishes.find(parish => parish.slug == theParam);
@@ -401,8 +402,10 @@ export default {
           }
         },
         error => {
-          console.log("Firebase");
+       //   console.log("Firebase");
           console.log(error);
+
+          this.logError(error.message)
         }
       );
     },

@@ -120,7 +120,8 @@ export const actions = {
         }
       },
       error => {
-        console.log("Firebase");
+        commit("errors/LOG_ERROR", error.message, { root: true });
+       // console.log("Firebase");
         console.log(error);
       }
     );
@@ -188,7 +189,8 @@ export const actions = {
         }
       },
       error => {
-        console.log("Firebase");
+        commit("errors/LOG_ERROR", error.message, { root: true });
+      //  console.log("Firebase");
         console.log(error);
       }
     );

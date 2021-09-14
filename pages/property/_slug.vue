@@ -652,20 +652,7 @@
 
       <TheFeaturedProperties />
     </SectionPadding>
-    <v-snackbar v-model="snackbar" :timeout="20000" left>
-      {{ snackbarMessage }}
 
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          :color="snackbarColor"
-          text
-          v-bind="attrs"
-          @click="snackbar = false"
-        >
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
   </div>
 </template>
 
@@ -691,6 +678,7 @@ export default {
         }
       })
       .catch(error => {
+        this.logError(error.message);
         console.log("Error getting document:", error);
       });
 
@@ -870,6 +858,7 @@ export default {
           }
         })
         .catch(error => {
+            this.logError(error.message)
           console.log(error);
         });
     },
@@ -956,11 +945,10 @@ export default {
           this.snackbarColor = "green";
         })
         .catch(error => {
+            this.logError(error.message)
           console.error("Error adding document: ", error);
           this.loading = false;
-          this.snackbar = true;
-          this.snackbarMessage = error;
-          this.snackbarColor = "pink";
+
         });
     }
   },
