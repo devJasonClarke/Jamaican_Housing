@@ -272,7 +272,7 @@
                     <v-list-item-title class="text-body-1   font-weight-medium"
                       >Property For :</v-list-item-title
                     >
-                     {{ property.details.propertyFor }}
+                    {{ property.details.propertyFor }}
                   </v-list-item-content>
                 </v-list-item>
                 <v-list-item v-if="property.details.rentType" class="mb-3">
@@ -568,13 +568,14 @@
                 class="mb-6"
                 x-large
                 :color="iconColor"
-                :dark='false'
+                :dark="false"
                 block
                 depressed
                 :disabled="true"
               >
                 <span>
-                  Property is <br> {{ property.details.propertyFor }}</span
+                  Property is <br />
+                  {{ property.details.propertyFor }}</span
                 >
               </v-btn>
 

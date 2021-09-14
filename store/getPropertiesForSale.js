@@ -14,6 +14,15 @@ export const state = () => ({
     dark: true
   },
 
+  // Search
+
+  search: {
+    parish: "",
+    type: "",
+    price: "",
+    bedrooms: ""
+  },
+
   // Selected
 
   selectedParishBuy: "",
@@ -37,7 +46,15 @@ export const getters = {
   selectedParishBuy: state => state.selectedParishBuy,
   selectedRealEstateTypeBuy: state => state.selectedRealEstateTypeBuy,
   selectedMaxPricesBuy: state => state.selectedMaxPricesBuy,
-  selectedBedroomsBuy: state => state.selectedBedroomsBuy
+  selectedBedroomsBuy: state => state.selectedBedroomsBuy,
+
+  // Search
+
+  parishes: state => state.parishes,
+  realEstateType: state => state.realEstateType,
+  maxPrices: state => state.maxPrices,
+  bedrooms: state => state.bedrooms,
+  search: state => state.search
 };
 
 export const actions = {
@@ -109,10 +126,10 @@ export const actions = {
   },
   getSearchedPropertiesForSale({ commit, state, rootState }) {
     console.log("getTheProperty Searched");
-    console.log(rootState.selectOptionsBuy.search.parish);
-    console.log(rootState.selectOptionsBuy.search.bedrooms);
-    console.log(rootState.selectOptionsBuy.search.price);
-    console.log(rootState.selectOptionsBuy.search.type);
+    console.log(state.search.parish);
+    console.log(state.search.bedrooms);
+    console.log(state.search.price);
+    console.log(state.search.type);
     console.log("Get User: User");
 
     // console.log(`Properties: ${state.properties.length}`);
@@ -122,10 +139,10 @@ export const actions = {
 
     const ref = this.$fire.firestore
       .collection("properties")
-      .where("parish", "==", rootState.selectOptionsBuy.search.parish)
-      .where("bedrooms", "==", rootState.selectOptionsBuy.search.bedrooms)
-      .where("price", "<=", rootState.selectOptionsBuy.search.price)
-      .where("type", "==", rootState.selectOptionsBuy.search.type)
+      .where("parish", "==", state.search.parish)
+      .where("bedrooms", "==", state.search.bedrooms)
+      .where("price", "<=", state.search.price)
+      .where("type", "==", state.search.type)
       .where("propertyFor", "==", "Sale")
       .orderBy("price", "desc")
       .orderBy("timestamp", "desc")
@@ -190,6 +207,21 @@ export const actions = {
   },
   removeUserPropertyState({ commit }) {
     commit("REMOVE_USER_PROPERTY_STATE");
+  },
+
+  setParish({ commit }, value) {
+    commit("SET_PARISH", value);
+  },
+  setType({ commit }, value) {
+    commit("SET_TYPE", value);
+  },
+  setPrice({ commit }, value) {
+    //  let price = parseFloat(value.replace(/[^0-9]/g, ""));
+    //  console.log(price);
+    commit("SET_PRICE", value);
+  },
+  setBedrooms({ commit }, value) {
+    commit("SET_BEDROOMS", value);
   }
 };
 
@@ -239,6 +271,12 @@ export const mutations = {
       disabled: false,
       dark: true
     };
+  /*   state.search = {
+      parish: "",
+      type: "",
+      price: "",
+      bedrooms: ""
+    }; */
   },
   REMOVE_USER_PROPERTY_STATE: state => {
     console.log("LOG out From Remove User");
@@ -255,5 +293,18 @@ export const mutations = {
       dark: true
     };
     state.loading = true;
+  },
+
+  SET_PARISH: (state, value) => {
+    state.search.parish = value;
+  },
+  SET_TYPE: (state, value) => {
+    state.search.type = value;
+  },
+  SET_PRICE: (state, value) => {
+    state.search.price = value;
+  },
+  SET_BEDROOMS: (state, value) => {
+    state.search.bedrooms = value;
   }
 };

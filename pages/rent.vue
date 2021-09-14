@@ -147,7 +147,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import img from "~/assets/images/houses/2.jpg";
+import img from "~/assets/images/key2.jpg";
 export default {
   fetch() {
     console.log("fetch");
@@ -160,7 +160,7 @@ export default {
       this.searchedProperties.length == 0
     ) {
       console.log("searched");
-      this.getSearchedPropertiesForSale();
+      this.getSearchedPropertiesForRent();
     } else if (this.properties.length == 0) {
       this.getPropertiesForRent();
     } else {
@@ -185,7 +185,7 @@ export default {
       paginateNext: "getPropertiesForRent/paginateNext",
       searchedProperties: "getPropertiesForRent/searchedProperties",
       userSearch: "getPropertiesForRent/userSearch",
-      search: "selectOptionsBuy/search",
+      search: "getPropertiesForRent/search",
 
       properties: "getPropertiesForRent/properties",
       lastVisible: "getPropertiesForRent/lastVisible",

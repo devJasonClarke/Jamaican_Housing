@@ -185,7 +185,7 @@ this.getSearchedPropertiesForSale();
       paginateNext: "getPropertiesForSale/paginateNext",
       searchedProperties: "getPropertiesForSale/searchedProperties",
       userSearch: "getPropertiesForSale/userSearch",
-         search: "selectOptionsBuy/search",
+         search: "getPropertiesForSale/search",
 
       lastSearchedVisible: "getPropertiesForSale/lastSearchedVisible",
       paginateNextSearched: "getPropertiesForSale/paginateNextSearched",

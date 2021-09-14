@@ -128,10 +128,10 @@ export default {
   },
   methods: {
     ...mapActions({
-      setParish: "selectOptionsBuy/setParish",
-      setType: "selectOptionsBuy/setType",
-      setPrice: "selectOptionsBuy/setPrice",
-      setBedrooms: "selectOptionsBuy/setBedrooms",
+      setParish: "getPropertiesForSale/setParish",
+      setType: "getPropertiesForSale/setType",
+      setPrice: "getPropertiesForSale/setPrice",
+      setBedrooms: "getPropertiesForSale/setBedrooms",
       getSearchedPropertiesForSale:
         "getPropertiesForSale/getSearchedPropertiesForSale",
       removeFilters: "getPropertiesForSale/removeFilters"
@@ -156,11 +156,11 @@ export default {
   },
   computed: {
     ...mapGetters({
-      parishes: "selectOptionsBuy/parishes",
-      realEstateType: "selectOptionsBuy/realEstateType",
-      maxPrices: "selectOptionsBuy/maxPrices",
-      bedrooms: "selectOptionsBuy/bedrooms",
-      search: "selectOptionsBuy/search",
+      parishes: "selectOptions/parishes",
+      realEstateType: "selectOptions/realEstateType",
+      maxPrices: "selectOptions/maxPrices",
+      bedrooms: "selectOptions/bedrooms",
+      search: "getPropertiesForSale/search",
       activeCurrency: "api/activeCurrency",
       currencyRate: "api/currencyRate",
       searchedProperties: "getPropertiesForSale/searchedProperties"
