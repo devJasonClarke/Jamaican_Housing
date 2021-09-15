@@ -102,7 +102,7 @@
               dark
               block
               class="pa-5 "
-              @click="$vuetify.goTo('#top')"
+              @click="$vuetify.goTo('#results')"
               >Search</v-btn
             >
           </v-col>
@@ -115,7 +115,7 @@
       color="red"
       text
       elevation="0"
-      @click="removeFilters"
+      @click="removeTheFilters"
       ><v-icon>mdi-delete mdi-18px</v-icon> Remove filters</v-btn
     >
   </section>
@@ -137,10 +137,18 @@ export default {
       setBedrooms: "getPropertiesForSale/setBedrooms",
       getSearchedPropertiesForSale:
         "getPropertiesForSale/getSearchedPropertiesForSale",
+      getPropertiesForSale: "getPropertiesForSale/getPropertiesForSale",
       removeFilters: "getPropertiesForSale/removeFilters",
       resetPropertySearch: "getPropertiesForSale/resetPropertySearch"
     }),
-
+    removeTheFilters() {
+      this.removeFilters();
+      console.log("removeFilters");
+      console.log(this.properties);
+      if (this.properties.length < 1) {
+        this.getPropertiesForSale();
+      }
+    },
     numberWithCommas(x) {
       x = Math.round((x + Number.EPSILON) * 100) / 100;
 
@@ -168,6 +176,7 @@ export default {
       activeCurrency: "api/activeCurrency",
       currencyRate: "api/currencyRate",
       searchedProperties: "getPropertiesForSale/searchedProperties",
+      properties: "getPropertiesForSale/properties",
       propertySearch: "getPropertiesForSale/propertySearch"
     }),
     selectedParish: {

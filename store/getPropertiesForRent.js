@@ -171,7 +171,7 @@ export const actions = {
         if (querySnapshot.empty && state.properties.length) {
           commit(
             "errors/LOG_ERROR",
-            "Looks like we've run out of properties to show you.",
+            "Currently we have no properties that match these criteria. 😞",
             {
               root: true
             }
@@ -347,6 +347,7 @@ export const mutations = {
   },
   REMOVE_PREVIOUS_SEARCHES: state => {
     state.searchedProperties = [];
+    state.lastSearchedVisible = null;
     state.loading = true;
     state.paginateNextSearched = {
       disabled: false,

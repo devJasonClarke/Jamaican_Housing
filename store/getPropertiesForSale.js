@@ -134,7 +134,6 @@ export const actions = {
     console.log(state.search.type);
     console.log("Get User: User");
 
-   
     commit("REMOVE_PREVIOUS_SEARCHES");
 
     // console.log(`Properties: ${state.properties.length}`);
@@ -171,7 +170,7 @@ export const actions = {
         if (querySnapshot.empty && state.properties.length) {
           commit(
             "errors/LOG_ERROR",
-            "Looks like we've run out of properties to show you.",
+            "Currently we have no properties that match these criteria. 😞",
             {
               root: true
             }
@@ -205,9 +204,6 @@ export const actions = {
     console.log(state.search.price);
     console.log(state.search.type);
     console.log("Get User: User");
-
-   
-    
 
     // console.log(`Properties: ${state.properties.length}`);
     commit("SET_PROPERTY_SEARCH", true);
@@ -348,6 +344,7 @@ export const mutations = {
   REMOVE_PREVIOUS_SEARCHES: state => {
     state.searchedProperties = [];
     state.loading = true;
+    state.lastSearchedVisible = null;
     state.paginateNextSearched = {
       disabled: false,
       dark: true

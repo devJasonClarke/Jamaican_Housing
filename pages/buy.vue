@@ -16,11 +16,11 @@
       <SectionPaddingAlt>
         <TheSearchSectionBuy />
       </SectionPaddingAlt>
-
+      <div id="results"></div>
       <SectionPadding v-if="loading == true" class="pt-0"
         ><TheRealEstatePropertiesListingLoader title="sale"
       /></SectionPadding>
-      <div v-else-if="searchedProperties.length">
+      <div v-else-if="searchedProperties.length"  >
         <SectionPadding class="pt-0 " v-if="!searchedProperties.length">
           <v-sheet
             height="200px"
@@ -40,7 +40,7 @@
             >
           </v-sheet>
         </SectionPadding>
-        <SectionPadding v-else id="top" class="pt-0">
+        <SectionPadding v-else   class="pt-0">
           <TheRealEstatePropertiesListingFirebase
             title="Real Estate for Sale"
             :properties="searchedProperties"
@@ -52,7 +52,7 @@
               dark
               small
               color="green accent-4"
-              @click="$vuetify.goTo('#top')"
+              @click="$vuetify.goTo('#results')"
             >
               <v-icon dark>
                 mdi-chevron-left
@@ -75,7 +75,7 @@
         </SectionPadding>
       </div>
 
-      <div v-else>
+      <div v-else  >
         <SectionPadding v-if="!properties.length" class="pt-0">
           <v-sheet
             height="200px"
@@ -95,7 +95,7 @@
             >
           </v-sheet>
         </SectionPadding>
-        <SectionPadding v-else id="top" class="pt-0">
+        <SectionPadding v-else   class="pt-0">
           <TheRealEstatePropertiesListingFirebase
             title="Real Estate for Sale"
             :properties="properties"
@@ -107,7 +107,7 @@
               dark
               small
               color="green accent-4"
-              @click="$vuetify.goTo('#top')"
+              @click="$vuetify.goTo('#results')"
             >
               <v-icon dark>
                 mdi-chevron-left
@@ -150,17 +150,16 @@ export default {
   fetch() {
     console.log("fetch");
     console.log(this.properties);
-    if(this.search.parish &&
-    this.search.type &&
-    this.search.price &&
-    this.search.bedrooms  &&
-    this.searchedProperties.length == 0
-    
-    ){
-      console.log('searched')
-this.getSearchedPropertiesForSale();
-    }
-   else if (this.properties.length == 0) {
+    if (
+      this.search.parish &&
+      this.search.type &&
+      this.search.price &&
+      this.search.bedrooms &&
+      this.searchedProperties.length == 0
+    ) {
+      console.log("searched");
+      this.getSearchedPropertiesForSale();
+    } else if (this.properties.length == 0) {
       this.getPropertiesForSale();
     } else {
       this.setLoading(false);
@@ -176,7 +175,7 @@ this.getSearchedPropertiesForSale();
   },
   computed: {
     target() {
-      const value = "#top";
+      const value = "#results";
       return value;
     },
     ...mapGetters({
@@ -185,7 +184,7 @@ this.getSearchedPropertiesForSale();
       paginateNext: "getPropertiesForSale/paginateNext",
       searchedProperties: "getPropertiesForSale/searchedProperties",
       userSearch: "getPropertiesForSale/userSearch",
-         search: "getPropertiesForSale/search",
+      search: "getPropertiesForSale/search",
 
       lastSearchedVisible: "getPropertiesForSale/lastSearchedVisible",
       paginateNextSearched: "getPropertiesForSale/paginateNextSearched",
@@ -197,8 +196,10 @@ this.getSearchedPropertiesForSale();
     ...mapActions({
       logError: "errors/logError",
       getPropertiesForSale: "getPropertiesForSale/getPropertiesForSale",
-           getSearchedPropertiesForSaleNext: "getPropertiesForSale/getSearchedPropertiesForSaleNext",
-      getSearchedPropertiesForSale: "getPropertiesForSale/getSearchedPropertiesForSale",
+      getSearchedPropertiesForSaleNext:
+        "getPropertiesForSale/getSearchedPropertiesForSaleNext",
+      getSearchedPropertiesForSale:
+        "getPropertiesForSale/getSearchedPropertiesForSale",
       setLoading: "getPropertiesForSale/setLoading"
     }),
     previous() {
@@ -210,8 +211,8 @@ this.getSearchedPropertiesForSale();
       console.log("next");
       this.getPropertiesForSale();
     },
-    searchNext(){
-      console.log('search next');
+    searchNext() {
+      console.log("search next");
       this.getSearchedPropertiesForSaleNext();
     }
   }

@@ -17,12 +17,12 @@
       <SectionPaddingAlt>
         <TheSearchSectionRent />
       </SectionPaddingAlt>
-
+      <div id="results"></div>
       <SectionPadding v-if="loading == true" class="pt-0"
         ><TheRealEstatePropertiesListingLoader title="rent"
       /></SectionPadding>
 
-      <div v-else-if="searchedProperties.length">
+      <div v-else-if="searchedProperties.length"  >
         <SectionPadding class="pt-0 " v-if="!searchedProperties.length">
           <v-sheet
             height="200px"
@@ -42,7 +42,7 @@
             >
           </v-sheet>
         </SectionPadding>
-        <SectionPadding v-else id="top" class="pt-0">
+        <SectionPadding v-else class="pt-0">
           <TheRealEstatePropertiesListingFirebase
             title="Real Estate for Rent"
             :properties="searchedProperties"
@@ -54,7 +54,7 @@
               dark
               small
               color="green accent-4"
-              @click="$vuetify.goTo('#top')"
+              @click="$vuetify.goTo('#results')"
             >
               <v-icon dark>
                 mdi-chevron-left
@@ -77,7 +77,7 @@
         </SectionPadding>
       </div>
 
-      <div v-else>
+      <div v-else  >
         <SectionPadding v-if="!properties.length" class="pt-0">
           <v-sheet
             height="200px"
@@ -97,7 +97,7 @@
             >
           </v-sheet>
         </SectionPadding>
-        <SectionPadding v-else id="top" class="pt-0">
+        <SectionPadding v-else   class="pt-0">
           <TheRealEstatePropertiesListingFirebase
             title="Real Estate for Sale"
             :properties="properties"
@@ -109,7 +109,7 @@
               dark
               small
               color="green accent-4"
-              @click="$vuetify.goTo('#top')"
+              @click="$vuetify.goTo('#results')"
             >
               <v-icon dark>
                 mdi-chevron-left
@@ -176,7 +176,7 @@ export default {
   },
   computed: {
     target() {
-      const value = "#top";
+      const value = "#results";
       return value;
     },
     ...mapGetters({
@@ -199,7 +199,8 @@ export default {
       logError: "errors/logError",
       getSearchedPropertiesForRent:
         "getPropertiesForRent/getSearchedPropertiesForRent",
-      getSearchedPropertiesForRentNext: "getPropertiesForRent/getSearchedPropertiesForRentNext",
+      getSearchedPropertiesForRentNext:
+        "getPropertiesForRent/getSearchedPropertiesForRentNext",
       getPropertiesForRent: "getPropertiesForRent/getPropertiesForRent",
       setLoading: "getPropertiesForRent/setLoading"
     }),
@@ -207,7 +208,6 @@ export default {
       console.log("previous");
 
       this.$vuetify.goTo(this.target);
-   
     },
     next() {
       console.log("next");
