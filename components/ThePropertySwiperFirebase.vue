@@ -29,11 +29,9 @@
 </template>
 
 <script>
-import VueEasyLightbox from "vue-easy-lightbox";
+//import VueEasyLightbox from "vue-easy-lightbox";
 export default {
-  components: {
-    VueEasyLightbox
-  },
+
   props: {
     images: {
       type: Array,

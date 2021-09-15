@@ -223,7 +223,7 @@
 
         <v-col cols="12" md="8" v-if="user.personalDetails.displayName === ''">
           <v-skeleton-loader type="paragraph,sentences"></v-skeleton-loader>
-          <TheRealEstatePropertiesListingLoader />
+          <TheRealEstatePropertiesListingLoader title="loading properties" />
         </v-col>
 
         <v-col cols="12" md="8" v-else>

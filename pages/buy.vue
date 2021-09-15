@@ -20,7 +20,7 @@
       <SectionPadding v-if="loading == true" class="pt-0"
         ><TheRealEstatePropertiesListingLoader title="sale"
       /></SectionPadding>
-      <div v-else-if="searchedProperties.length"  >
+      <div v-else-if="searchedProperties.length">
         <SectionPadding class="pt-0 " v-if="!searchedProperties.length">
           <v-sheet
             height="200px"
@@ -40,7 +40,7 @@
             >
           </v-sheet>
         </SectionPadding>
-        <SectionPadding v-else   class="pt-0">
+        <SectionPadding v-else class="pt-0">
           <TheRealEstatePropertiesListingFirebase
             title="Real Estate for Sale"
             :properties="searchedProperties"
@@ -75,7 +75,7 @@
         </SectionPadding>
       </div>
 
-      <div v-else  >
+      <div v-else>
         <SectionPadding v-if="!properties.length" class="pt-0">
           <v-sheet
             height="200px"
@@ -95,7 +95,7 @@
             >
           </v-sheet>
         </SectionPadding>
-        <SectionPadding v-else   class="pt-0">
+        <SectionPadding v-else class="pt-0">
           <TheRealEstatePropertiesListingFirebase
             title="Real Estate for Sale"
             :properties="properties"
