@@ -22,6 +22,7 @@
           <v-divider class="my-6"></v-divider>
           <v-skeleton-loader type="image"></v-skeleton-loader>
         </v-col>
+        
         <v-col cols="12" md="8" v-else>
           <p class="green--text text--accent-4 text-capitalize">
             <v-icon :color="iconColor">mdi-map-marker mdi-24px</v-icon>

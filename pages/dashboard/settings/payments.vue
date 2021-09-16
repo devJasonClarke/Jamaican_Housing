@@ -5,9 +5,9 @@
      <SectionPadding >
       <v-sheet
         height="200px"
-        class="d-flex justify-center align-center flex-column"
+        class="d-flex justify-center align-center flex-column pa-3"
         outlined
-        ><p class="text-h6 text-center font-weight-regular">
+        ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
           No payment history found.
         </p>
         <v-icon>mdi-credit-card-outline mdi-36px</v-icon>

@@ -19,16 +19,16 @@
         <TheSearchSectionParishPage />
       </SectionPaddingAlt>
       <!--   {{ properties }} -->
-      <SectionPadding v-if="loading == true" class="pt-0"
+      <SectionPadding v-if="loading == true" class="pt-9"
         ><TheRealEstatePropertiesListingLoader title="sale"
       /></SectionPadding>
-      <SectionPadding v-else-if="!properties.length" class="pt-0">
+      <SectionPadding v-else-if="!properties.length" class="pt-9">
         <v-container>
           <v-sheet
             height="200px"
-            class="d-flex justify-center align-center flex-column"
+            class="d-flex justify-center align-center flex-column pa-3"
             outlined
-            ><p class="text-h6 text-center font-weight-regular">
+            ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
               There are no properties as yet.
               <br />This is the perfect opportunity to add yours!<!--  Add your first propery today! -->
             </p>
@@ -43,7 +43,7 @@
           </v-sheet>
         </v-container>
       </SectionPadding>
-      <SectionPadding v-else id="top" class="pt-0">
+      <SectionPadding v-else id="top" class="pt-9">
         <TheRealEstatePropertiesListingFirebase
           title="Real Estate for Sale"
           :properties="properties"

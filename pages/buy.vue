@@ -24,9 +24,9 @@
         <SectionPadding class="pt-0 " v-if="!searchedProperties.length">
           <v-sheet
             height="200px"
-            class="d-flex justify-center align-center flex-column"
+            class="d-flex justify-center align-center flex-column pa-3"
             outlined
-            ><p class="text-h6 text-center font-weight-regular">
+            ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
               There are no properties that match these criteria as yet.
               <br />This is the perfect opportunity to add yours!<!--  Add your first propery today! -->
             </p>
@@ -79,9 +79,9 @@
         <SectionPadding v-if="!properties.length" class="pt-0">
           <v-sheet
             height="200px"
-            class="d-flex justify-center align-center flex-column"
+            class="d-flex justify-center align-center flex-column pa-3"
             outlined
-            ><p class="text-h6 text-center font-weight-regular">
+            ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
               There are no properties as yet.
               <br />This is the perfect opportunity to add yours!<!--  Add your first propery today! -->
             </p>

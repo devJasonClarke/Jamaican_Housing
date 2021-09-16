@@ -18,7 +18,7 @@
         <v-row>
           <v-col cols="12" md="8" sm="6">
             <nuxt-link
-              :to="{ name: 'parish-slug', params: { slug: 'clarendon' } }"
+              :to="{ name: 'parish-clarendon' }"
             >
               <v-img
                 :src="img"
@@ -36,7 +36,7 @@
 
           <v-col cols="12" md="4" sm="6">
             <nuxt-link
-              :to="{ name: 'parish-slug', params: { slug: 'hanover' } }"
+              :to="{ name: 'parish-hanover' }"
             >
               <v-img
                 :src="img"
@@ -54,7 +54,7 @@
 
           <v-col cols="12" md="4" sm="6">
             <nuxt-link
-              :to="{ name: 'parish-slug', params: { slug: 'kingston' } }"
+              :to="{ name: 'parish-kingston' }"
             >
               <v-img
                 :src="img"
@@ -72,7 +72,7 @@
 
           <v-col cols="12" md="4" sm="6">
             <nuxt-link
-              :to="{ name: 'parish-slug', params: { slug: 'manchester' } }"
+              :to="{ name: 'parish-manchester' }"
             >
               <v-img
                 :src="img"
@@ -90,7 +90,7 @@
 
           <v-col cols="12" md="4" sm="6">
             <nuxt-link
-              :to="{ name: 'parish-slug', params: { slug: 'portland' } }"
+              :to="{ name: 'parish-portland' }"
             >
               <v-img
                 :src="img"
@@ -107,7 +107,7 @@
           </v-col>
           <v-col cols="12" md="6" sm="6">
             <nuxt-link
-              :to="{ name: 'parish-slug', params: { slug: 'st-andrew' } }"
+              :to="{ name: 'parish-st-andrew' }"
             >
               <v-img
                 :src="img"
@@ -124,7 +124,7 @@
           </v-col>
           <v-col cols="12" md="6" sm="6">
             <nuxt-link
-              :to="{ name: 'parish-slug', params: { slug: 'st-ann' } }"
+              :to="{ name: 'parish-st-ann' }"
             >
               <v-img
                 :src="img"
@@ -141,7 +141,7 @@
           </v-col>
           <v-col cols="12" md="4" sm="6">
             <nuxt-link
-              :to="{ name: 'parish-slug', params: { slug: 'st-catherine' } }"
+              :to="{ name: 'parish-st-catherine' }"
             >
               <v-img
                 :src="img"
@@ -158,7 +158,7 @@
           </v-col>
           <v-col cols="12" md="8" sm="6">
             <nuxt-link
-              :to="{ name: 'parish-slug', params: { slug: 'st-elizabeth' } }"
+              :to="{ name: 'parish-st-elizabeth' }"
             >
               <v-img
                 :src="img"
@@ -175,7 +175,7 @@
           </v-col>
           <v-col cols="12" md="4" sm="6">
             <nuxt-link
-              :to="{ name: 'parish-slug', params: { slug: 'st-james' } }"
+              :to="{ name: 'parish-st-james' }"
             >
               <v-img
                 :src="img"
@@ -192,7 +192,7 @@
           </v-col>
           <v-col cols="12" md="4" sm="6">
             <nuxt-link
-              :to="{ name: 'parish-slug', params: { slug: 'st-mary' } }"
+              :to="{ name: 'parish-st-mary' }"
             >
               <v-img
                 :src="img"
@@ -209,7 +209,7 @@
           </v-col>
           <v-col cols="12" md="4" sm="6">
             <nuxt-link
-              :to="{ name: 'parish-slug', params: { slug: 'st-thomas' } }"
+              :to="{ name: 'parish-st-thomas' }"
             >
               <v-img
                 :src="img"
@@ -226,7 +226,7 @@
           </v-col>
           <v-col cols="12" md="6" sm="6">
             <nuxt-link
-              :to="{ name: 'parish-slug', params: { slug: 'trelawny' } }"
+              :to="{ name: 'parish-trelawny' }"
             >
               <v-img
                 :src="img"
@@ -243,7 +243,7 @@
           </v-col>
           <v-col cols="12" md="6" sm="6">
             <nuxt-link
-              :to="{ name: 'parish-slug', params: { slug: 'westmoreland' } }"
+              :to="{ name: 'parish-westmoreland' }"
             >
               <v-img
                 :src="img"

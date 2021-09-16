@@ -1,9 +1,12 @@
 export const state = () => ({
   properties: [],
   lastVisible: null,
-  userSearch: false,
   loading: true,
   paginateNext: {
+    disabled: false,
+    dark: true
+  },
+  paginateNextSearched: {
     disabled: false,
     dark: true
   }
@@ -17,20 +20,19 @@ export const getters = {
 };
 
 export const actions = {
-  getParishProperties({ commit, state }, parish) {
-    // let parish = theParish;
-    console.log("getParishProperty");
+  getParishProperties({ commit, state }) {
+    console.log("getTheProperty");
+
+    console.log("Get User: User");
 
     // console.log(`Properties: ${state.properties.length}`);
 
     // console.log("lastVisible");
     console.log(state.lastVisible);
 
-    // console.log(parish);
-
     const ref = this.$fire.firestore
       .collection("properties")
-      .where("parish", "==", parish)
+      .where("parish", "==", "Westmoreland")
       .orderBy("timestamp", "desc")
       .startAfter(state.lastVisible || {})
       .limit(3);
@@ -82,13 +84,6 @@ export const actions = {
 
   setLoading({ commit }, data) {
     commit("LOADING", data);
-  },
-
-  setPaginateNext({ commit }, data) {
-    commit("SET_PAGINATE_NEXT", data);
-  },
-  removeUserPropertyState({ commit }) {
-    commit("REMOVE_USER_PROPERTY_STATE");
   }
 };
 
@@ -115,10 +110,16 @@ export const mutations = {
     console.log("LOG out From Remove User");
     state.properties = [];
     state.lastVisible = null;
-    state.loading = true;
+    searchedProperties = [];
+    lastSearchedVisible = null;
+    paginateNextSearched = {
+      disabled: false,
+      dark: true
+    };
     state.paginateNext = {
       disabled: false,
       dark: true
     };
+    state.loading = true;
   }
 };
