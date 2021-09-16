@@ -21,7 +21,7 @@
               :to="{ name: 'parish-clarendon' }"
             >
               <v-img
-                :src="img"
+                :src="require('~/assets/images/houses/1.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
               >
@@ -39,7 +39,7 @@
               :to="{ name: 'parish-hanover' }"
             >
               <v-img
-                :src="img"
+                :src="require('~/assets/images/parishes/hanover.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
               >
@@ -57,7 +57,7 @@
               :to="{ name: 'parish-kingston' }"
             >
               <v-img
-                :src="img"
+                :src="require('~/assets/images/parishes/kingston.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
               >
@@ -75,7 +75,7 @@
               :to="{ name: 'parish-manchester' }"
             >
               <v-img
-                :src="img"
+                :src="require('~/assets/images/houses/4.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
               >
@@ -93,7 +93,7 @@
               :to="{ name: 'parish-portland' }"
             >
               <v-img
-                :src="img"
+                :src="require('~/assets/images/parishes/portland.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
               >
@@ -110,7 +110,7 @@
               :to="{ name: 'parish-st-andrew' }"
             >
               <v-img
-                :src="img"
+                :src="require('~/assets/images/parishes/st-andrew.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
               >
@@ -127,7 +127,7 @@
               :to="{ name: 'parish-st-ann' }"
             >
               <v-img
-                :src="img"
+                :src="require('~/assets/images/extra-images/5.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
               >
@@ -144,7 +144,7 @@
               :to="{ name: 'parish-st-catherine' }"
             >
               <v-img
-                :src="img"
+                :src="require('~/assets/images/parishes/st-catherine.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
               >
@@ -161,7 +161,7 @@
               :to="{ name: 'parish-st-elizabeth' }"
             >
               <v-img
-                :src="img"
+                :src="require('~/assets/images/parishes/st-elizabeth.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
               >
@@ -178,7 +178,7 @@
               :to="{ name: 'parish-st-james' }"
             >
               <v-img
-                :src="img"
+                :src="require('~/assets/images/parishes/st-james.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
               >
@@ -195,7 +195,7 @@
               :to="{ name: 'parish-st-mary' }"
             >
               <v-img
-                :src="img"
+                :src="require('~/assets/images/parishes/st-mary.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
               >
@@ -212,7 +212,7 @@
               :to="{ name: 'parish-st-thomas' }"
             >
               <v-img
-                :src="img"
+                :src="require('~/assets/images/extra-images/1.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
               >
@@ -229,7 +229,7 @@
               :to="{ name: 'parish-trelawny' }"
             >
               <v-img
-                :src="img"
+                :src="require('~/assets/images/parishes/trelawny.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
               >
@@ -246,7 +246,7 @@
               :to="{ name: 'parish-westmoreland' }"
             >
               <v-img
-                :src="img"
+                :src="require('~/assets/images/extra-images/6.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
               >

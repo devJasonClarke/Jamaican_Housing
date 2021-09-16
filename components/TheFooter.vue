@@ -39,6 +39,16 @@
                   route.title
                 }}</v-btn>
               </li>
+              <li>
+                <v-btn
+                  text
+                  exact
+                  nuxt
+                  target="_blank"
+                  href="https://devjasonclarke.github.io/status-Jamaica-housing/"
+                  >Status</v-btn
+                >
+              </li>
             </ul>
           </v-col>
 

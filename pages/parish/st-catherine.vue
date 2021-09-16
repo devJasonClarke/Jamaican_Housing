@@ -44,7 +44,7 @@
         </SectionPadding>
         <SectionPadding v-else class="pt-9">
           <TheRealEstatePropertiesListingFirebase
-            title="Real Estate for Sale"
+            :title="`Real Estate from ${parish}`"
             :properties="properties"
           />
           <div class="d-flex justify-center align-center mt-4">
@@ -92,7 +92,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import img from "~/assets/images/key2.jpg";
+import img from "~/assets/images/parishes/st-catherine.jpg";
 export default {
   fetch() {
     console.log("fetch");
