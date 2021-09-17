@@ -512,6 +512,9 @@ export default {
       activeCurrency: "api/activeCurrency",
       currencyRate: "api/currencyRate"
     }),
+baseUrl(){
+  return process.env.baseUrl;
+},
 
     formattedNumber() {
       /* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */

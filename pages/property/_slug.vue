@@ -1,7 +1,6 @@
 <template>
   <div>
     <TheMetaTags :title="title" :description="description" />
-
     <ThePropertySwiperFirebase :images="property.images" />
 
     <v-container class="mt-6 mb-9">
@@ -127,7 +126,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://twitter.com/share?url=${process.env.baseUrl}property/${this.$route.params.slug}&text=Have a look at this property from Real Estate Ja:`
+                    `https://twitter.com/share?url=${baseUrl}property/${this.$route.params.slug}&text=Have a look at this property from Real Estate Ja:`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
@@ -138,7 +137,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://www.facebook.com/sharer.php?=${process.env.baseUrl}property/${this.$route.params.slug}`
+                    `https://www.facebook.com/sharer.php?=${baseUrl}property/${this.$route.params.slug}`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
@@ -149,7 +148,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `mailto:?subject=Have a look at this property from Real Estate Ja&amp;body=The property: ${process.env.baseUrl}property/${this.$route.params.slug}.`
+                    `mailto:?subject=Have a look at this property from Real Estate Ja&amp;body=The property: ${baseUrl}property/${this.$route.params.slug}.`
                   "
                   title="Share by Email"
                 >
@@ -161,7 +160,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://wa.me/?text=Have a look at this property from Real Estate Ja: ${process.env.baseUrl}property/${this.$route.params.slug}`
+                    `https://wa.me/?text=Have a look at this property from Real Estate Ja: ${baseUrl}property/${this.$route.params.slug}`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
@@ -962,7 +961,9 @@ export default {
       messageRules: "inputRules/messageRules",
       favourites: "favourites/favourites"
     }),
-
+baseUrl(){
+  return process.env.baseUrl;
+},
     liked() {
       if (this.favourites.includes(this.theParam)) {
         return true;

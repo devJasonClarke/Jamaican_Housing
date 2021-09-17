@@ -20,7 +20,7 @@
           These Terms of Use constitute a legally binding agreement made between
           you, whether personally or on behalf of an entity (“you”) and Jamaica
           Housing ("Company", “we”, “us”, or “our”), concerning your access to
-          and use of the {{ `${process.env.baseUrl}` }} website as well as any
+          and use of the {{baseUrl}} website as well as any
           other media form, media channel, mobile website or mobile application
           related, linked, or otherwise connected thereto (collectively, the
           “Site”). You agree that by accessing the Site, you have read,
@@ -921,13 +921,19 @@
 <script>
 import img from "~/assets/images/houses/3.jpg";
 export default {
+
   data() {
     return {
       img: img,
       title: "Terms of Conditions | Real Estate Ja",
       description: "Terms of Conditions"
     };
-  }
+  },
+  computed: {
+   baseUrl(){
+  return process.env.baseUrl;
+},
+  },
 };
 </script>
 

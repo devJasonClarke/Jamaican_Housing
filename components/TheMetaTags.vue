@@ -16,7 +16,8 @@ export default {
       required: true
     }
   },
-
+  computed: {
+},
   head() {
     return {
       titleTemplate: this.title,

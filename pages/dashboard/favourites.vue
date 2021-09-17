@@ -20,7 +20,7 @@
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title>{{
-                      `${process.env.baseUrl}property/${favourite}`
+                      `${baseUrl}property/${favourite}`
                     }}</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
@@ -96,6 +96,11 @@ export default {
     };
   },
   computed: {
+    
+baseUrl(){
+  return process.env.baseUrl;
+},
+
     target() {
       const value = "#top";
       return value;
