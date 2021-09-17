@@ -408,6 +408,7 @@
                       <v-text-field
                         outlined
                         dense
+                         prepend-icon="mdi-camera-image"
                         v-model="property.tours.virtualTour"
                         label="Virtual Tour URL"
                         required
@@ -421,6 +422,7 @@
                       <v-text-field
                         outlined
                         dense
+                          prepend-icon="mdi-youtube"
                         v-model="property.tours.youtube"
                         label="Youtube Video ID"
                         :color="iconColor"
