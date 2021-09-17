@@ -94,6 +94,9 @@ export const actions = {
   setPaginateNext({ commit }, data) {
     commit("SET_PAGINATE_NEXT", data);
   },
+  setNewPropertyValues({ commit }, data) {
+    commit("SET_NEW_PROPERTY_VALUES", data);
+  },
   editUserProperty({ commit }, data) {
     commit("EDIT_USER_PROPERTY", data);
   },
@@ -194,6 +197,11 @@ export const mutations = {
   },
   ADD_NEW_USER_PROPERTY: (state, data) => {
     state.properties.unshift(data);
+  },
+  SET_NEW_PROPERTY_VALUES: (state, data) => {
+    let index = state.properties.findIndex(property => property[1] === data[1]);
+
+    state.properties[index] = data[0];
   },
   EDIT_USER_PROPERTY: (state, data) => {
     let index = state.properties.findIndex(property => property[1] === data[1]);

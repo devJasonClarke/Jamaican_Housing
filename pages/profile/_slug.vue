@@ -274,7 +274,7 @@
     </v-container>
     <SectionPadding class="backgroundShade">
       <SectionTitles
-        subTitle="FIND YOUR HOME TODAY"
+        subTitle="our Premium properties"
         mainTitle="Featured listings around you"
         linkMessage="See all featured listings "
         route="featured"

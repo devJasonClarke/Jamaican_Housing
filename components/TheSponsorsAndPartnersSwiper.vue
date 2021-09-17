@@ -1,23 +1,29 @@
 <template>
   <v-container>
     <swiper class="swiper" :options="sponsorSwiperOption">
-      <swiper-slide class="sliide">
+      <swiper-slide class="sliide" v-for="(sponsor, i) in sponsors" :key="i">
         <a
-          href="https://genr83d.com/"
+          :href="sponsor.url"
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <img :src="require('~/assets/images/sponsors/genr8-3d.webp')" class="images"
-        /></a>
-      </swiper-slide>
-      <swiper-slide class="sliide">
-        <a
-          href="https://smarthubja.io/"
-          target="_blank"
-          rel="noopener noreferrer nofollow"
-        >
-          <img  :src="require('~/assets/images/sponsors/smarthub.svg')" class="images"
-        /></a>
+          <img
+            v-if="$vuetify.theme.dark && sponsor.darkImage"
+            :src="sponsor.darkImage"
+            class="images"
+            :alt="sponsor.name"
+            width="100%"
+            height="100%"
+          />
+          <img
+            v-else
+            :src="sponsor.image"
+            class="images"
+            :alt="sponsor.name"
+            width="100%"
+            height="100%"
+          />
+        </a>
       </swiper-slide>
 
       <div class="swiper-pagination" slot="pagination"></div>
@@ -26,11 +32,11 @@
 </template>
 
 <script>
+import sponsors from "~/static/sponsors/sponsors";
 export default {
   data() {
     return {
-
- 
+      sponsors: sponsors.sponsors,
       sponsorSwiperOption: {
         slidesPerView: 1,
         loop: true,
@@ -63,5 +69,4 @@ export default {
 .swiper-slide {
   width: 200px;
 }
-
 </style>

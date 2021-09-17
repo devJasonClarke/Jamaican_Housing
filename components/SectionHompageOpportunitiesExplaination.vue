@@ -1,52 +1,56 @@
 <template>
-     <v-container class="sub-section-margin-top">
-        <v-row>
-          <v-col cols="12" sm="12" md="4">
-            <div class="d-flex  flex-column mr-2">
-              <v-avatar size="62" color="green lighten-4">
-                <v-icon dark color="green">
-                  mdi-home-search-outline mdi-36px
-                </v-icon>
-              </v-avatar>
-              <p class="mt-6 text-subtitle-1 font-weight-bold text-uppercase">
-                Search For THE PERFECT PLACE
-              </p>
-              <p class="text-body-2">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio
-                atque repellendus voluptas ut doloremque impedit.
-              </p>
-            </div></v-col
+  <v-container class="sub-section-margin-top">
+    <v-row>
+      <v-col cols="12" sm="12" md="4">
+        <div class="d-flex  flex-column mr-2">
+          <v-avatar size="62" color="green lighten-5">
+            <v-icon dark color="green accent-4">
+              mdi-home-search-outline mdi-36px
+            </v-icon>
+          </v-avatar>
+          <p class="mt-6 text-body-1 font-weight-bold text-capitalize">
+            Search For The Perfect Property
+          </p>
+          <p class="text-body-2">
+            Your dream property is waiting for you and might be a few clicks away!
+            Use Real Estate Ja to find that property and start the process of
+            making it yours.
+          </p>
+        </div></v-col
+      >
+      <v-col cols="12" sm="12" md="4">
+        <div class="d-flex   flex-column mr-2">
+          <v-avatar size="62" color="green lighten-5" class="">
+            <v-icon dark color="green accent-4"
+              >mdi-key-variant mdi-36px</v-icon
+            >
+          </v-avatar>
+          <p class="mt-6 text-body-1 font-weight-bold text-capitalize">
+            Get in touch with property owners
+          </p>
+          <p class="text-body-2">
+            Use Real Estate Ja to contact those who can help you
+            acquire your dream property faster! We provide you with the means to get in touch faster.
+          </p>
+        </div></v-col
+      >
+      <v-col cols="12" sm="12" md="4">
+        <div class="d-flex  flex-column mr-2">
+          <v-avatar size="62" color="green lighten-5"
+            ><v-icon dark color="green accent-4"
+              >mdi-home-city-outline mdi-36px</v-icon
+            ></v-avatar
           >
-          <v-col cols="12" sm="12" md="4">
-            <div class="d-flex   flex-column mr-2">
-              <v-avatar size="62" color="green lighten-4" class="">
-                <v-icon dark color="green">mdi-key-variant mdi-36px</v-icon>
-              </v-avatar>
-              <p class="mt-6 text-subtitle-1 font-weight-bold text-uppercase">
-                Rent THE PERFECT PLACE
-              </p>
-              <p class="text-body-2">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio
-                atque repellendus voluptas ut doloremque impedit.
-              </p>
-            </div></v-col
-          >
-          <v-col cols="12" sm="12" md="4">
-            <div class="d-flex  flex-column mr-2">
-              <v-avatar size="62" color="green lighten-4"
-                ><v-icon dark color="green"
-                  >mdi-home-group mdi-36px</v-icon
-                ></v-avatar
-              >
-              <p class="mt-6 text-subtitle-1 font-weight-bold text-uppercase">
-                List THE PERFECT PLACE
-              </p>
-              <p class="text-body-2">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio
-                atque repellendus voluptas ut doloremque impedit.
-              </p>
-            </div></v-col
-          >
-        </v-row>
-      </v-container>
+          <p class="mt-6 text-body-1 font-weight-bold text-capitalize">
+            List your real estate
+          </p>
+          <p class="text-body-2">
+            Use Real Estate Ja to advertise and post your real estate listings
+            for FREE! Get your first property online within 7 minutes. Open it
+            up to the global community.
+          </p>
+        </div></v-col
+      >
+    </v-row>
+  </v-container>
 </template>

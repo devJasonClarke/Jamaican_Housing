@@ -3,13 +3,14 @@ export default {
     {
       name: "GENR8-3D",
       slug: "genr8-3d",
-      image: "https://jasonjh.netlify.app/_nuxt/img/genr8-3d.3823f48.webp",
+      image: "/sponsors/images/genr8-3d/genr8-3d-b.svg",
+      darkImage: '/sponsors/images/genr8-3d/genr8-3d-w.svg',
         url: 'https://genr83d.com/',
     },
     {
       name: "Smart Hub JA",
       slug: "smart-hub-ja",
-      image: "https://jasonjh.netlify.app/_nuxt/img/smarthub.5f4775d.svg",
+      image: "/sponsors/images/smarthubja/smarthub.svg",
       url: 'https://www.smarthubja.com/',
     },
   ]

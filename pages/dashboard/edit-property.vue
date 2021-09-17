@@ -21,7 +21,7 @@
         title="sale"
       ></v-skeleton-loader>
     </SectionPadding>
-   
+
     <section v-else>
       <SectionPadding>
         <v-stepper v-model="cur">
@@ -431,6 +431,16 @@
                   </v-row>
 
                   <v-btn
+                    v-if="disabled"
+                    dark
+                    :color="iconColor"
+                    nuxt
+                    :to="{ name: 'dashboard' }"
+                  >
+                    View Updated Property
+                  </v-btn>
+                  <v-btn
+                    v-else
                     :dark="!disabled"
                     :color="iconColor"
                     type="submit"
@@ -439,6 +449,7 @@
                   >
                     Update Property
                   </v-btn>
+
                   <v-btn text @click="cur = cur - 1">
                     back
                   </v-btn>

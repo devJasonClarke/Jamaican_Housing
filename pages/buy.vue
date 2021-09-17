@@ -5,9 +5,9 @@
     <SectionPadding>
       <SectionTitlesSecondary
         mainTitle="Buy Real Estate"
-        paragraph=" Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements."
+        paragraph=" Buying a property is one of the biggest decisions you'll have to make in life 
+        and it's worth putting in the effort to make sure you get it right. 
+        Prepare a list of the features you would like in a property and use Real Estate Ja to find it!"
       />
     </SectionPadding>
 
@@ -132,7 +132,7 @@
     </v-container>
     <SectionPadding class="backgroundShade">
       <SectionTitles
-        subTitle="FIND YOUR HOME TODAY"
+        subTitle="our Premium properties"
         mainTitle="Featured listings around you"
         linkMessage="See all featured listings "
         route="featured"

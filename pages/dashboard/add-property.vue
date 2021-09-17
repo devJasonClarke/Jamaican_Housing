@@ -441,8 +441,17 @@
                       ></v-text-field
                     ></v-col>
                   </v-row>
-
                   <v-btn
+                    v-if="disabled"
+                    dark
+                    :color="iconColor"
+                    nuxt
+                    :to="{ name: 'dashboard' }"
+                  >
+                    View Property
+                  </v-btn>
+                  <v-btn
+                    v-else
                     :dark="!disabled"
                     :color="iconColor"
                     type="submit"
@@ -451,6 +460,7 @@
                   >
                     Add Property
                   </v-btn>
+
                   <v-btn text @click="cur = cur - 1">
                     back
                   </v-btn>
@@ -778,7 +788,7 @@ export default {
             this.snackbarColor = "green";
           })
           .catch(error => {
-       this.logError(error.message);
+            this.logError(error.message);
             this.loading = false;
             this.snackbar = true;
             this.snackbarMessage = error.message;

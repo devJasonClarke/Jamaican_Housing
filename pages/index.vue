@@ -5,14 +5,14 @@
     <TheSearchSectionHomePage />
     <SectionPadding>
       <SectionTitlesNoLink
-        subTitle="FIND YOUR HOME TODAY"
-        mainTitle="Discover the best investment opportunities around you"
+        subTitle="FIND YOUR PROPERTY TODAY"
+        mainTitle="Discover the best Real Estate opportunities around you"
       />
       <SectionHompageOpportunitiesExplaination />
     </SectionPadding>
     <SectionPadding class="backgroundShade">
       <SectionTitles
-        subTitle="FIND YOUR HOME TODAY"
+        subTitle="our Premium properties"
         mainTitle="Featured listings around you"
         linkMessage="See all featured listings "
         route="featured"
@@ -22,8 +22,8 @@
     </SectionPadding>
     <SectionPadding>
       <SectionTitles
-        subTitle="MOST POPULAR parishes"
-        mainTitle="What's trending"
+        subTitle="trending destinations"
+        mainTitle=" Most visited parishes"
         linkMessage="See all parishes "
         route="parish"
       />
@@ -33,7 +33,7 @@
       <SectionTitles
         subTitle="Our Amazing support system"
         mainTitle="Premiere Sponsors & Partners"
-        linkMessage="Become a sponsor "
+        linkMessage="Meet the family"
         route="sponsors"
       />
       <TheSponsorsAndPartnersSwiper />

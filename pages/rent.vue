@@ -6,9 +6,10 @@
     <SectionPadding>
       <SectionTitlesSecondary
         mainTitle="Rent A Home"
-        paragraph=" Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements."
+        paragraph="For those who want extra flexibility and less responsibility,
+         renting a property is an ideal choice. 
+         Buying a property may require a lot of savings and 
+         commitment. Use Real Estate Ja to find a rental that can help you maintain your flexibility and lifestyle!"
       />
     </SectionPadding>
 
@@ -22,7 +23,7 @@
         ><TheRealEstatePropertiesListingLoader title="rent"
       /></SectionPadding>
 
-      <div v-else-if="searchedProperties.length"  >
+      <div v-else-if="searchedProperties.length">
         <SectionPadding class="pt-0 " v-if="!searchedProperties.length">
           <v-sheet
             height="200px"
@@ -77,7 +78,7 @@
         </SectionPadding>
       </div>
 
-      <div v-else  >
+      <div v-else>
         <SectionPadding v-if="!properties.length" class="pt-0">
           <v-sheet
             height="200px"
@@ -97,7 +98,7 @@
             >
           </v-sheet>
         </SectionPadding>
-        <SectionPadding v-else   class="pt-0">
+        <SectionPadding v-else class="pt-0">
           <TheRealEstatePropertiesListingFirebase
             title="Real Estate for Sale"
             :properties="properties"
@@ -134,7 +135,7 @@
     </v-container>
     <SectionPadding class="backgroundShade">
       <SectionTitles
-        subTitle="FIND YOUR HOME TODAY"
+        subTitle="our Premium properties"
         mainTitle="Featured listings around you"
         linkMessage="See all featured listings "
         route="featured"
