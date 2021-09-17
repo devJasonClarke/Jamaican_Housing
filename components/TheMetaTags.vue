@@ -60,17 +60,17 @@ export default {
         {
           hid: "twitter:image",
           name: "twitter:image",
-          content: `${process.env.BASE_URL}real-estate-ja.jpg`
+          content: `${process.env.baseUrl}real-estate-ja.jpg`
         },
         {
           hid: "og:image",
           property: "og:image",
-          content: `${process.env.BASE_URL}real-estate-ja.jpg`
+          content: `${process.env.baseUrl}real-estate-ja.jpg`
         },
         {
           hid: "og:image:secure_url",
           property: "og:image:secure_url",
-          content: `${process.env.BASE_URL}real-estate-ja.jpg`
+          content: `${process.env.baseUrl}real-estate-ja.jpg`
         }
       ]
     };
