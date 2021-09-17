@@ -5,9 +5,7 @@
     <SectionPadding>
       <SectionTitlesSecondary
         mainTitle="Blog Posts"
-        paragraph=" Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements."
+        paragraph="We are here to make the process of acquiring a property easy. Read our blog posts written by industry experts in order to improve your knowledge of the industry."
       />
     </SectionPadding>
 
