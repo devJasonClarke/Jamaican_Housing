@@ -1,10 +1,10 @@
 <template>
   <section>
     <v-form ref="form" v-model="valid" lazy-validation>
-      {{ selectedParish }}
+      <!-- {{ selectedParish }}
       {{ selectedBedrooms }}
       {{ selectedRealEstateType }}
-      {{ selectedMaxPrice }}
+      {{ selectedMaxPrice }} -->
       <v-container>
         <v-row
           align="center"

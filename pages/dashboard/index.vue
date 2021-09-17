@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <TheMetaTags :title="title" :description="description" />
-   <h1>Your Properties</h1>
-  <!--   <div v-for="(property, i) in properties" :key="i">
+    <h1>Your Properties</h1>
+    <!--   <div v-for="(property, i) in properties" :key="i">
       {{ property[1] }}
     </div> -->
     <!--     <div>{{ properties }}</div> -->
