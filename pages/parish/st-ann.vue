@@ -9,9 +9,10 @@
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish"
-        paragraph=" Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements."
+        paragraph="
+  St. Ann is the largest parish in Jamaica.
+   When Christopher Columbus first came to Jamaica in 1494, 
+   he landed on the shores of St. Ann at Discovery Bay. St. Ann is revered for its agricultural products, tourism which is the major economic activity in the parish and commerce. "
       />
     </SectionPadding>
 

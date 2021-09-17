@@ -9,9 +9,9 @@
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish"
-        paragraph=" Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements."
+        paragraph="Formed in 1867, St. Catherine is one of the island's largest and most 
+        economically valued parishes because of its many resources. As an industrial center second
+         only to Kingston, it boasts  numerous industrial plants, employment opportunities and tourist attractions. "
       />
     </SectionPadding>
 

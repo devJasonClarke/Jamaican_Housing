@@ -30,7 +30,7 @@
           </p>
           <p class="text-body-2">
             Use Real Estate Ja to contact those who can help you
-            acquire your dream property faster! We provide you with the means to get in touch faster.
+            acquire your dream property faster! We provide you with the contact details for every property.
           </p>
         </div></v-col
       >

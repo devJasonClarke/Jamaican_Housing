@@ -9,9 +9,8 @@
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish"
-        paragraph=" Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements."
+        paragraph="Known for its many attractions, historical sites and famous residents, the country's financial capital is never void of opportunities. 
+        From the creation of popular types of Jamaican music to establishment of new industries, St. Andrew leads in Jamaican development."
       />
     </SectionPadding>
 
