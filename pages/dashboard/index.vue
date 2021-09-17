@@ -68,8 +68,8 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   //fetchOnServer: false,
   fetch() {
-    console.log("fetch");
-    console.log(this.properties);
+    // console.log("fetch");
+    // console.log(this.properties);
     if (this.properties.length == 0) {
       this.getUserProperties();
     } else {
@@ -129,7 +129,7 @@ export default {
       );
     },
     next() {
-      console.log("next");
+      // console.log("next");
       this.getUserProperties();
       // this.loading = true;
       //  this.$vuetify.goTo(this.target);

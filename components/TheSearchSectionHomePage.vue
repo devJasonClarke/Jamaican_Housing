@@ -250,20 +250,20 @@ export default {
 
     validateRent() {
       if (this.$refs.formRent.validate()) {
-        console.log("valid Rent");
+        // console.log("valid Rent");
         this.getSearchedPropertiesForRent();
         this.$router.push({ name: "rent", hash: "#results" });
       } else {
-        console.log("not");
+        // console.log("not");
       }
     },
     validateBuy() {
       if (this.$refs.formBuy.validate()) {
-        console.log("valid Buy");
+        // console.log("valid Buy");
         this.getSearchedPropertiesForSale();
         this.$router.push({ name: "buy", hash: "#results" });
       } else {
-        console.log("not");
+        // console.log("not");
       }
     },
     numberWithCommas(x) {
@@ -294,7 +294,7 @@ export default {
     }),
     setTheCurrency() {
       const getCurrency = localStorage.getItem("activeCurrency");
-      //   console.log(`getCurrency: from default ${getCurrency}`);
+      // // console.log(`getCurrency: from default ${getCurrency}`);
       if (getCurrency) {
         this.selectedCurrency = getCurrency;
       }

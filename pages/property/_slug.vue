@@ -661,25 +661,25 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   async fetch() {
     this.theParam = this.$route.params.slug;
-    console.log(this.theParam);
+    // console.log(this.theParam);
     await this.$fire.firestore
       .collection("properties")
       .doc(this.theParam)
       .get()
       .then(doc => {
         if (doc.exists) {
-          console.log("Document data:", doc.data());
+          // console.log("Document data:", doc.data());
           this.property = doc.data();
           this.getUser();
         } else {
           // doc.data() will be undefined in this case
-          console.log("No such document!");
+          // console.log("No such document!");
           this.$router.push({ name: "error" });
         }
       })
       .catch(error => {
         this.logError(error.message);
-        console.log("Error getting document:", error);
+        // console.log("Error getting document:", error);
       });
 
     /* let j = () => parishes.parishes.find(parish => parish.slug == theParam);
@@ -845,7 +845,7 @@ export default {
         .get()
         .then(doc => {
           if (doc.exists) {
-            console.log("Document data exits:", doc.data());
+            // console.log("Document data exits:", doc.data());
             this.uploader = doc.data();
 
             let message = `Hi ${doc.data().firstName ||
@@ -854,12 +854,12 @@ export default {
             this.message = message;
           } else {
             // doc.data() will be undefined in this case
-            console.log("No such document!");
+            // console.log("No such document!");
           }
         })
         .catch(error => {
           this.logError(error.message);
-          console.log(error);
+          // console.log(error);
         });
     },
 
@@ -931,7 +931,7 @@ export default {
           read: false
         })
         .then(docRef => {
-          console.log("Document written with ID: ", docRef.id);
+          // console.log("Document written with ID: ", docRef.id);
         })
         .then(() => {
           this.sent = true;

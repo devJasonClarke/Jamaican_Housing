@@ -75,10 +75,10 @@ export default {
     }),
     validate() {
       if (this.$refs.form.validate()) {
-        console.log("valid");
+        // console.log("valid");
         this.sendCode(this.email);
       } else {
-        console.log("not");
+        // console.log("not");
       }
     },
     sendCode(email) {
@@ -100,8 +100,8 @@ export default {
           this.error = true;
           this.errorMessage = errorMessage;
           this.loading = false;
-          //  console.log(error);
-          console.log("error to email");
+          // // console.log(error);
+          // console.log("error to email");
         });
     }
   },

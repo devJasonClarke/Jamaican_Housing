@@ -300,26 +300,26 @@ export default {
     }),
     validate() {
       if (this.$refs.form.validate()) {
-        console.log("valid 1");
+        // console.log("valid 1");
         this.profileSetup = true;
       } else {
-        console.log("not");
+        // console.log("not");
       }
     },
     validateForm() {
       if (this.$refs.detailsForm.validate()) {
-        console.log("valid 2");
+        // console.log("valid 2");
         this.cur++;
       } else {
-        console.log("not");
+        // console.log("not");
       }
     },
     confirmFormDetails() {
       if (this.$refs.confirmFormDetails.validate()) {
-        console.log("yes! let's go");
+        // console.log("yes! let's go");
         this.signup(this.credentials);
       } else {
-        console.log("no!");
+        // console.log("no!");
       }
     }
   },

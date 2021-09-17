@@ -111,10 +111,10 @@ export default {
     }),
     validate() {
       if (this.$refs.form.validate()) {
-        console.log("valid");
+        // console.log("valid");
         this.login(this.credentials);
       } else {
-        console.log("not");
+        // console.log("not");
       }
     }
   },

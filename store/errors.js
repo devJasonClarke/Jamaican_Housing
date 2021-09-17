@@ -17,11 +17,11 @@ export const actions = {
 
 export const mutations = {
   LOG_ERROR: (state, error) => {
-    console.log("Logged Error " + error);
+    // console.log("Logged Error " + error);
     state.errorMessage = error;
   },
   REMOVE_ERROR: (state) => {
-    // console.log("REMOVE_ERROR " );
+    // // console.log("REMOVE_ERROR " );
     state.errorMessage = null;
   },
 };

@@ -148,8 +148,8 @@ import { mapGetters, mapActions } from "vuex";
 import img from "~/assets/images/houses/3.jpg";
 export default {
   fetch() {
-    console.log("fetch");
-    console.log(this.properties);
+    // console.log("fetch");
+    // console.log(this.properties);
     if (
       this.search.parish &&
       this.search.type &&
@@ -157,7 +157,7 @@ export default {
       this.search.bedrooms &&
       this.searchedProperties.length == 0
     ) {
-      console.log("searched");
+      // console.log("searched");
       this.getSearchedPropertiesForSale();
     } else if (this.properties.length == 0) {
       this.getPropertiesForSale();
@@ -208,11 +208,11 @@ export default {
       setTimeout(() => (this.loading = false), 3000);
     },
     next() {
-      console.log("next");
+      // console.log("next");
       this.getPropertiesForSale();
     },
     searchNext() {
-      console.log("search next");
+      // console.log("search next");
       this.getSearchedPropertiesForSaleNext();
     }
   }

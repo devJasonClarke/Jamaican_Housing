@@ -148,7 +148,7 @@ export default {
             Message: this.message
           })
           .then(response => {
-            console.log("The response: " + response);
+            // console.log("The response: " + response);
             this.loading = false;
             this.sentStatus = true;
           })
@@ -158,7 +158,7 @@ export default {
             this.sentStatus = "error";
           });
       } else {
-        console.log("Your bloodclaat mada");
+        // console.log("Your bloodclaat mada");
       }
     }
   },

@@ -35,10 +35,10 @@ export default {
     resize() {
       if (window.innerWidth <= 1264) {
         this.flexMd = true;
-        // console.log(this.flexMd);
+        // // console.log(this.flexMd);
       } else {
         this.flexMd = false;
-        // console.log(this.flexMd);
+        // // console.log(this.flexMd);
       }
 
       if (window.innerWidth <= 800) {

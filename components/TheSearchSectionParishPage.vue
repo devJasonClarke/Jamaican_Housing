@@ -142,8 +142,8 @@ export default {
     }),
     removeTheFilters() {
       this.removeFilters();
-      console.log("removeFilters");
-      console.log(this.properties);
+      // console.log("removeFilters");
+      // console.log(this.properties);
       if (this.properties.length < 1) {
         this.getPropertiesForRent();
       }
@@ -158,10 +158,10 @@ export default {
     },
     validate() {
       if (this.$refs.form.validate()) {
-        console.log("valid");
+        // console.log("valid");
         this.getSearchedPropertiesForRent();
       } else {
-        console.log("not");
+        // console.log("not");
       }
     }
   },

@@ -73,7 +73,7 @@ export default {
               this.logSuccess(
                 "Please check your email for the link to reset your password."
               );
-              console.log("sent to email");
+              // console.log("sent to email");
               this.sent = true;
             })
             .catch(error => {

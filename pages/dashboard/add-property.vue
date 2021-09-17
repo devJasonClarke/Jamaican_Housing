@@ -610,40 +610,40 @@ export default {
     },
     validateDescription() {
       if (this.$refs.descriptionForm.validate()) {
-        console.log("valid des");
+        // console.log("valid des");
         this.cur++;
       } else {
-        console.log("not");
+        // console.log("not");
       }
     },
     validateDetails() {
       if (this.$refs.detailsForm.validate()) {
-        console.log("valid det");
+        // console.log("valid det");
         this.cur++;
       } else {
-        console.log("not");
+        // console.log("not");
       }
     },
     validateAmenities() {
       if (this.$refs.amenitiesForm.validate()) {
-        console.log("valid a");
+        // console.log("valid a");
         this.cur++;
       } else {
-        console.log("not");
+        // console.log("not");
       }
     },
     validatePictures() {
       if (this.$refs.picturesForm.validate()) {
-        console.log("valid pic");
+        // console.log("valid pic");
 
         this.cur++;
       } else {
-        console.log("not");
+        // console.log("not");
       }
     },
     previewPictures() {
       for (let i = 0; i < this.files.length; i++) {
-        /* console.log(this.files[i]) */
+        /* // console.log(this.files[i]) */
         this.urls.push(URL.createObjectURL(this.files[i]));
       }
       this.$vuetify.goTo("#photos");
@@ -681,7 +681,7 @@ export default {
             "state_changed",
             snapshot => {},
             error => {
-              console.log(error);
+              // console.log(error);
               this.logError(
                 "Unable to upload pictures, please check your internet and ensure that your pictures use either the JPG or PNG format."
               );
@@ -694,7 +694,7 @@ export default {
               ref.snapshot.ref
                 .getDownloadURL()
                 .then(downloadURL => {
-                  console.log("File available at", downloadURL);
+                  // console.log("File available at", downloadURL);
                   this.fileBeingUploaded = this.files[i].name;
                   this.imageUrls.push({
                     src: downloadURL,
@@ -702,20 +702,20 @@ export default {
                   });
                 })
                 .then(() => {
-                  console.log("it is ready");
-                  console.log(this.imageUrls);
+                  // console.log("it is ready");
+                  // console.log(this.imageUrls);
 
                   if (this.imageUrls.length === this.files.length) {
                     this.addProperty();
                   }
                 });
 
-              console.log("success");
+              // console.log("success");
             }
           );
         }
       } else {
-        console.log("not");
+        // console.log("not");
         this.logError("Please complete required sections.");
       }
     },
@@ -731,12 +731,12 @@ export default {
         let bedrooms;
         if (this.property.details.bedrooms >= 4) {
           bedrooms = "4 +";
-          console.log(bedrooms);
-          console.log(typeof bedrooms);
+          // console.log(bedrooms);
+          // console.log(typeof bedrooms);
         } else {
           bedrooms = `${this.property.details.bedrooms}`;
-          console.log(bedrooms);
-          console.log(typeof bedrooms);
+          // console.log(bedrooms);
+          // console.log(typeof bedrooms);
         }
 
         this.$fire.firestore
@@ -759,7 +759,7 @@ export default {
             images: this.imageUrls
           })
           .then(docRef => {
-            console.log("Document written with ID: ", docRef.id);
+            // console.log("Document written with ID: ", docRef.id);
             this.addNewUserProperty([
               {
                 price: parseFloat(this.property.details.price),
@@ -796,9 +796,9 @@ export default {
             this.snackbarColor = "pink";
           });
 
-        console.log("valid tour");
+        // console.log("valid tour");
       } else {
-        console.log("not");
+        // console.log("not");
         this.logError("Please complete required sections.");
       }
     }

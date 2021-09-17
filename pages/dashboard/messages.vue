@@ -161,8 +161,8 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   layout: "dashboard",
   fetch() {
-    console.log("fetch");
-    console.log(this.newMessages);
+    // console.log("fetch");
+    // console.log(this.newMessages);
   },
   data() {
     return { dialog: false };
@@ -179,15 +179,15 @@ export default {
     updateMessage(message, index) {
       this.readMessage(message);
       this.changeMessageReadState(index);
-      console.log(message);
-      console.log(index);
+      // console.log(message);
+      // console.log(index);
     },
     removeMessage(message, index) {
       this.deleteMessage(message);
       this.removeLocalMessage(index);
       this.dialog = false;
-      console.log(message);
-      console.log(index);
+      // console.log(message);
+      // console.log(index);
     }
   },
   computed: {

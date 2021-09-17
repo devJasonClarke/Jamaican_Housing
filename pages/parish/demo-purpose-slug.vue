@@ -100,7 +100,7 @@ export default {
     let j = () => parishes.parishes.find(parish => parish.slug == theParam);
     this.parish = j();
 
-    console.log(this.parish.name);
+    // console.log(this.parish.name);
 
     if (this.properties.length == 0) {
       this.getParishProperties(this.parish.name);
@@ -149,13 +149,13 @@ export default {
       setLoading: "getParishProperties/setLoading"
     }),
     previous() {
-      console.log("previous");
+      // console.log("previous");
       this.loading = true;
       this.$vuetify.goTo(this.target);
       setTimeout(() => (this.loading = false), 3000);
     },
     next() {
-      console.log("next");
+      // console.log("next");
       this.getParishProperties(this.parish.name);
     }
   }

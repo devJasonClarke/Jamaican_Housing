@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     showImg(i) {
-      console.log(`show: ${i}`);
+      // console.log(`show: ${i}`);
       this.index = i;
       this.visible = true;
     },

@@ -95,8 +95,8 @@ import { mapGetters, mapActions } from "vuex";
 import img from "~/assets/images/parishes/st-catherine.jpg";
 export default {
   fetch() {
-    console.log("fetch");
-    console.log(this.properties);
+    // console.log("fetch");
+    // console.log(this.properties);
 
     if (this.properties.length == 0) {
       this.getParishProperties();
@@ -142,12 +142,12 @@ export default {
     }),
 
     previous() {
-      console.log("previous");
+      // console.log("previous");
 
       this.$vuetify.goTo(this.target);
     },
     next() {
-      console.log("next");
+      // console.log("next");
       this.getParishProperties();
     }
   }

@@ -26,7 +26,7 @@ export const actions = {
       (initials.shift()?.[1] || "") + (initials.pop()?.[1] || "")
     ).toUpperCase();
 
-    console.log(initials);
+    // console.log(initials);
     commit("LOADING_STATE", true);
     //* sign up using firebase with credentials
     this.$fireModule
@@ -89,7 +89,7 @@ export const actions = {
       .catch(error => {
         commit("errors/LOG_ERROR", error.message, { root: true });
         commit("LOADING_STATE", false);
-        console.log(error);
+        // console.log(error);
         // ..
       });
   },
@@ -107,14 +107,14 @@ export const actions = {
           .get()
           .then(doc => {
             if (doc.exists) {
-              console.log("Doc EXIsts");
+              // console.log("Doc EXIsts");
               commit("profile/SET_PROFILE", doc.data(), { root: true });
               commit("favourites/SET_FAVOURITES", doc.data().favourites, {
                 root: true
               });
             } else {
-              console.log("setting google document");
-              console.log(result.user);
+              // console.log("setting google document");
+              // console.log(result.user);
               this.$fire.firestore
                 .collection("users")
                 .doc(result.user.uid)
@@ -165,14 +165,14 @@ export const actions = {
               .get()
               .then(doc => {
                 if (doc.exists) {
-                  console.log("Document data exits:", doc.data());
+                  // console.log("Document data exits:", doc.data());
                   commit("profile/SET_PROFILE", doc.data(), { root: true });
                   commit("favourites/SET_FAVOURITES", doc.data().favourites, {
                     root: true
                   });
                 } else {
                   // doc.data() will be undefined in this case
-                  console.log("No such document!");
+                  // console.log("No such document!");
                 }
               })
               .catch(error => {
@@ -241,7 +241,7 @@ export const actions = {
     if (state.user === null) {
       this.$fireModule.auth().onAuthStateChanged(user => {
         if (user) {
-          console.log(user);
+          // console.log(user);
           commit("CHECK_AUTHENTICATION", user);
 
           //* get user from firestore
@@ -251,14 +251,14 @@ export const actions = {
             .get()
             .then(doc => {
               if (doc.exists) {
-                console.log("Document data exits:", doc.data());
+                // console.log("Document data exits:", doc.data());
                 commit("profile/SET_PROFILE", doc.data(), { root: true });
                 commit("favourites/SET_FAVOURITES", doc.data().favourites, {
                   root: true
                 });
               } else {
                 // doc.data() will be undefined in this case
-                console.log("No such document!");
+                // console.log("No such document!");
               }
             })
             .catch(error => {
@@ -270,7 +270,7 @@ export const actions = {
         }
       });
     } else {
-      console.log("logged in");
+      // console.log("logged in");
     }
   },
   loadingState({ commit }, value) {
@@ -281,7 +281,7 @@ export const actions = {
 export const mutations = {
   CHECK_AUTHENTICATION: (state, user) => {
     if (state.user === null) {
-      //      console.log(user);
+      // // console.log(user);
       localStorage.setItem("loggedIn", true);
       state.user = {
         email: user.email,
@@ -291,7 +291,7 @@ export const mutations = {
   },
   LOGIN: (state, user) => {
     if (state.user === null) {
-      //      console.log(user);
+      // // console.log(user);
       localStorage.setItem("loggedIn", true);
 
       state.user = {

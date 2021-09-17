@@ -290,25 +290,25 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   async fetch() {
     this.theParam = this.$route.params.slug;
-    console.log(this.theParam);
+    // console.log(this.theParam);
     await this.$fire.firestore
       .collection("users")
       .doc(this.theParam)
       .get()
       .then(doc => {
         if (doc.exists) {
-          console.log("Document data:", doc.data());
+          // console.log("Document data:", doc.data());
           this.user = doc.data();
           this.loadUserProperties();
         } else {
           // doc.data() will be undefined in this case
-          console.log("No such document!");
+          // console.log("No such document!");
           this.$router.push({ name: "error" });
         }
       })
       .catch(error => {
         this.logError(error.message)
-      //  console.log("Error getting document:", error);
+      // // console.log("Error getting document:", error);
       });
 
     /* let j = () => parishes.parishes.find(parish => parish.slug == theParam);
@@ -382,7 +382,7 @@ export default {
         querySnapshot => {
           this.lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
           if (querySnapshot.empty) {
-            console.log("Empty Profile");
+            // console.log("Empty Profile");
             this.paginateNext = {
               disabled: true,
               dark: false
@@ -394,7 +394,7 @@ export default {
           querySnapshot.forEach(doc => {
             this.properties.push([doc.data(), doc.id]);
           });
-          console.log(`Fetch properties ${this.properties}`);
+          // console.log(`Fetch properties ${this.properties}`);
           this.loading = false;
           if (this.properties === []) {
             this.properties = "no properties";
@@ -402,8 +402,8 @@ export default {
           }
         },
         error => {
-       //   console.log("Firebase");
-          console.log(error);
+       // // console.log("Firebase");
+          // console.log(error);
 
           this.logError(error.message)
         }

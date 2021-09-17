@@ -151,8 +151,8 @@ import { mapGetters, mapActions } from "vuex";
 import img from "~/assets/images/key2.jpg";
 export default {
   fetch() {
-    console.log("fetch");
-    console.log(this.properties);
+    // console.log("fetch");
+    // console.log(this.properties);
     if (
       this.search.parish &&
       this.search.type &&
@@ -160,7 +160,7 @@ export default {
       this.search.bedrooms &&
       this.searchedProperties.length == 0
     ) {
-      console.log("searched");
+      // console.log("searched");
       this.getSearchedPropertiesForRent();
     } else if (this.properties.length == 0) {
       this.getPropertiesForRent();
@@ -206,16 +206,16 @@ export default {
       setLoading: "getPropertiesForRent/setLoading"
     }),
     previous() {
-      console.log("previous");
+      // console.log("previous");
 
       this.$vuetify.goTo(this.target);
     },
     next() {
-      console.log("next");
+      // console.log("next");
       this.getPropertiesForRent();
     },
     searchNext() {
-      console.log("search next");
+      // console.log("search next");
       this.getSearchedPropertiesForRentNext();
     }
   }

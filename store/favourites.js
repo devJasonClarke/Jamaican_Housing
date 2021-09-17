@@ -20,7 +20,7 @@ export const actions = {
             favourites: this.$fireModule.firestore.FieldValue.arrayRemove(data)
           });
         commit("REMOVE_FAVOURITES", data);
-        console.log(user);
+        // console.log(user);
       } else {
         // User is signed out
         commit(
@@ -41,7 +41,7 @@ export const actions = {
             favourites: this.$fireModule.firestore.FieldValue.arrayUnion(data)
           });
         commit("ADD_FAVOURITES", data);
-        console.log(user);
+        // console.log(user);
       } else {
         // User is signed out
         commit(
@@ -61,16 +61,16 @@ export const mutations = {
   REMOVE_FAVOURITES: (state, data) => {
 
     let index = state.favourites.indexOf(data);
-    console.log('index '+ index);
+    // console.log('index '+ index);
     let theFavourites = [...state.favourites];
 
-    console.log('theFavourites');
-    console.log(theFavourites);
+    // console.log('theFavourites');
+    // console.log(theFavourites);
 
     theFavourites.splice(index, 1);
 
-    console.log('theFavourites 2');
-    console.log(theFavourites);
+    // console.log('theFavourites 2');
+    // console.log(theFavourites);
 
     state.favourites = theFavourites;
   },

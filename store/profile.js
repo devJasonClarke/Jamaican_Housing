@@ -86,7 +86,7 @@ export const actions = {
       (initials.shift()?.[1] || "") + (initials.pop()?.[1] || "")
     ).toUpperCase();
 
-    console.log(initials);
+    // console.log(initials);
 
     this.$fireModule.auth().onAuthStateChanged(user => {
       if (user) {
@@ -104,7 +104,7 @@ export const actions = {
             "contact.phoneNumber": state.profile.contact.phoneNumber
           })
           .then(() => {
-            console.log("Successfully updated!");
+            // console.log("Successfully updated!");
 
             commit("success/LOG_SUCCESS", "Successfully updated!", {
               root: true
@@ -116,7 +116,7 @@ export const actions = {
             commit("errors/LOG_ERROR", error.message, { root: true });
           });
 
-        console.log(user);
+        // console.log(user);
       } else {
         // User is signed out
 
@@ -141,7 +141,7 @@ export const actions = {
             "contact.whatsappNumber": state.profile.contact.whatsappNumber
           })
           .then(() => {
-            console.log("Profile successfully updated!");
+            // console.log("Profile successfully updated!");
             commit("success/LOG_SUCCESS", "Successfully updated!", {
               root: true
             });
@@ -151,7 +151,7 @@ export const actions = {
             commit("errors/LOG_ERROR", error.message, { root: true });
           });
 
-        console.log(user);
+        // console.log(user);
       } else {
         // User is signed out
 

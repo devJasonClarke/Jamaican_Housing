@@ -556,7 +556,7 @@ export default {
     validateFields() {
       if (this.$refs.descriptionForm.validate()) {
         this.updateAccountDetails();
-        console.log("validate details");
+        // console.log("validate details");
         this.disableUpdateAccount = !this.disableUpdateAccount;
         setTimeout(
           () => (this.disableUpdateAccount = !this.disableUpdateAccount),
@@ -567,7 +567,7 @@ export default {
     },
     validatePictures() {
       if (this.$refs.picturesForm.validate() && this.files.length > 0) {
-        console.log("valid pic");
+        // console.log("valid pic");
 
         let storage = this.$fire.storage.ref();
         let date = Date.now();
@@ -585,7 +585,7 @@ export default {
             "state_changed",
             snapshot => {},
             error => {
-              console.log(error);
+              // console.log(error);
               this.logError(
                 "Unable to upload pictures, please check your internet and ensure that your pictures use either the JPG or PNG format."
               );
@@ -598,7 +598,7 @@ export default {
               ref.snapshot.ref
                 .getDownloadURL()
                 .then(downloadURL => {
-                  console.log("File available at", downloadURL);
+                  // console.log("File available at", downloadURL);
                   this.fileBeingUploaded = this.files[i].name;
                   this.imageUrls.push({
                     src: downloadURL,
@@ -606,17 +606,17 @@ export default {
                   });
                 })
                 .then(() => {
-                  console.log("it is ready");
-                  console.log(this.imageUrls);
+                  // console.log("it is ready");
+                  // console.log(this.imageUrls);
 
                   if (this.imageUrls.length === this.files.length) {
-                    console.log("Image Url");
-                    console.log(this.imageUrls[0]);
+                    // console.log("Image Url");
+                    // console.log(this.imageUrls[0]);
                     this.addPictureProperty();
                   }
                 });
 
-              console.log("success");
+              // console.log("success");
             }
           );
         }
@@ -642,15 +642,15 @@ export default {
               this.fileName = "";
               this.fileBeingUploaded = "";
               this.logSuccess("Successfully updated profile picture!");
-              console.log("Successfully updated!");
+              // console.log("Successfully updated!");
             })
             .catch(error => {
               this.logError(error.message);
-              console.log(error);
+              // console.log(error);
               //   commit("errors/LOG_ERROR", error.message, { root: true });
             });
 
-          console.log(user);
+          // console.log(user);
         } else {
           // User is signed out
         }
@@ -659,7 +659,7 @@ export default {
     validateSocial() {
       if (this.$refs.socialMediaForm.validate()) {
         this.updateAccountSocials();
-        console.log("validate social");
+        // console.log("validate social");
         this.disableUpdateSocial = !this.disableUpdateSocial;
         setTimeout(
           () => (this.disableUpdateSocial = !this.disableUpdateSocial),
@@ -681,7 +681,7 @@ export default {
       let storage = this.$fire.storage.ref();
       let ref = storage.child(`property_images/${this.user.uid}/${fileName}`);
 
-      //console.log(this.property.images)
+      // // console.log(this.property.images)
 
       // Delete the file
       ref
@@ -702,8 +702,8 @@ export default {
           this.logSuccess("Image deleted");
         })
         .catch(error => {
-          console.log("delete error");
-          console.log(error);
+          // console.log("delete error");
+          // console.log(error);
           this.logError(error.message);
         });
     },
@@ -716,7 +716,7 @@ export default {
     },
     previewPictures() {
       for (let i = 0; i < this.files.length; i++) {
-        /* console.log(this.files[i]) */
+        /* // console.log(this.files[i]) */
         this.urls.push(URL.createObjectURL(this.files[i]));
       }
       this.$vuetify.goTo("#photos");

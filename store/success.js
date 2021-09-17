@@ -17,11 +17,11 @@ export const actions = {
 
 export const mutations = {
   LOG_SUCCESS: (state, success) => {
-    console.log("Loggedsuccess " + success);
+    // console.log("Loggedsuccess " + success);
     state.successMessage = success;
   },
   REMOVE_SUCCESS: state => {
-    // console.log("REMOVE_Success " );
+    // // console.log("REMOVE_Success " );
     state.successMessage = null;
   }
 };

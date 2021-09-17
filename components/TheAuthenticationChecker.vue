@@ -12,7 +12,7 @@ export default {
     if (this.user === null) {
       this.checkAuth();
     } else {
-      console.log("User Signed In");
+      // console.log("User Signed In");
     }
   },
 
