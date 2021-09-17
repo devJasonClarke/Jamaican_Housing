@@ -5,7 +5,7 @@
     <SectionPadding>
       <SectionTitlesSecondary
         mainTitle="Contact"
-        paragraph="Please feel free to write an email to us or to use our electronic ticketing system."
+        paragraph="We'd love to hear from you. Feel free to fill out the form below and we'll be in touch soon."
       />
     </SectionPadding>
 
