@@ -15,7 +15,7 @@
     <p class="text-body-1">Property ID: {{ this.theParam }}</p>
 
     <!--   {{profile}} -->
-    <SectionPadding v-if="!property.uploader">
+    <SectionPadding class="pt-9" v-if="!property.uploader">
       <v-skeleton-loader
         type="table-row-divider,image,card-heading"
         title="sale"
@@ -23,7 +23,7 @@
     </SectionPadding>
 
     <section v-else>
-      <SectionPadding>
+      <SectionPadding class="pt-9">
         <v-stepper v-model="cur">
           <v-stepper-header>
             <v-stepper-step
@@ -124,7 +124,7 @@
             </v-stepper-content>
 
             <v-stepper-content step="2">
-              {{ `Property Type ${property.details.propertyType}` }} <br />
+         <!--      {{ `Property Type ${property.details.propertyType}` }} <br />
               {{ `Size ${property.details.size}` }} <br />
               {{ `Property For ${property.details.propertyFor}` }} <br />
               {{ `Rent Type ${property.details.rentType}` }} <br />
@@ -135,7 +135,7 @@
               {{ `Bed Rooms ${property.details.bedrooms}` }} <br />
               {{ `Bath Rooms ${property.details.bathrooms}` }} <br />
               {{ `Garages ${property.details.garages}` }} <br />
-              {{ `Property Id ${property.details.propertyId}` }} <br />
+              {{ `Property Id ${property.details.propertyId}` }} <br /> -->
 
               <v-container>
                 <p class="text-h6 pb-6">
@@ -301,7 +301,7 @@
                 <p class="text-h6 pb-6">
                   Please select the amenities for your property
                 </p>
-                {{ property.amenities }}
+            <!--     {{ property.amenities }} -->
                 <v-form
                   v-model="validAmenities"
                   @submit.prevent="validateAmenities"
@@ -518,20 +518,7 @@
         </div>
       </SectionPadding>
     </section>
-    <v-snackbar v-model="snackbar" :timeout="20000" left>
-      {{ snackbarMessage }}
 
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          :color="snackbarColor"
-          text
-          v-bind="attrs"
-          @click="snackbar = false"
-        >
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
   </v-container>
 </template>
 

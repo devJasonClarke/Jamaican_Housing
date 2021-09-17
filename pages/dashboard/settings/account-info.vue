@@ -14,7 +14,7 @@
     {{ facebook }} <br />
     {{ youtube }} <br />
     {{ instagram }} <br /> -->
-    <SectionPadding>
+    <SectionPadding class="pt-9">
       <v-tabs
         v-model="tab"
         background-color="transparent"

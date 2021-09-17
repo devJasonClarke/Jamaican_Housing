@@ -1,13 +1,13 @@
 <template>
   <v-container>
     <TheMetaTags :title="title" :description="description" />
-    <h1>Properties</h1>
-    <div v-for="(property, i) in properties" :key="i">
+   <h1>Your Properties</h1>
+  <!--   <div v-for="(property, i) in properties" :key="i">
       {{ property[1] }}
-    </div>
+    </div> -->
     <!--     <div>{{ properties }}</div> -->
     <TheRealEstatePropertiesListingLoader v-if="loading == true" title="sale" />
-    <SectionPadding v-else-if="!properties.length">
+    <SectionPadding class="pt-9" v-else-if="!properties.length">
       <v-sheet
         height="200px"
         class="d-flex justify-center align-center flex-column pa-3"
@@ -27,7 +27,7 @@
       </v-sheet>
     </SectionPadding>
 
-    <SectionPadding v-else id="top">
+    <SectionPadding class="pt-9" v-else id="top">
       <TheRealEstatePropertiesListingFirebaseProfile
         title="Your Real Estate Properties"
         :properties="properties"

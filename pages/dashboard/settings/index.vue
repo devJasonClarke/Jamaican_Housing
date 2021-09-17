@@ -2,7 +2,7 @@
   <v-container>
     <TheMetaTags :title="title" :description="description" />
     <h1>Account Settings</h1>
-    <SectionPadding>
+    <SectionPadding class="pt-9">
       <v-row dense>
         <v-col
           v-for="(item, i) in items"

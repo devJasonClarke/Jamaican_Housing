@@ -2,7 +2,7 @@
   <v-container>
     <TheMetaTags :title="title" :description="description" />
     <h1>Payment History</h1>
-     <SectionPadding >
+     <SectionPadding class="pt-9" >
       <v-sheet
         height="200px"
         class="d-flex justify-center align-center flex-column pa-3"

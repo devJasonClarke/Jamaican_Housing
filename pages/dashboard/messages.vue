@@ -1,9 +1,9 @@
 <template>
   <v-container>
     <TheMetaTags :title="title" :description="description" />
-    <h1>Messages</h1>
+    <h1>Your Messages</h1>
 
-    <SectionPadding v-if="loading == true">
+    <SectionPadding v-if="loading == true" class="pt-9">
       <v-skeleton-loader type="paragraph@4"></v-skeleton-loader>
       <v-skeleton-loader
         class="mx-auto mt-6"
@@ -11,7 +11,7 @@
         type="text"
       ></v-skeleton-loader>
     </SectionPadding>
-    <SectionPadding v-else-if="!newMessages.length">
+    <SectionPadding class="pt-9" v-else-if="!newMessages.length">
       <v-sheet
         height="200px"
         class="d-flex justify-center align-center flex-column pa-3"
@@ -22,7 +22,7 @@
         <v-icon>mdi-message-outline mdi-36px</v-icon>
       </v-sheet>
     </SectionPadding>
-    <SectionPadding v-else>
+    <SectionPadding class="pt-9" v-else>
       <v-expansion-panels focusable>
         <v-expansion-panel v-for="(message, index) in newMessages" :key="index">
           <v-expansion-panel-header disable-icon-rotate v-if="message[0].read"

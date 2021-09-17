@@ -1,11 +1,11 @@
 <template>
   <v-container>
     <TheMetaTags :title="title" :description="description" />
-    <h1>Favourites</h1>
-    <SectionPadding v-if="profile.loading === true">
+    <h1>Your Favourite Properties</h1>
+    <SectionPadding class="pt-9" v-if="profile.loading === true">
       <v-skeleton-loader type="list-item@8"></v-skeleton-loader>
     </SectionPadding>
-    <SectionPadding v-else-if="favourites.length > 0" id="top">
+    <SectionPadding class="pt-9" v-else-if="favourites.length > 0" id="top">
       <v-list dense>
         <v-list-item-group v-model="selectedItem" color="green accent-4">
           <div v-for="favourite in favourites" :key="favourite">
@@ -67,7 +67,7 @@
           </v-icon>
         </v-btn> -->
     </SectionPadding>
-    <SectionPadding v-else>
+    <SectionPadding class="pt-9" v-else>
       <v-sheet
         height="200px"
         class="d-flex justify-center align-center flex-column pa-3"

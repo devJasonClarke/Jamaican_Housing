@@ -2,9 +2,8 @@
   <v-container>
     <TheMetaTags :title="title" :description="description" />
     <h1>Login Security</h1>
-    <SectionPadding>
-      {{ firstPassword }}
-      {{ secondPassword }}
+    <SectionPadding class="pt-9">
+
       <v-tabs
         v-model="tab"
         background-color="transparent"
@@ -22,7 +21,7 @@
             Reset your Real Estate Ja password.
           </p>
           <p class="text-body-2 mb-12">
-            Feel free to reset your password.
+            We've all been here before. Feel free to reset your password.
           </p>
           <v-form ref="descriptionForm" @submit.prevent="sendCode">
             <v-btn v-if="sent" large color="success" depressed
@@ -47,8 +46,6 @@ export default {
       tab: null,
       items: ["Password Reset"],
       iconColor: "rgba(0, 200, 83)",
-      firstPassword: "",
-      secondPassword: "",
       loading: false,
       sent: false
     };
