@@ -139,7 +139,7 @@
           </li>
           <li>
             Affiliates. We may share your information with our affiliates, in
-            which case we will require those affiliates to honor this privacy
+            which case we will require those affiliates to honour this privacy
             notice. Affiliates include our parent company and any subsidiaries,
             joint venture partners or other companies that we control or that
             are under common control with us.

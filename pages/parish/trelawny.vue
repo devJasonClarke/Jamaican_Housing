@@ -9,9 +9,7 @@
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish"
-        paragraph=" Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements."
+        paragraph="Trewalny is the birthplace of several outstanding citizens such as Usain Bolt. The parish was named after Sir William Trelawny, the then Governor of Jamaica. Trelawny is best known for its sugar estates, employment opportunities and beautiful scenery."
       />
     </SectionPadding>
 

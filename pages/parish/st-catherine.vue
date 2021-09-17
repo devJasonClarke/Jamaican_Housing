@@ -10,7 +10,7 @@
       <SectionTitlesSecondary
         :mainTitle="parish"
         paragraph="Formed in 1867, St. Catherine is one of the island's largest and most 
-        economically valued parishes because of its many resources. As an industrial center second
+        economically valued parishes because of its many resources. As an industrial centre second
          only to Kingston, it boasts  numerous industrial plants, employment opportunities and tourist attractions. "
       />
     </SectionPadding>

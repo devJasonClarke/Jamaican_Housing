@@ -9,8 +9,7 @@
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish"
-        paragraph="Known for its many attractions, historical sites and famous residents, the country's financial capital is never void of opportunities. 
-        From the creation of popular types of Jamaican music to establishment of new industries, St. Andrew leads in Jamaican development."
+        paragraph="Known for its many attractions, historical sites and famous residents, the country's financial capital is never void of opportunities. From the creation of popular types of Jamaican music to the establishment of new industries, St. Andrew leads in Jamaican development."
       />
     </SectionPadding>
 

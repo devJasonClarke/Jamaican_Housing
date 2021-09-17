@@ -9,9 +9,9 @@
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish"
-        paragraph=" Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements."
+        paragraph="Westmoreland is the westernmost parish in Jamaica. 
+        As a result of the fertile plains, the parish thrives on agriculture, mainly sugarcane, breadfruit and coffee.
+        Negril is also one of the main tourist destinations found in Westmoreland growing the tourism sector for the parish."
       />
     </SectionPadding>
 

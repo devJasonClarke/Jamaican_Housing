@@ -10,7 +10,7 @@
       <SectionTitlesSecondary
         :mainTitle="parish"
         paragraph="Hanover was established on the 12th of November in 1723. 
-       It was named in honor of the British monarch, George I, who was a member of the German House of Hanover.
+       It was named in honour of the British monarch, George I, who was a member of the German House of Hanover.
         From Jamaica's safest ports to an expansive panorama of the bay, Hanover captures the natural beauty of Jamaica."
       />
     </SectionPadding>

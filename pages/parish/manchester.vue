@@ -9,9 +9,7 @@
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish"
-        paragraph="Manchester was formed in 1814 making it one of the newest parishes of Jamaica.
-         It was named in honour of the William Montagu, 5th Duke of Manchester, the then Governor of Jamaica.
-         Manchester is know for its cool breeze, beautiful vegetation and friendly people."
+        paragraph="Manchester was formed in 1814 making it one of the newest parishes of Jamaica. It was named in honour of William Montagu, 5th Duke of Manchester, the then Governor of Jamaica. Manchester is known for its cool breeze, beautiful vegetation and friendly people."
       />
     </SectionPadding>
 

@@ -5,9 +5,7 @@
     <SectionPadding>
       <SectionTitlesSecondary
         mainTitle="Parishes"
-        paragraph=" Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements."
+        paragraph="Jamaica is divided into 14 unique parishes. Click on a parish below to learn more about it and see the real estate that's available. For more detailed searches we recommend you use the Buy or Rent page."
       />
     </SectionPadding>
 

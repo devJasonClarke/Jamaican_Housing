@@ -9,9 +9,7 @@
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish"
-        paragraph="St. Elizabeth is Jamaica's third largest parish and is known as 'the bread basket' of the nation.
-         It was Named in honour of Lady Elizabeth Modyford, wife of Sir Thomas Modyford, a previous Governor of Jamaica.
-         Known for it's bauxite mining and agriculture it is a beloved parish."
+        paragraph="St. Elizabeth is Jamaica's third-largest parish and is known as 'the bread basket' of the nation. It was named in honour of Lady Elizabeth Modyford, wife of Sir Thomas Modyford, a previous Governor of Jamaica. Known for its bauxite mining and agriculture it is a beloved parish."
       />
     </SectionPadding>
 

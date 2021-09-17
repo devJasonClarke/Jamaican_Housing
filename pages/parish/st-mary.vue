@@ -9,9 +9,9 @@
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish"
-        paragraph=" Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements."
+        paragraph="St. Mary is one of Jamaica's smallest parishes. It however has some of the greatest historical events,
+         being one of the first parishes occupied by the Spaniards and captured by the British.
+         St. Mary is known for its agriculture and commerce, with bananas being their most popular export. "
       />
     </SectionPadding>
 

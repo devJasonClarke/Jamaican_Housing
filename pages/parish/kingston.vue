@@ -9,10 +9,7 @@
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish"
-        paragraph="Kingston is the capital and largest city of Jamaica. It was founded in July 1693 
-        after the earthquake that devastated Port Royal.
-       Kingston is know for its vast array of entertainment,
-       the Mona campus of the University of the West Indies and the 7th largest natural harbor in the world."
+        paragraph="Kingston is the capital and largest city of Jamaica. It was founded in July 1693 after the earthquake that devastated Port Royal. Kingston is known for its vast array of entertainment, the Mona campus of the University of the West Indies and the 7th largest natural harbour in the world."
       />
     </SectionPadding>
 

@@ -9,9 +9,7 @@
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish"
-        paragraph=" Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements."
+        paragraph="St. Thomas is one of the oldest and most beautiful parishes on the island. It was named in honour of Thomas Hickman, the Governor of Jamaica in 1662. St. Thomas is a major producer of bananas, sugar cane and coffee. Both commercial and administrative activities are prevalent in this parish."
       />
     </SectionPadding>
 

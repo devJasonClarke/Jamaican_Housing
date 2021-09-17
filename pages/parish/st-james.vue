@@ -9,9 +9,7 @@
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish"
-        paragraph=" Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements."
+        paragraph="St. James is one of the fastest-growing parishes on the island with large credits due to Montego Bay, the second city. Known for its famous hotels, internationally renowned beaches and friendly residents, St. James generates one-third of the island's tourism revenue."
       />
     </SectionPadding>
 
