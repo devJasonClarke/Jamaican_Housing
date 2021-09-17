@@ -52,10 +52,25 @@ export default {
           property: "og:description",
           content: this.description
         },
-          {
+        {
           hid: "og:image:alt",
           property: "og:image:alt",
           content: this.title
+        },
+        {
+          hid: "twitter:image",
+          name: "twitter:image",
+          content: `${process.env.BASE_URL}real-estate-ja.jpg`
+        },
+        {
+          hid: "og:image",
+          property: "og:image",
+          content: `${process.env.BASE_URL}real-estate-ja.jpg`
+        },
+        {
+          hid: "og:image:secure_url",
+          property: "og:image:secure_url",
+          content: `${process.env.BASE_URL}real-estate-ja.jpg`
         }
       ]
     };

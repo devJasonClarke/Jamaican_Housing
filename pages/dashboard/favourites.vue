@@ -20,7 +20,7 @@
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title>{{
-                      `${process.env.baseUrl}property/${favourite}`
+                      `${process.env.BASE_URL}property/${favourite}`
                     }}</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
