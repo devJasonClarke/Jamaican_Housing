@@ -42,7 +42,7 @@
     <SectionPadding class="backgroundShade">
       <TheHomepageSectionSubTitlesNoLink
         subTitle="START Browsing TODAY"
-        mainTitle="Real Estate JA allows you to add or discover the best offers on the Jamaican Real Estate market"
+        mainTitle="Real Estate JA allows you to add or Discover the best offers on the Jamaican Real Estate market."
       />
     </SectionPadding>
   </div>

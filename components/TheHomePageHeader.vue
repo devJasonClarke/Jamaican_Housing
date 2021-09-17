@@ -16,7 +16,7 @@
             Let us guide you
             home
           </h1>
-          <p class="mt-4 mt-sm-1">Discover the best offers on the Jamaican real estate market.</p>
+          <p class="mt-4 mt-sm-1">Discover the best offers on the Jamaican Real Estate market.</p>
         </div>
       </v-container>
     </v-img>

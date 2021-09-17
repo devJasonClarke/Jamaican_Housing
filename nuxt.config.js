@@ -21,6 +21,51 @@ export default {
         name: "description",
         content: "Discover the best offers on the Jamaican Real Estate Market"
       },
+      {
+        hid: "twitter:title",
+        name: "twitter:title",
+        content: "Real Estate Ja"
+      },
+      {
+        hid: "twitter:description",
+        name: "twitter:description",
+        content: "Discover the best offers on the Jamaican Real Estate Market"
+      },
+      {
+        hid: "twitter:image",
+        name: "twitter:image",
+        content: "/real-estate-ja.jpg"
+      },
+      {
+        hid: "twitter:image:alt",
+        name: "twitter:image:alt",
+        content: "Real Estate Ja"
+      },
+      {
+        hid: "og:title",
+        property: "og:title",
+        content: "Real Estate Ja"
+      },
+      {
+        hid: "og:description",
+        property: "og:description",
+        content: "Discover the best offers on the Jamaican Real Estate Market"
+      },
+      {
+        hid: "og:image",
+        property: "og:image",
+        content: "/real-estate-ja.jpg"
+      },
+      {
+        hid: "og:image:secure_url",
+        property: "og:image:secure_url",
+        content: "/real-estate-ja.jpg"
+      },
+      {
+        hid: "og:image:alt",
+        property: "og:image:alt",
+        content: "Real Estate Ja"
+      },
       { hid: "author", name: "author", content: "Jason Clarke" }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
@@ -48,7 +93,10 @@ export default {
   css: ["~/assets/scss/main.scss"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: "@/plugins/vueAwesomeSwiper", mode: "client" }, { src: "@/plugins/vueEasyLightBox", mode: "client" },],
+  plugins: [
+    { src: "@/plugins/vueAwesomeSwiper", mode: "client" },
+    { src: "@/plugins/vueEasyLightBox", mode: "client" }
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -71,7 +119,7 @@ export default {
     "@nuxtjs/robots",
 
     // https://go.nuxtjs.dev/content
- "@nuxt/content",
+    "@nuxt/content",
     [
       "@nuxtjs/firebase",
       {
