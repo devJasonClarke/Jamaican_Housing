@@ -9,9 +9,9 @@
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish"
-        paragraph=" Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements."
+        paragraph="Manchester was formed in 1814 making it one of the newest parishes of Jamaica.
+         It was named in honour of the William Montagu, 5th Duke of Manchester, the then Governor of Jamaica.
+         Manchester is know for its cool breeze, beautiful vegetation and friendly people."
       />
     </SectionPadding>
 

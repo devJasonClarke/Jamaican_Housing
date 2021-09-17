@@ -9,9 +9,9 @@
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish"
-        paragraph=" Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements."
+        paragraph=" Portland is one of the most rural areas of Jamaica, containing parts of the Blue Mountains
+       and numerous Maroon communities. Due to its natural environment and history,
+        tourism has often flourished in the parish. The food has also been noted as one of the country's best."
       />
     </SectionPadding>
 

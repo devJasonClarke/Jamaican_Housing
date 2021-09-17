@@ -9,7 +9,7 @@
         paragraph="For those who want extra flexibility and less responsibility,
          renting a property is an ideal choice. 
          Buying a property may require a lot of savings and 
-         commitment. Use Real Estate Ja to find a rental that can help you maintain your flexibility and lifestyle!"
+         commitment. Use Real Estate Ja to find a rental that can help maintain your flexibility and lifestyle!"
       />
     </SectionPadding>
 

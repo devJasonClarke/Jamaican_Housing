@@ -9,9 +9,10 @@
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish"
-        paragraph=" Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements."
+        paragraph="Kingston is the capital and largest city of Jamaica. It was founded in July 1693 
+        after the earthquake that devastated Port Royal.
+       Kingston is know for its vast array of entertainment,
+       the Mona campus of the University of the West Indies and the 7th largest natural harbor in the world."
       />
     </SectionPadding>
 
