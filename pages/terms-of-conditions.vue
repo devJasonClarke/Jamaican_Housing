@@ -20,13 +20,13 @@
           These Terms of Use constitute a legally binding agreement made between
           you, whether personally or on behalf of an entity (“you”) and Jamaica
           Housing ("Company", “we”, “us”, or “our”), concerning your access to
-          and use of the https://jamaican-housing.pages.dev/ website as well as
-          any other media form, media channel, mobile website or mobile
-          application related, linked, or otherwise connected thereto
-          (collectively, the “Site”). You agree that by accessing the Site, you
-          have read, understood, and agree to be bound by all of these Terms of
-          Use. IF YOU DO NOT AGREE WITH ALL OF THESE TERMS OF USE, THEN YOU ARE
-          EXPRESSLY PROHIBITED FROM USING THE SITE AND YOU MUST DISCONTINUE USE
+          and use of the {{ `${process.env.baseUrl}` }} website as well as any
+          other media form, media channel, mobile website or mobile application
+          related, linked, or otherwise connected thereto (collectively, the
+          “Site”). You agree that by accessing the Site, you have read,
+          understood, and agree to be bound by all of these Terms of Use. IF YOU
+          DO NOT AGREE WITH ALL OF THESE TERMS OF USE, THEN YOU ARE EXPRESSLY
+          PROHIBITED FROM USING THE SITE AND YOU MUST DISCONTINUE USE
           IMMEDIATELY.
           <br />
           <br />
@@ -186,8 +186,8 @@
           contact information provided below. Your cancellation will take effect
           at the end of the current paid term.
           <br /><br />
-          If you are unsatisfied with our services, please contact us via our 
-         <nuxt-link :to="{name: 'contact'}">Contact Page</nuxt-link>
+          If you are unsatisfied with our services, please contact us via our
+          <nuxt-link :to="{ name: 'contact' }">Contact Page</nuxt-link>
         </p>
       </v-container>
       <v-container>
@@ -201,7 +201,7 @@
           at the end of the current paid term.
           <br /><br />
           If you are unsatisfied with our services, please contact us via our
-         <nuxt-link :to="{name: 'contact'}">Contact Page</nuxt-link>
+          <nuxt-link :to="{ name: 'contact' }">Contact Page</nuxt-link>
         </p>
       </v-container>
       <v-container>
@@ -910,9 +910,9 @@
         <p class="text-h6">CONTACT US</p>
         <p class="body-2">
           In order to resolve a complaint regarding the Site or to receive
-          further information regarding use of the Site, please contact us at:    <nuxt-link :to="{ name: 'contact' }">Contact Page</nuxt-link>
+          further information regarding use of the Site, please contact us at:
+          <nuxt-link :to="{ name: 'contact' }">Contact Page</nuxt-link>
         </p>
-     
       </v-container>
     </SectionPadding>
   </div>

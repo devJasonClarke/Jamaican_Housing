@@ -127,7 +127,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://twitter.com/share?url=https://jamaican-housing.pages.dev/property/${this.$route.params.slug}&text=Have a look at this property from Real Estate Ja:`
+                    `https://twitter.com/share?url=${process.env.baseUrl}property/${this.$route.params.slug}&text=Have a look at this property from Real Estate Ja:`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
@@ -138,7 +138,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://www.facebook.com/sharer.php?=https://jamaican-housing.pages.dev/property/${this.$route.params.slug}`
+                    `https://www.facebook.com/sharer.php?=${process.env.baseUrl}property/${this.$route.params.slug}`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
@@ -149,7 +149,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `mailto:?subject=Have a look at this property from Real Estate Ja&amp;body=The property: https://jamaican-housing.pages.dev/property/${this.$route.params.slug}.`
+                    `mailto:?subject=Have a look at this property from Real Estate Ja&amp;body=The property: ${process.env.baseUrl}property/${this.$route.params.slug}.`
                   "
                   title="Share by Email"
                 >
@@ -161,7 +161,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://wa.me/?text=Have a look at this property from Real Estate Ja: https://jamaican-housing.pages.dev/property/${this.$route.params.slug}`
+                    `https://wa.me/?text=Have a look at this property from Real Estate Ja: ${process.env.baseUrl}property/${this.$route.params.slug}`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
@@ -927,7 +927,7 @@ export default {
           phoneNumber: this.phoneNumber,
           timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
           message: this.message,
-          property: `https://jamaican-housing.pages.dev/property/${this.theParam}`,
+          property: `${process.env.baseUrl}property/${this.theParam}`,
           read: false
         })
         .then(docRef => {

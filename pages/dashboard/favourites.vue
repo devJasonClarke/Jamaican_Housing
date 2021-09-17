@@ -20,7 +20,7 @@
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title>{{
-                      `https://jamaican-housing.pages.dev/property/${favourite}`
+                      `${process.env.baseUrl}property/${favourite}`
                     }}</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
