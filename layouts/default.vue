@@ -11,7 +11,7 @@
       >
       </v-app-bar-nav-icon>
       <v-toolbar-title
-        ><nuxt-link to="/">Real Estate Ja</nuxt-link></v-toolbar-title
+        ><nuxt-link to="/" class="blue--text">Real Estate Ja</nuxt-link></v-toolbar-title
       >
 
       <v-spacer></v-spacer>
