@@ -9,9 +9,9 @@
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish"
-        paragraph=" Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements."
+        paragraph="Hanover was established on the 12th of November in 1723. 
+       It was named in honor of the British monarch, George I, who was a member of the German House of Hanover.
+        From Jamaica's safest ports to an expansive panorama of the bay, Hanover captures the natural beauty of Jamaica."
       />
     </SectionPadding>
 

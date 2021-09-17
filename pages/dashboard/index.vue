@@ -29,7 +29,7 @@
 
     <SectionPadding v-else id="top">
       <TheRealEstatePropertiesListingFirebaseProfile
-        title="Real Estate for Sale"
+        title="Your Real Estate Properties"
         :properties="properties"
       />
       <div class="d-flex justify-center align-center mt-4">

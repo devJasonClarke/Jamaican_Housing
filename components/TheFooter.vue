@@ -76,7 +76,6 @@
               >
               </v-text-field>
             </v-form>
-            <span> {{ submitMessage }}</span>
           </v-col>
         </v-row>
       </v-container>
@@ -90,6 +89,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -97,7 +97,7 @@ export default {
       email: "",
       loading: false,
       valid: false,
-      submitMessage: "",
+
       formStatus: "green accent-4",
       rules: [
         value =>
@@ -138,6 +138,10 @@ export default {
     };
   },
   methods: {
+    ...mapActions({
+      logError: "errors/logError",
+      logSuccess: "success/logSuccess"
+    }),
     getYear() {
       let year = new Date().getFullYear();
       this.year = year;
@@ -151,17 +155,14 @@ export default {
           this.$OneSignal
             .setEmail(this.email)
             .then(() => {
-              this.submitMessage = "Success! Thank you for signing up";
+              this.logSuccess("Success! Thank you for signing up");
               this.loading = false;
             })
-            .catch(err => {
-              this.submitMessage = "Unsuccessful";
-              console.log(err);
+            .catch(error => {
+              this.logError(error);
               this.formStatus = "red";
               this.loading = false;
             });
-
-          this.$OneSignal.logoutEmail();
         });
       }
     }

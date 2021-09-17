@@ -433,6 +433,7 @@
                       <v-text-field
                         outlined
                         dense
+                           prepend-icon="mdi-youtube"
                         v-model="property.tours.youtube"
                         label="Youtube Video ID"
                         :color="iconColor"

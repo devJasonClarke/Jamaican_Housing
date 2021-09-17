@@ -9,9 +9,8 @@
     <SectionPadding>
       <SectionTitlesSecondary
         :mainTitle="parish"
-        paragraph=" Prepare a short list of features you would like in a home, such as
-          location, beds & bath's required, bearing in mind affordability and
-          accommodation requirements."
+        paragraph="Clarendon was named in honour of the Lord Chancellor Sir Edward Hyde, Earl of Clarendon. 
+      It is predominantly a wide plain, marked by several rivers, including the Rio Minho. Clarendon is known for its beautiful scenery and ranks as Jamaica's third largest parish."
       />
     </SectionPadding>
 
