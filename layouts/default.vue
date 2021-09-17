@@ -149,7 +149,12 @@
           ></v-sheet>
           <TheCurrencySelector class="pb-3" />
         </v-menu>
-        <v-menu v-else  max-width="150px" offset-y :close-on-content-click="closeOnContentClick">
+        <v-menu
+          v-else
+          max-width="150px"
+          offset-y
+          :close-on-content-click="closeOnContentClick"
+        >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               dark
@@ -214,7 +219,12 @@
     <v-navigation-drawer v-model="drawer" fixed temporary>
       <v-list-item>
         <v-list-item-avatar>
-      <img :src="require('~/assets/images/jamaican-flag.png')" alt="Jamaican flag" width="40px" height="40px"/>
+          <img
+            :src="require('~/assets/images/jamaican-flag.png')"
+            alt="Jamaican flag"
+            width="40px"
+            height="40px"
+          />
         </v-list-item-avatar>
 
         <v-list-item-content>
@@ -334,19 +344,7 @@
           v-else
         >
           <v-list-item
-            link
-            class="text-capitalize"
-            :to="{ name: 'dashboard' }"
-            exact
-          >
-            <v-list-item-icon>
-              <v-icon>mdi-apps</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title> Dashboard</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item
-            v-for="(route, index) in routes"
+            v-for="(route, index) in mobileRoutes"
             :key="'navigationDrawer' + index"
             link
             class="text-capitalize"
@@ -387,7 +385,89 @@ export default {
       },
       signInDropDown: null,
       closeOnContentClick: false,
+      mobileRoutes: [
+        {
+          title: "dashboard",
+          route: "dashboard",
+          icon: "mdi-apps",
+          depressed: false,
+          text: true,
+          dark: false,
+          color: ""
+        },
+        {
+          title: "buy",
+          route: "buy",
+          icon: "mdi-bank",
+          depressed: false,
+          text: true,
+          dark: false,
+          color: ""
+        },
+        {
+          title: "rent",
+          route: "rent",
+          icon: "mdi-key-chain-variant ",
+          depressed: false,
+          text: true,
+          dark: false,
+          color: ""
+        },
+        {
+          title: "sell",
+          route: "dashboard-add-property",
+          icon: "mdi-account-key-outline",
+          depressed: false,
+          text: true,
+          dark: false,
+          color: ""
+        },
 
+        {
+          title: "add a property",
+          route: "dashboard-add-property",
+          icon: "mdi-home-import-outline",
+          depressed: true,
+          text: true
+        },
+        {
+          title: "blog",
+          route: "blog",
+          icon: "mdi-newspaper-variant-multiple-outline",
+          depressed: false,
+          text: true,
+          dark: false,
+          color: ""
+        },
+        {
+          title: "featured",
+          route: "featured",
+          icon: "mdi-star-outline",
+          depressed: false,
+          text: true,
+          dark: false,
+          color: ""
+        },
+        {
+          title: "parishes",
+          route: "parish",
+          icon: "mdi-map-marker-radius-outline",
+          depressed: false,
+          text: true,
+          dark: false,
+          color: ""
+        },
+
+        {
+          title: "contact",
+          route: "contact",
+          icon: "mdi-email-outline",
+          depressed: false,
+          text: true,
+          dark: false,
+          color: ""
+        }
+      ],
       routes: [
         {
           title: "buy",
@@ -433,6 +513,7 @@ export default {
           dark: false,
           color: ""
         },
+
         {
           title: "contact",
           route: "contact",
