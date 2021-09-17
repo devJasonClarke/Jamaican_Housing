@@ -27,6 +27,22 @@
               required
             ></v-select>
           </v-col>
+            <v-col>
+            <v-select
+              outlined
+              dense
+              label="TYPE"
+              v-model="selectedRealEstateType"
+              prepend-icon="mdi-home-city"
+              hide-details
+              :items="realEstateType"
+              color="green"
+              item-color="green"
+              :rules="[v => !!v || 'Item is required']"
+              @change="resetPropertySearch"
+              required
+            ></v-select>
+          </v-col>
           <v-col>
             <v-select
               outlined
@@ -69,22 +85,7 @@
               required
             ></v-select>
           </v-col>
-          <v-col>
-            <v-select
-              outlined
-              dense
-              label="TYPE"
-              v-model="selectedRealEstateType"
-              prepend-icon="mdi-home-city"
-              hide-details
-              :items="realEstateType"
-              color="green"
-              item-color="green"
-              :rules="[v => !!v || 'Item is required']"
-              @change="resetPropertySearch"
-              required
-            ></v-select>
-          </v-col>
+        
           <v-col md="2">
             <v-btn
               v-if="!propertySearch"
