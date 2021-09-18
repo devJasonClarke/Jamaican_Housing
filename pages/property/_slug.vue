@@ -525,6 +525,7 @@
               class="mt-6"
               @submit.prevent="validateMessage"
               ref="messageForm"
+              lazy-validation
             >
               <v-text-field
                 outlined
@@ -580,7 +581,7 @@
               </v-btn>
 
               <v-btn
-                v-else
+                v-else-if="!sent"
                 class="mb-6"
                 x-large
                 type="submit"
@@ -591,13 +592,21 @@
                 :loading="loading"
                 :disabled="sent"
               >
-                <span v-if="sent">
-                  <v-icon left>mdi-check-circle-outline mdi-24px </v-icon>
-                  Message Sent
-                </span>
-                <span v-else>
-                  Send Message<v-icon right>mdi-send </v-icon></span
-                >
+                Send Message<v-icon right>mdi-send </v-icon>
+              </v-btn>
+
+              <v-btn
+                v-else
+                class="mb-6"
+                x-large
+                :color="iconColor"
+                block
+                dark
+                depressed
+                :loading="loading"
+              >
+                <v-icon left>mdi-check-circle-outline mdi-24px </v-icon>
+                Message Sent
               </v-btn>
               <a
                 :href="`tel:${uploader.contact.phoneNumber}`"
@@ -835,7 +844,8 @@ export default {
     ...mapActions({
       removeFavourites: "favourites/removeFavourites",
       addFavourites: "favourites/addFavourites",
-      logError: "errors/logError"
+      logError: "errors/logError",
+      logSuccess: "success/logSuccess"
     }),
     async getUser() {
       await this.$fire.firestore
@@ -935,17 +945,12 @@ export default {
         .then(() => {
           this.sent = true;
           this.loading = false;
-          this.snackbar = true;
-          this.snackbarMessage = "Message Successfully Sent";
-          this.fullName = "";
-          this.email = "";
-          this.phoneNumber = "";
-          this.message = "";
+          this.logSuccess("Message Successfully Sent");
           this.snackbarColor = "green";
         })
         .catch(error => {
           this.logError(error.message);
-          console.error("Error adding document: ", error);
+          //  console.error("Error adding document: ", error);
           this.loading = false;
         });
     }
@@ -961,9 +966,9 @@ export default {
       messageRules: "inputRules/messageRules",
       favourites: "favourites/favourites"
     }),
-baseUrl(){
-  return process.env.baseUrl;
-},
+    baseUrl() {
+      return process.env.baseUrl;
+    },
     liked() {
       if (this.favourites.includes(this.theParam)) {
         return true;

@@ -62,7 +62,7 @@ export const actions = {
               linkedIn: ""
             },
             contact: {
-              email: "",
+              email: email,
               phoneNumber: null,
               whatsappNumber: null,
               website: ""
@@ -145,7 +145,7 @@ export const actions = {
                     linkedIn: ""
                   },
                   contact: {
-                    email: "",
+                    email: email,
                     phoneNumber: null,
                     whatsappNumber: null,
                     website: ""

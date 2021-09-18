@@ -1,5 +1,5 @@
 <template>
-  <v-snackbar color="success" v-if="successMessage" v-model="success" left>
+  <v-snackbar color="success" bottom v-if="successMessage" v-model="success" :timeout='300000'>
     {{ successMessage }}
 
     <template v-slot:action="{ attrs }">

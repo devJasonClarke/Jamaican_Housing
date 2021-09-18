@@ -2,7 +2,7 @@
   <v-container id="top">
     <TheMetaTags :title="title" :description="description" />
     <h1>Add New Property</h1>
-<!--     {{ urls }}
+    <!--     {{ urls }}
     {{ `typeOf price: ${typeof property.details.price}` }} -->
     <!--   {{profile}} -->
     <SectionPadding v-if="profile.loading" class="pt-9">
@@ -11,8 +11,8 @@
         title="sale"
       ></v-skeleton-loader>
     </SectionPadding>
-    <SectionPadding class="pt-9"
-
+    <SectionPadding
+      class="pt-9"
       v-else-if="!profile.contact.email || !profile.contact.phoneNumber"
     >
       <v-sheet
@@ -137,7 +137,7 @@
             </v-stepper-content>
 
             <v-stepper-content step="2">
-        <!--       {{ `Property Type ${property.details.propertyType}` }} <br />
+              <!--       {{ `Property Type ${property.details.propertyType}` }} <br />
               {{ `Size ${property.details.size}` }} <br />
               {{ `Property For ${property.details.propertyFor}` }} <br />
               {{ `Rent Type ${property.details.rentType}` }} <br />
@@ -314,7 +314,7 @@
                 <p class="text-h6 pb-6">
                   Please select the amenities for your property
                 </p>
-          <!--       {{ property.amenities }} -->
+                <!--       {{ property.amenities }} -->
                 <v-form
                   v-model="validAmenities"
                   @submit.prevent="validateAmenities"
@@ -435,7 +435,7 @@
                       <v-text-field
                         outlined
                         dense
-                           prepend-icon="mdi-youtube"
+                        prepend-icon="mdi-youtube"
                         v-model="property.tours.youtube"
                         label="Youtube Video ID"
                         :color="iconColor"
@@ -451,7 +451,7 @@
                     nuxt
                     :to="{ name: 'dashboard' }"
                   >
-                    View Property
+                    Upload Successful
                   </v-btn>
                   <v-btn
                     v-else
@@ -499,7 +499,6 @@
         </div>
       </SectionPadding>
     </section>
-
   </v-container>
 </template>
 
@@ -773,16 +772,15 @@ export default {
             this.loading = false;
             this.disabled = true;
             this.fileBeingUploaded = "";
-            this.snackbar = true;
-            this.snackbarMessage = "Successfully Added!";
-            this.snackbarColor = "green";
+
+            this.logSuccess("Property Successfully Added!");
+          })
+          .then(() => {
+            this.$router.push({ name: "dashboard" });
           })
           .catch(error => {
             this.logError(error.message);
             this.loading = false;
-            this.snackbar = true;
-            this.snackbarMessage = error.message;
-            this.snackbarColor = "pink";
           });
 
         // console.log("valid tour");

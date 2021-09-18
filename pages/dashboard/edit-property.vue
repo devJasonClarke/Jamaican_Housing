@@ -124,7 +124,7 @@
             </v-stepper-content>
 
             <v-stepper-content step="2">
-         <!--      {{ `Property Type ${property.details.propertyType}` }} <br />
+              <!--      {{ `Property Type ${property.details.propertyType}` }} <br />
               {{ `Size ${property.details.size}` }} <br />
               {{ `Property For ${property.details.propertyFor}` }} <br />
               {{ `Rent Type ${property.details.rentType}` }} <br />
@@ -301,7 +301,7 @@
                 <p class="text-h6 pb-6">
                   Please select the amenities for your property
                 </p>
-            <!--     {{ property.amenities }} -->
+                <!--     {{ property.amenities }} -->
                 <v-form
                   v-model="validAmenities"
                   @submit.prevent="validateAmenities"
@@ -408,7 +408,7 @@
                       <v-text-field
                         outlined
                         dense
-                         prepend-icon="mdi-camera-image"
+                        prepend-icon="mdi-camera-image"
                         v-model="property.tours.virtualTour"
                         label="Virtual Tour URL"
                         required
@@ -422,7 +422,7 @@
                       <v-text-field
                         outlined
                         dense
-                          prepend-icon="mdi-youtube"
+                        prepend-icon="mdi-youtube"
                         v-model="property.tours.youtube"
                         label="Youtube Video ID"
                         :color="iconColor"
@@ -439,7 +439,7 @@
                     nuxt
                     :to="{ name: 'dashboard' }"
                   >
-                    View Updated Property
+                    Update Successful
                   </v-btn>
                   <v-btn
                     v-else
@@ -520,7 +520,6 @@
         </div>
       </SectionPadding>
     </section>
-
   </v-container>
 </template>
 
@@ -833,7 +832,7 @@ export default {
             this.loading = false;
             this.disabled = true;
             this.fileBeingUploaded = "";
-            this.logSuccess("Property Updated");
+            this.logSuccess("Property Successfully Updated");
           })
           .catch(error => {
             this.loading = false;
