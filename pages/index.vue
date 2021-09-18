@@ -56,8 +56,8 @@ export default {
   data() {
     return {
       title: "Home | Real Estate Ja",
-      description: "Welcome To Real Estate Ja"
-
+      description: "Welcome To Real Estate Ja",
+t: true
       /*       card: {
         title: "Sunny Private Studio Apartment",
         parish: "St. James",

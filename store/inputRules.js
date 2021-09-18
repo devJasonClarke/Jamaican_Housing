@@ -2,14 +2,14 @@ export const state = () => ({
   phoneNumberRules: [
     v => !!v || "Phone number is required.",
     value => (value || "").toString().length >= 10 || "10 Digit Dialing",
-    value => (value || "").toString().length < 15 || "Max 15 digits",
+    value => (value || "").toString().length < 11 || "10 Digit Dialing",
     value =>
      /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/i.test(
         value
       ) || "Phone number must be valid"
   ],
   whatsappNumberRules: [
-    value => (value || "").toString().length >= 10 || "10 Digit Dialing",
+    value => (value || "").toString().length >= 10 || "Min 10 Digits",
     value => (value || "").toString().length < 15 || "Max 15 digits",
     value =>
      /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/i.test(

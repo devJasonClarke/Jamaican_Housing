@@ -127,11 +127,11 @@ export const actions = {
       }
     );
   },
-  getSearchedPropertiesForRent({ commit, state }) {
+  getSearchedPropertiesForRent({ commit, state ,rootState }) {
     // console.log("getTheProperty Searched");
     // console.log(state.search.parish);
     // console.log(state.search.bedrooms);
-    // console.log(state.search.price);
+    // console.log((state.search.price / rootState.api.currencyRate));
     // console.log(state.search.type);
     // console.log("Get User: User");
 
@@ -146,7 +146,7 @@ export const actions = {
       .collection("properties")
       .where("parish", "==", state.search.parish)
       .where("bedrooms", "==", state.search.bedrooms)
-      .where("price", "<=", state.search.price)
+      .where("price", "<=", state.search.price / rootState.api.currencyRate)
       .where("type", "==", state.search.type)
       .where("propertyFor", "==", "Rent")
       .orderBy("price", "desc")
@@ -198,11 +198,11 @@ export const actions = {
       }
     );
   },
-  getSearchedPropertiesForRentNext({ commit, state }) {
+  getSearchedPropertiesForRentNext({ commit, state, rootState}) {
     // console.log("getTheProperty Searched");
     // console.log(state.search.parish);
     // console.log(state.search.bedrooms);
-    // console.log(state.search.price);
+    // console.log((state.search.price / rootState.api.currencyRate));
     // console.log(state.search.type);
     // console.log("Get User: User");
 
@@ -215,7 +215,7 @@ export const actions = {
       .collection("properties")
       .where("parish", "==", state.search.parish)
       .where("bedrooms", "==", state.search.bedrooms)
-      .where("price", "<=", state.search.price)
+      .where("price", "<=", state.search.price / rootState.api.currencyRate)
       .where("type", "==", state.search.type)
       .where("propertyFor", "==", "Rent")
       .orderBy("price", "desc")

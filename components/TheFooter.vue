@@ -59,7 +59,7 @@
               Keep up with the market
             </p>
             <p>
-              Enter you email address to receive the top real estate deals
+              Enter your email address to receive the top real estate deals
               currently on the market
             </p>
             <v-form ref="form" v-model="valid" @submit.prevent="validate">

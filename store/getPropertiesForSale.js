@@ -145,7 +145,7 @@ export const actions = {
       .collection("properties")
       .where("parish", "==", state.search.parish)
       .where("bedrooms", "==", state.search.bedrooms)
-      .where("price", "<=", state.search.price)
+      .where("price", "<=", (state.search.price / rootState.api.currencyRate))
       .where("type", "==", state.search.type)
       .where("propertyFor", "==", "Sale")
       .orderBy("price", "desc")
@@ -214,7 +214,7 @@ export const actions = {
       .collection("properties")
       .where("parish", "==", state.search.parish)
       .where("bedrooms", "==", state.search.bedrooms)
-      .where("price", "<=", state.search.price)
+      .where("price", "<=", (state.search.price / rootState.api.currencyRate) )
       .where("type", "==", state.search.type)
       .where("propertyFor", "==", "Sale")
       .orderBy("price", "desc")
@@ -293,9 +293,11 @@ export const actions = {
   setType({ commit }, value) {
     commit("SET_TYPE", value);
   },
-  setPrice({ commit }, value) {
+  setPrice({ commit ,rootState}, value) {
     //  let price = parseFloat(value.replace(/[^0-9]/g, ""));
     // // console.log(price);
+    console.log(value / rootState.api.currencyRate )
+    console.log(rootState.api.currencyRate)
     commit("SET_PRICE", value);
   },
   setBedrooms({ commit }, value) {

@@ -288,7 +288,7 @@
                   prepend-icon="mdi-image"
                   v-model="files"
                   @change="resetURL"
-                  label="Upload pictures of your property"
+                  label="Upload your profile picture"
                   :color="iconColor"
                   required
                   :rules="[

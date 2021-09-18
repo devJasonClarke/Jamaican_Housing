@@ -33,7 +33,7 @@
               dense
               label="MAX PRICE"
               v-model="selectedMaxPrice"
-              prepend-icon="mdi-cash-multiple "
+              prepend-icon="mdi-currency-usd "
               hide-details
               :items="maxPrices.rent"
               color="green"

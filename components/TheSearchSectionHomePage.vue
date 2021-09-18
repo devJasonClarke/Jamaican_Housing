@@ -72,7 +72,7 @@
                   dense
                   label="MAX PRICE"
                   v-model="selectedMaxPriceBuy"
-                  prepend-icon="mdi-cash-multiple "
+                  prepend-icon="mdi-currency-usd "
                   hide-details
                   :items="maxPrices[tabs]"
                   color="green"
@@ -168,7 +168,7 @@
                   dense
                   label="MAX PRICE"
                   v-model="selectedMaxPriceRent"
-                  prepend-icon="mdi-cash-multiple "
+                  prepend-icon="mdi-currency-usd "
                   hide-details
                   :items="maxPrices[tabs]"
                   color="green"
