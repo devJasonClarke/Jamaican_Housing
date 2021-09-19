@@ -25,7 +25,10 @@
               width="120"
               class="mx-auto my-0 d-flex justify-center align-center green rounded-circle"
             >
-              <v-img v-if="user.profilePicture.src" :src="user.profilePicture.src"></v-img>
+              <v-img
+                v-if="user.profilePicture.src"
+                :src="user.profilePicture.src"
+              ></v-img>
               <span v-else>
                 <v-icon color="grey lighten-4 text-h1"
                   >mdi-account mdi-48px</v-icon
@@ -34,7 +37,7 @@
             </v-list-item-avatar>
             <div class="text-center d-flex flex-column">
               <p class="text-h5 font-weight-bold mt-4 mb-0">
-                {{ user.personalDetails.displayName }}
+                {{ profanityFilter(user.personalDetails.displayName) }}
                 <VerifiedSymbol v-if="user.verified" :role="user.role" />
               </p>
               <a
@@ -230,11 +233,11 @@
           <p class="text-h4 font-weight-bold" id="top">
             Hello, I'm
             {{
-              user.personalDetails.firstName || user.personalDetails.displayName
+              profanityFilter(user.personalDetails.firstName) || profanityFilter(user.personalDetails.displayName)
             }}
           </p>
           <p class="body-1">
-            {{ user.personalDetails.about }}
+            {{ profanityFilter(user.personalDetails.about) }}
           </p>
 
           <v-divider class="my-6"></v-divider>
@@ -307,8 +310,8 @@ export default {
         }
       })
       .catch(error => {
-        this.logError(error.message)
-      // // console.log("Error getting document:", error);
+        this.logError(error.message);
+        // // console.log("Error getting document:", error);
       });
 
     /* let j = () => parishes.parishes.find(parish => parish.slug == theParam);
@@ -346,11 +349,11 @@ export default {
         },
 
         personalDetails: {
-          lastName: "",
-          displayName: "",
+          lastName: "a",
+          displayName: "a",
           initials: "",
-          firstName: "",
-          about: ""
+          firstName: "a",
+          about: "a"
         },
         contact: {
           whatsappNumber: null,
@@ -359,8 +362,8 @@ export default {
           phoneNumber: 23234234234
         },
         profilePicture: {
-          src: '',
-          fileName: ''
+          src: "",
+          fileName: ""
         },
         uid: ""
       }
@@ -370,7 +373,13 @@ export default {
     ...mapActions({
       logError: "errors/logError"
     }),
+    profanityFilter(info) {
+      var Filter = require("bad-words");
+      let filter = new Filter();
+      filter.addWords("Property");
 
+      return filter.clean(info);
+    },
     async loadUserProperties() {
       const ref = await this.$fire.firestore
         .collection("properties")
@@ -402,10 +411,10 @@ export default {
           }
         },
         error => {
-       // // console.log("Firebase");
+          // // console.log("Firebase");
           // console.log(error);
 
-          this.logError(error.message)
+          this.logError(error.message);
         }
       );
     },
@@ -418,10 +427,12 @@ export default {
       featuredProperties: "properties/featuredProperties"
     }),
     title() {
-      return `${this.user.personalDetails.displayName} | Profile`;
+      return `${this.profanityFilter(
+        this.user.personalDetails.displayName
+      )} | Profile`;
     },
     description() {
-      return `${this.user.personalDetails.about}`;
+      return `${this.profanityFilter(this.user.personalDetails.about)}`;
     },
     formattedNumber() {
       /* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */
