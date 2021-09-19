@@ -30,7 +30,7 @@
           </p>
           <h1 class="d-flex justify-space-between text-capitalize">
             <span>
-              {{ property.description.name }}
+              {{ profanityFilter(property.description.name) }}
 
               <v-tooltip color="blue" top v-if="property.verified">
                 <template v-slot:activator="{ on, attrs }">
@@ -116,7 +116,7 @@
           <div class="">
             <p class="text-h6">Description</p>
             <p>
-              {{ property.description.description }}
+              {{ profanityFilter(property.description.description) }}
             </p>
             <v-row class="mb-3">
               <v-col cols="12" sm="6"
@@ -438,7 +438,7 @@
                 :to="{ name: 'profile' }"
                 class="text-h6 blue--text mt-4 mb-0"
               >
-                {{ uploader.personalDetails.displayName }}
+                {{ profanityFilter(uploader.personalDetails.displayName) }}
                 <VerifiedSymbol
                   v-if="uploader.verified"
                   :role="uploader.role"
@@ -448,7 +448,7 @@
                 target="_blank"
                 :href="`mailto:${uploader.contact.email}`"
                 class="text-subtitle-1 blue--text "
-                >{{ uploader.contact.email }}</a
+                >{{ profanityFilter(uploader.contact.email) }}</a
               >
               <a
                 target="_blank"
@@ -725,8 +725,8 @@ export default {
         type: "",
         amenities: [],
         description: {
-          name: "",
-          description: ""
+          name: "Real Estate JA",
+          description: "Real Estate JA"
         },
         uploader: "sss"
       },
@@ -860,7 +860,7 @@ export default {
             let message = `Hi ${doc.data().firstName ||
               doc.data().personalDetails
                 .displayName}, I am interested in this property.`;
-            this.message = message;
+            this.message = this.profanityFilter(message);
           } else {
             // doc.data() will be undefined in this case
             // console.log("No such document!");
@@ -910,7 +910,14 @@ export default {
         si[i].s
       );
     },
+    profanityFilter(info) {
+   
+      var Filter = require("bad-words");
+      let filter = new Filter();
+         filter.addWords('Property');
 
+      return filter.clean(info);
+    },
     numberWithCommas(x) {
       x = Math.round((x + Number.EPSILON) * 100) / 100;
 
@@ -977,10 +984,12 @@ export default {
       }
     },
     title() {
-      return `${this.property.description.name} | Real Estate Jamaica | Property`;
+      return `${this.profanityFilter(
+        this.property.description.name
+      )} | Real Estate Jamaica | Property`;
     },
     description() {
-      return `${this.property.description.description}`;
+      return `${this.profanityFilter(this.property.description.description)}`;
     },
     formattedNumber() {
       /* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */

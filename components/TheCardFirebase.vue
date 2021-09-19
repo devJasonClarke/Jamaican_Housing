@@ -41,7 +41,7 @@
       <div>
         <v-card-title class="hyphens text-capitalize">
           <!-- {{ card.title }} -->
-          {{ property[0].description.name }}
+          {{ profanityFilter(property[0].description.name) }}
           <v-tooltip color="blue " v-if="property[0].verified" top>
             <template v-slot:activator="{ on, attrs }">
               <v-icon color="blue" dark v-bind="attrs" v-on="on" class="ml-2">
@@ -135,6 +135,11 @@ export default {
         (num / si[i].v).toFixed(2).replace(/\.0+$|(\.[0-9]*[1-9])0+$/, "$1") +
         si[i].s
       );
+    },
+    profanityFilter(info) {
+      var Filter = require("bad-words");
+      let filter = new Filter();
+      return filter.clean(info);
     }
   },
   computed: {
@@ -143,7 +148,8 @@ export default {
       activeCurrency: "api/activeCurrency",
       currencyRate: "api/currencyRate"
     })
-  }
+  },
+
 };
 </script>
 
