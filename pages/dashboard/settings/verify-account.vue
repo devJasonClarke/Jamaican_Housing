@@ -8,15 +8,53 @@
         title="sale"
       ></v-skeleton-loader>
     </SectionPadding>
- 
-    <section v-else>
+    <!--     <SectionPadding v-else-if="profile.verified === true" class="pt-9">
+      <v-sheet
+        height="200px"
+        class="d-flex justify-center align-center flex-column pa-3"
+        outlined
+        ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
+          Account Verified
+        </p>
+        <v-icon color="blue">mdi-check-decagram mdi-36px</v-icon>
+      </v-sheet>
+    </SectionPadding> -->
+    <SectionPadding
+      v-else-if="profile.verificationProcess === 'pending'"
+      class="pt-9"
+    >
+      <v-sheet
+        height="200px"
+        class="d-flex justify-center align-center flex-column pa-3"
+        outlined
+        ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
+          Request is being processed
+        </p>
+        <v-icon color="orange">mdi-check-decagram mdi-36px</v-icon>
+      </v-sheet>
+    </SectionPadding>
+    <SectionPadding
+      v-else-if="profile.verificationProcess === 'denied'"
+      class="pt-9"
+    >
+      <v-sheet
+        height="200px"
+        class="d-flex justify-center align-center flex-column pa-3"
+        outlined
+        ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
+          Verification Denied
+        </p>
+        <v-icon>mdi-check-decagram mdi-36px</v-icon>
+      </v-sheet>
+    </SectionPadding>
+    <section v-else id="top">
       <SectionPadding class="pt-9">
         <v-stepper v-model="cur">
           <v-stepper-header>
             <v-stepper-step
               :color="iconColor"
               step="1"
-              :complete="validDescription"
+              :complete="validPersonalDetails"
               editable
             >
               Personal Details
@@ -24,14 +62,13 @@
 
             <v-divider></v-divider>
 
-
             <v-stepper-step
               :color="iconColor"
               step="2"
               :complete="validPictures"
               editable
             >
-              Pictures
+              Valid ID
             </v-stepper-step>
             <v-divider></v-divider>
 
@@ -41,7 +78,7 @@
               :complete="cur > 2"
               editable
             >
-              Tours
+              Request Verfication
             </v-stepper-step>
           </v-stepper-header>
 
@@ -52,84 +89,86 @@
                   Please enter your personal information
                 </p>
                 <v-form
-                  v-model="validDescription"
+                  v-model="validPersonalDetails"
                   @submit.prevent="validateDescription"
-                  ref="descriptionForm"
+                  ref="personalDetails"
                 >
                   <v-row>
-                <v-col cols="12" md="6">
-                <v-text-field
-                  outlined
-                  dense
-                  prepend-icon="mdi-account"
-                  label="First Name*"
-                  required
-                  v-model="firstName"
-                  :color="iconColor"
-                  :rules="nameRules"
-                ></v-text-field
-              ></v-col>
-              <v-col cols="12" md="6">
-                <v-text-field
-                  outlined
-                  dense
-                  prepend-icon="mdi-account"
-                  label="Last Name *"
-                  required
-                  v-model="lastName"
-                  :color="iconColor"
-                  :rules="nameRules"
-                ></v-text-field
-              ></v-col>
-              <v-col cols="12" md="6">
-                <v-text-field
-                  outlined
-                  dense
-                  prepend-icon="mdi-email"
-                  label="Email Address *"
-                  required
-                  v-model="email"
-                  :color="iconColor"
-                  :rules="emailRules"
-                ></v-text-field
-              ></v-col>
-              <v-col cols="12" md="6">
-                <v-text-field
-                  outlined
-                  dense
-                  prepend-icon="mdi-phone"
-                  label="Phone Number *"
-                  required
-                  v-model.number="phoneNumber"
-                  :color="iconColor"
-                  type="number"
-                  :rules="phoneNumberRules"
-                ></v-text-field
-              ></v-col>
-              <v-col cols="12" md="6">
-                     <v-select
+                    <v-col cols="12" md="6">
+                      <v-text-field
                         outlined
                         dense
-                          prepend-icon="mdi-certificate"
+                        prepend-icon="mdi-account"
+                        label="First Name*"
+                        required
+                        v-model="firstName"
+                        :color="iconColor"
+                        :rules="nameRules"
+                      ></v-text-field
+                    ></v-col>
+                    <v-col cols="12" md="6">
+                      <v-text-field
+                        outlined
+                        dense
+                        prepend-icon="mdi-account"
+                        label="Last Name *"
+                        required
+                        v-model="lastName"
+                        :color="iconColor"
+                        :rules="nameRules"
+                      ></v-text-field
+                    ></v-col>
+                    <v-col cols="12" md="6">
+                      <v-text-field
+                        outlined
+                        dense
+                        prepend-icon="mdi-email"
+                        label="Email Address *"
+                        required
+                        v-model="email"
+                        :color="iconColor"
+                        :rules="emailRules"
+                      ></v-text-field
+                    ></v-col>
+                    <v-col cols="12" md="6">
+                      <v-text-field
+                        outlined
+                        dense
+                        prepend-icon="mdi-phone"
+                        label="Phone Number *"
+                        required
+                        v-model.number="phoneNumber"
+                        :color="iconColor"
+                        type="number"
+                        :rules="phoneNumberRules"
+                      ></v-text-field
+                    ></v-col>
+                    <v-col cols="12" md="6">
+                      <v-select
+                        outlined
+                        dense
+                        prepend-icon="mdi-certificate"
                         label="Are you a registered realtor? *"
-                        v-model="property.details.propertyType"
+                        v-model="realtor"
                         :items="['Yes', 'No']"
-                                :color="iconColor"
+                        :color="iconColor"
                         item-color="green"
                         :rules="[v => !!v || 'required']"
-                      ></v-select></v-col>
-              <v-col cols="12" md="6">
-                     <v-select
+                      ></v-select
+                    ></v-col>
+                    <v-col cols="12" md="6">
+                      <v-select
                         outlined
                         dense
-                          prepend-icon="mdi-island"
+                        prepend-icon="mdi-island"
                         label="Are you a Jamaican citizen? *"
-                        v-model="property.details.propertyType"
+                        v-model="citizen"
                         :items="['Yes', 'No']"
-                                :color="iconColor"
+                        :color="iconColor"
                         item-color="green"
                         :rules="[v => !!v || 'required']"
-                      ></v-select></v-col>
+                      ></v-select
+                    ></v-col>
                   </v-row>
                   <v-btn dark :color="iconColor" type="submit">
                     Continue
@@ -141,7 +180,8 @@
             <v-stepper-content step="2">
               <v-container>
                 <p class="text-h6 pb-6">
-                  Please add pictures of your property
+                  Please upload a picture of a valid ID along with your
+                  realtor's license.
                 </p>
                 <v-form
                   v-model="validPictures"
@@ -160,11 +200,11 @@
                       show-size
                       counter
                       multiple
-                      maxlength="7"
+                      maxlength="2"
                       prepend-icon="mdi-image-multiple"
                       v-model="files"
                       @change="resetURL"
-                      label="Upload pictures of your property"
+                      label="Upload pictures of your valid ID"
                       :color="iconColor"
                       required
                       :rules="[
@@ -173,9 +213,9 @@
                           !v ||
                           !v.some(file => file.size >= 1048576) ||
                           'All pictures should be 1 MB or less in size!',
-                        v => v.length < 8 || 'No more than 7 pictures',
+                        v => v.length < 3 || 'No more than 3 pictures',
                         v =>
-                          v.length > 2 || 'A minimum of 3 pictures are required'
+                          v.length > 0 || 'A minimum of 1 picture is required'
                       ]"
                     ></v-file-input>
                   </v-row>
@@ -200,41 +240,9 @@
             <v-stepper-content step="3">
               <v-container>
                 <p class="text-h6 pb-6">
-                  Please add your Virtual Tour or Youtube video ID (Optional)
+                  Request Verfication
                 </p>
-                <v-form
-                  v-model="validTours"
-                  @submit.prevent="uploadPictures"
-                  ref="toursForm"
-                >
-                  <v-row class="mb-6">
-                    <v-col cols="12" sm="6">
-                      <v-text-field
-                        outlined
-                        dense
-                        prepend-icon="mdi-camera-image"
-                        v-model="property.tours.virtualTour"
-                        label="Virtual Tour URL"
-                        required
-                        :color="iconColor"
-                        counter
-                        maxlength="80"
-                      ></v-text-field
-                    ></v-col>
-
-                    <v-col cols="12" sm="6">
-                      <v-text-field
-                        outlined
-                        dense
-                        prepend-icon="mdi-youtube"
-                        v-model="property.tours.youtube"
-                        label="Youtube Video ID"
-                        :color="iconColor"
-                        counter
-                        maxlength="11"
-                      ></v-text-field
-                    ></v-col>
-                  </v-row>
+                <v-form @submit.prevent="uploadPictures" ref="entireForm">
                   <v-btn
                     v-if="disabled"
                     dark
@@ -242,7 +250,7 @@
                     nuxt
                     :to="{ name: 'dashboard' }"
                   >
-                    Upload Successful
+                    Request Successfully Sent
                   </v-btn>
                   <v-btn
                     v-else
@@ -252,7 +260,7 @@
                     :loading="loading"
                     :disabled="disabled"
                   >
-                    Add Property
+                    Request Verification
                   </v-btn>
 
                   <v-btn text @click="cur = cur - 1">
@@ -307,68 +315,12 @@ export default {
       selected: [],
       files: [],
       urls: [],
-      validDescription: false,
-      validDetails: false,
-      validAmenities: false,
+      validPersonalDetails: false,
       validPictures: false,
-      validTours: false,
       loading: false,
       disabled: false,
-      property: {
-        description: {
-          name: "",
-          description: ""
-        },
-        details: {
-          propertyType: "",
-          size: null,
-          price: null,
-          propertyFor: "",
-          parish: "",
-          community: "",
-          bedrooms: null,
-          bathrooms: null,
-          garages: null,
-          rentType: "",
-          propertyId: ""
-        },
-        amenities: [],
-        tours: {
-          youtube: "",
-          virtualTour: ""
-        }
-      },
-      amenities: [
-        {
-          title: "Wifi",
-          icon: "mdi-wifi"
-        },
-        { title: "Air Conditioning", icon: "mdi-air-filter" },
-        { title: "Cable TV ", icon: "mdi-television" },
-        { title: "Gated Community", icon: "mdi-security" },
-        { title: "Parking", icon: "mdi-car" },
-        { title: "Furnished", icon: "mdi-sofa" },
-        { title: "Smart Home", icon: "mdi-home-assistant" },
-        { title: "24 Hour Security", icon: "mdi-cctv" },
-        { title: "Family Oriented", icon: "mdi-home-heart" },
-        { title: "Grilled", icon: "mdi-shield-home" },
-        { title: "Water Heater", icon: "mdi-thermometer-high" },
-        { title: "Swimming Pool", icon: "mdi-pool" },
-        { title: "Generator", icon: "mdi-flash" },
-        { title: "Water Tank", icon: "mdi-water" },
-        { title: "Gym", icon: "mdi-dumbbell" },
-        { title: "Tennis Court", icon: "mdi-tennis" },
-        { title: "Basketball Court", icon: "mdi-basketball" },
-        { title: "Park Near By", icon: "mdi-nature-people" },
-        { title: "Church Near By", icon: "mdi-church" },
-        { title: "Hospital Near By", icon: "mdi-hospital-building" },
-        { title: "Schools Near By", icon: "mdi-school" },
-        { title: "Supermarket Near By", icon: "mdi-shopping" },
-        { title: "Movie Theater Near By", icon: "mdi-theater" },
-        { title: "Restaurants Near By", icon: "mdi-silverware-fork-knife" }
-      ],
-      status: ["Rent", "Sale"],
-      rentType: ["Per Night", "Per Month"],
+      realtor: "",
+      citizen: "",
       imageUrls: [],
       fileBeingUploaded: "",
       fileName: ""
@@ -379,10 +331,11 @@ export default {
       logError: "errors/logError",
       logSuccess: "success/logSuccess",
       addNewUserProperty: "getUserProperties/addNewUserProperty",
-       setEmail: "profile/setEmail",
+      setEmail: "profile/setEmail",
       setFirstName: "profile/setFirstName",
       setLastName: "profile/setLastName",
- setPhoneNumber: "profile/setPhoneNumber",
+      setPhoneNumber: "profile/setPhoneNumber",
+      setVerificationProcess: "profile/setVerificationProcess"
     }),
     addDropFile(e) {
       this.urls = [];
@@ -392,7 +345,7 @@ export default {
       this.urls = [];
     },
     validateDescription() {
-      if (this.$refs.descriptionForm.validate()) {
+      if (this.$refs.personalDetails.validate()) {
         // console.log("valid des");
         this.cur++;
       } else {
@@ -441,11 +394,9 @@ export default {
     },
     uploadPictures() {
       if (
-        this.$refs.descriptionForm.validate() &&
-        this.$refs.detailsForm.validate() &&
-        this.$refs.amenitiesForm.validate() &&
+        this.$refs.personalDetails.validate() &&
         this.$refs.picturesForm.validate() &&
-        this.$refs.toursForm.validate() &&
+        this.$refs.entireForm.validate() &&
         this.profile.personalDetails.displayName
       ) {
         this.loading = true;
@@ -454,7 +405,9 @@ export default {
         let date = Date.now();
 
         for (let i = 0; i < this.files.length; i++) {
-          this.fileName = `${date.toString()}_${this.files[i].name}`;
+          this.fileName = `verification_${date.toString()}_${
+            this.files[i].name
+          }`;
 
           let ref = storage
             .child(`property_images/${this.user.uid}/${this.fileName}`)
@@ -481,7 +434,9 @@ export default {
                   this.fileBeingUploaded = this.files[i].name;
                   this.imageUrls.push({
                     src: downloadURL,
-                    fileName: `${date.toString()}_${this.fileBeingUploaded}`
+                    fileName: `verification_${date.toString()}_${
+                      this.fileBeingUploaded
+                    }`
                   });
                 })
                 .then(() => {
@@ -504,74 +459,44 @@ export default {
     },
     addProperty() {
       if (
-        this.$refs.descriptionForm.validate() &&
-        this.$refs.detailsForm.validate() &&
-        this.$refs.amenitiesForm.validate() &&
+        this.$refs.personalDetails.validate() &&
         this.$refs.picturesForm.validate() &&
-        this.$refs.toursForm.validate()
+        this.$refs.entireForm.validate() &&
+        this.profile.personalDetails.displayName
       ) {
         this.loading = true;
-        let bedrooms;
-        if (this.property.details.bedrooms >= 4) {
-          bedrooms = "4 +";
-          // console.log(bedrooms);
-          // console.log(typeof bedrooms);
-        } else {
-          bedrooms = `${this.property.details.bedrooms}`;
-          // console.log(bedrooms);
-          // console.log(typeof bedrooms);
-        }
 
         this.$fire.firestore
-          .collection("properties")
-          .add({
-            price: parseFloat(this.property.details.price),
-            parish: this.property.details.parish,
-            type: this.property.details.propertyType,
-            bedrooms: bedrooms,
-            featured: false,
-            verified: false,
-            propertyFor: this.property.details.propertyFor,
+          .collection("request_verification")
+          .doc(this.user.uid)
+          .set({
+            firstName: this.firstName,
+            lastName: this.lastName,
+            email: this.email,
+            phoneNumber: this.phoneNumber,
+            realtorLicense: this.realtor,
+            jamaicanCitizen: this.citizen,
 
-            description: this.property.description,
-            details: this.property.details,
-            amenities: this.property.amenities,
-            tours: this.property.tours,
+            verified: this.profile.verified,
             uploader: this.user.uid,
             timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
             images: this.imageUrls
           })
-          .then(docRef => {
-            // console.log("Document written with ID: ", docRef.id);
-            this.addNewUserProperty([
-              {
-                price: parseFloat(this.property.details.price),
-                parish: this.property.details.parish,
-                type: this.property.details.propertyType,
-                bedrooms: bedrooms,
-                featured: false,
-                verified: false,
-                propertyFor: this.property.details.propertyFor,
-
-                description: this.property.description,
-                details: this.property.details,
-                amenities: this.property.amenities,
-                tours: this.property.tours,
-                uploader: this.user.uid,
-                images: this.imageUrls
-              },
-              docRef.id
-            ]);
+          .then(() => {
+            this.$fire.firestore
+              .collection("users")
+              .doc(this.user.uid)
+              .update({
+                verificationProcess: "pending"
+              });
+            this.setVerificationProcess();
           })
           .then(() => {
             this.loading = false;
             this.disabled = true;
             this.fileBeingUploaded = "";
 
-            this.logSuccess("Property Successfully Added!");
-          })
-          .then(() => {
-            this.$router.push({ name: "dashboard" });
+            this.logSuccess("Verification Successfully Requested!");
           })
           .catch(error => {
             this.logError(error.message);
@@ -596,8 +521,8 @@ export default {
       realEstateType: "selectOptions/realEstateType",
       user: "authentication/user",
       profile: "profile/profile",
- phoneNumberRules: "inputRules/phoneNumberRules",
-   emailRules: "inputRules/emailRules",
+      phoneNumberRules: "inputRules/phoneNumberRules",
+      emailRules: "inputRules/emailRules"
     }),
     title() {
       return `${this.profile.personalDetails.displayName} | Verify Account | Dashboard`;
@@ -605,7 +530,7 @@ export default {
     description() {
       return `Verify your account ${this.profile.personalDetails.displayName}`;
     },
-       email: {
+    email: {
       get() {
         return this.profile.contact.email;
       },
@@ -636,7 +561,7 @@ export default {
       set(value) {
         this.setPhoneNumber(value);
       }
-    },
+    }
   }
 };
 </script>

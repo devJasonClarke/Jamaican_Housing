@@ -71,6 +71,9 @@ export const actions = {
   setwebsite({ commit }, value) {
     commit("SET_WEBSITE", value);
   },
+  setVerificationProcess({ commit }) {
+    commit("SET_VERIFICATION_PROCESS");
+  },
   updateAccountDetails({ commit, state }) {
     commit("SET_DETAILS_LOADER", true);
 
@@ -237,5 +240,9 @@ export const mutations = {
   },
   SET_SOCIAL_LOADER: (state, value) => {
     state.updateSocialLoader = value;
+  },
+
+  SET_VERIFICATION_PROCESS: (state) =>{
+    state.profile['verificationProcess'] = 'pending';
   }
 };

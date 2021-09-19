@@ -1,6 +1,6 @@
 <template>
   <v-snackbar color="error" bottom v-if="errorMessage" v-model="error" :timeout='300000'>
-    {{ errorMessage }}
+<span class="white--text">    {{ errorMessage }}</span>
 
     <template v-slot:action="{ attrs }">
       <v-btn color="white" outlined v-bind="attrs" @click="resetError">

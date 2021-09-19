@@ -1,6 +1,12 @@
 <template>
-  <v-snackbar color="success" bottom v-if="successMessage" v-model="success" :timeout='300000'>
-    {{ successMessage }}
+  <v-snackbar
+    color="success"
+    bottom
+    v-if="successMessage"
+    v-model="success"
+    :timeout="300000"
+  >
+    <span class="white--text"> {{ successMessage }}</span>
 
     <template v-slot:action="{ attrs }">
       <v-btn color="white" outlined v-bind="attrs" @click="resetSuccess">
