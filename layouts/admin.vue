@@ -67,7 +67,10 @@
             :width="[miniVariant ? 40 : 120]"
             class="mx-0 d-flex justify-center align-center green"
           >
-            <v-img v-if="profile.profilePicture.src" :src="profile.profilePicture.src"></v-img>
+            <v-img
+              v-if="profile.profilePicture.src"
+              :src="profile.profilePicture.src"
+            ></v-img>
             <span
               v-else-if="profile.personalDetails.initials"
               :class="[
@@ -112,19 +115,6 @@
           v-model="group"
           active-class="green--text text--accent-4"
         >
-          <v-list-item
-             link
-            class="text-capitalize"
-            :to="{ name: 'admin' }"
-            exact
-            v-if="profile.verified && profile.role === 'admin'"
-          >
-            <v-list-item-icon>
-              <v-icon>mdi-shield-check-outline</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title>Admin</v-list-item-title>
-          </v-list-item>
           <v-list-item
             v-for="(route, index) in routes"
             :key="'navigationDrawer' + index"
@@ -189,7 +179,13 @@
         <v-icon v-else @click="toggleTheme">mdi-weather-night</v-icon>
       </div>
 
-      <v-menu bottom max-width="150px" rounded offset-y :close-on-content-click="closeOnContentClick">
+      <v-menu
+        bottom
+        max-width="150px"
+        rounded
+        offset-y
+        :close-on-content-click="closeOnContentClick"
+      >
         <template v-slot:activator="{ on }">
           <v-btn icon x-large v-on="on" class="mr-1">
             <v-skeleton-loader
@@ -201,7 +197,10 @@
             ></v-skeleton-loader>
             <span v-else>
               <v-avatar color="green" size="36">
-                <v-img v-if="profile.profilePicture.src" :src="profile.profilePicture.src"></v-img>
+                <v-img
+                  v-if="profile.profilePicture.src"
+                  :src="profile.profilePicture.src"
+                ></v-img>
                 <span
                   class="white--text  "
                   v-else-if="profile.personalDetails.initials"
@@ -215,47 +214,40 @@
           </v-btn>
         </template>
 
-       <v-list dense nav>
-            <v-list-item-group
-           
-              active-class="green--text text--accent-4"
-            >
-              <v-list-item class="text-uppercase" exact :to="{ name: 'index' }">
-                <v-list-item-title>Home Page</v-list-item-title>
-              </v-list-item>
-              <!--     <v-list-item
+        <v-list dense nav>
+          <v-list-item-group active-class="green--text text--accent-4">
+            <v-list-item class="text-uppercase" exact :to="{ name: 'index' }">
+              <v-list-item-title>Home Page</v-list-item-title>
+            </v-list-item>
+            <!--     <v-list-item
                 class="text-uppercase"
                 :to="{ name: 'dashboard-settings' }"
               >
                 <v-list-item-title>Profile</v-list-item-title>
               </v-list-item> -->
-            </v-list-item-group>
-          </v-list>
+          </v-list-item-group>
+        </v-list>
 
-          <v-sheet>
-            <v-switch
-              @click="toggleTheme"
-              :input-value="colorTheme"
-              class="px-2 pt-0 mt-0"
-              inset
-              label="Dark Mode"
-              color="green accent-4"
-            ></v-switch
-          ></v-sheet>
-          <TheCurrencySelector class="mb-0" />
-          <v-list class="mt-0" dense nav>
-            <v-list-item-group
-        
-              active-class="green--text text--accent-4"
-            >
-              <v-list-item class="text-uppercase" @click="logout">
-                <v-list-item-title class="red--text d-flex align-center">
-                  Logout</v-list-item-title
-                >
-              </v-list-item>
-            </v-list-item-group>
-          </v-list>
-     
+        <v-sheet>
+          <v-switch
+            @click="toggleTheme"
+            :input-value="colorTheme"
+            class="px-2 pt-0 mt-0"
+            inset
+            label="Dark Mode"
+            color="green accent-4"
+          ></v-switch
+        ></v-sheet>
+        <TheCurrencySelector class="mb-0" />
+        <v-list class="mt-0" dense nav>
+          <v-list-item-group active-class="green--text text--accent-4">
+            <v-list-item class="text-uppercase" @click="logout">
+              <v-list-item-title class="red--text d-flex align-center">
+                Logout</v-list-item-title
+              >
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
       </v-menu>
     </v-app-bar>
 
@@ -266,7 +258,10 @@
     </v-main>
 
     <v-footer :absolute="false" app>
-      <span>&copy; Real Estate JA {{ new Date().getFullYear() }} | All rights reserved </span>
+      <span
+        >&copy; Real Estate JA {{ new Date().getFullYear() }} | All rights
+        reserved
+      </span>
     </v-footer>
   </v-app>
 </template>
@@ -275,7 +270,7 @@
 import { mapGetters, mapActions } from "vuex";
 import VerifiedSymbol from "../components/VerifiedSymbol.vue";
 export default {
-  middleware: ["authenticated"],
+  middleware: ["admin"],
   components: { VerifiedSymbol },
   fetch() {
     if (this.newMessages.length == 0) {
@@ -284,7 +279,7 @@ export default {
   },
   data() {
     return {
-      closeOnContentClick: false, 
+      closeOnContentClick: false,
       group: null,
       clipped: false,
       drawer: true,
@@ -300,34 +295,14 @@ export default {
           route: "index"
         },
         {
-          icon: "mdi-apps",
-          title: "Properties",
-          route: "dashboard"
-        },
-        {
-          icon: "mdi-home-import-outline",
-          title: "Add Property",
-          route: "dashboard-add-property"
+          icon: "mdi-check-decagram",
+          title: "Verify Users",
+          route: "admin"
         },
         {
           icon: "mdi-message-text-outline",
           title: "Messages",
-          route: "dashboard-messages"
-        },
-        {
-          icon: "mdi-heart-outline",
-          title: "Favourites",
-          route: "dashboard-favourites"
-        },
-        {
-          icon: "mdi-credit-card-outline",
-          title: "Payments",
-          route: "dashboard-settings-payments"
-        }
-      ,        {
-          icon: "mdi-account-circle-outline",
-          title: "Settings",
-          route: "dashboard-settings"
+          route: "admin-messages"
         }
       ],
       flexMd: false
@@ -354,6 +329,7 @@ export default {
     this.resize();
     window.addEventListener("resize", () => {
       this.resize();
+  
     });
   },
   computed: {
@@ -362,8 +338,10 @@ export default {
       oldMessages: "messages/oldMessages",
       profile: "profile/profile",
       userAthenticated: "profile/userAthenticated",
-        colorTheme: "colorTheme/theme",
-    })
-  }
+      colorTheme: "colorTheme/theme"
+    }),
+    false() {
+   return console.log('kk')
+  }}
 };
 </script>

@@ -46,8 +46,8 @@
           </p>
           <p class="text-body-2">
             Use Real Estate Ja to advertise and post your real estate listings
-            for FREE! Get your first property online within 7 minutes. Open it
-            up to the global community.
+            for FREE! Verify your account and open your properties
+            up to the global market.
           </p>
         </div></v-col
       >

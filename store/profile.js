@@ -2,7 +2,7 @@ export const state = () => ({
   profile: {
     achievements: [],
     loading: true,
-    verified: false,
+    verified: '',
     role: "",
     lastName: "",
     socialMedia: {
