@@ -233,7 +233,8 @@
           <p class="text-h4 font-weight-bold" id="top">
             Hello, I'm
             {{
-              profanityFilter(user.personalDetails.firstName) || profanityFilter(user.personalDetails.displayName)
+              profanityFilter(user.personalDetails.firstName) ||
+                profanityFilter(user.personalDetails.displayName)
             }}
           </p>
           <p class="body-1">
@@ -376,7 +377,6 @@ export default {
     profanityFilter(info) {
       var Filter = require("bad-words");
       let filter = new Filter();
-      filter.addWords("Property");
 
       return filter.clean(info);
     },

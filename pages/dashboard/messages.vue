@@ -82,7 +82,7 @@
                 >{{ message[0].property }}</a
               >
             </p>
-            <p>Message: {{ message[0].message }}</p>
+            <p>Message: {{ profanityFilter(message[0].message) }}</p>
             <v-btn
               link
               :href="`mailto:${message[0].email}`"
@@ -181,6 +181,12 @@ export default {
       this.changeMessageReadState(index);
       // console.log(message);
       // console.log(index);
+    },
+    profanityFilter(info) {
+      var Filter = require("bad-words");
+      let filter = new Filter();
+
+      return filter.clean(info);
     },
     removeMessage(message, index) {
       this.deleteMessage(message);

@@ -911,10 +911,8 @@ export default {
       );
     },
     profanityFilter(info) {
-   
       var Filter = require("bad-words");
       let filter = new Filter();
-         filter.addWords('Property');
 
       return filter.clean(info);
     },
