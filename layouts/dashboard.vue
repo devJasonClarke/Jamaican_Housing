@@ -276,7 +276,6 @@ import { mapGetters, mapActions } from "vuex";
 import VerifiedSymbol from "../components/VerifiedSymbol.vue";
 export default {
   middleware: ["authenticated"],
-  components: { VerifiedSymbol },
   fetch() {
     if (this.newMessages.length == 0) {
       this.getNewMessages();
