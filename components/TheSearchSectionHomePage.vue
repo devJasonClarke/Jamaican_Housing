@@ -67,28 +67,20 @@
                 ></v-select>
               </v-col>
               <v-col>
-                <v-select
+                <v-text-field
                   outlined
                   dense
-                  label="MAX PRICE"
+                  :label="`MAX PRICE (${activeCurrency})`"
                   v-model="selectedMaxPriceBuy"
                   prepend-icon="mdi-currency-usd "
                   hide-details
-                  :items="maxPrices[tabs]"
+                  type="number"
                   color="green"
-                  item-color="green"
                   :rules="[v => !!v || 'Item is required']"
+                  @change="resetPropertySearch"
                   required
                 >
-                  <template slot="selection" slot-scope="{ item }">
-                    $ {{ numberWithCommas(item.value * currencyRate) }}
-                    {{ activeCurrency }}
-                  </template>
-                  <template slot="item" slot-scope="{ item }">
-                    $ {{ numberWithCommas(item.value * currencyRate) }}
-                    {{ activeCurrency }}
-                  </template>
-                </v-select>
+                </v-text-field>
               </v-col>
               <v-col>
                 <v-select
@@ -163,28 +155,20 @@
                 ></v-select>
               </v-col>
               <v-col>
-                <v-select
+                <v-text-field
                   outlined
                   dense
-                  label="MAX PRICE"
+                  :label="`MAX PRICE (${activeCurrency})`"
                   v-model="selectedMaxPriceRent"
                   prepend-icon="mdi-currency-usd "
                   hide-details
-                  :items="maxPrices[tabs]"
+                  type="number"
                   color="green"
-                  item-color="green"
                   :rules="[v => !!v || 'Item is required']"
+                  @change="resetPropertySearch"
                   required
                 >
-                  <template slot="selection" slot-scope="{ item }">
-                    $ {{ numberWithCommas(item.value * currencyRate) }}
-                    {{ activeCurrency }}
-                  </template>
-                  <template slot="item" slot-scope="{ item }">
-                    $ {{ numberWithCommas(item.value * currencyRate) }}
-                    {{ activeCurrency }}
-                  </template>
-                </v-select>
+                </v-text-field>
               </v-col>
               <v-col>
                 <v-select

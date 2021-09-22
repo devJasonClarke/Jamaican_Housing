@@ -60,29 +60,7 @@
             >
            
             </v-text-field>
-        <!--     <v-select
-              outlined
-              dense
-              label="MAX PRICE"
-              v-model="selectedMaxPrice"
-              prepend-icon="mdi-currency-usd "
-              hide-details
-              :items="maxPrices.buy"
-              color="green"
-              item-color="green"
-              :rules="[v => !!v || 'Item is required']"
-              @change="resetPropertySearch"
-              required
-            >
-              <template slot="selection" slot-scope="{ item }">
-                $ {{ numberWithCommas(item.value * currencyRate) }}
-                {{ activeCurrency }}
-              </template>
-              <template slot="item" slot-scope="{ item }">
-                $ {{ numberWithCommas(item.value * currencyRate) }}
-                {{ activeCurrency }}
-              </template>
-            </v-select> -->
+
           </v-col>
           <v-col>
             <v-select

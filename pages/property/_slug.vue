@@ -359,17 +359,30 @@
           </div>
           <v-divider class="mt-1 mb-6"></v-divider>
 
-          <div v-if="property.tours.virtualTour">
+          <div v-if="property.tours.matterport">
             <p class="text-h6">Virtual Tour</p>
             <iframe
               width="100%"
               height="430"
-              :src="property.tours.virtualTour"
+              :src="`https://my.matterport.com/show/?m=${property.tours.matterport}`"
               frameborder="0"
+               class="mb-3"
               allowfullscreen
               allow="xr-spatial-tracking"
             ></iframe>
-            <v-divider class="mt-1 mb-6"></v-divider>
+         <!--      <a
+              :href="
+                `https://my.matterport.com/show/?m=${property.tours.matterport}`
+              "
+              target="_blank"
+              rel="noopener noreferrer"
+              class="blue--text"
+              >Source:
+              {{
+                `https://my.matterport.com/show/?m=${property.tours.matterport}`
+              }}</a
+            > -->
+            <v-divider class="mt-3 mb-6"></v-divider>
           </div>
 
           <div v-if="property.tours.youtube">
@@ -721,7 +734,7 @@ export default {
           bedRooms: ""
         },
         parish: "",
-        tours: { virtualTour: "", youtube: "" },
+        tours: { matterport: "", youtube: "" },
         type: "",
         amenities: [],
         description: {

@@ -409,7 +409,7 @@
                         outlined
                         dense
                         prepend-icon="mdi-camera-image"
-                        v-model="property.tours.virtualTour"
+                        v-model="property.tours.matterport"
                         label="Virtual Tour URL"
                         required
                         :color="iconColor"
@@ -582,7 +582,7 @@ export default {
         verified: "",
         tours: {
           youtube: "",
-          virtualTour: ""
+          matterport: ""
         },
         uploader: "",
         details: {

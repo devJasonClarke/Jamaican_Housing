@@ -4,7 +4,7 @@ export const state = () => ({
     value => (value || "").toString().length >= 10 || "10 Digit Dialing",
     value => (value || "").toString().length < 11 || "10 Digit Dialing",
     value =>
-     /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/i.test(
+      /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/i.test(
         value
       ) || "Phone number must be valid"
   ],
@@ -12,7 +12,7 @@ export const state = () => ({
     value => (value || "").toString().length >= 10 || "Min 10 Digits",
     value => (value || "").toString().length < 15 || "Max 15 digits",
     value =>
-     /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/i.test(
+      /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/i.test(
         value
       ) || "Phone number must be valid"
   ],
@@ -71,12 +71,24 @@ export const state = () => ({
   ],
   websiteRules: [
     value => !/[ ]/.test(value) || "no spaces allowed",
-    value => (value || "").length <= 100 || "Max 100 characters",
+    value => (value || "").length <= 100 || "Max 100 characters"
     /* value =>
       /^(https?|ftp|torrent|image|irc):\/\/(-\.)?([^\s\/?\.#-]+\.?)+(\/[^\s]*)?$/i.test(
         value
       ) || "URL must be valid. Please enter full URL including HTTPS." */
-  ]
+  ],
+  youtubeRules: [
+    value => !/[ ]/.test(value) || "no spaces allowed",
+    value =>
+      /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/i.test(value) ||
+      "Valid Youtube URL required"
+  ],
+  matterportRules: [
+    value => !/[ ]/.test(value) || "no spaces allowed",
+    value =>
+    /https?:\/\/my\.matterport\.com\/show\/\??(m=(?<code>[\w\d]+))/i.test(value) ||
+      "Valid virtual tour URL required. Contact us for more details."
+  ],
 });
 
 export const getters = {
@@ -90,5 +102,8 @@ export const getters = {
   messageRules: state => state.messageRules,
   descriptionRules: state => state.descriptionRules,
   idRules: state => state.idRules,
-  websiteRules: state => state.websiteRules
+  websiteRules: state => state.websiteRules,
+  youtubeRules: state => state.youtubeRules,
+  matterportRules: state => state.matterportRules,
+  
 };

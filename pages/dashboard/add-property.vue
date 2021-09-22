@@ -422,12 +422,19 @@
                         outlined
                         dense
                         prepend-icon="mdi-camera-image"
-                        v-model="property.tours.virtualTour"
+                        v-model="property.tours.matterport"
                         label="Virtual Tour URL"
                         required
                         :color="iconColor"
-                        counter
-                        maxlength="80"
+                        @input="getMatterportTour"
+                        :rules="
+                          property.tours.matterport
+                            ? matterportRules
+                            : [
+                                value =>
+                                  !/[ ]/.test(value) || 'no spaces allowed'
+                              ]
+                        "
                       ></v-text-field
                     ></v-col>
 
@@ -439,10 +446,18 @@
                         v-model="property.tours.youtube"
                         label="Youtube Video ID"
                         :color="iconColor"
-                        counter
-                        maxlength="11"
+                        @input="getYoutubeVideoId"
+                        :rules="
+                          property.tours.youtube
+                            ? youtubeRules
+                            : [
+                                value =>
+                                  !/[ ]/.test(value) || 'no spaces allowed'
+                              ]
+                        "
                       ></v-text-field
                     ></v-col>
+                 
                   </v-row>
                   <v-btn
                     v-if="disabled"
@@ -544,7 +559,7 @@ export default {
         amenities: [],
         tours: {
           youtube: "",
-          virtualTour: ""
+          matterport: ""
         }
       },
       amenities: [
@@ -580,7 +595,11 @@ export default {
       rentType: ["Per Night", "Per Month"],
       imageUrls: [],
       fileBeingUploaded: "",
-      fileName: ""
+      fileName: "",
+      youtubeVideoId: "",
+      validYoutubeVideoId: "",
+      validMatterportTour: "",
+      matterportId: ""
     };
   },
   methods: {
@@ -589,6 +608,40 @@ export default {
       logSuccess: "success/logSuccess",
       addNewUserProperty: "getUserProperties/addNewUserProperty"
     }),
+    getYoutubeVideoId() {
+      this.youtubeVideoId = "";
+      let id = this.property.tours.youtube.split(
+        /(vi\/|v%3D|v=|\/v\/|youtu\.be\/|\/embed\/)/
+      );
+
+      this.validYoutubeVideo = /(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/i.test(
+        id
+      );
+
+      if (this.validYoutubeVideo) {
+        this.youtubeVideoId =
+          undefined !== id[2] ? id[2].split(/[^0-9a-z_\-]/i)[0] : id[0];
+      }
+    },
+    getMatterportTour() {
+      this.matterportId = "";
+      let id = this.property.tours.matterport.split(
+        /https?:\/\/my\.matterport\.com\/show\/\??(m=(?<code>[\w\d]+))/
+      );
+
+      console.log(id);
+
+      this.validMatterportTour = /https?:\/\/my\.matterport\.com\/show\/\??(m=(?<code>[\w\d]+))/i.test(
+        this.property.tours.matterport
+      );
+
+      console.log(this.validMatterportTour);
+
+      //      if (this.validMatterportTour) {
+      this.matterportId =
+        undefined !== id[2] ? id[2].split(/[^0-9a-z_\-]/i)[0] : id[0];
+      // }
+    },
     addDropFile(e) {
       this.urls = [];
       this.files.push(...Array.from(e.dataTransfer.files));
@@ -704,6 +757,7 @@ export default {
         }
       } else {
         // console.log("not");
+
         this.logError("Please complete required sections.");
       }
     },
@@ -741,7 +795,10 @@ export default {
             description: this.property.description,
             details: this.property.details,
             amenities: this.property.amenities,
-            tours: this.property.tours,
+            tours: {
+              youtube: this.youtubeVideoId,
+              matterport: this.matterportId
+            },
             uploader: this.user.uid,
             timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
             images: this.imageUrls
@@ -761,7 +818,10 @@ export default {
                 description: this.property.description,
                 details: this.property.details,
                 amenities: this.property.amenities,
-                tours: this.property.tours,
+                tours: {
+                  youtube: this.youtubeVideoId,
+                  matterport: this.matterportId
+                },
                 uploader: this.user.uid,
                 images: this.imageUrls
               },
@@ -796,6 +856,9 @@ export default {
       descriptionRules: "inputRules/descriptionRules",
       amountRules: "inputRules/amountRules",
       amountRulesMinOne: "inputRules/amountRulesMinOne",
+
+      matterportRules: "inputRules/matterportRules",
+      youtubeRules: "inputRules/youtubeRules",
       idRules: "inputRules/idRules",
       parishes: "selectOptions/parishes",
       realEstateType: "selectOptions/realEstateType",
