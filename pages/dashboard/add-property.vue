@@ -252,7 +252,16 @@
                       ></v-text-field
                     ></v-col>
 
-                    <v-col cols="12" sm="6">
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      v-if="
+                        property.details.propertyType === '' ||
+                          property.details.propertyType === 'House' ||
+                          property.details.propertyType === 'Apartment' ||
+                          property.details.propertyType === 'Townhouse'
+                      "
+                    >
                       <v-text-field
                         outlined
                         dense
@@ -264,7 +273,20 @@
                         :rules="amountRules"
                       ></v-text-field
                     ></v-col>
-                    <v-col cols="12" sm="6">
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      v-if="
+                        property.details.propertyType === '' ||
+                          property.details.propertyType === 'Apartment' ||
+                          property.details.propertyType ===
+                            'Commercial Building/Offices' ||
+                          property.details.propertyType === 'Factory' ||
+                          property.details.propertyType === 'House' ||
+                          property.details.propertyType === 'Townhouse' ||
+                          property.details.propertyType === 'Warehouse'
+                      "
+                    >
                       <v-text-field
                         outlined
                         dense
@@ -278,7 +300,20 @@
                       ></v-text-field
                     ></v-col>
 
-                    <v-col cols="12" sm="6">
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      v-if="
+                        property.details.propertyType === '' ||
+                          property.details.propertyType === 'Apartment' ||
+                          property.details.propertyType ===
+                            'Commercial Building/Offices' ||
+                          property.details.propertyType === 'Factory' ||
+                          property.details.propertyType === 'House' ||
+                          property.details.propertyType === 'Townhouse' ||
+                          property.details.propertyType === 'Warehouse'
+                      "
+                    >
                       <v-text-field
                         outlined
                         dense
@@ -444,7 +479,7 @@
                         dense
                         prepend-icon="mdi-youtube"
                         v-model="property.tours.youtube"
-                        label="Youtube Video ID"
+                        label="Youtube Video URL"
                         :color="iconColor"
                         @input="getYoutubeVideoId"
                         :rules="
@@ -618,8 +653,9 @@ export default {
       );
 
       if (this.validYoutubeVideo) {
-        this.youtubeVideoId =
-          undefined !== id[2] ? id[2].split(/[^0-9a-z_\-]/i)[0] : id[0];
+        this.youtubeVideoId = `https://www.youtube.com/watch?v=${
+          undefined !== id[2] ? id[2].split(/[^0-9a-z_\-]/i)[0] : id[0]
+        }`;
       }
     },
     getMatterportTour() {
@@ -636,10 +672,11 @@ export default {
 
       console.log(this.validMatterportTour);
 
-      //      if (this.validMatterportTour) {
-      this.matterportId =
-        undefined !== id[2] ? id[2].split(/[^0-9a-z_\-]/i)[0] : id[0];
-      // }
+      if (this.validMatterportTour) {
+        this.matterportId = `https://my.matterport.com/show/?m=${
+          undefined !== id[2] ? id[2].split(/[^0-9a-z_\-]/i)[0] : id[0]
+        }`;
+      }
     },
     addDropFile(e) {
       this.urls = [];

@@ -75,12 +75,34 @@
             {{ shortenNumber(property[0].details.size * 1) }}
             ft<sup>2</sup>
           </p>
-          <p>
+          <p
+            v-if="
+              property[0].details.propertyType === '' ||
+                property[0].details.propertyType === 'House' ||
+                property[0].details.propertyType === 'Apartment' ||
+                property[0].details.propertyType === 'Townhouse'
+            "
+          >
             <v-icon :color="iconColor">mdi-bed mdi-18px</v-icon>
             <!--  {{ card.beds }} -->
             {{ property[0].details.bedrooms }}
           </p>
-          <p>
+          <p v-else>
+            <v-icon :color="iconColor">mdi-home-city mdi-18px</v-icon>
+            {{ property[0].details.propertyFor }}
+          </p>
+          <p
+            v-if="
+              property[0].details.propertyType === '' ||
+                property[0].details.propertyType === 'Apartment' ||
+                property[0].details.propertyType ===
+                  'Commercial Building/Offices' ||
+                property[0].details.propertyType === 'Factory' ||
+                property[0].details.propertyType === 'House' ||
+                property[0].details.propertyType === 'Townhouse' ||
+                property[0].details.propertyType === 'Warehouse'
+            "
+          >
             <v-icon :color="iconColor">mdi-shower mdi-flip-h mdi-18px</v-icon>
             <!--   {{ card.bathroom }} -->
             {{ property[0].details.bathrooms }}

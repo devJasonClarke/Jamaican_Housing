@@ -81,7 +81,14 @@
               >
               {{ shortenNumber(property.details.size * 1) }} Sq. Ft
             </p>
-            <p>
+            <p
+              v-if="
+                property.details.propertyType === '' ||
+                  property.details.propertyType === 'House' ||
+                  property.details.propertyType === 'Apartment' ||
+                  property.details.propertyType === 'Townhouse'
+              "
+            >
               <v-icon :color="iconColor">mdi-bed mdi-18px</v-icon>
               {{ property.details.bedrooms }} Bedroom<span
                 v-if="
@@ -91,7 +98,22 @@
                 >s</span
               >
             </p>
-            <p>
+            <p v-else>
+              <v-icon :color="iconColor">mdi-home-city mdi-18px</v-icon>
+              {{ property.details.propertyFor }}
+            </p>
+            <p
+              v-if="
+                property.details.propertyType === '' ||
+                  property.details.propertyType === 'Apartment' ||
+                  property.details.propertyType ===
+                    'Commercial Building/Offices' ||
+                  property.details.propertyType === 'Factory' ||
+                  property.details.propertyType === 'House' ||
+                  property.details.propertyType === 'Townhouse' ||
+                  property.details.propertyType === 'Warehouse'
+              "
+            >
               <v-icon :color="iconColor">mdi-shower mdi-flip-h mdi-18px</v-icon>
               {{ property.details.bathrooms }} Bathroom<span
                 v-if="
@@ -101,7 +123,10 @@
                 >s</span
               >
             </p>
-
+            <p v-else>
+              <v-icon :color="iconColor">mdi-clock mdi-18px</v-icon>
+              {{ property.timestamp.toDate().toDateString() }}
+            </p>
             <p>
               <v-icon :color="iconColor">mdi-currency-usd mdi-18px</v-icon>
               <span v-for="(detail, i) in details" :key="`icon ${i}`">
@@ -213,7 +238,15 @@
                   </v-list-item-content>
                 </v-list-item>
 
-                <v-list-item class="mb-3">
+                <v-list-item
+                  class="mb-3"
+                  v-if="
+                    property.details.propertyType === '' ||
+                      property.details.propertyType === 'House' ||
+                      property.details.propertyType === 'Apartment' ||
+                      property.details.propertyType === 'Townhouse'
+                  "
+                >
                   <v-list-item-content class="  text-capitalize">
                     <v-list-item-title class="text-body-1   font-weight-medium"
                       >Bedroom<span
@@ -228,7 +261,19 @@
                     {{ property.details.bedrooms }}
                   </v-list-item-content>
                 </v-list-item>
-                <v-list-item class="mb-3">
+                <v-list-item
+                  class="mb-3"
+                  v-if="
+                    property.details.propertyType === '' ||
+                      property.details.propertyType === 'Apartment' ||
+                      property.details.propertyType ===
+                        'Commercial Building/Offices' ||
+                      property.details.propertyType === 'Factory' ||
+                      property.details.propertyType === 'House' ||
+                      property.details.propertyType === 'Townhouse' ||
+                      property.details.propertyType === 'Warehouse'
+                  "
+                >
                   <v-list-item-content class="  text-capitalize">
                     <v-list-item-title class="text-body-1   font-weight-medium"
                       >Bathroom<span
@@ -244,7 +289,19 @@
                   </v-list-item-content>
                 </v-list-item>
 
-                <v-list-item class="mb-3">
+                <v-list-item
+                  class="mb-3"
+                  v-if="
+                    property.details.propertyType === '' ||
+                      property.details.propertyType === 'Apartment' ||
+                      property.details.propertyType ===
+                        'Commercial Building/Offices' ||
+                      property.details.propertyType === 'Factory' ||
+                      property.details.propertyType === 'House' ||
+                      property.details.propertyType === 'Townhouse' ||
+                      property.details.propertyType === 'Warehouse'
+                  "
+                >
                   <v-list-item-content class="  text-capitalize">
                     <v-list-item-title class="text-body-1   font-weight-medium"
                       >Garage<span
@@ -333,7 +390,10 @@
             </v-list>
           </div>
           <v-divider class="mt-1 mb-6"></v-divider>
-          <div :class="{ 'mb-5': $vuetify.theme.dark }">
+          <div
+            :class="{ 'mb-5': $vuetify.theme.dark }"
+            v-if="property.amenities.length > 0"
+          >
             <p class="text-h6">Amenities</p>
 
             <v-list dense flat :class="{ 'py-4': $vuetify.theme.dark }">
@@ -356,21 +416,23 @@
                 </v-list-item>
               </v-list-item-group>
             </v-list>
+            <v-divider class="mt-5 mb-6"></v-divider>
           </div>
-          <v-divider class="mt-1 mb-6"></v-divider>
 
           <div v-if="property.tours.matterport">
             <p class="text-h6">Virtual Tour</p>
             <iframe
               width="100%"
               height="430"
-              :src="`https://my.matterport.com/show/?m=${property.tours.matterport}`"
+              :src="
+                `https://my.matterport.com/show/?m=${property.tours.matterport}`
+              "
               frameborder="0"
-               class="mb-3"
+              class="mb-3"
               allowfullscreen
               allow="xr-spatial-tracking"
             ></iframe>
-         <!--      <a
+            <!--      <a
               :href="
                 `https://my.matterport.com/show/?m=${property.tours.matterport}`
               "
@@ -391,22 +453,17 @@
               height="430"
               width="100%"
               class="mb-3"
-              :src="`https://www.youtube.com/embed/${property.tours.youtube}`"
+              :src="`https://www.youtube.com/embed/${youtubeId}`"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
             ></iframe>
             <a
-              :href="
-                `https://www.youtube.com/watch?v=${property.tours.youtube}`
-              "
+              :href="`https://www.youtube.com/watch?v=${youtubeId}`"
               target="_blank"
               rel="noopener noreferrer"
               class="blue--text"
-              >Source:
-              {{
-                `https://www.youtube.com/watch?v=${property.tours.youtube}`
-              }}</a
+              >Source: {{ `https://www.youtube.com/watch?v=${youtubeId}` }}</a
             >
           </div>
         </v-col>
@@ -986,6 +1043,19 @@ export default {
     }),
     baseUrl() {
       return process.env.baseUrl;
+    },
+    youtubeId() {
+      let id = this.property.tours.youtube.split(
+        /(vi\/|v%3D|v=|\/v\/|youtu\.be\/|\/embed\/)/
+      );
+      return undefined !== id[2] ? id[2].split(/[^0-9a-z_\-]/i)[0] : id[0];
+    },
+    matterportId() {
+      let id = this.property.tours.matterport.split(
+        /https?:\/\/my\.matterport\.com\/show\/\??(m=(?<code>[\w\d]+))/
+      );
+
+      return undefined !== id[2] ? id[2].split(/[^0-9a-z_\-]/i)[0] : id[0];
     },
     liked() {
       if (this.favourites.includes(this.theParam)) {

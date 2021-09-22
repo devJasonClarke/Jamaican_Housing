@@ -239,7 +239,16 @@
                       ></v-text-field
                     ></v-col>
 
-                    <v-col cols="12" sm="6">
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      v-if="
+                        property.details.propertyType === '' ||
+                          property.details.propertyType === 'House' ||
+                          property.details.propertyType === 'Apartment' ||
+                          property.details.propertyType === 'Townhouse'
+                      "
+                    >
                       <v-text-field
                         outlined
                         dense
@@ -251,7 +260,20 @@
                         :rules="amountRules"
                       ></v-text-field
                     ></v-col>
-                    <v-col cols="12" sm="6">
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      v-if="
+                        property.details.propertyType === '' ||
+                          property.details.propertyType === 'Apartment' ||
+                          property.details.propertyType ===
+                            'Commercial Building/Offices' ||
+                          property.details.propertyType === 'Factory' ||
+                          property.details.propertyType === 'House' ||
+                          property.details.propertyType === 'Townhouse' ||
+                          property.details.propertyType === 'Warehouse'
+                      "
+                    >
                       <v-text-field
                         outlined
                         dense
@@ -265,7 +287,20 @@
                       ></v-text-field
                     ></v-col>
 
-                    <v-col cols="12" sm="6">
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      v-if="
+                        property.details.propertyType === '' ||
+                          property.details.propertyType === 'Apartment' ||
+                          property.details.propertyType ===
+                            'Commercial Building/Offices' ||
+                          property.details.propertyType === 'Factory' ||
+                          property.details.propertyType === 'House' ||
+                          property.details.propertyType === 'Townhouse' ||
+                          property.details.propertyType === 'Warehouse'
+                      "
+                    >
                       <v-text-field
                         outlined
                         dense
@@ -396,7 +431,7 @@
             <v-stepper-content step="5">
               <v-container>
                 <p class="text-h6 pb-6">
-                  Please add your Virtual Tour or Youtube video ID (Optional)
+                  Please add your Virtual Tour URL or Youtube video URL
                 </p>
                 <v-form
                   v-model="validTours"
@@ -413,7 +448,7 @@
                         label="Virtual Tour URL"
                         required
                         :color="iconColor"
-                          @input="getMatterportTour"
+                        @input="getMatterportTour"
                         :rules="
                           property.tours.matterport
                             ? matterportRules
@@ -431,10 +466,10 @@
                         dense
                         prepend-icon="mdi-youtube"
                         v-model="property.tours.youtube"
-                        label="Youtube Video ID"
+                        label="Youtube Video URL"
                         :color="iconColor"
                         @input="getYoutubeVideoId"
-                      :rules="
+                        :rules="
                           property.tours.youtube
                             ? youtubeRules
                             : [
@@ -670,7 +705,7 @@ export default {
       logSuccess: "success/logSuccess",
       editUserProperty: "getUserProperties/editUserProperty"
     }),
-        getYoutubeVideoId() {
+    getYoutubeVideoId() {
       this.youtubeVideoId = "";
       let id = this.property.tours.youtube.split(
         /(vi\/|v%3D|v=|\/v\/|youtu\.be\/|\/embed\/)/
@@ -681,8 +716,9 @@ export default {
       );
 
       if (this.validYoutubeVideo) {
-        this.youtubeVideoId =
-          undefined !== id[2] ? id[2].split(/[^0-9a-z_\-]/i)[0] : id[0];
+        this.property.tours.youtube = `https://www.youtube.com/watch?v=${
+          undefined !== id[2] ? id[2].split(/[^0-9a-z_\-]/i)[0] : id[0]
+        }`;
       }
     },
     getMatterportTour() {
@@ -699,10 +735,11 @@ export default {
 
       console.log(this.validMatterportTour);
 
-      //      if (this.validMatterportTour) {
-      this.matterportId =
-        undefined !== id[2] ? id[2].split(/[^0-9a-z_\-]/i)[0] : id[0];
-      // }
+      if (this.validMatterportTour) {
+        this.property.tours.matterport = `https://my.matterport.com/show/?m=${
+          undefined !== id[2] ? id[2].split(/[^0-9a-z_\-]/i)[0] : id[0]
+        }`;
+      }
     },
     addDropFile(e) {
       this.urls = [];
@@ -855,8 +892,8 @@ export default {
             details: this.property.details,
             amenities: this.property.amenities,
             tours: {
-              youtube: this.youtubeVideoId,
-              matterport: this.matterportId
+              youtube: this.property.tours.youtube,
+              matterport: this.property.tours.matterport
             },
             uploader: this.user.uid,
             timestamp: this.property.timestamp,
@@ -952,9 +989,9 @@ export default {
       amountRules: "inputRules/amountRules",
       amountRulesMinOne: "inputRules/amountRulesMinOne",
       idRules: "inputRules/idRules",
-       matterportRules: "inputRules/matterportRules",
+      matterportRules: "inputRules/matterportRules",
       youtubeRules: "inputRules/youtubeRules",
-      
+
       parishes: "selectOptions/parishes",
       realEstateType: "selectOptions/realEstateType",
       user: "authentication/user",
