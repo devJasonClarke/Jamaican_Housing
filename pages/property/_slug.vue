@@ -1006,11 +1006,11 @@ export default {
       /* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */
 
       var phone = [
-        this.uploader.contact.phoneNumber.toString().slice(0, 4),
+        this.uploader.contact.phoneNumber.toString().slice(0, 3),
         "-",
-        this.uploader.contact.phoneNumber.toString().slice(4, 7),
+        this.uploader.contact.phoneNumber.toString().slice(3, 6),
         "-",
-        this.uploader.contact.phoneNumber.toString().slice(7)
+        this.uploader.contact.phoneNumber.toString().slice(6)
       ].join("");
       return phone;
     }
