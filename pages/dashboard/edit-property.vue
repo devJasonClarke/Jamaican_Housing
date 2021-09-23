@@ -866,7 +866,18 @@ export default {
         this.loading = true;
         let bedrooms;
 
-        if (this.property.details.bedrooms >= 4) {
+       if (
+          this.property.details.propertyType ===
+            "Commercial Building/Offices" ||
+          this.property.details.propertyType ===
+            "Development Land (Commercial)" ||
+          this.property.details.propertyType ===
+            "Development Land (Residential)" ||
+          this.property.details.propertyType === "Factory" ||
+          this.property.details.propertyType === "Farm/Agriculture"
+        ) {
+          bedrooms = "0";
+        } else if (this.property.details.bedrooms >= 4) {
           bedrooms = "4 +";
           // console.log(bedrooms);
           // console.log(typeof bedrooms);
