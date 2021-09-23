@@ -27,7 +27,7 @@
               required
             ></v-select>
           </v-col>
-            <v-col>
+          <v-col>
             <v-select
               outlined
               dense
@@ -44,23 +44,21 @@
             ></v-select>
           </v-col>
           <v-col>
-               <v-text-field
-              
-          outlined
+            <v-text-field
+              outlined
               dense
               :label="`MAX PRICE (${activeCurrency})`"
               v-model.number="selectedMaxPrice"
               prepend-icon="mdi-currency-usd "
               hide-details
-             type="number"
+              type="number"
               color="green"
               :rules="[v => !!v || 'Item is required']"
               @change="resetPropertySearch"
               required
             >
-           
             </v-text-field>
- <!--            <v-select
+            <!--            <v-select
               outlined
               dense
               label="MAX PRICE"
@@ -85,7 +83,14 @@
             </v-select> -->
           </v-col>
 
-          <v-col>
+          <v-col
+            v-if="
+              selectedRealEstateType === '' ||
+                selectedRealEstateType === 'House' ||
+                selectedRealEstateType === 'Apartment' ||
+                selectedRealEstateType === 'Townhouse'
+            "
+          >
             <v-select
               outlined
               dense
@@ -101,7 +106,7 @@
               required
             ></v-select>
           </v-col>
-        
+
           <v-col md="2">
             <v-btn
               v-if="!propertySearch"
@@ -176,6 +181,15 @@ export default {
     validate() {
       if (this.$refs.form.validate()) {
         // console.log("valid");
+        if (
+          this.selectedRealEstateType === "Commercial Building/Offices" ||
+          this.selectedRealEstateType === "Development Land (Commercial)" ||
+          this.selectedRealEstateType === "Development Land (Residential)" ||
+          this.selectedRealEstateType === "Factory" ||
+          this.selectedRealEstateType === "Farm/Agriculture"
+        ) {
+          this.setBedrooms("0");
+        };
         this.getSearchedPropertiesForRent();
       } else {
         // console.log("not");

@@ -82,7 +82,14 @@
                 >
                 </v-text-field>
               </v-col>
-              <v-col>
+              <v-col
+                v-if="
+                  selectedRealEstateTypeBuy === '' ||
+                    selectedRealEstateTypeBuy === 'House' ||
+                    selectedRealEstateTypeBuy === 'Apartment' ||
+                    selectedRealEstateTypeBuy === 'Townhouse'
+                "
+              >
                 <v-select
                   outlined
                   dense
@@ -170,7 +177,14 @@
                 >
                 </v-text-field>
               </v-col>
-              <v-col>
+              <v-col
+                v-if="
+                  selectedRealEstateTypeRent === '' ||
+                    selectedRealEstateTypeRent === 'House' ||
+                    selectedRealEstateTypeRent === 'Apartment' ||
+                    selectedRealEstateTypeRent === 'Townhouse'
+                "
+              >
                 <v-select
                   outlined
                   dense
@@ -235,6 +249,17 @@ export default {
     validateRent() {
       if (this.$refs.formRent.validate()) {
         // console.log("valid Rent");
+        if (
+          this.selectedRealEstateTypeRent === "Commercial Building/Offices" ||
+          this.selectedRealEstateTypeRent === "Development Land (Commercial)" ||
+          this.selectedRealEstateTypeRent ===
+            "Development Land (Residential)" ||
+          this.selectedRealEstateTypeRent === "Factory" ||
+          this.selectedRealEstateTypeRent === "Farm/Agriculture"
+        ) {
+          this.setBedroomsRent("0");
+        }
+
         this.getSearchedPropertiesForRent();
         this.$router.push({ name: "rent", hash: "#results" });
       } else {
@@ -244,6 +269,16 @@ export default {
     validateBuy() {
       if (this.$refs.formBuy.validate()) {
         // console.log("valid Buy");
+        if (
+          this.selectedRealEstateTypeBuy === "Commercial Building/Offices" ||
+          this.selectedRealEstateTypeBuy === "Development Land (Commercial)" ||
+          this.selectedRealEstateTypeBuy === "Development Land (Residential)" ||
+          this.selectedRealEstateTypeBuy === "Factory" ||
+          this.selectedRealEstateTypeBuy === "Farm/Agriculture"
+        ) {
+          this.setBedroomsBuy("0");
+        }
+
         this.getSearchedPropertiesForSale();
         this.$router.push({ name: "buy", hash: "#results" });
       } else {
