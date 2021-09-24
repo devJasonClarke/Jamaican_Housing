@@ -86,10 +86,10 @@ export default {
   computed: {
     ...mapGetters({
       user: "authentication/user",
-      properties: "getVerifiedUsers/properties",
-      lastVisible: "getVerifiedUsers/lastVisible",
-      loading: "getVerifiedUsers/loading",
-      paginateNext: "getVerifiedUsers/paginateNext",
+      properties: "getPendingVerifiedUsers/properties",
+      lastVisible: "getPendingVerifiedUsers/lastVisible",
+      loading: "getPendingVerifiedUsers/loading",
+      paginateNext: "getPendingVerifiedUsers/paginateNext",
       profile: "profile/profile"
     }),
     title() {
@@ -102,8 +102,8 @@ export default {
   methods: {
     ...mapActions({
       logError: "errors/logError",
-      getUserProperties: "getVerifiedUsers/getUserProperties",
-      setLoading: "getVerifiedUsers/setLoading"
+      getUserProperties: "getPendingVerifiedUsers/getUserProperties",
+      setLoading: "getPendingVerifiedUsers/setLoading"
     }),
     shortenNumber(num) {
       num = Math.round((num + Number.EPSILON) * 100) / 100;

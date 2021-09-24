@@ -266,8 +266,10 @@
     </v-main>
 
     <v-footer :absolute="false" app>
-      <span>&copy; Real Estate JA {{ new Date().getFullYear() }} | All rights reserved </span>
-    </v-footer>
+      <span class="text-body-2"
+        >&copy; Real Estate JA {{ new Date().getFullYear() }} | All rights
+        reserved
+      </span>  </v-footer>
   </v-app>
 </template>
 

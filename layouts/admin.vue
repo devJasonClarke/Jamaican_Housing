@@ -258,7 +258,7 @@
     </v-main>
 
     <v-footer :absolute="false" app>
-      <span
+      <span  class="text-body-2 "
         >&copy; Real Estate JA {{ new Date().getFullYear() }} | All rights
         reserved
       </span>
@@ -290,14 +290,24 @@ export default {
       messages: 8,
       routes: [
         {
-          icon: "mdi-home-outline",
-          title: "Home Page",
-          route: "index"
+          icon: "mdi-apps",
+          title: "Dashboard",
+          route: "dashboard"
         },
         {
           icon: "mdi-check-decagram",
           title: "Verify Users",
           route: "admin"
+        },
+        {
+          icon: "mdi-check-decagram-outline",
+          title: "Pending Verification",
+ route: "admin-pending"
+        },
+        {
+          icon: "mdi-close-circle-outline",
+          title: "Declined Verification",
+ route: "admin-declined"
         },
         {
           icon: "mdi-message-text-outline",

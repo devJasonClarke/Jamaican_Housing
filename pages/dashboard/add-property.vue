@@ -11,6 +11,25 @@
         title="sale"
       ></v-skeleton-loader>
     </SectionPadding>
+    <SectionPadding class="pt-9" v-else-if="!profile.verified">
+      <v-sheet
+        height="250px"
+        class="d-flex justify-center align-center flex-column pa-3"
+        outlined
+        ><p class="text-sm-h6 text-subtitle-1 text-center font-weight-regular">
+          Please verify your account to add properties.
+        </p>
+        <v-btn
+          nuxt
+          :to="{ name: 'dashboard-settings-verify-account' }"
+          dark
+          color="green accent-4"
+        >
+          <v-icon left>mdi-check-decagram </v-icon> Verify account</v-btn
+        >
+      </v-sheet>
+    </SectionPadding>
+
     <SectionPadding
       class="pt-9"
       v-else-if="!profile.contact.email || !profile.contact.phoneNumber"
@@ -384,8 +403,19 @@
             </v-stepper-content>
             <v-stepper-content step="4">
               <v-container>
-                <p class="text-h6 pb-6">
+                <p class="text-h6 ">
                   Please add pictures of your property
+                </p>
+                <p class="text-body-2 mb-12">
+                  Images should be less than 1 mb. Please use this website to
+                  compress your images:
+                  <a
+                    href="https://tinypng.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="blue--text"
+                  >Compress Images
+                </a>
                 </p>
                 <v-form
                   v-model="validPictures"
@@ -827,7 +857,7 @@ export default {
           // console.log(bedrooms);
           // console.log(typeof bedrooms);
         }
-     
+
         this.$fire.firestore
           .collection("properties")
           .add({

@@ -67,7 +67,8 @@ export const actions = {
               phoneNumber: null,
               whatsappNumber: null,
               website: ""
-            }
+            },
+            timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
           });
       })
       //* check user and add user to state
@@ -151,7 +152,8 @@ export const actions = {
                     phoneNumber: null,
                     whatsappNumber: null,
                     website: ""
-                  }
+                  },
+                  timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
                 });
             }
           });

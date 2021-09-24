@@ -136,7 +136,7 @@
           </v-form>
         </v-tab-item>
 
-        <v-tab-item>
+        <v-tab-item v-if='!profile.verified'>
           <p class="text-h6 ">
             Please enter your information.
           </p>
@@ -234,16 +234,40 @@
             >
           </v-form>
         </v-tab-item>
-        <v-tab-item v-if="profile.verified">
+          <v-tab-item v-else>
+          <v-sheet
+            height="200px"
+            class="d-flex justify-center align-center flex-column pa-3"
+            outlined
+            ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
+              Verify your account to connect your social media.
+            </p>
+
+           <div class="d-flex">
+              <v-icon>mdi-facebook mdi-36px</v-icon>
+            <v-icon class="mx-6">mdi-linkedin mdi-36px</v-icon>
+            <v-icon>mdi-whatsapp mdi-36px</v-icon>
+           </div>
+            
+          </v-sheet>
+        </v-tab-item> 
+        <v-tab-item>
           <p class="text-h6 " id="top">
             Please upload your profile picture.
           </p>
           <p class="text-body-2">
-            Profile pictures must have a maximum size of 200 KB. <br> We recommend a photo resolution of
-            400px x 400px.
+            Profile pictures should have a resolution of 400px x 400px and be 200 KB or less.<br>
+            Please use this website to compress your image:
+                  <a
+                    href="https://tinypng.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="blue--text"
+                  >Compress Image
+                </a>
           </p>
 
-          <v-col cols="12" md="6" v-if="profile.verified === true">
+          <v-col cols="12" md="6" class="mt-9">
             <v-form
               v-model="validPictures"
               @submit.prevent="validatePictures"
@@ -372,9 +396,37 @@
                       class="rounded-circle img"
                     ></v-img>
                   </div>
-                  <v-btn color="red" class="mt-3" dark @click="deleteImage"
-                    ><v-icon>mdi-delete</v-icon> Delete Image</v-btn
-                  >
+                  <v-dialog v-model="dialog" width="500">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn
+                        color="red"
+                        v-bind="attrs"
+                        v-on="on"
+                        class="mt-3"
+                        dark
+                        ><v-icon>mdi-delete</v-icon> Delete Image</v-btn
+                      >
+                    </template>
+                    <v-card>
+                      <v-card-title class="text-h5 hyphens">
+                        Are you sure you want to delete this image?
+                      </v-card-title>
+
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          color="green darken-1"
+                          text
+                          @click="dialog = false"
+                        >
+                          Go back
+                        </v-btn>
+                        <v-btn color="red darken-1" text @click="deleteImage">
+                          Delete image
+                        </v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
                 </div>
                 <v-divider class="my-9"></v-divider>
                 <v-btn dark :color="iconColor" @click="$vuetify.goTo('#top')"
@@ -384,18 +436,18 @@
             </SectionPadding>
           </v-col>
         </v-tab-item>
-        <v-tab-item v-else>
-                <v-sheet
-        height="200px"
-        class="d-flex justify-center align-center flex-column pa-3"
-        outlined
-        ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
-          Verify account to change profile picture.
-        </p>
+       <!--  <v-tab-item v-else>
+          <v-sheet
+            height="200px"
+            class="d-flex justify-center align-center flex-column pa-3"
+            outlined
+            ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
+              Verify account to change profile picture.
+            </p>
 
-        <v-icon >mdi-check-decagram mdi-36px</v-icon>
-      </v-sheet>
-        </v-tab-item>
+            <v-icon>mdi-check-decagram mdi-36px</v-icon>
+          </v-sheet>
+        </v-tab-item> -->
       </v-tabs-items>
     </SectionPadding>
   </v-container>
@@ -409,6 +461,7 @@ export default {
 
   data() {
     return {
+      dialog: false,
       files: [],
       urls: [],
       validPictures: false,
@@ -700,11 +753,13 @@ export default {
         .then(() => {
           this.removeProfilePicture();
           this.logSuccess("Image deleted");
+          this.dialog = false;
         })
         .catch(error => {
           // console.log("delete error");
           // console.log(error);
           this.logError(error.message);
+            this.dialog = false;
         });
     },
     addDropFile(e) {

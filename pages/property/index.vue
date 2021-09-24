@@ -87,7 +87,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://twitter.com/share?url=${process.env.baseUrl}property&text=Have a look at this property:`
+                    `https://twitter.com/share?url=${baseUrl}property&text=Have a look at this property:`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
@@ -98,7 +98,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://www.facebook.com/sharer.php?=${process.env.baseUrl}property`
+                    `https://www.facebook.com/sharer.php?=${baseUrl}property`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
@@ -110,7 +110,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    ` https://t.me/share/url?url=${process.env.baseUrl}property&text=Have a look at this property:`
+                    ` https://t.me/share/url?url=${baseUrl}property&text=Have a look at this property:`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
@@ -121,7 +121,7 @@
                   target="_blank"
                   rel="nofollow noopener"
                   :href="
-                    `https://wa.me/?text=Look at this offer ${process.env.baseUrl}property`
+                    `https://wa.me/?text=Look at this offer ${baseUrl}property`
                   "
                 >
                   <v-btn class="d-inline" small icon fab color="white">
