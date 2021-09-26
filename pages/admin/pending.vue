@@ -1,11 +1,7 @@
 <template>
   <v-container>
     <TheMetaTags :title="title" :description="description" />
-    <h1>Your Properties</h1>
-    <!--   <div v-for="(property, i) in properties" :key="i">
-      {{ property[1] }}
-    </div> -->
-        <div>{{ properties }}</div>
+    <h1>Users Pending Verification</h1>
 
     <TheRealEstatePropertiesListingLoader v-if="loading == true" title="sale" />
     <SectionPadding class="pt-9" v-else-if="!properties.length">
@@ -29,10 +25,10 @@
     </SectionPadding>
 
     <SectionPadding class="pt-9" v-else id="top">
-      <!-- <TheRealEstatePropertiesListingFirebaseProfile
-        title="Your Real Estate Properties"
-        :properties="properties"
-      /> -->
+    <TheVerificationListingVerified
+        title="Users Pending Verification"
+        :users="properties"
+      />
       <div class="d-flex justify-center align-center mt-4">
         <v-btn
           class="mx-2"
@@ -72,7 +68,7 @@ export default {
     // console.log("fetch");
     // console.log(this.properties);
     if (this.properties.length == 0) {
-      this.getUserProperties();
+      this.getPendingVerifiedUsers();
     } else {
       this.setLoading(false);
     }
@@ -102,7 +98,7 @@ export default {
   methods: {
     ...mapActions({
       logError: "errors/logError",
-      getUserProperties: "getPendingVerifiedUsers/getUserProperties",
+      getPendingVerifiedUsers: "getPendingVerifiedUsers/getPendingVerifiedUsers",
       setLoading: "getPendingVerifiedUsers/setLoading"
     }),
     shortenNumber(num) {
@@ -131,7 +127,7 @@ export default {
     },
     next() {
       // console.log("next");
-      this.getUserProperties();
+      this.getPendingVerifiedUsers();
       // this.loading = true;
       //  this.$vuetify.goTo(this.target);
       //  setTimeout(() => (this.loading = false), 3000);

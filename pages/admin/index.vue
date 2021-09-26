@@ -1,11 +1,7 @@
 <template>
   <v-container>
     <TheMetaTags :title="title" :description="description" />
-    <h1>Your Properties</h1>
-    <!--   <div v-for="(property, i) in properties" :key="i">
-      {{ property[1] }}
-    </div> -->
-        <div>{{ properties }}</div>
+    <h1>Your Verified Users</h1>
 
     <TheRealEstatePropertiesListingLoader v-if="loading == true" title="sale" />
     <SectionPadding class="pt-9" v-else-if="!properties.length">
@@ -14,25 +10,16 @@
         class="d-flex justify-center align-center flex-column pa-3"
         outlined
         ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
-          No properties as yet.
-          <br />Add your first propery today!
+          No Users as yet.
         </p>
-        <v-btn
-          nuxt
-          :to="{ name: 'dashboard-add-property' }"
-          dark
-          color="green accent-4"
-        >
-          <v-icon left>mdi-home-import-outline</v-icon> Add Property</v-btn
-        >
       </v-sheet>
     </SectionPadding>
 
     <SectionPadding class="pt-9" v-else id="top">
-      <!-- <TheRealEstatePropertiesListingFirebaseProfile
-        title="Your Real Estate Properties"
-        :properties="properties"
-      /> -->
+      <TheVerificationListingVerified
+        title="Your Verified Users"
+        :users="properties"
+      />
       <div class="d-flex justify-center align-center mt-4">
         <v-btn
           class="mx-2"
@@ -72,7 +59,7 @@ export default {
     // console.log("fetch");
     // console.log(this.properties);
     if (this.properties.length == 0) {
-      this.getUserProperties();
+      this.getVerifiedUsers();
     } else {
       this.setLoading(false);
     }
@@ -102,7 +89,7 @@ export default {
   methods: {
     ...mapActions({
       logError: "errors/logError",
-      getUserProperties: "getVerifiedUsers/getUserProperties",
+      getVerifiedUsers: "getVerifiedUsers/getVerifiedUsers",
       setLoading: "getVerifiedUsers/setLoading"
     }),
     shortenNumber(num) {
@@ -131,7 +118,7 @@ export default {
     },
     next() {
       // console.log("next");
-      this.getUserProperties();
+      this.getVerifiedUsers();
       // this.loading = true;
       //  this.$vuetify.goTo(this.target);
       //  setTimeout(() => (this.loading = false), 3000);

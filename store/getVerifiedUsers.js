@@ -18,7 +18,7 @@ export const getters = {
 };
 
 export const actions = {
-  getUserProperties({ commit, state }) {
+  getVerifiedUsers({ commit, state }) {
     // console.log("getTheProperty");
 
     this.$fireModule.auth().onAuthStateChanged(user => {

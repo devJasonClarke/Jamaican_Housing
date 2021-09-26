@@ -237,58 +237,134 @@
                 profanityFilter(user.personalDetails.displayName)
             }}
           </p>
-          <p class="body-1" v-if='user.personalDetails.about'>
+          <p class="body-1" v-if="user.personalDetails.about">
             {{ profanityFilter(user.personalDetails.about) }}
           </p>
-          <p class="body-1" v-else>
-         
-          </p>
+          <p class="body-1" v-else></p>
 
           <v-divider class="my-6"></v-divider>
 
-          <TheRealEstatePropertiesListingFirebaseGetUser
-            :properties="properties"
-          />
-          <div class="d-flex justify-center align-center mt-4">
-            <v-btn
-              class="mx-2"
-              fab
-              dark
-              small
-              color="green accent-4"
-              @click="$vuetify.goTo('#top')"
-            >
-              <v-icon dark>
-                mdi-chevron-left
-              </v-icon>
-            </v-btn>
-            <v-btn
-              class="mx-2"
-              fab
-              :dark="paginateNext.dark"
-              small
-              color="green accent-4"
-              @click="next"
-              :disabled="paginateNext.disabled"
-            >
-              <v-icon dark>
-                mdi-chevron-right
-              </v-icon>
-            </v-btn>
-          </div>
+          {{ request_verification }}
+          <v-tabs
+            v-model="tab"
+            background-color="transparent"
+            :color="iconColor"
+            show-arrows
+          >
+            <v-tab v-for="item in items" :key="item">
+              {{ item }}
+            </v-tab>
+          </v-tabs>
+          <v-tabs-items class="py-12" v-model="tab">
+            <v-tab-item>
+              <v-form ref="descriptionForm" @submit.prevent="validateFields">
+                <v-row
+                  ><v-col cols="12" md="6">
+                    <v-text-field
+                      outlined
+                      dense
+                      prepend-icon="mdi-account"
+                      label="First Name*"
+                      required
+                      v-model="requestUser.firstName"
+                      :color="iconColor"
+                      disabled
+                    ></v-text-field
+                  ></v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      outlined
+                      dense
+                      prepend-icon="mdi-account"
+                      label="Last Name *"
+                      required
+                      v-model="requestUser.lastName"
+                      :color="iconColor"
+                      disabled
+                    ></v-text-field
+                  ></v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      outlined
+                      dense
+                      prepend-icon="mdi-email"
+                      label="Email Address *"
+                      required
+                      v-model="requestUser.email"
+                      :color="iconColor"
+                      disabled
+                    ></v-text-field
+                  ></v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      outlined
+                      dense
+                      prepend-icon="mdi-phone"
+                      label="Phone Number *"
+                      required
+                      v-model="requestUser.phoneNumber"
+                      :color="iconColor"
+                      type="number"
+                      disabled
+                    ></v-text-field
+                  ></v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      outlined
+                      dense
+                      v-model="user.verified"
+                      prepend-icon="mdi-check-decagram"
+                      label="Account Verified"
+                      required
+                      :color="iconColor"
+                      disabled
+                    ></v-text-field
+                  ></v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      outlined
+                      dense
+                      v-model="user.verificationProcess"
+                      prepend-icon="mdi-check-decagram"
+                      label="Verified Process"
+                      required
+                      :color="iconColor"
+                      disabled
+                    ></v-text-field
+                  ></v-col>
+                </v-row>
+                <v-btn
+                  color="success"
+                  type="submit"
+                  :disabled="disableUpdateAccount"
+                  :loading="updateDetailsLoader"
+                  >Save</v-btn
+                >
+              </v-form>
+            </v-tab-item>
+            <v-tab-item>
+              <div v-for="(img, index) in requestUser.images" :key="index">
+                <div class="my-3">
+                  <p class="text-h6">Picture {{ index + 1 }}</p>
+                  <p class="text-subtitle-1">File name: {{ img.fileName }}</p>
+                  <img
+                    :src="img.src"
+                    :alt="img.fileName"
+                    width="100%"
+                    height="100%"
+                  />
+
+                  <v-btn elevation="0" color="success" nuxt target="_blank" :href="img.src">Download</v-btn>
+                </div>
+              </div>
+              <v-divider class="my-6"></v-divider>
+              <v-btn elevation="0" nuxt target="_blank" href="https://www.reb.gov.jm/nmcms.php?snippet=membership&p=member_search" color="success">Verify Realor with Government</v-btn>
+            </v-tab-item>
+            <v-tab-item> verification </v-tab-item>
+          </v-tabs-items>
         </v-col>
       </v-row>
     </v-container>
-    <SectionPadding class="backgroundShade">
-      <SectionTitles
-        subTitle="our Premium properties"
-        mainTitle="Featured listings around you"
-        linkMessage="See all featured listings "
-        route="featured"
-      />
-
-      <TheFeaturedProperties />
-    </SectionPadding>
   </div>
 </template>
 
@@ -323,6 +399,8 @@ export default {
   },
   data() {
     return {
+      items: ["User Details", "Identification", "Verification"],
+      tab: null,
       properties: [],
       lastVisible: null,
       loading: true,
@@ -370,6 +448,26 @@ export default {
           fileName: ""
         },
         uid: ""
+      },
+      request_verification: [],
+      requestUser: {
+        lastName: "Neo",
+        jamaicanCitizen: "Yes",
+        realtorLicense: "No",
+        phoneNumber: 1111111111,
+        verified: false,
+        uploader: "1",
+        images: [
+          {
+            src:
+             "1",
+            fileName: "1"
+          },
+       
+        ],
+        timestamp: { seconds: 1632427918, nanoseconds: 463000000 },
+        firstName: "h",
+        email: "q"
       }
     };
   },
@@ -385,11 +483,9 @@ export default {
     },
     async loadUserProperties() {
       const ref = await this.$fire.firestore
-        .collection("properties")
-        .where("uploader", "==", this.user.uid)
-        .orderBy("timestamp", "desc")
-        .startAfter(this.lastVisible || {})
-        .limit(2);
+        .collection("request_verification")
+        .where("uploader", "==", this.user.uid);
+
       ref.get().then(
         querySnapshot => {
           this.lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
@@ -404,7 +500,8 @@ export default {
             this.logError("This user has have no more properties.");
           }
           querySnapshot.forEach(doc => {
-            this.properties.push([doc.data(), doc.id]);
+            this.request_verification.push([doc.data(), doc.id]);
+            this.requestUser = doc.data();
           });
           // console.log(`Fetch properties ${this.properties}`);
           this.loading = false;
@@ -420,9 +517,6 @@ export default {
           this.logError(error.message);
         }
       );
-    },
-    next() {
-      this.loadUserProperties();
     }
   },
   computed: {
@@ -435,8 +529,9 @@ export default {
       )} | Profile`;
     },
     description() {
-          return `Profile page for: ${this.profanityFilter(this.user.personalDetails.displayName)}`;
-
+      return `Profile page for: ${this.profanityFilter(
+        this.user.personalDetails.displayName
+      )}`;
     },
     formattedNumber() {
       /* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */

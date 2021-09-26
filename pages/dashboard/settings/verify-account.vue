@@ -8,7 +8,7 @@
         title="sale"
       ></v-skeleton-loader>
     </SectionPadding>
-    <!--     <SectionPadding v-else-if="profile.verified === true" class="pt-9">
+    <SectionPadding v-else-if="profile.verified === true" class="pt-9">
       <v-sheet
         height="200px"
         class="d-flex justify-center align-center flex-column pa-3"
@@ -18,7 +18,7 @@
         </p>
         <v-icon color="blue">mdi-check-decagram mdi-36px</v-icon>
       </v-sheet>
-    </SectionPadding> -->
+    </SectionPadding>
     <SectionPadding
       v-else-if="profile.verificationProcess === 'pending'"
       class="pt-9"
