@@ -20,12 +20,12 @@
     "bad-words": "^3.0.4",
     "core-js": "^3.9.1",
     "firebase": "^8.6.7",
-    "nuxt": "^2.15.3",
+    "nuxt": "^2.15.7",
     "swiper": "^5.4.5",
     "vue-awesome-swiper": "^4.1.1",
     "vue-easy-lightbox": "^0.16.1"
   },
   "devDependencies": {
-    "@nuxtjs/vuetify": "^1.11.3"
+    "@nuxtjs/vuetify": "^1.12.1"
   }
 }
