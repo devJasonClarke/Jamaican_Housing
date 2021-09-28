@@ -12,7 +12,6 @@
       ></v-skeleton-loader>
     </SectionPadding>
 
-
     <SectionPadding
       class="pt-9"
       v-else-if="!profile.contact.email || !profile.contact.phoneNumber"
@@ -52,6 +51,35 @@
         >
           <v-icon left>mdi-check-decagram </v-icon> Verify account</v-btn
         >
+      </v-sheet>
+    </SectionPadding>
+    <SectionPadding
+      v-else-if="profile.verificationProcess === 'pending'"
+      class="pt-9"
+    >
+      <v-sheet
+        height="200px"
+        class="d-flex justify-center align-center flex-column pa-3"
+        outlined
+        ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
+          Verification request is being processed
+        </p>
+        <v-icon color="orange">mdi-check-decagram mdi-36px</v-icon>
+      </v-sheet>
+    </SectionPadding>
+    <SectionPadding
+      v-else-if="profile.verificationProcess === 'denied'"
+      class="pt-9"
+    >
+      <v-sheet
+        height="200px"
+        class="d-flex justify-center align-center flex-column pa-3"
+        outlined
+        ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
+          Your verification has been denied. <br />
+          If you believe that there has been an error please contact us.
+        </p>
+        <v-icon>mdi-check-decagram mdi-36px</v-icon>
       </v-sheet>
     </SectionPadding>
     <section v-else>
@@ -414,8 +442,8 @@
                     target="_blank"
                     rel="noopener noreferrer"
                     class="blue--text"
-                  >Compress Images
-                </a>
+                    >Compress Images
+                  </a>
                 </p>
                 <v-form
                   v-model="validPictures"
@@ -560,6 +588,30 @@
           <div v-for="(url, i) in urls" :key="url">
             <div>
               <p class="text-h6">Picture {{ i + 1 }}</p>
+              <div class="mb-3">
+                <v-btn
+                  dark
+                  :color="iconColor"
+                  @click="move(i, i - 1)"
+                  :disabled="i == 0"
+                  title="Move image up"
+                  v-if="i != 0"
+                >
+                  <v-icon>mdi-arrow-up </v-icon>
+                </v-btn>
+
+                <v-btn
+                  dark
+                  :color="iconColor"
+                  @click="move(i, i + 1)"
+                  :disabled="i == urls.length - 1"
+                  title="Move image down"
+                  v-if="i != urls.length - 1"
+                >
+                  <v-icon>mdi-arrow-down </v-icon>
+                </v-btn>
+              </div>
+
               <p class="text-subtitle-1">File name: {{ files[i].name }}</p>
               <img :src="url" :alt="files[i].name" width="100%" height="100%" />
               <v-btn
@@ -582,6 +634,10 @@
 </template>
 
 <script>
+Array.prototype.move = function(from, to) {
+  this.splice(to, 0, this.splice(from, 1)[0]);
+  return this;
+};
 import { mapGetters, mapActions } from "vuex";
 export default {
   layout: "dashboard",
@@ -672,6 +728,10 @@ export default {
       logSuccess: "success/logSuccess",
       addNewUserProperty: "getUserProperties/addNewUserProperty"
     }),
+    move(from, to) {
+      this.urls.move(from, to);
+      this.files.move(from, to);
+    },
     getYoutubeVideoId() {
       this.youtubeVideoId = "";
       let id = this.property.tours.youtube.split(
@@ -773,6 +833,7 @@ export default {
         this.profile.personalDetails.displayName
       ) {
         this.loading = true;
+        this.files.reverse();
 
         let storage = this.$fire.storage.ref();
         let date = Date.now();

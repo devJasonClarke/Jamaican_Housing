@@ -67,7 +67,10 @@
             :width="[miniVariant ? 40 : 120]"
             class="mx-0 d-flex justify-center align-center green"
           >
-            <v-img v-if="profile.profilePicture.src" :src="profile.profilePicture.src"></v-img>
+            <v-img
+              v-if="profile.profilePicture.src"
+              :src="profile.profilePicture.src"
+            ></v-img>
             <span
               v-else-if="profile.personalDetails.initials"
               :class="[
@@ -113,7 +116,7 @@
           active-class="green--text text--accent-4"
         >
           <v-list-item
-             link
+            link
             class="text-capitalize"
             :to="{ name: 'admin' }"
             exact
@@ -124,6 +127,19 @@
             </v-list-item-icon>
 
             <v-list-item-title>Admin</v-list-item-title>
+          </v-list-item>
+          <v-list-item
+            link
+            class="text-capitalize"
+            :to="{ name: 'profile-slug', params: { slug: profile.uid } }"
+            exact
+            v-if="profile.verified"
+          >
+            <v-list-item-icon>
+              <v-icon>mdi-account-check-outline</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-title>Profile</v-list-item-title>
           </v-list-item>
           <v-list-item
             v-for="(route, index) in routes"
@@ -189,7 +205,13 @@
         <v-icon v-else @click="toggleTheme">mdi-weather-night</v-icon>
       </div>
 
-      <v-menu bottom max-width="150px" rounded offset-y :close-on-content-click="closeOnContentClick">
+      <v-menu
+        bottom
+        max-width="150px"
+        rounded
+        offset-y
+        :close-on-content-click="closeOnContentClick"
+      >
         <template v-slot:activator="{ on }">
           <v-btn icon x-large v-on="on" class="mr-1">
             <v-skeleton-loader
@@ -201,7 +223,10 @@
             ></v-skeleton-loader>
             <span v-else>
               <v-avatar color="green" size="36">
-                <v-img v-if="profile.profilePicture.src" :src="profile.profilePicture.src"></v-img>
+                <v-img
+                  v-if="profile.profilePicture.src"
+                  :src="profile.profilePicture.src"
+                ></v-img>
                 <span
                   class="white--text  "
                   v-else-if="profile.personalDetails.initials"
@@ -215,47 +240,40 @@
           </v-btn>
         </template>
 
-       <v-list dense nav>
-            <v-list-item-group
-           
-              active-class="green--text text--accent-4"
-            >
-              <v-list-item class="text-uppercase" exact :to="{ name: 'index' }">
-                <v-list-item-title>Home Page</v-list-item-title>
-              </v-list-item>
-              <!--     <v-list-item
+        <v-list dense nav>
+          <v-list-item-group active-class="green--text text--accent-4">
+            <v-list-item class="text-uppercase" exact :to="{ name: 'index' }">
+              <v-list-item-title>Home Page</v-list-item-title>
+            </v-list-item>
+            <!--     <v-list-item
                 class="text-uppercase"
                 :to="{ name: 'dashboard-settings' }"
               >
                 <v-list-item-title>Profile</v-list-item-title>
               </v-list-item> -->
-            </v-list-item-group>
-          </v-list>
+          </v-list-item-group>
+        </v-list>
 
-          <v-sheet>
-            <v-switch
-              @click="toggleTheme"
-              :input-value="colorTheme"
-              class="px-2 pt-0 mt-0"
-              inset
-              label="Dark Mode"
-              color="green accent-4"
-            ></v-switch
-          ></v-sheet>
-          <TheCurrencySelector class="mb-0" />
-          <v-list class="mt-0" dense nav>
-            <v-list-item-group
-        
-              active-class="green--text text--accent-4"
-            >
-              <v-list-item class="text-uppercase" @click="logout">
-                <v-list-item-title class="red--text d-flex align-center">
-                  Logout</v-list-item-title
-                >
-              </v-list-item>
-            </v-list-item-group>
-          </v-list>
-     
+        <v-sheet>
+          <v-switch
+            @click="toggleTheme"
+            :input-value="colorTheme"
+            class="px-2 pt-0 mt-0"
+            inset
+            label="Dark Mode"
+            color="green accent-4"
+          ></v-switch
+        ></v-sheet>
+        <TheCurrencySelector class="mb-0" />
+        <v-list class="mt-0" dense nav>
+          <v-list-item-group active-class="green--text text--accent-4">
+            <v-list-item class="text-uppercase" @click="logout">
+              <v-list-item-title class="red--text d-flex align-center">
+                Logout</v-list-item-title
+              >
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
       </v-menu>
     </v-app-bar>
 
@@ -269,7 +287,8 @@
       <span class="text-body-2"
         >&copy; Real Estate JA {{ new Date().getFullYear() }} | All rights
         reserved
-      </span>  </v-footer>
+      </span>
+    </v-footer>
   </v-app>
 </template>
 
@@ -285,7 +304,7 @@ export default {
   },
   data() {
     return {
-      closeOnContentClick: false, 
+      closeOnContentClick: false,
       group: null,
       clipped: false,
       drawer: true,
@@ -324,8 +343,8 @@ export default {
           icon: "mdi-credit-card-outline",
           title: "Payments",
           route: "dashboard-settings-payments"
-        }
-      ,        {
+        },
+        {
           icon: "mdi-account-circle-outline",
           title: "Settings",
           route: "dashboard-settings"
@@ -363,7 +382,7 @@ export default {
       oldMessages: "messages/oldMessages",
       profile: "profile/profile",
       userAthenticated: "profile/userAthenticated",
-        colorTheme: "colorTheme/theme",
+      colorTheme: "colorTheme/theme"
     })
   }
 };

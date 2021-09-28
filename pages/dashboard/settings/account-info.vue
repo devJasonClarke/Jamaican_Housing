@@ -282,6 +282,7 @@
 
           <v-col cols="12" md="6" class="mt-9">
             <v-form
+            v-if="!profile.profilePicture.src"
               v-model="validPictures"
               @submit.prevent="validatePictures"
               ref="picturesForm"

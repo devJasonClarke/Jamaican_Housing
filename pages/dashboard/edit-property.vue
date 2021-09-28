@@ -530,6 +530,30 @@
             <div v-for="(url, i) in urls" :key="url">
               <div>
                 <p class="text-h6">New Picture {{ i + 1 }}</p>
+                <div class="mb-3">
+                  <v-btn
+                    dark
+                    :color="iconColor"
+                    @click="move(i, i - 1)"
+                    :disabled="i == 0"
+                    title="Move image up"
+                    v-if="i != 0"
+                  >
+                    <v-icon>mdi-arrow-up </v-icon>
+                  </v-btn>
+
+                  <v-btn
+                    dark
+                    :color="iconColor"
+                    @click="move(i, i + 1)"
+                    :disabled="i == urls.length - 1"
+                    title="Move image down"
+                    v-if="i != urls.length - 1"
+                  >
+                    <v-icon>mdi-arrow-down </v-icon>
+                  </v-btn>
+                </div>
+
                 <p class="text-subtitle-1">File name: {{ files[i].name }}</p>
                 <img
                   :src="url"
@@ -557,6 +581,29 @@
           <div v-for="(image, i) in property.images" :key="i">
             <div>
               <p class="text-h6">Existing Picture</p>
+              <div class="mb-3">
+                <v-btn
+                  dark
+                  :color="iconColor"
+                  @click="movePropertyImage(i, i - 1)"
+                  :disabled="i == 0"
+                  title="Move image up"
+                  v-if="i != 0"
+                >
+                  <v-icon>mdi-arrow-up </v-icon>
+                </v-btn>
+
+                <v-btn
+                  dark
+                  :color="iconColor"
+                  @click="movePropertyImage(i, i + 1)"
+                  :disabled="i == urls.length - 1"
+                  title="Move image down"
+                  v-if="i != urls.length - 1"
+                >
+                  <v-icon>mdi-arrow-down </v-icon>
+                </v-btn>
+              </div>
               <p class="text-subtitle-1">File name: {{ image.fileName }}</p>
               <img
                 :src="image.src"
@@ -584,6 +631,10 @@
 </template>
 
 <script>
+Array.prototype.move = function(from, to) {
+  this.splice(to, 0, this.splice(from, 1)[0]);
+  return this;
+};
 import { mapGetters, mapActions } from "vuex";
 export default {
   layout: "dashboard",
@@ -716,6 +767,13 @@ export default {
       logSuccess: "success/logSuccess",
       editUserProperty: "getUserProperties/editUserProperty"
     }),
+    move(from, to) {
+      this.urls.move(from, to);
+      this.files.move(from, to);
+    },
+    movePropertyImage(from, to) {
+      this.property.images.move(from, to);
+    },
     getYoutubeVideoId() {
       this.youtubeVideoId = "";
       let id = this.property.tours.youtube.split(
@@ -947,6 +1005,9 @@ export default {
             this.disabled = true;
             this.fileBeingUploaded = "";
             this.logSuccess("Property Successfully Updated");
+          })
+          .then(() => {
+            this.$router.push({ name: "dashboard" });
           })
           .catch(error => {
             this.loading = false;

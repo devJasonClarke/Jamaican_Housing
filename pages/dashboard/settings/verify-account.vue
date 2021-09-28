@@ -8,17 +8,7 @@
         title="sale"
       ></v-skeleton-loader>
     </SectionPadding>
-    <SectionPadding v-else-if="profile.verified === true" class="pt-9">
-      <v-sheet
-        height="200px"
-        class="d-flex justify-center align-center flex-column pa-3"
-        outlined
-        ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
-          Account Verified
-        </p>
-        <v-icon color="blue">mdi-check-decagram mdi-36px</v-icon>
-      </v-sheet>
-    </SectionPadding>
+
     <SectionPadding
       v-else-if="profile.verificationProcess === 'pending'"
       class="pt-9"
@@ -42,9 +32,21 @@
         class="d-flex justify-center align-center flex-column pa-3"
         outlined
         ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
-          Verification Denied
+        Your verification has been denied. <br> If you believe that there has been an
+          error please contact us.
         </p>
         <v-icon>mdi-check-decagram mdi-36px</v-icon>
+      </v-sheet>
+    </SectionPadding>
+        <SectionPadding v-else-if="profile.verified === true" class="pt-9">
+      <v-sheet
+        height="200px"
+        class="d-flex justify-center align-center flex-column pa-3"
+        outlined
+        ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
+          Account Verified
+        </p>
+        <v-icon color="blue">mdi-check-decagram mdi-36px</v-icon>
       </v-sheet>
     </SectionPadding>
     <section v-else id="top">

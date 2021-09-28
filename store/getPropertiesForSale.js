@@ -80,7 +80,7 @@ export const actions = {
       //.orderBy("price", "desc")
       .orderBy("timestamp", "desc")
       .startAfter(state.lastVisible || {})
-      .limit(3);
+      .limit(8);
 
     ref.get().then(
       querySnapshot => {
@@ -151,7 +151,7 @@ export const actions = {
       .orderBy("price", "desc")
       .orderBy("timestamp", "desc")
       .startAfter(state.lastSearchedVisible || {})
-      .limit(3);
+      .limit(8);
 
     ref.get().then(
       querySnapshot => {
@@ -220,7 +220,7 @@ export const actions = {
       .orderBy("price", "desc")
       .orderBy("timestamp", "desc")
       .startAfter(state.lastSearchedVisible || {})
-      .limit(3);
+      .limit(8);
 
     ref.get().then(
       querySnapshot => {

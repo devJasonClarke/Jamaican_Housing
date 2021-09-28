@@ -35,7 +35,7 @@ export const actions = {
           .where("verified", "==", true)
           .orderBy("uid", "asc")
           .startAfter(state.lastVisible || '')
-          .limit(1);
+          .limit(8);
 
         ref.get().then(
           querySnapshot => {

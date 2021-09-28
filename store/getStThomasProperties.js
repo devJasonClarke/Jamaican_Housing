@@ -37,7 +37,7 @@ export const actions = {
       .where("parish", "==", "St. Thomas")
       .orderBy("timestamp", "desc")
       .startAfter(state.lastVisible || {})
-      .limit(3);
+      .limit(8);
 
     ref.get().then(
       querySnapshot => {

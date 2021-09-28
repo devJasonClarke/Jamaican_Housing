@@ -333,16 +333,16 @@
                     ></v-text-field
                   ></v-col>
                 </v-row>
-                <v-btn
-                  color="success"
-                  type="submit"
-                  :disabled="disableUpdateAccount"
-                  :loading="updateDetailsLoader"
-                  >Save</v-btn
-                >
               </v-form>
             </v-tab-item>
-            <v-tab-item>
+            <v-tab-item v-if="user.role === 'admin'">
+              <div>
+                <p class="text-h6">
+                  User is an Admin
+                </p>
+              </div>
+            </v-tab-item>
+            <v-tab-item v-else>
               <div v-for="(img, index) in requestUser.images" :key="index">
                 <div class="my-3">
                   <p class="text-h6">Picture {{ index + 1 }}</p>
@@ -356,7 +356,12 @@
                     @click="showImg(index)"
                   />
 
-                  <v-btn elevation="0" color="success" @click="showImg(index)"
+                  <v-btn
+                    elevation="0"
+                    dark
+                    color="green accent-4"
+                    class="mt-3"
+                    @click="showImg(index)"
                     >inspect</v-btn
                   >
                 </div>
@@ -364,7 +369,14 @@
               <v-divider class="my-6"></v-divider>
             </v-tab-item>
 
-            <v-tab-item>
+            <v-tab-item v-if="user.role === 'admin'">
+              <div>
+                <p class="text-h6">
+                  User is an Admin
+                </p>
+              </div>
+            </v-tab-item>
+            <v-tab-item v-else>
               <div>
                 <p class="text-h6">
                   Verify Realtor License with Jamaican Government:
@@ -376,25 +388,41 @@
                   href="https://www.reb.gov.jm/nmcms.php?snippet=membership&p=member_search"
                   color="green accent-4"
                   dark
-                  >License Verification</v-btn
+                  >Verify License</v-btn
                 >
               </div>
-              <div class="mt-12">
+              <v-divider class="my-9"></v-divider>
+              <div>
                 <p class="text-h6">Set user verification status:</p>
                 <v-row>
                   <v-col cols="12" md="6">
-                    <v-text-field
+                    <!--     <v-select
+                        outlined
+                        dense
+                        prepend-icon="mdi-certificate"
+                        label="Are you a registered realtor? *"
+                        v-model="realtor"
+                        :items="options"
+                        :color="iconColor"
+                        item-color="green"
+                        :rules="[v => !!v.toString() || 'required']"
+                      ></v-select
+                    > -->
+
+                    <v-select
                       outlined
                       dense
                       v-model="user.verified"
                       prepend-icon="mdi-check-decagram"
                       label="Account Verified"
+                      item-color="green"
+                      :items="accountVerified"
                       required
                       :color="iconColor"
-                    ></v-text-field
+                    ></v-select
                   ></v-col>
                   <v-col cols="12" md="6">
-                    <v-text-field
+                    <!--        <v-text-field
                       outlined
                       dense
                       v-model="user.verificationProcess"
@@ -403,7 +431,44 @@
                       required
                       :color="iconColor"
                     ></v-text-field
-                  ></v-col>
+                  > -->
+
+                    <v-select
+                      outlined
+                      dense
+                      v-model="user.verificationProcess"
+                      prepend-icon="mdi-check-decagram"
+                      label="Account Verification"
+                      item-color="green"
+                      :items="verificationProcess"
+                      required
+                      :color="iconColor"
+                    ></v-select>
+                  </v-col>
+                  <v-col cols="12" md="6">
+                    <!--        <v-text-field
+                      outlined
+                      dense
+                      v-model="user.verificationProcess"
+                      prepend-icon="mdi-check-decagram"
+                      label="Verification Process"
+                      required
+                      :color="iconColor"
+                    ></v-text-field
+                  > -->
+
+                    <v-select
+                      outlined
+                      dense
+                      v-model="user.role"
+                      prepend-icon="mdi-check-decagram"
+                      label="User Role"
+                      item-color="green"
+                      :items="accountRole"
+                      required
+                      :color="iconColor"
+                    ></v-select>
+                  </v-col>
                 </v-row>
                 <v-btn
                   class="mt-3"
@@ -444,7 +509,6 @@ export default {
         if (doc.exists) {
           // console.log("Document data:", doc.data());
           this.user = doc.data();
-          this.loadUserProperties();
         } else {
           // doc.data() will be undefined in this case
           // console.log("No such document!");
@@ -456,11 +520,28 @@ export default {
         // // console.log("Error getting document:", error);
       });
 
+    await this.loadUserProperties(this.$route.params.slug);
     /* let j = () => parishes.parishes.find(parish => parish.slug == theParam);
     this.parish = j(); */
   },
   data() {
     return {
+      accountVerified: [
+        { text: "True", value: true },
+        { text: "False", value: false }
+      ],
+      verificationProcess: [
+        { text: "Pending", value: "pending" },
+        { text: "Verified", value: "verified" },
+        { text: "Declined", value: "declined" }
+      ],
+      accountRole: [
+        { text: "User", value: "user" },
+        { text: "Realtor", value: "Realtor" },
+        { text: "Housing Scheme", value: "housing scheme" },
+        { text: "Real Estate Firm", value: "real estate firm" }
+      ],
+
       visible: false,
       index: 2,
       items: ["User Details", "Identification", "Verification"],
@@ -495,15 +576,15 @@ export default {
         },
 
         personalDetails: {
-          lastName: "a",
-          displayName: "a",
+          lastName: "loading",
+          displayName: "loading",
           initials: "",
-          firstName: "a",
-          about: "a"
+          firstName: "loading",
+          about: "loading"
         },
         contact: {
-          whatsappNumber: null,
-          email: "asd@sdf.asdf",
+          whatsappNumber: 1111111111,
+          email: "loading",
           website: "",
           phoneNumber: 23234234234
         },
@@ -515,21 +596,21 @@ export default {
       },
       request_verification: [],
       requestUser: {
-        lastName: "Neo",
-        jamaicanCitizen: "Yes",
-        realtorLicense: "No",
-        phoneNumber: 1111111111,
+        lastName: "loading",
+        jamaicanCitizen: "loading",
+        realtorLicense: "loading",
+        phoneNumber: 2111111111,
         verified: false,
-        uploader: "1",
+        uploader: "loading",
         images: [
           {
-            src: "1",
-            fileName: "1"
+            src: "loading",
+            fileName: "loading"
           }
         ],
         timestamp: { seconds: 1632427918, nanoseconds: 463000000 },
-        firstName: "h",
-        email: "q"
+        firstName: "loading",
+        email: "loading"
       }
     };
   },
@@ -551,10 +632,10 @@ export default {
 
       return filter.clean(info);
     },
-    async loadUserProperties() {
+    async loadUserProperties(uid) {
       const ref = await this.$fire.firestore
         .collection("request_verification")
-        .where("uploader", "==", this.user.uid);
+        .where("uploader", "==", uid);
 
       ref.get().then(
         querySnapshot => {

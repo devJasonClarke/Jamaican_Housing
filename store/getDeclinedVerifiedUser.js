@@ -36,7 +36,7 @@ export const actions = {
           .where("verificationProcess", "==", 'declined')
           .orderBy("uid", "asc")
           .startAfter(state.lastVisible || '')
-          .limit(1);
+          .limit(8);
 
         ref.get().then(
           querySnapshot => {

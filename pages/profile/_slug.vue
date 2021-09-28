@@ -205,11 +205,11 @@
             </div>
             <v-divider
               class="mt-2 mb-4"
-              v-if="user.verified && user.role == 'realtor'"
+              v-if="user.verified"
             ></v-divider>
             <div
               class="max-width mx-auto my-0"
-              v-if="user.verified && user.role == 'realtor'"
+              v-if="user.verified"
             >
               <p class="mb-2 text-h6 font-weight-bold">Jason Provided</p>
               <ul class="body-1">
@@ -389,7 +389,7 @@ export default {
         .where("uploader", "==", this.user.uid)
         .orderBy("timestamp", "desc")
         .startAfter(this.lastVisible || {})
-        .limit(2);
+        .limit(6);
       ref.get().then(
         querySnapshot => {
           this.lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
