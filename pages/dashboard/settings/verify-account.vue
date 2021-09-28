@@ -150,11 +150,27 @@
                         prepend-icon="mdi-certificate"
                         label="Are you a registered realtor? *"
                         v-model="realtor"
-                        :items="['Yes', 'No']"
+                        :items="options"
                         :color="iconColor"
                         item-color="green"
-                        :rules="[v => !!v || 'required']"
+                        :rules="[v => !!v.toString() || 'required']"
                       ></v-select
+                    ></v-col>
+
+                    <v-col cols="12" md="6" v-if="realtor">
+                      <v-text-field
+                        outlined
+                        dense
+                        prepend-icon="mdi-certificate"
+                        label="Enter your Licence Number *"
+                        required
+                        v-model="realtorId"
+                        :color="iconColor"
+                        :rules="[
+                          v => !!v.toString() || 'required',
+                          v => v.length < 8 || 'max 7 characters'
+                        ]"
+                      ></v-text-field
                     ></v-col>
                     <v-col cols="12" md="6">
                       <v-select
@@ -163,11 +179,26 @@
                         prepend-icon="mdi-island"
                         label="Are you a Jamaican citizen? *"
                         v-model="citizen"
-                        :items="['Yes', 'No']"
+                        :items="options"
                         :color="iconColor"
                         item-color="green"
-                        :rules="[v => !!v || 'required']"
+                        :rules="[v => !!v.toString() || 'required']"
                       ></v-select
+                    ></v-col>
+                    <v-col cols="12" md="6" v-if="citizen === false">
+                      <v-text-field
+                        outlined
+                        dense
+                        prepend-icon="mdi-earth"
+                        label="Which country are you from? *"
+                        required
+                        v-model="userCountry"
+                        :color="iconColor"
+                        :rules="[
+                          v => !!v.toString() || 'required',
+                          v => v.length < 101 || 'max 100 characters'
+                        ]"
+                      ></v-text-field
                     ></v-col>
                   </v-row>
                   <v-btn dark :color="iconColor" type="submit">
@@ -179,9 +210,24 @@
 
             <v-stepper-content step="2">
               <v-container>
-                <p class="text-h6 pb-6">
-                  Please upload a picture of a valid ID along with your
-                  realtor's license.
+                <p class="text-h6" v-if="realtor">
+                  Please upload a picture of your valid ID and your realtor's
+                  license.
+                </p>
+                <p class="text-h6" v-else>
+                  Please upload a picture of your valid ID.
+                </p>
+
+                <p class="text-body-2 mb-12">
+                  Images should be less than 1 mb. Please use this website to
+                  compress your images before upload:
+                  <a
+                    href="https://tinypng.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="blue--text"
+                    >Compress Images
+                  </a>
                 </p>
                 <v-form
                   v-model="validPictures"
@@ -307,6 +353,10 @@ export default {
   layout: "dashboard",
   data() {
     return {
+      options: [
+        { text: "Yes", value: true },
+        { text: "No", value: false }
+      ],
       cur: 1,
       snackbar: false,
       snackbarMessage: "",
@@ -320,7 +370,9 @@ export default {
       loading: false,
       disabled: false,
       realtor: "",
+      realtorId: "",
       citizen: "",
+      userCountry: "",
       imageUrls: [],
       fileBeingUploaded: "",
       fileName: ""
@@ -474,11 +526,10 @@ export default {
             lastName: this.lastName,
             email: this.email,
             phoneNumber: this.phoneNumber,
-            realtorLicense: this.realtor,
+            isRealtor: this.realtor,
+            realtorLicense: this.realtorId,
             jamaicanCitizen: this.citizen,
-
-            verified: this.profile.verified,
-            uploader: this.user.uid,
+            userCountry: this.userCountry,
             timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
             images: this.imageUrls
           })
@@ -499,6 +550,7 @@ export default {
             this.logSuccess("Verification Successfully Requested!");
           })
           .catch(error => {
+            console.log(error);
             this.logError(error.message);
             this.loading = false;
           });

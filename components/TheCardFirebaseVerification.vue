@@ -123,16 +123,17 @@ export default {
       activeCurrency: "api/activeCurrency",
       currencyRate: "api/currencyRate"
     }),
-   formattedNumber() {
+    formattedNumber() {
       /* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */
+
       var phone = [
-        this.phoneNumber.toString().slice(0, 3),
+        this.user[0].contact.phoneNumber.toString().slice(0, 3),
         "-",
-        this.phoneNumber.toString().slice(3, 6),
+        this.user[0].contact.phoneNumber.toString().slice(3, 6),
         "-",
-        this.phoneNumber.toString().slice(6)
+        this.user[0].contact.phoneNumber.toString().slice(6)
       ].join("");
-      return phone;
+      return  phone;
     }
   }
 };

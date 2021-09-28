@@ -374,6 +374,17 @@
                 <p class="text-h6 pb-6">
                   Please add pictures of your property
                 </p>
+                <p class="text-body-2 mb-12">
+                  Images should be less than 1 mb. Please use this website to
+                  compress your images before upload:
+                  <a
+                    href="https://tinypng.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="blue--text"
+                    >Compress Images
+                  </a>
+                </p>
                 <v-form
                   v-model="validPictures"
                   @submit.prevent="validatePictures"
@@ -866,7 +877,7 @@ export default {
         this.loading = true;
         let bedrooms;
 
-       if (
+        if (
           this.property.details.propertyType ===
             "Commercial Building/Offices" ||
           this.property.details.propertyType ===

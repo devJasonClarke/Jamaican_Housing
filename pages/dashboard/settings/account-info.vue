@@ -127,7 +127,8 @@
               ></v-col>
             </v-row>
             <v-btn
-              color="success"
+            color="green accent-4"
+            dark
               type="submit"
               :disabled="disableUpdateAccount"
               :loading="updateDetailsLoader"
@@ -136,7 +137,34 @@
           </v-form>
         </v-tab-item>
 
-        <v-tab-item v-if='!profile.verified'>
+        <v-tab-item v-if="!profile.verified">
+          <v-sheet
+            height="200px"
+            class="d-flex justify-center align-center flex-column pa-3"
+            outlined
+            ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
+              Verify your account to connect your social media.
+            </p>
+
+            <div class="d-flex">
+              <v-icon color="blue darken-3">mdi-facebook mdi-36px</v-icon>
+              <v-icon color="red darken-1" class="mx-6">mdi-youtube mdi-36px</v-icon>
+              <v-icon color="green">mdi-whatsapp mdi-36px</v-icon>
+            </div>
+
+            <v-btn
+          nuxt
+          :to="{ name: 'dashboard-settings-verify-account' }"
+          dark
+          color="green accent-4"
+          class="mt-6"
+          elevation="0"
+        >
+          <v-icon left>mdi-check-decagram </v-icon> Verify account</v-btn
+        >
+          </v-sheet>
+        </v-tab-item>
+        <v-tab-item v-else>
           <p class="text-h6 ">
             Please enter your information.
           </p>
@@ -226,7 +254,8 @@
               ></v-col>
             </v-row>
             <v-btn
-              color="success"
+              color="green accent-4"
+              dark
               type="submit"
               :disabled="disableUpdateSocial"
               :loading="updateSocialLoader"
@@ -234,37 +263,21 @@
             >
           </v-form>
         </v-tab-item>
-          <v-tab-item v-else>
-          <v-sheet
-            height="200px"
-            class="d-flex justify-center align-center flex-column pa-3"
-            outlined
-            ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
-              Verify your account to connect your social media.
-            </p>
-
-           <div class="d-flex">
-              <v-icon>mdi-facebook mdi-36px</v-icon>
-            <v-icon class="mx-6">mdi-linkedin mdi-36px</v-icon>
-            <v-icon>mdi-whatsapp mdi-36px</v-icon>
-           </div>
-            
-          </v-sheet>
-        </v-tab-item> 
         <v-tab-item>
           <p class="text-h6 " id="top">
             Please upload your profile picture.
           </p>
           <p class="text-body-2">
-            Profile pictures should have a resolution of 400px x 400px and be 200 KB or less.<br>
-            Please use this website to compress your image:
-                  <a
-                    href="https://tinypng.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="blue--text"
-                  >Compress Image
-                </a>
+            Profile pictures should have a resolution of 400px x 400px and be
+            200 KB or less.<br />
+            Please use this website to compress your image before upload:
+            <a
+              href="https://tinypng.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="blue--text"
+              >Compress Image
+            </a>
           </p>
 
           <v-col cols="12" md="6" class="mt-9">
@@ -436,7 +449,7 @@
             </SectionPadding>
           </v-col>
         </v-tab-item>
-       <!--  <v-tab-item v-else>
+        <!--  <v-tab-item v-else>
           <v-sheet
             height="200px"
             class="d-flex justify-center align-center flex-column pa-3"
@@ -615,6 +628,8 @@ export default {
           () => (this.disableUpdateAccount = !this.disableUpdateAccount),
           10000
         );
+
+    
       } else {
       }
     },
@@ -759,7 +774,7 @@ export default {
           // console.log("delete error");
           // console.log(error);
           this.logError(error.message);
-            this.dialog = false;
+          this.dialog = false;
         });
     },
     addDropFile(e) {

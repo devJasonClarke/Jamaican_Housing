@@ -244,7 +244,7 @@
 
           <v-divider class="my-6"></v-divider>
 
-          {{ request_verification }}
+          <!--   {{ request_verification }} -->
           <v-tabs
             v-model="tab"
             background-color="transparent"
@@ -348,23 +348,85 @@
                   <p class="text-h6">Picture {{ index + 1 }}</p>
                   <p class="text-subtitle-1">File name: {{ img.fileName }}</p>
                   <img
+                    class="cursor"
                     :src="img.src"
                     :alt="img.fileName"
                     width="100%"
                     height="100%"
+                    @click="showImg(index)"
                   />
 
-                  <v-btn elevation="0" color="success" nuxt target="_blank" :href="img.src">Download</v-btn>
+                  <v-btn elevation="0" color="success" @click="showImg(index)"
+                    >inspect</v-btn
+                  >
                 </div>
               </div>
               <v-divider class="my-6"></v-divider>
-              <v-btn elevation="0" nuxt target="_blank" href="https://www.reb.gov.jm/nmcms.php?snippet=membership&p=member_search" color="success">Verify Realor with Government</v-btn>
             </v-tab-item>
-            <v-tab-item> verification </v-tab-item>
+
+            <v-tab-item>
+              <div>
+                <p class="text-h6">
+                  Verify Realtor License with Jamaican Government:
+                </p>
+                <v-btn
+                  elevation="0"
+                  nuxt
+                  target="_blank"
+                  href="https://www.reb.gov.jm/nmcms.php?snippet=membership&p=member_search"
+                  color="green accent-4"
+                  dark
+                  >License Verification</v-btn
+                >
+              </div>
+              <div class="mt-12">
+                <p class="text-h6">Set user verification status:</p>
+                <v-row>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      outlined
+                      dense
+                      v-model="user.verified"
+                      prepend-icon="mdi-check-decagram"
+                      label="Account Verified"
+                      required
+                      :color="iconColor"
+                    ></v-text-field
+                  ></v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      outlined
+                      dense
+                      v-model="user.verificationProcess"
+                      prepend-icon="mdi-check-decagram"
+                      label="Verification Process"
+                      required
+                      :color="iconColor"
+                    ></v-text-field
+                  ></v-col>
+                </v-row>
+                <v-btn
+                  class="mt-3"
+                  dark
+                  color="green accent-4"
+                  type="submit"
+                  :disabled="disableUpdateAccount"
+                  :loading="updateDetailsLoader"
+                  >Save</v-btn
+                >
+              </div>
+            </v-tab-item>
           </v-tabs-items>
         </v-col>
       </v-row>
     </v-container>
+    <vue-easy-lightbox
+      :visible="visible"
+      :imgs="requestUser.images"
+      :index="index"
+      :loop="true"
+      @hide="handleHide"
+    ></vue-easy-lightbox>
   </div>
 </template>
 
@@ -399,6 +461,8 @@ export default {
   },
   data() {
     return {
+      visible: false,
+      index: 2,
       items: ["User Details", "Identification", "Verification"],
       tab: null,
       properties: [],
@@ -459,11 +523,9 @@ export default {
         uploader: "1",
         images: [
           {
-            src:
-             "1",
+            src: "1",
             fileName: "1"
-          },
-       
+          }
         ],
         timestamp: { seconds: 1632427918, nanoseconds: 463000000 },
         firstName: "h",
@@ -472,6 +534,14 @@ export default {
     };
   },
   methods: {
+    showImg(i) {
+      // console.log(`show: ${i}`);
+      this.index = i;
+      this.visible = true;
+    },
+    handleHide() {
+      this.visible = false;
+    },
     ...mapActions({
       logError: "errors/logError"
     }),
@@ -558,5 +628,8 @@ export default {
 .amendities-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+.cursor {
+  cursor: pointer;
 }
 </style>

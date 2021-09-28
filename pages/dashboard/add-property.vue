@@ -11,24 +11,7 @@
         title="sale"
       ></v-skeleton-loader>
     </SectionPadding>
-    <SectionPadding class="pt-9" v-else-if="!profile.verified">
-      <v-sheet
-        height="250px"
-        class="d-flex justify-center align-center flex-column pa-3"
-        outlined
-        ><p class="text-sm-h6 text-subtitle-1 text-center font-weight-regular">
-          Please verify your account to add properties.
-        </p>
-        <v-btn
-          nuxt
-          :to="{ name: 'dashboard-settings-verify-account' }"
-          dark
-          color="green accent-4"
-        >
-          <v-icon left>mdi-check-decagram </v-icon> Verify account</v-btn
-        >
-      </v-sheet>
-    </SectionPadding>
+
 
     <SectionPadding
       class="pt-9"
@@ -53,7 +36,24 @@
         >
       </v-sheet>
     </SectionPadding>
-
+    <SectionPadding class="pt-9" v-else-if="!profile.verified">
+      <v-sheet
+        height="250px"
+        class="d-flex justify-center align-center flex-column pa-3"
+        outlined
+        ><p class="text-sm-h6 text-subtitle-1 text-center font-weight-regular">
+          Please verify your account to add properties.
+        </p>
+        <v-btn
+          nuxt
+          :to="{ name: 'dashboard-settings-verify-account' }"
+          dark
+          color="green accent-4"
+        >
+          <v-icon left>mdi-check-decagram </v-icon> Verify account</v-btn
+        >
+      </v-sheet>
+    </SectionPadding>
     <section v-else>
       <SectionPadding class="pt-9">
         <v-stepper v-model="cur">
@@ -408,7 +408,7 @@
                 </p>
                 <p class="text-body-2 mb-12">
                   Images should be less than 1 mb. Please use this website to
-                  compress your images:
+                  compress your images before upload:
                   <a
                     href="https://tinypng.com/"
                     target="_blank"
