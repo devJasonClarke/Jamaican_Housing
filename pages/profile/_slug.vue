@@ -331,7 +331,7 @@ export default {
         dark: true
       },
       iconColor: "rgba(0, 200, 83, 1)",
-      phoneNumber: 18763147199,
+      phoneNumber: 1111111111,
       loading: false,
       flex: false,
       user: {
@@ -353,17 +353,17 @@ export default {
         },
 
         personalDetails: {
-          lastName: "a",
-          displayName: "a",
-          initials: "",
-          firstName: "a",
-          about: "a"
+          lastName: "loading",
+          displayName: "loading",
+          initials: "loading",
+          firstName: "loading",
+          about: "loading"
         },
         contact: {
-          whatsappNumber: null,
-          email: "asd@sdf.asdf",
+          whatsappNumber: 1111111111,
+          email: "loading",
           website: "",
-          phoneNumber: 23234234234
+          phoneNumber: 1111111111
         },
         profilePicture: {
           src: "",

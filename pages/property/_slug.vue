@@ -795,14 +795,14 @@ export default {
         type: "",
         amenities: [],
         description: {
-          name: "Real Estate JA",
-          description: "Real Estate JA"
+          name: "loading",
+          description: "loading"
         },
-        uploader: "sss"
+        uploader: "loading"
       },
       uploader: {
-        verified: true,
-        role: "user",
+        verified: false,
+        role: "loading",
         lastName: "",
         socialMedia: {
           linkedIn: "",
@@ -811,26 +811,26 @@ export default {
           twitter: "",
           instagram: ""
         },
-        initials: "JC",
+        initials: "LD",
         realEstateFirm: {
           uid: "",
           name: ""
         },
-        displayName: "Jason Clarke",
-        favourites: ["ytnkT0sDxquL6TjjsA2U"],
-        email: "jettison100@gmail.com",
+        displayName: "loading",
+        favourites: ["loading"],
+        email: "loading",
         firstName: "",
         personalDetails: {
-          lastName: "Clarke",
-          displayName: "Jason Clarke",
-          initials: "JC",
-          firstName: "J dawg"
+          lastName: "loading",
+          displayName: "loading",
+          initials: "LD",
+          firstName: "loading"
         },
         contact: {
-          whatsappNumber: null,
-          email: "asd@sdf.asdf",
+          whatsappNumber: 1111111111,
+          email: "loading",
           website: "",
-          phoneNumber: 23234234234
+          phoneNumber: 1111111111
         },
         profilePicture: {
           src: "",
@@ -839,9 +839,9 @@ export default {
         uid: ""
       },
       card: {
-        title: "Sunny Private Studio Apartment",
-        parish: "St. James",
-        realEstateType: "Apartment",
+        title: "loading",
+        parish: "loading",
+        realEstateType: "loading",
         squareMeters: 80,
         beds: 3,
         bathroom: 2,
@@ -849,63 +849,99 @@ export default {
       },
       items: [
         {
-          text: "Wifi",
-          icon: "mdi-wifi"
+          text: "loading",
+          icon: "mdi-loading"
         },
-        { text: "Air Conditioning", icon: "mdi-air-filter" },
-        { text: "Cable TV ", icon: "mdi-television" },
-        { text: "Gated Community", icon: "mdi-security" },
-        { text: "Parking", icon: "mdi-car" },
-        { text: "Furnished", icon: "mdi-sofa" },
-        { text: "24 Hour Security", icon: "mdi-cctv" },
-        { text: "Family Oriented", icon: "mdi-home-heart" },
-        { text: "Grilled", icon: "mdi-shield-home" },
-        { text: "Water Heater", icon: "mdi-thermometer-high" },
-        { text: "Swimming Pool", icon: "mdi-pool" },
-        { text: "Generator", icon: "mdi-flash" },
-        { text: "Water Tank", icon: "mdi-water" }
+        {
+          text: "loading",
+          icon: "mdi-loading"
+        },
+        {
+          text: "loading",
+          icon: "mdi-loading"
+        },
+        {
+          text: "loading",
+          icon: "mdi-loading"
+        },
+        {
+          text: "loading",
+          icon: "mdi-loading"
+        },
+        {
+          text: "loading",
+          icon: "mdi-loading"
+        },
+        {
+          text: "loading",
+          icon: "mdi-loading"
+        },
+        {
+          text: "loading",
+          icon: "mdi-loading"
+        },
+        {
+          text: "loading",
+          icon: "mdi-loading"
+        },
+        {
+          text: "loading",
+          icon: "mdi-loading"
+        },
+        {
+          text: "loading",
+          icon: "mdi-loading"
+        },
+        {
+          text: "loading",
+          icon: "mdi-loading"
+        },
+        {
+          text: "loading",
+          icon: "mdi-loading"
+        }
       ],
       details: [
         {
           detail: "Property ID",
-          value: "MLS-99999"
+          value: "loading"
         },
         {
           detail: "Property Type",
-          value: "Apartment"
+          value: "loading"
         },
         {
           detail: "Bed Rooms",
-          value: "1"
+          value: "loading"
         },
         {
           detail: "Bathrooms",
-          value: "1"
+          value: "loading"
         },
         {
           detail: "Size",
-          value: "12 square metre"
+          value: "loading"
         },
         {
           detail: "Garages",
-          value: "1"
+          value: "loading"
         },
         {
           detail: "Price",
-          value: "$55000 JMD / month",
+          value: "loading",
           price: 85000
         },
         {
           detail: "Property Status",
-          value: "For Rent"
+          value: "loading"
         },
         {
           detail: "Community",
-          value: "Catherine Hall"
+          value: "loading"
         },
         {
           detail: "Parish",
-          value: "St. James"
+          value: "loading"
         }
       ]
     };
