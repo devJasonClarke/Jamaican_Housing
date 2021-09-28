@@ -3,7 +3,7 @@
     <TheMetaTags :title="title" :description="description" />
     <v-container class="mt-6 mb-9">
       <v-row>
-        <v-col cols="12" md="4" v-if="user.personalDetails.displayName === ''">
+        <v-col cols="12" md="4" v-if="user.personalDetails.displayName === 'loading'">
           <v-card class="pa-6 ml-sm-3 mb-6" elevation="3">
             <v-skeleton-loader
               type="image"
@@ -224,7 +224,7 @@
           </v-card>
         </v-col>
 
-        <v-col cols="12" md="8" v-if="user.personalDetails.displayName === ''">
+        <v-col cols="12" md="8" v-if="user.personalDetails.displayName === 'loading'">
           <v-skeleton-loader type="paragraph,sentences"></v-skeleton-loader>
           <TheRealEstatePropertiesListingLoader title="loading properties" />
         </v-col>
