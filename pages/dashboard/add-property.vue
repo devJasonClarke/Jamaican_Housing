@@ -595,7 +595,7 @@
                   @click="move(i, i - 1)"
                   :disabled="i == 0"
                   title="Move image up"
-                  v-if="i != 0"
+                  v-show="i != 0"
                 >
                   <v-icon>mdi-arrow-up </v-icon>
                 </v-btn>
@@ -606,7 +606,7 @@
                   @click="move(i, i + 1)"
                   :disabled="i == urls.length - 1"
                   title="Move image down"
-                  v-if="i != urls.length - 1"
+                  v-show="i != urls.length - 1"
                 >
                   <v-icon>mdi-arrow-down </v-icon>
                 </v-btn>
