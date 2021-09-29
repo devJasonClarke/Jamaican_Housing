@@ -211,7 +211,7 @@
               class="max-width mx-auto my-0"
               v-if="user.verified"
             >
-              <p class="mb-2 text-h6 font-weight-bold">Jason Provided</p>
+              <p class="mb-2 text-h6 font-weight-bold">{{profanityFilter(user.personalDetails.firstName)}} Provided</p>
               <ul class="body-1">
                 <li class="grey--text text--darken-2">&#8226; Government ID</li>
                 <li class="grey--text text--darken-2">

@@ -77,7 +77,6 @@
                   type="number"
                   color="green"
                   :rules="[v => !!v || 'Item is required']"
-                  @change="resetPropertySearch"
                   required
                 >
                 </v-text-field>
@@ -172,7 +171,6 @@
                   type="number"
                   color="green"
                   :rules="[v => !!v || 'Item is required']"
-                  @change="resetPropertySearch"
                   required
                 >
                 </v-text-field>

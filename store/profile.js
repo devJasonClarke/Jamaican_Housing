@@ -2,7 +2,7 @@ export const state = () => ({
   profile: {
     achievements: [],
     loading: true,
-    verified: '',
+    verified: "",
     role: "",
     lastName: "",
     socialMedia: {
@@ -187,6 +187,7 @@ export const mutations = {
   SET_PROFILE: (state, data) => {
     state.profile = data;
     state.userAthenticated = true;
+    localStorage.setItem("role", data.role);
   },
   SET_ABOUT: (state, value) => {
     state.profile.personalDetails.about = value;
@@ -242,7 +243,7 @@ export const mutations = {
     state.updateSocialLoader = value;
   },
 
-  SET_VERIFICATION_PROCESS: (state) =>{
-    state.profile['verificationProcess'] = 'pending';
+  SET_VERIFICATION_PROCESS: state => {
+    state.profile["verificationProcess"] = "pending";
   }
 };
