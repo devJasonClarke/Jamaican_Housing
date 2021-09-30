@@ -23,12 +23,12 @@ export const actions = {
 
     this.$fireModule.auth().onAuthStateChanged(user => {
       if (user) {
-       console.log("Get User: User");
-        console.log(user);
-     console.log(`Properties: ${state.properties.length}`);
+       // console.log("Get User: User");
+        // console.log(user);
+     // console.log(`Properties: ${state.properties.length}`);
 
-        console.log("lastVisible");
-         console.log(state.lastVisible);
+        // console.log("lastVisible");
+         // console.log(state.lastVisible);
 
         const ref = this.$fire.firestore
           .collection("users")
@@ -53,7 +53,7 @@ export const actions = {
               commit("SET_PAGINATE_NEXT");
             }
             if (querySnapshot.empty && state.properties.length) {
-              commit("errors/LOG_ERROR", "You have no more properties.", {
+              commit("errors/LOG_ERROR", "There are no more pending users.", {
                 root: true
               });
             }
@@ -74,7 +74,7 @@ export const actions = {
           error => {
             commit("errors/LOG_ERROR", error.message, { root: true });
           // // console.log("Firebase");
-            console.log(error);
+            // console.log(error);
           }
         );
       } else {

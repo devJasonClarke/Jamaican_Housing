@@ -52,7 +52,7 @@ export const actions = {
               commit("SET_PAGINATE_NEXT");
             }
             if (querySnapshot.empty && state.properties.length) {
-              commit("errors/LOG_ERROR", "You have no more properties.", {
+              commit("errors/LOG_ERROR", "There are no more verified users.", {
                 root: true
               });
             }
