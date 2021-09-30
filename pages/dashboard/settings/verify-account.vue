@@ -9,7 +9,7 @@
       ></v-skeleton-loader>
     </SectionPadding>
 
-    <SectionPadding
+    <!--  <SectionPadding
       v-else-if="profile.verificationProcess === 'pending'"
       class="pt-9"
     >
@@ -48,7 +48,7 @@
         </p>
         <v-icon color="blue">mdi-check-decagram mdi-36px</v-icon>
       </v-sheet>
-    </SectionPadding>
+    </SectionPadding> -->
     <section v-else id="top">
       <SectionPadding class="pt-9">
         <v-stepper v-model="cur">
@@ -164,13 +164,14 @@
                         outlined
                         dense
                         prepend-icon="mdi-certificate"
-                        label="Enter your Licence Number *"
+                        label="Enter your Realtor's Licence Number *"
                         required
                         v-model="realtorId"
                         :color="iconColor"
                         :rules="[
                           v => !!v.toString() || 'required',
-                          v => v.length < 8 || 'max 7 characters'
+                          v => v.length < 8 || 'max 7 characters',
+                          v => v.length > 5 || 'min 6 characters'
                         ]"
                       ></v-text-field
                     ></v-col>
@@ -248,23 +249,38 @@
                       show-size
                       counter
                       multiple
-                      maxlength="2"
+                      :maxlength="[realtor ? 3 : 2]"
                       prepend-icon="mdi-image-multiple"
                       v-model="files"
                       @change="resetURL"
                       label="Upload pictures of your valid ID"
                       :color="iconColor"
                       required
-                      :rules="[
-                        v => (!!v && v.length > 0) || 'File is required',
-                        v =>
-                          !v ||
-                          !v.some(file => file.size >= 1048576) ||
-                          'All pictures should be 1 MB or less in size!',
-                        v => v.length < 3 || 'No more than 3 pictures',
-                        v =>
-                          v.length > 0 || 'A minimum of 1 picture is required'
-                      ]"
+                      :rules="
+                        realtor
+                          ? [
+                              v => (!!v && v.length > 0) || 'File is required',
+                              v =>
+                                !v ||
+                                !v.some(file => file.size >= 1048576) ||
+                                'All pictures should be 1 MB or less in size!',
+                              v => v.length < 4 || 'No more than 3 pictures',
+                              v =>
+                                v.length > 1 ||
+                                'A minimum of 2 pictures are required'
+                            ]
+                          : [
+                              v => (!!v && v.length > 0) || 'File is required',
+                              v =>
+                                !v ||
+                                !v.some(file => file.size >= 1048576) ||
+                                'All pictures should be 1 MB or less in size!',
+                              v => v.length < 3 || 'No more than 2 pictures',
+                              v =>
+                                v.length > 0 ||
+                                'A minimum of 1 picture is required'
+                            ]
+                      "
                     ></v-file-input>
                   </v-row>
                   <v-btn
@@ -464,7 +480,7 @@ export default {
           }`;
 
           let ref = storage
-            .child(`property_images/${this.user.uid}/${this.fileName}`)
+            .child(`verification_credentials/${this.user.uid}/${this.fileName}`)
             .put(this.files[i]);
 
           ref.on(

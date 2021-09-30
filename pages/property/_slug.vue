@@ -505,7 +505,7 @@
 
             <div class="text-center d-flex flex-column">
               <nuxt-link
-                :to="{ name: 'profile' }"
+                :to="{ name: 'profile-slug', params: { slug: uploader.uid } }"
                 class="text-h6 blue--text mt-4 mb-0"
               >
                 {{ profanityFilter(uploader.personalDetails.displayName) }}

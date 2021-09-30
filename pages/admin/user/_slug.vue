@@ -3,7 +3,11 @@
     <TheMetaTags :title="title" :description="description" />
     <v-container class="mt-6 mb-9">
       <v-row>
-        <v-col cols="12" md="4" v-if="user.personalDetails.displayName === 'loading'">
+        <v-col
+          cols="12"
+          md="4"
+          v-if="user.personalDetails.displayName === 'loading'"
+        >
           <v-card class="pa-6 ml-sm-3 mb-6" elevation="3">
             <v-skeleton-loader
               type="image"
@@ -224,7 +228,11 @@
           </v-card>
         </v-col>
 
-        <v-col cols="12" md="8" v-if="user.personalDetails.displayName === 'loading'">
+        <v-col
+          cols="12"
+          md="8"
+          v-if="user.personalDetails.displayName === 'loading'"
+        >
           <v-skeleton-loader type="paragraph,sentences"></v-skeleton-loader>
           <TheRealEstatePropertiesListingLoader title="loading properties" />
         </v-col>
@@ -255,8 +263,10 @@
               {{ item }}
             </v-tab>
           </v-tabs>
+
           <v-tabs-items class="py-12 px-4" v-model="tab">
             <v-tab-item>
+              {{ request_verification }}
               <v-form ref="descriptionForm" @submit.prevent="validateFields">
                 <v-row
                   ><v-col cols="12" md="6">
@@ -305,6 +315,55 @@
                       v-model="requestUser.phoneNumber"
                       :color="iconColor"
                       type="number"
+                      disabled
+                    ></v-text-field
+                  ></v-col>
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      outlined
+                      dense
+                      prepend-icon="mdi-account"
+                      label="Is Realtor *"
+                      required
+                      v-model="requestUser.isRealtor"
+                      :color="iconColor"
+                      disabled
+                    ></v-text-field
+                  ></v-col>
+                  <v-col cols="12" md="6" v-if="requestUser.isRealtor">
+                    <v-text-field
+                      outlined
+                      dense
+                      prepend-icon="mdi-card-account-details-outline"
+                      label="Realtor License Number *"
+                      required
+                      v-model="requestUser.realtorLicense"
+                      :color="iconColor"
+                      disabled
+                    ></v-text-field
+                  ></v-col>
+
+                  <v-col cols="12" md="6">
+                    <v-text-field
+                      outlined
+                      dense
+                      prepend-icon="mdi-island"
+                      label="Jamaican Citizen *"
+                      required
+                      v-model="requestUser.jamaicanCitizen"
+                      :color="iconColor"
+                      disabled
+                    ></v-text-field
+                  ></v-col>
+                  <v-col cols="12" md="6" v-if="!requestUser.jamaicanCitizen">
+                    <v-text-field
+                      outlined
+                      dense
+                      prepend-icon="mdi-earth"
+                      label="Country of Origin *"
+                      required
+                      v-model="requestUser.userCountry"
+                      :color="iconColor"
                       disabled
                     ></v-text-field
                   ></v-col>
@@ -474,9 +533,7 @@
                   class="mt-3"
                   dark
                   color="green accent-4"
-                  type="submit"
-                  :disabled="disableUpdateAccount"
-                  :loading="updateDetailsLoader"
+                  @click="setVerificationStatus"
                   >Save</v-btn
                 >
               </div>
@@ -519,7 +576,6 @@ export default {
         this.logError(error.message);
         // // console.log("Error getting document:", error);
       });
-
     await this.loadUserProperties(this.$route.params.slug);
     /* let j = () => parishes.parishes.find(parish => parish.slug == theParam);
     this.parish = j(); */
@@ -599,6 +655,9 @@ export default {
         lastName: "loading",
         jamaicanCitizen: "loading",
         realtorLicense: "loading",
+        isRealtor: "",
+        userCountry: "",
+
         phoneNumber: 2111111111,
         verified: false,
         uploader: "loading",
@@ -608,13 +667,17 @@ export default {
             fileName: "loading"
           }
         ],
-        timestamp: { seconds: 1632427918, nanoseconds: 463000000 },
+        timestamp: "",
         firstName: "loading",
         email: "loading"
       }
     };
   },
   methods: {
+        ...mapActions({
+  logSuccess: "success/logSuccess",
+     logError: "errors/logError"
+    }),
     showImg(i) {
       // console.log(`show: ${i}`);
       this.index = i;
@@ -635,39 +698,38 @@ export default {
     async loadUserProperties(uid) {
       const ref = await this.$fire.firestore
         .collection("request_verification")
-        .where("uploader", "==", uid);
+        .doc(uid);
 
-      ref.get().then(
-        querySnapshot => {
-          this.lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
-          if (querySnapshot.empty) {
-            // console.log("Empty Profile");
-            this.paginateNext = {
-              disabled: true,
-              dark: false
-            };
-          }
-          if (querySnapshot.empty && this.properties.length) {
-            this.logError("This user has have no more properties.");
-          }
-          querySnapshot.forEach(doc => {
+      ref
+        .get()
+        .then(doc => {
+          if (doc.exists) {
+            // console.log("Document data:", doc.data());
             this.request_verification.push([doc.data(), doc.id]);
             this.requestUser = doc.data();
-          });
-          // console.log(`Fetch properties ${this.properties}`);
-          this.loading = false;
-          if (this.properties === []) {
-            this.properties = "no properties";
-            this.loading = false;
+          } else {
+            // doc.data() will be undefined in this case
+            // console.log("No such document!");
+            this.$router.push({ name: "error" });
           }
-        },
-        error => {
-          // // console.log("Firebase");
-          // console.log(error);
-
+        })
+        .catch(error => {
+          // console.log("Error getting document:", error);
           this.logError(error.message);
-        }
-      );
+        });
+    },
+    setVerificationStatus() {
+      this.$fire.firestore
+        .collection("users")
+        .doc(this.theParam)
+        .update({
+          verificationProcess: this.user.verificationProcess,
+          verified: this.user.verified,
+          role: this.user.role
+        })
+        .then(() => {
+          this.logSuccess("Successfully updated user's verification status!");
+        });
     }
   },
   computed: {
