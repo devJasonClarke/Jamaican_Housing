@@ -9,7 +9,7 @@
       ></v-skeleton-loader>
     </SectionPadding>
 
-    <!--  <SectionPadding
+   <SectionPadding
       v-else-if="profile.verificationProcess === 'pending'"
       class="pt-9"
     >
@@ -48,7 +48,7 @@
         </p>
         <v-icon color="blue">mdi-check-decagram mdi-36px</v-icon>
       </v-sheet>
-    </SectionPadding> -->
+    </SectionPadding>
     <section v-else id="top">
       <SectionPadding class="pt-9">
         <v-stepper v-model="cur">
