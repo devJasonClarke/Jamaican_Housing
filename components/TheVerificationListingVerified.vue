@@ -7,8 +7,8 @@
         v-for="(user, index) in users"
         :key="index"
         cols="12"
-        :sm="[flexSm ? 6 : 4]"
-        :md="[flexMd ? 4 : 3]"
+        :sm="flexSm ? 6 : 4"
+        :md="flexMd ? 4 : 3"
         class="mb-4"
       >
         <TheCardFirebaseVerification :user="user" />

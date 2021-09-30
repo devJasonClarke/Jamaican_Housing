@@ -7,8 +7,8 @@
         v-for="index in 8"
         :key="index + 'a'"
         cols="12"
-        :sm="[flexSm ? 6 : 4]"
-        :md="[flexMd ? 6 : 3]"
+        :sm="flexSm ? 6 : 4"
+        :md="flexMd ? 6 : 3"
         class="mb-4"
       >
         <v-card outlined class="pa-3 rounded-lg">

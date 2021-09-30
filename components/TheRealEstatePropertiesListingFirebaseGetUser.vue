@@ -5,8 +5,8 @@
         v-for="(property, index) in properties"
         :key="index"
         cols="12"
-        :sm="[flexSm ? 6 : 4]"
-        :md="[flexMd ? 6 : 4]"
+        :sm="flexSm ? 6 : 4"
+        :md="flexMd ? 6 : 4"
         class="mb-4"
       >
         <TheCardFirebase :property="property" />

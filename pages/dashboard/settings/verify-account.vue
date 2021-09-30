@@ -24,7 +24,7 @@
       </v-sheet>
     </SectionPadding>
     <SectionPadding
-      v-else-if="profile.verificationProcess === 'denied'"
+      v-else-if="profile.verificationProcess === 'declined'"
       class="pt-9"
     >
       <v-sheet
@@ -32,7 +32,7 @@
         class="d-flex justify-center align-center flex-column pa-3"
         outlined
         ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
-        Your verification has been denied. <br> If you believe that there has been an
+        Your verification has been declined. <br> If you believe that there has been an
           error please contact us.
         </p>
         <v-icon>mdi-check-decagram mdi-36px</v-icon>
