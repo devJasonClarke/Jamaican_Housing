@@ -121,6 +121,7 @@
 <script>
 export default {
   middleware: ["signup"],
+  name: "signin",
   data() {
     return {
       drawer: null,

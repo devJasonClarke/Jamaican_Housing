@@ -373,6 +373,7 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
+  name: "default",
   data() {
     return {
       drawer: null,

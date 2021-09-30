@@ -1,6 +1,6 @@
 export const state = () => ({
   properties: [],
-  lastVisible: '',
+  lastVisible: "",
   deleteLoading: false,
   loading: true,
   paginateNext: {
@@ -23,18 +23,18 @@ export const actions = {
 
     this.$fireModule.auth().onAuthStateChanged(user => {
       if (user) {
-       console.log("Get User: User");
-        console.log(user);
-     console.log(`Properties: ${state.properties.length}`);
+        //  console.log("Get User: User");
+        //  console.log(user);
+        //  console.log(`Properties: ${state.properties.length}`);
 
-        console.log("lastVisible");
-         console.log(state.lastVisible);
+        //   console.log("lastVisible");
+        //      console.log(state.lastVisible);
 
         const ref = this.$fire.firestore
           .collection("users")
           .where("verified", "==", true)
           .orderBy("uid", "asc")
-          .startAfter(state.lastVisible || '')
+          .startAfter(state.lastVisible || "")
           .limit(8);
 
         ref.get().then(
@@ -72,8 +72,8 @@ export const actions = {
           },
           error => {
             commit("errors/LOG_ERROR", error.message, { root: true });
-          // // console.log("Firebase");
-            console.log(error);
+            // // console.log("Firebase");
+            //   console.log(error);
           }
         );
       } else {
