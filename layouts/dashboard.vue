@@ -38,8 +38,8 @@
       <v-list v-if="!userAthenticated">
         <v-list-item class="d-flex justify-center align-center px-0 mx-0">
           <v-skeleton-loader
-            :height="[miniVariant ? 40 : 120]"
-            :width="[miniVariant ? 40 : 120]"
+            :height="miniVariant ? 40 : 120"
+            :width="miniVariant ? 40 : 120"
             class="d-block mx-0 rounded-circle"
             type="image"
           ></v-skeleton-loader>
@@ -55,16 +55,16 @@
         <v-list-item class="d-flex justify-center align-center px-0 mx-0">
           <v-skeleton-loader
             v-if="!userAthenticated"
-            :height="[miniVariant ? 40 : 120]"
-            :width="[miniVariant ? 40 : 120]"
+            :height="miniVariant ? 40 : 120"
+            :width="miniVariant ? 40 : 120"
             class="d-block mx-0 rounded-circle"
             type="image"
           ></v-skeleton-loader>
 
           <v-list-item-avatar
             v-else
-            :height="[miniVariant ? 40 : 120]"
-            :width="[miniVariant ? 40 : 120]"
+            :height="miniVariant ? 40 : 120"
+            :width="miniVariant ? 40 : 120"
             class="mx-0 d-flex justify-center align-center green"
           >
             <v-img
