@@ -554,6 +554,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
+  layout: "dashboard",
   async fetch() {
     this.theParam = this.$route.params.slug;
     // console.log(this.theParam);
@@ -673,9 +674,9 @@ export default {
     };
   },
   methods: {
-        ...mapActions({
-  logSuccess: "snackbars/success/logSuccess",
-     logError: "snackbars/errors/logError"
+    ...mapActions({
+      logSuccess: "snackbars/success/logSuccess",
+      logError: "snackbars/errors/logError"
     }),
     showImg(i) {
       // console.log(`show: ${i}`);

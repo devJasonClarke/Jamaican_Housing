@@ -6,19 +6,21 @@
     <TheFunctionsTheAuthenticationChecker />
     <v-toolbar flat>
       <v-app-bar-nav-icon
-        class="hidden-md-and-up"
+        class="hidden-lg-and-up"
         @click.stop="drawer = !drawer"
       >
       </v-app-bar-nav-icon>
       <v-toolbar-title
-        ><nuxt-link to="/" class="blue--text">Real Estate Ja</nuxt-link></v-toolbar-title
+        ><nuxt-link to="/" class="blue--text"
+          >Real Estate Ja</nuxt-link
+        ></v-toolbar-title
       >
 
       <v-spacer></v-spacer>
 
       <div class="d-flex mr-0 mr-md-5 d-sm-flex">
         <v-btn
-          :class="{ 'd-none': $vuetify.breakpoint.smAndDown }"
+          :class="{ 'd-none': $vuetify.breakpoint.mdAndDown }"
           v-for="(route, index) in routes"
           :key="'mainNavigation' + index"
           :text="route.text"
@@ -425,9 +427,16 @@ export default {
         },
 
         {
-          title: "add a property",
+          title: "add property",
           route: "dashboard-add-property",
           icon: "mdi-home-import-outline",
+          depressed: true,
+          text: true
+        },
+        {
+          title: "Parishes",
+          route: "parish",
+          icon: "mdi-home-variant-outline",
           depressed: true,
           text: true
         },
@@ -449,16 +458,6 @@ export default {
           dark: false,
           color: ""
         },
-        {
-          title: "parishes",
-          route: "parish",
-          icon: "mdi-map-marker-radius-outline",
-          depressed: false,
-          text: true,
-          dark: false,
-          color: ""
-        },
-
         {
           title: "contact",
           route: "contact",
@@ -499,9 +498,16 @@ export default {
         },
 
         {
-          title: "add a property",
+          title: "add property",
           route: "dashboard-add-property",
           icon: "mdi-home-import-outline",
+          depressed: true,
+          text: true
+        },
+        {
+          title: "Parishes",
+          route: "parish",
+          icon: "mdi-home-variant-outline",
           depressed: true,
           text: true
         },

@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <TheMetaTags :title="title" :description="description" />
-    <h1>Your Verified Users</h1>
+    <h1>Verified Users</h1>
 
     <TheListingRealEstatePropertiesLoader v-if="loading == true" title="sale" />
     <SectionPadding class="pt-9" v-else-if="!properties.length">
@@ -17,7 +17,7 @@
 
     <SectionPadding class="pt-9" v-else id="top">
       <TheListingVerification
-        title="Your Verified Users"
+        title="Verified Users"
         :users="properties"
       />
       <div class="d-flex justify-center align-center mt-4">
@@ -69,7 +69,7 @@ export default {
       iconColor: "rgba(0, 200, 83, 0.5)"
     };
   },
-  layout: "admin",
+  layout: "dashboard",
   computed: {
     ...mapGetters({
       user: "authentication/authentication/user",

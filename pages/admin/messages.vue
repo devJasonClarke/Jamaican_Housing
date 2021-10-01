@@ -159,7 +159,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
-  layout: "admin",
+  layout: "dashboard",
   fetch() {
     // console.log("fetch");
     // console.log(this.newMessages);

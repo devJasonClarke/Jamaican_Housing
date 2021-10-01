@@ -80,7 +80,7 @@ export default {
       iconColor: "rgba(0, 200, 83, 0.5)"
     };
   },
-  layout: "admin",
+  layout: "dashboard",
   computed: {
     ...mapGetters({
       user: "authentication/authentication/user",

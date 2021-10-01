@@ -114,7 +114,42 @@
         <v-list-item-group
           v-model="group"
           active-class="green--text text--accent-4"
+          v-if="useAdminRoutes"
         >
+          <v-list-item
+            v-for="(route, index) in adminRoutes"
+            :key="'navigationDrawer' + index"
+            link
+            class="text-capitalize"
+            :to="{ name: route.route }"
+            exact
+          >
+            <v-list-item-icon>
+              <v-icon>{{ route.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-title>{{ route.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+
+        <v-list-item-group
+          v-model="group"
+          active-class="green--text text--accent-4"
+          v-else
+        >
+          <v-list-item
+            link
+            class="text-capitalize"
+            :to="{ name: 'index' }"
+            exact
+          >
+            <v-list-item-icon>
+              <v-icon>mdi-home-outline</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-title>Home Page</v-list-item-title>
+          </v-list-item>
+
           <v-list-item
             link
             class="text-capitalize"
@@ -313,13 +348,9 @@ export default {
       miniVariant: false,
       uid: "",
       title: "nope",
+
       messages: 8,
       routes: [
-        {
-          icon: "mdi-home-outline",
-          title: "Home Page",
-          route: "index"
-        },
         {
           icon: "mdi-apps",
           title: "Properties",
@@ -349,6 +380,33 @@ export default {
           icon: "mdi-account-circle-outline",
           title: "Settings",
           route: "dashboard-settings"
+        }
+      ],
+      adminRoutes: [
+        {
+          icon: "mdi-apps",
+          title: "Dashboard",
+          route: "dashboard"
+        },
+        {
+          icon: "mdi-check-decagram",
+          title: "Verify Users",
+          route: "admin"
+        },
+        {
+          icon: "mdi-check-decagram-outline",
+          title: "Pending Verification",
+          route: "admin-pending"
+        },
+        {
+          icon: "mdi-close-circle-outline",
+          title: "Declined Verification",
+          route: "admin-declined"
+        },
+        {
+          icon: "mdi-message-text-outline",
+          title: "Messages",
+          route: "admin-messages"
         }
       ],
       flexMd: false
@@ -384,7 +442,14 @@ export default {
       profile: "dashboard/profile/profile",
       userAthenticated: "dashboard/profile/userAthenticated",
       colorTheme: "colorTheme/colorTheme/theme"
-    })
+    }),
+    useAdminRoutes() {
+      if (this.$route.path.indexOf("admin") > -1) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 };
 </script>
