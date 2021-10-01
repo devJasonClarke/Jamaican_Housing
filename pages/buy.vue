@@ -18,7 +18,7 @@
       </SectionPaddingAlt>
       <div id="results"></div>
       <SectionPadding v-if="loading == true" class="pt-0"
-        ><TheRealEstatePropertiesListingLoader title="sale"
+        ><TheListingRealEstatePropertiesLoader title="sale"
       /></SectionPadding>
       <div v-else-if="searchedProperties.length">
         <SectionPadding class="pt-0 " v-if="!searchedProperties.length">
@@ -41,7 +41,7 @@
           </v-sheet>
         </SectionPadding>
         <SectionPadding v-else class="pt-0">
-          <TheRealEstatePropertiesListingFirebase
+          <TheListingRealEstatePropertiesFirebase
             title="Real Estate for Sale"
             :properties="searchedProperties"
           />
@@ -96,7 +96,7 @@
           </v-sheet>
         </SectionPadding>
         <SectionPadding v-else class="pt-0">
-          <TheRealEstatePropertiesListingFirebase
+          <TheListingRealEstatePropertiesFirebase
             title="Real Estate for Sale"
             :properties="properties"
           />
@@ -138,7 +138,7 @@
         route="featured"
       />
 
-      <TheFeaturedProperties />
+      <TheSwiperPropertyFeatured />
     </SectionPadding>
   </div>
 </template>

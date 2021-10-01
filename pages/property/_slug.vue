@@ -1,7 +1,7 @@
 <template>
   <div>
     <TheMetaTags :title="title" :description="description" />
-    <ThePropertySwiperFirebase :images="property.images" />
+    <TheSwiperPropertyFirebase :images="property.images" />
 
     <v-container class="mt-6 mb-9">
       <v-row>
@@ -509,7 +509,7 @@
                 class="text-h6 blue--text mt-4 mb-0"
               >
                 {{ profanityFilter(uploader.personalDetails.displayName) }}
-                <VerifiedSymbol
+                <SymbolVerified
                   v-if="uploader.verified"
                   :role="uploader.role"
                 />
@@ -729,7 +729,7 @@
         route="featured"
       />
 
-      <TheFeaturedProperties />
+      <TheSwiperPropertyFeatured />
     </SectionPadding>
   </div>
 </template>

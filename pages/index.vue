@@ -2,13 +2,14 @@
   <div>
     <TheMetaTags :title="title" :description="description" />
     <TheHomePageHeader />
+
     <TheSearchSectionHomePage />
     <SectionPadding>
       <SectionTitlesNoLink
         subTitle="FIND YOUR PROPERTY TODAY"
         mainTitle="Discover the best Real Estate opportunities around you"
       />
-      <SectionHompageOpportunitiesExplaination />
+    <TheHompageOpportunitiesExplaination />
     </SectionPadding>
     <SectionPadding class="backgroundShade">
       <SectionTitles
@@ -18,7 +19,7 @@
         route="featured"
       />
 
-      <TheFeaturedProperties />
+      <TheSwiperPropertyFeatured />
     </SectionPadding>
     <SectionPadding>
       <SectionTitles
@@ -36,7 +37,7 @@
         linkMessage="Meet the family"
         route="sponsors"
       />
-      <TheSponsorsAndPartnersSwiper />
+      <TheSwiperSponsorsAndPartners />
     </SectionPadding>
 
     <SectionPadding class="backgroundShade">
@@ -49,7 +50,7 @@
 </template>
 
 <script>
-import TheHomePageHeader from "../components/TheHomePageHeader.vue";
+import TheHomePageHeader from "../components/TheHomepage/TheHomePageHeader.vue";
 
 export default {
   components: { TheHomePageHeader },

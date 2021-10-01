@@ -1,9 +1,9 @@
 <template>
   <v-app dark>
-    <TheAuthenticationChecker />
-    <TheAPICalls />
-    <TheErrorLogger />
-    <TheSuccessLogger />
+    <TheFunctionsTheAuthenticationChecker />
+    <TheFunctionsTheAPICalls />
+    <SnackbarsTheErrorLogger />
+    <SnackbarsTheSuccessLogger />
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -102,7 +102,7 @@
               class="text-h6 px-0 text-center text-capitalize"
             >
               <span>{{ profile.personalDetails.displayName }}</span>
-              <VerifiedSymbol :role="profile.role" v-if="profile.verified" />
+              <SymbolVerified :role="profile.role" v-if="profile.verified" />
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -294,7 +294,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import VerifiedSymbol from "../components/VerifiedSymbol.vue";
+import SymbolVerified from "../components/Symbol/SymbolVerified.vue";
 export default {
   middleware: ["authenticated"],
   name: "dashboard",
@@ -356,7 +356,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      toggleTheme: "colorTheme/toggleTheme",
+      toggleTheme: "colorTheme/colorTheme/toggleTheme",
       logout: "authentication/logout",
       getNewMessages: "messages/getNewMessages"
     }),
@@ -383,7 +383,7 @@ export default {
       oldMessages: "messages/oldMessages",
       profile: "profile/profile",
       userAthenticated: "profile/userAthenticated",
-      colorTheme: "colorTheme/theme"
+      colorTheme: "colorTheme/colorTheme/theme"
     })
   }
 };

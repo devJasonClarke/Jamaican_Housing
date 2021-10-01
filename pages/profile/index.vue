@@ -13,7 +13,7 @@
             <div class="text-center d-flex flex-column">
               <p class="text-h5 font-weight-bold mt-4 mb-0">
                 Jason Clarke
-           <VerifiedSymbol role="realtor"/>
+           <SymbolVerified role="realtor"/>
                 <v-tooltip color="blue" top>
                   <template v-slot:activator="{ on, attrs }">
                     <v-icon color="blue" dark v-bind="attrs" v-on="on">
@@ -172,8 +172,8 @@
             Possimus saepe nobis eaque tempora sint, quos corporis deleniti
             laborum voluptatem omnis.
           </p>
-          <TheRealEstatePropertiesListingLoader v-if="loading" title="sale" />
-          <TheRealEstatePropertiesListingProfile
+          <TheListingRealEstatePropertiesLoader v-if="loading" title="sale" />
+          <TheListingRealEstatePropertiesProfile
             v-else
             title="Real Estate"
             :card="featuredProperties"
@@ -189,7 +189,7 @@
         route="featured"
       />
 
-      <TheFeaturedProperties />
+      <TheSwiperPropertyFeatured />
     </SectionPadding>
   </div>
 </template>

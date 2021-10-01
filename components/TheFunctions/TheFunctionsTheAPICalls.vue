@@ -20,7 +20,7 @@ export default {
     ...mapActions({
       //    getIpInfo: "api/getIPInfo",
       getCurrencies: "api/getCurrencies",
-      checkTheme: "colorTheme/checkTheme"
+      checkTheme: "colorTheme/colorTheme/checkTheme"
     }),
     resetError(){
       this.error = false;

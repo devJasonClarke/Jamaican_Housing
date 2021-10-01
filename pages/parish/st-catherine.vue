@@ -19,7 +19,7 @@
     <v-container class="px-6 px-sm-0">
       <div id="results"></div>
       <SectionPadding v-if="loading == true" class="pt-9"
-        ><TheRealEstatePropertiesListingLoader title="rent"
+        ><TheListingRealEstatePropertiesLoader title="rent"
       /></SectionPadding>
 
       <div v-else>
@@ -43,7 +43,7 @@
           </v-sheet>
         </SectionPadding>
         <SectionPadding v-else class="pt-9">
-          <TheRealEstatePropertiesListingFirebase
+          <TheListingRealEstatePropertiesFirebase
             :title="`Real Estate from ${parish}`"
             :properties="properties"
           />
@@ -85,7 +85,7 @@
         route="featured"
       />
 
-      <TheFeaturedProperties />
+      <TheSwiperPropertyFeatured />
     </SectionPadding>
   </div>
 </template>

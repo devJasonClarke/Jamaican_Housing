@@ -50,6 +50,14 @@
             </template>
             <span>Verified</span>
           </v-tooltip>
+          <v-tooltip color="orange" v-if="property[0].verified" top>
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon color="orange" dark v-bind="attrs" v-on="on" class="ml-2">
+                mdi-star mdi-18px
+              </v-icon>
+            </template>
+            <span>Featured</span>
+          </v-tooltip>
         </v-card-title>
 
         <v-card-subtitle class="pb-4 primary-green">

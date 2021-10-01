@@ -6,7 +6,7 @@
       {{ property[1] }}
     </div> -->
     <!--     <div>{{ properties }}</div> -->
-    <TheRealEstatePropertiesListingLoader v-if="loading == true" title="sale" />
+    <TheListingRealEstatePropertiesLoader v-if="loading == true" title="sale" />
     <SectionPadding class="pt-9" v-else-if="!properties.length">
       <v-sheet
         height="200px"
@@ -28,7 +28,7 @@
     </SectionPadding>
 
     <SectionPadding class="pt-9" v-else id="top">
-      <TheRealEstatePropertiesListingFirebaseProfile
+      <TheListingRealEstatePropertiesFirebaseProfile
         title="Your Real Estate Properties"
         :properties="properties"
       />

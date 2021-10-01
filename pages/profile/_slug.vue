@@ -38,7 +38,7 @@
             <div class="text-center d-flex flex-column">
               <p class="text-h5 font-weight-bold mt-4 mb-0">
                 {{ profanityFilter(user.personalDetails.displayName) }}
-                <VerifiedSymbol v-if="user.verified" :role="user.role" />
+                <SymbolVerified v-if="user.verified" :role="user.role" />
               </p>
               <a
                 :href="`mailto:${user.contact.email}`"
@@ -226,7 +226,7 @@
 
         <v-col cols="12" md="8" v-if="user.personalDetails.displayName === 'loading'">
           <v-skeleton-loader type="paragraph,sentences"></v-skeleton-loader>
-          <TheRealEstatePropertiesListingLoader title="loading properties" />
+          <TheListingRealEstatePropertiesLoader title="loading properties" />
         </v-col>
 
         <v-col cols="12" md="8" v-else>
@@ -246,7 +246,7 @@
 
           <v-divider class="my-6"></v-divider>
 
-          <TheRealEstatePropertiesListingFirebaseGetUser
+          <TheListingRealEstatePropertiesFirebaseGetUser
             :properties="properties"
           />
           <div class="d-flex justify-center align-center mt-4">
@@ -287,7 +287,7 @@
         route="featured"
       />
 
-      <TheFeaturedProperties />
+      <TheSwiperPropertyFeatured />
     </SectionPadding>
   </div>
 </template>

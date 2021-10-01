@@ -68,7 +68,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      theme: "colorTheme/theme"
+      theme: "colorTheme/colorTheme/theme"
     })
   }
 };

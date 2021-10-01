@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <span v-if="false"></span>
-  </div>
+  <span v-if="false"></span>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
-    fetchOnServer: false,
+  fetchOnServer: false,
   fetch() {
     if (this.user === null) {
       this.checkAuth();

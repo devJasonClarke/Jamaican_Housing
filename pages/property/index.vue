@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ThePropertySwiper />
+    <TheSwiperProperty />
 
     <v-container class="mt-6 mb-9">
       <v-row>
@@ -235,7 +235,7 @@
             <div class="text-center d-flex flex-column">
               <nuxt-link :to="{ name: 'profile' }" class="text-h6  mt-4 mb-0">
                 Jason Clarke
-                <VerifiedSymbol role="realtor" />
+                <SymbolVerified role="realtor" />
               </nuxt-link>
               <a href="mailto:JasonClarke@gmail.com" class="text-subtitle-1"
                 >Jasonclarke@gmail.com</a
@@ -376,7 +376,7 @@
         route="featured"
       />
 
-      <TheFeaturedProperties />
+      <TheSwiperPropertyFeatured />
     </SectionPadding>
   </div>
 </template>

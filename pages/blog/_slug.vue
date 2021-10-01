@@ -69,7 +69,7 @@
 
           <nuxt-content :document="article" />
         </article>
-        <TheAuthor :author="article.author" class="mt-12" />
+        <TheBlogAuthor :author="article.author" class="mt-12" />
         <prev-next :prev="prev" :next="next" />
       </v-container>
     </SectionPadding>
@@ -130,7 +130,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      theme: "colorTheme/theme"
+      theme: "colorTheme/colorTheme/theme"
     })
   }
 };

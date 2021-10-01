@@ -1,9 +1,9 @@
 <template>
   <v-app class="wrapper">
-    <TheAPICalls />
-    <TheErrorLogger />
-    <TheSuccessLogger />
-    <TheAuthenticationChecker />
+    <TheFunctionsTheAPICalls />
+    <SnackbarsTheErrorLogger />
+    <SnackbarsTheSuccessLogger />
+    <TheFunctionsTheAuthenticationChecker />
     <v-toolbar flat>
       <v-app-bar-nav-icon
         class="hidden-md-and-up"
@@ -532,7 +532,7 @@ export default {
     ...mapActions({
       getIpAddress: "api/getIPAddress",
       getIpInfo: "api/getIPInfo",
-      toggleTheme: "colorTheme/toggleTheme",
+      toggleTheme: "colorTheme/colorTheme/toggleTheme",
       login: "authentication/login",
       logout: "authentication/logout",
       googleLogin: "authentication/googleLogin"
@@ -568,7 +568,7 @@ export default {
       country: "api/country",
       currencies: "api/currencies",
       currencyRate: "api/currencyRate",
-      colorTheme: "colorTheme/theme",
+      colorTheme: "colorTheme/colorTheme/theme",
       profile: "profile/profile",
       userAthenticated: "profile/userAthenticated",
       passwordRules: "inputRules/passwordRules",
