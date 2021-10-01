@@ -1,7 +1,7 @@
 <template>
   <div>
       <TheMetaTags :title="title" :description="description"/>
-    <v-img :src="img" min-height="300" max-height="400"></v-img>
+    <v-img :lazy-src='img' :src="img" min-height="300" max-height="400"></v-img>
     <SectionPadding>
       <SectionTitlesSecondary
         mainTitle="Parishes"
@@ -18,7 +18,8 @@
             <nuxt-link
               :to="{ name: 'parish-clarendon' }"
             >
-              <v-img
+              <v-img :lazy-src='img'
+                
                 :src="require('~/assets/images/houses/1.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -36,7 +37,7 @@
             <nuxt-link
               :to="{ name: 'parish-hanover' }"
             >
-              <v-img
+              <v-img :lazy-src='img'
                 :src="require('~/assets/images/parishes/hanover.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -54,7 +55,7 @@
             <nuxt-link
               :to="{ name: 'parish-kingston' }"
             >
-              <v-img
+              <v-img :lazy-src='img'
                 :src="require('~/assets/images/parishes/kingston.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -72,7 +73,7 @@
             <nuxt-link
               :to="{ name: 'parish-manchester' }"
             >
-              <v-img
+              <v-img :lazy-src='img'
                 :src="require('~/assets/images/houses/4.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -90,7 +91,7 @@
             <nuxt-link
               :to="{ name: 'parish-portland' }"
             >
-              <v-img
+              <v-img :lazy-src='img'
                 :src="require('~/assets/images/parishes/portland.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -107,7 +108,7 @@
             <nuxt-link
               :to="{ name: 'parish-st-andrew' }"
             >
-              <v-img
+              <v-img :lazy-src='img'
                 :src="require('~/assets/images/parishes/st-andrew.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -124,7 +125,7 @@
             <nuxt-link
               :to="{ name: 'parish-st-ann' }"
             >
-              <v-img
+              <v-img :lazy-src='img'
                 :src="require('~/assets/images/extra-images/5.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -141,7 +142,7 @@
             <nuxt-link
               :to="{ name: 'parish-st-catherine' }"
             >
-              <v-img
+              <v-img :lazy-src='img'
                 :src="require('~/assets/images/parishes/st-catherine.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -158,7 +159,7 @@
             <nuxt-link
               :to="{ name: 'parish-st-elizabeth' }"
             >
-              <v-img
+              <v-img :lazy-src='img'
                 :src="require('~/assets/images/parishes/st-elizabeth.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -175,7 +176,7 @@
             <nuxt-link
               :to="{ name: 'parish-st-james' }"
             >
-              <v-img
+              <v-img :lazy-src='img'
                 :src="require('~/assets/images/parishes/st-james.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -192,7 +193,7 @@
             <nuxt-link
               :to="{ name: 'parish-st-mary' }"
             >
-              <v-img
+              <v-img :lazy-src='img'
                 :src="require('~/assets/images/parishes/st-mary.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -209,7 +210,7 @@
             <nuxt-link
               :to="{ name: 'parish-st-thomas' }"
             >
-              <v-img
+              <v-img :lazy-src='img'
                 :src="require('~/assets/images/extra-images/1.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -226,7 +227,7 @@
             <nuxt-link
               :to="{ name: 'parish-trelawny' }"
             >
-              <v-img
+              <v-img :lazy-src='img'
                 :src="require('~/assets/images/parishes/trelawny.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -243,7 +244,7 @@
             <nuxt-link
               :to="{ name: 'parish-westmoreland' }"
             >
-              <v-img
+              <v-img :lazy-src='img'
                 :src="require('~/assets/images/extra-images/6.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
