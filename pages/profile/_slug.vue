@@ -3,7 +3,11 @@
     <TheMetaTags :title="title" :description="description" />
     <v-container class="mt-6 mb-9">
       <v-row>
-        <v-col cols="12" md="4" v-if="user.personalDetails.displayName === 'loading'">
+        <v-col
+          cols="12"
+          md="4"
+          v-if="user.personalDetails.displayName === 'loading'"
+        >
           <v-card class="pa-6 ml-sm-3 mb-6" elevation="3">
             <v-skeleton-loader
               type="image"
@@ -203,15 +207,11 @@
                 <p class="mb-0">Top Performer</p>
               </div>
             </div>
-            <v-divider
-              class="mt-2 mb-4"
-              v-if="user.verified"
-            ></v-divider>
-            <div
-              class="max-width mx-auto my-0"
-              v-if="user.verified"
-            >
-              <p class="mb-2 text-h6 font-weight-bold">{{profanityFilter(user.personalDetails.firstName)}} Provided</p>
+            <v-divider class="mt-2 mb-4" v-if="user.verified"></v-divider>
+            <div class="max-width mx-auto my-0" v-if="user.verified">
+              <p class="mb-2 text-h6 font-weight-bold">
+                {{ profanityFilter(user.personalDetails.firstName) }} Provided
+              </p>
               <ul class="body-1">
                 <li class="grey--text text--darken-2">&#8226; Government ID</li>
                 <li class="grey--text text--darken-2">
@@ -224,7 +224,7 @@
           </v-card>
         </v-col>
 
-        <v-col cols="12" md="8" v-if="user.personalDetails.displayName === 'loading'">
+        <v-col cols="12" md="8" v-if="loading === true">
           <v-skeleton-loader type="paragraph,sentences"></v-skeleton-loader>
           <TheListingRealEstatePropertiesLoader title="loading properties" />
         </v-col>
@@ -237,45 +237,60 @@
                 profanityFilter(user.personalDetails.displayName)
             }}
           </p>
-          <p class="body-1" v-if='user.personalDetails.about'>
+          <p class="body-1" v-if="user.personalDetails.about">
             {{ profanityFilter(user.personalDetails.about) }}
           </p>
-          <p class="body-1" v-else>
-         
-          </p>
+          <p class="body-1" v-else></p>
 
           <v-divider class="my-6"></v-divider>
 
-          <TheListingRealEstatePropertiesFirebaseGetUser
-            :properties="properties"
-          />
-          <div class="d-flex justify-center align-center mt-4">
-            <v-btn
-              class="mx-2"
-              fab
-              dark
-              small
-              color="green accent-4"
-              @click="$vuetify.goTo('#top')"
-            >
-              <v-icon dark>
-                mdi-chevron-left
-              </v-icon>
-            </v-btn>
-            <v-btn
-              class="mx-2"
-              fab
-              :dark="paginateNext.dark"
-              small
-              color="green accent-4"
-              @click="next"
-              :disabled="paginateNext.disabled"
-            >
-              <v-icon dark>
-                mdi-chevron-right
-              </v-icon>
-            </v-btn>
-          </div>
+          <section v-if="properties.length < 1">
+            <v-sheet
+              height="200px"
+              class="d-flex justify-center align-center flex-column pa-3"
+              outlined
+              ><p
+                class="text-body-1 text-sm-h6 text-center font-weight-regular"
+              >
+                This user has no properties as yet
+                <br />
+                Great things are coming!
+              </p>
+            </v-sheet>
+          </section>
+
+          <section v-else>
+            <TheListingRealEstatePropertiesFirebaseGetUser
+              :properties="properties"
+            />
+            <div class="d-flex justify-center align-center mt-4">
+              <v-btn
+                class="mx-2"
+                fab
+                dark
+                small
+                color="green accent-4"
+                @click="$vuetify.goTo('#top')"
+              >
+                <v-icon dark>
+                  mdi-chevron-left
+                </v-icon>
+              </v-btn>
+              <v-btn
+                class="mx-2"
+                fab
+                :dark="paginateNext.dark"
+                small
+                color="green accent-4"
+                @click="next"
+                :disabled="paginateNext.disabled"
+              >
+                <v-icon dark>
+                  mdi-chevron-right
+                </v-icon>
+              </v-btn>
+            </div>
+          </section>
         </v-col>
       </v-row>
     </v-container>
@@ -306,7 +321,6 @@ export default {
         if (doc.exists) {
           // console.log("Document data:", doc.data());
           this.user = doc.data();
-          this.loadUserProperties();
         } else {
           // doc.data() will be undefined in this case
           // console.log("No such document!");
@@ -317,6 +331,8 @@ export default {
         this.logError(error.message);
         // // console.log("Error getting document:", error);
       });
+
+    await this.loadUserProperties(this.$route.params.slug);
 
     /* let j = () => parishes.parishes.find(parish => parish.slug == theParam);
     this.parish = j(); */
@@ -332,7 +348,6 @@ export default {
       },
       iconColor: "rgba(0, 200, 83, 1)",
       phoneNumber: 1111111111,
-      loading: false,
       flex: false,
       user: {
         achievements: [],
@@ -383,10 +398,10 @@ export default {
 
       return filter.clean(info);
     },
-    async loadUserProperties() {
+    async loadUserProperties(uid) {
       const ref = await this.$fire.firestore
         .collection("properties")
-        .where("uploader", "==", this.user.uid)
+        .where("uploader", "==", uid)
         .orderBy("timestamp", "desc")
         .startAfter(this.lastVisible || {})
         .limit(6);
@@ -435,8 +450,9 @@ export default {
       )} | Profile`;
     },
     description() {
-          return `Profile page for: ${this.profanityFilter(this.user.personalDetails.displayName)}`;
-
+      return `Profile page for: ${this.profanityFilter(
+        this.user.personalDetails.displayName
+      )}`;
     },
     formattedNumber() {
       /* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */
