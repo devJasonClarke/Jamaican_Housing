@@ -295,8 +295,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      signup: "authentication/signup",
-      googleLogin: "authentication/googleLogin"
+      signup: "authentication/authentication/signup",
+      googleLogin: "authentication/authentication/googleLogin"
     }),
     validate() {
       if (this.$refs.form.validate()) {
@@ -325,11 +325,11 @@ export default {
   },
   computed: {
     ...mapGetters({
-      user: "authentication/user",
-      loading: "authentication/loading",
-      nameRules: "inputRules/nameRules",
-      passwordRules: "inputRules/passwordRules",
-      emailRules: "inputRules/emailRules"
+      user: "authentication/authentication/user",
+      loading: "authentication/authentication/loading",
+      nameRules: "inputRules/inputRules/nameRules",
+      passwordRules: "inputRules/inputRules/passwordRules",
+      emailRules: "inputRules/inputRules/emailRules"
     })
   }
 };

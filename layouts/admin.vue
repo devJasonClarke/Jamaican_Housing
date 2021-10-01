@@ -322,8 +322,8 @@ export default {
   methods: {
     ...mapActions({
       toggleTheme: "colorTheme/colorTheme/toggleTheme",
-      logout: "authentication/logout",
-      getNewMessages: "messages/getNewMessages"
+      logout: "authentication/authentication/logout",
+      getNewMessages: "dashboard/messages/getNewMessages"
     }),
 
     resize() {
@@ -345,10 +345,10 @@ export default {
   },
   computed: {
     ...mapGetters({
-      newMessages: "messages/newMessages",
-      oldMessages: "messages/oldMessages",
-      profile: "profile/profile",
-      userAthenticated: "profile/userAthenticated",
+      newMessages: "dashboard/messages/newMessages",
+      oldMessages: "dashboard/messages/oldMessages",
+      profile: "dashboard/profile/profile",
+      userAthenticated: "dashboard/profile/userAthenticated",
       colorTheme: "colorTheme/colorTheme/theme"
     }),
     false() {

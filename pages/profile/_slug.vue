@@ -375,7 +375,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      logError: "errors/logError"
+      logError: "snackbars/errors/logError"
     }),
     profanityFilter(info) {
       var Filter = require("bad-words");

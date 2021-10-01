@@ -22,7 +22,7 @@ export default {
   layout: "dashboard",
   computed: {
     ...mapGetters({
-      profile: "profile/profile"
+      profile: "dashboard/profile/profile"
     }),
     title() {
       return `${this.profile.personalDetails.displayName} | Payments | Dashboard`;

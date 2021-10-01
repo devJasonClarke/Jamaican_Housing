@@ -24,13 +24,12 @@ export const state = () => ({
   },
 
   propertySearch: false,
-
   // Selected
 
-  selectedParishRent: "",
-  selectedRealEstateTypeRent: "",
-  selectedMaxPricesRent: "",
-  selectedBedroomsRent: ""
+  selectedParishBuy: "",
+  selectedRealEstateTypeBuy: "",
+  selectedMaxPricesBuy: "",
+  selectedBedroomsBuy: ""
 });
 
 export const getters = {
@@ -45,10 +44,10 @@ export const getters = {
 
   //Selected
 
-  selectedParishRent: state => state.selectedParishRent,
-  selectedRealEstateTypeRent: state => state.selectedRealEstateTypeRent,
-  selectedMaxPricesRent: state => state.selectedMaxPricesRent,
-  selectedBedroomsRent: state => state.selectedBedroomsRent,
+  selectedParishBuy: state => state.selectedParishBuy,
+  selectedRealEstateTypeBuy: state => state.selectedRealEstateTypeBuy,
+  selectedMaxPricesBuy: state => state.selectedMaxPricesBuy,
+  selectedBedroomsBuy: state => state.selectedBedroomsBuy,
 
   // Search
   propertySearch: state => state.propertySearch,
@@ -60,7 +59,7 @@ export const getters = {
 };
 
 export const actions = {
-  getPropertiesForRent({ commit, state }) {
+  getPropertiesForSale({ commit, state }) {
     // console.log("getTheProperty");
 
     // console.log("Get User: User");
@@ -77,7 +76,7 @@ export const actions = {
       // .where("bedrooms", "==", 2)
       // .where("price", "<=", 500000)
       // .where("type", "==", "Development Land (Commercial)")
-      .where("propertyFor", equal, "Rent")
+      .where("propertyFor", equal, "Sale")
       //.orderBy("price", "desc")
       .orderBy("timestamp", "desc")
       .startAfter(state.lastVisible || {})
@@ -99,7 +98,7 @@ export const actions = {
         }
         if (querySnapshot.empty && state.properties.length) {
           commit(
-            "errors/LOG_ERROR",
+            "snackbars/errors/LOG_ERROR",
             "Looks like we've run out of properties to show you.",
             {
               root: true
@@ -121,17 +120,17 @@ export const actions = {
         }
       },
       error => {
-        commit("errors/LOG_ERROR", error.message, { root: true });
+        commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
         // // console.log("Firebase");
         // console.log(error);
       }
     );
   },
-  getSearchedPropertiesForRent({ commit, state ,rootState }) {
+  getSearchedPropertiesForSale({ commit, state, rootState }) {
     // console.log("getTheProperty Searched");
     // console.log(state.search.parish);
     // console.log(state.search.bedrooms);
-    // console.log((state.search.price / rootState.api.currencyRate));
+    // console.log(state.search.price);
     // console.log(state.search.type);
     // console.log("Get User: User");
 
@@ -146,9 +145,9 @@ export const actions = {
       .collection("properties")
       .where("parish", "==", state.search.parish)
       .where("bedrooms", "==", state.search.bedrooms)
-      .where("price", "<=", state.search.price / rootState.api.currencyRate)
+      .where("price", "<=", (state.search.price / rootState.api.api.currencyRate))
       .where("type", "==", state.search.type)
-      .where("propertyFor", "==", "Rent")
+      .where("propertyFor", "==", "Sale")
       .orderBy("price", "desc")
       .orderBy("timestamp", "desc")
       .startAfter(state.lastSearchedVisible || {})
@@ -170,7 +169,7 @@ export const actions = {
         }
         if (querySnapshot.empty && state.properties.length) {
           commit(
-            "errors/LOG_ERROR",
+            "snackbars/errors/LOG_ERROR",
             "Currently we have no properties that match these criteria. 😞",
             {
               root: true
@@ -192,17 +191,17 @@ export const actions = {
         }
       },
       error => {
-        commit("errors/LOG_ERROR", error.message, { root: true });
+        commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
         // // console.log("Firebase");
         // console.log(error);
       }
     );
   },
-  getSearchedPropertiesForRentNext({ commit, state, rootState}) {
+  getSearchedPropertiesForSaleNext({ commit, state, rootState }) {
     // console.log("getTheProperty Searched");
     // console.log(state.search.parish);
     // console.log(state.search.bedrooms);
-    // console.log((state.search.price / rootState.api.currencyRate));
+    // console.log(state.search.price);
     // console.log(state.search.type);
     // console.log("Get User: User");
 
@@ -215,9 +214,9 @@ export const actions = {
       .collection("properties")
       .where("parish", "==", state.search.parish)
       .where("bedrooms", "==", state.search.bedrooms)
-      .where("price", "<=", state.search.price / rootState.api.currencyRate)
+      .where("price", "<=", (state.search.price / rootState.api.api.currencyRate) )
       .where("type", "==", state.search.type)
-      .where("propertyFor", "==", "Rent")
+      .where("propertyFor", "==", "Sale")
       .orderBy("price", "desc")
       .orderBy("timestamp", "desc")
       .startAfter(state.lastSearchedVisible || {})
@@ -239,7 +238,7 @@ export const actions = {
         }
         if (querySnapshot.empty && state.properties.length) {
           commit(
-            "errors/LOG_ERROR",
+            "snackbars/errors/LOG_ERROR",
             "Looks like we've run out of properties to show you.",
             {
               root: true
@@ -261,7 +260,7 @@ export const actions = {
         }
       },
       error => {
-        commit("errors/LOG_ERROR", error.message, { root: true });
+        commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
         // // console.log("Firebase");
         // console.log(error);
       }
@@ -294,9 +293,11 @@ export const actions = {
   setType({ commit }, value) {
     commit("SET_TYPE", value);
   },
-  setPrice({ commit }, value) {
+  setPrice({ commit ,rootState}, value) {
     //  let price = parseFloat(value.replace(/[^0-9]/g, ""));
     // // console.log(price);
+    console.log(value / rootState.api.api.currencyRate )
+    console.log(rootState.api.api.currencyRate)
     commit("SET_PRICE", value);
   },
   setBedrooms({ commit }, value) {
@@ -342,13 +343,10 @@ export const mutations = {
       dark: false
     };
   },
-  SET_PROPERTY_SEARCH: (state, data) => {
-    state.propertySearch = data;
-  },
   REMOVE_PREVIOUS_SEARCHES: state => {
     state.searchedProperties = [];
-    state.lastSearchedVisible = null;
     state.loading = true;
+    state.lastSearchedVisible = null;
     state.paginateNextSearched = {
       disabled: false,
       dark: true

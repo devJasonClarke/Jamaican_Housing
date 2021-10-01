@@ -122,23 +122,23 @@ export default {
       return value;
     },
     ...mapGetters({
-      properties: "getStCatherineProperties/properties",
-      lastVisible: "getStCatherineProperties/lastVisible",
-      paginateNext: "getStCatherineProperties/paginateNext",
+      properties: "getProperties/stCatherine/properties",
+      lastVisible: "getProperties/stCatherine/lastVisible",
+      paginateNext: "getProperties/stCatherine/paginateNext",
 
-      properties: "getStCatherineProperties/properties",
+      properties: "getProperties/stCatherine/properties",
 
-      loading: "getStCatherineProperties/loading",
+      loading: "getProperties/stCatherine/loading",
 
-      paginateNext: "getStCatherineProperties/paginateNext"
+      paginateNext: "getProperties/stCatherine/paginateNext"
     })
   },
   methods: {
     ...mapActions({
-      logError: "errors/logError",
-      getParishProperties: "getStCatherineProperties/getParishProperties",
+      logError: "snackbars/errors/logError",
+      getParishProperties: "getProperties/stCatherine/getParishProperties",
 
-      setLoading: "getStCatherineProperties/setLoading"
+      setLoading: "getProperties/stCatherine/setLoading"
     }),
 
     previous() {

@@ -89,7 +89,7 @@ export const actions = {
       })
       //* catch and log error in error module
       .catch(error => {
-        commit("errors/LOG_ERROR", error.message, { root: true });
+        commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
         commit("LOADING_STATE", false);
         // console.log(error);
         // ..
@@ -110,8 +110,8 @@ export const actions = {
           .then(doc => {
             if (doc.exists) {
               // console.log("Doc EXIsts");
-              commit("profile/SET_PROFILE", doc.data(), { root: true });
-              commit("favourites/SET_FAVOURITES", doc.data().favourites, {
+              commit("dashboard/profile/SET_PROFILE", doc.data(), { root: true });
+              commit("dashboard/favourites/SET_FAVOURITES", doc.data().favourites, {
                 root: true
               });
             } else {
@@ -170,8 +170,8 @@ export const actions = {
               .then(doc => {
                 if (doc.exists) {
                   // console.log("Document data exits:", doc.data());
-                  commit("profile/SET_PROFILE", doc.data(), { root: true });
-                  commit("favourites/SET_FAVOURITES", doc.data().favourites, {
+                  commit("dashboard/profile/SET_PROFILE", doc.data(), { root: true });
+                  commit("dashboard/favourites/SET_FAVOURITES", doc.data().favourites, {
                     root: true
                   });
                 } else {
@@ -180,7 +180,7 @@ export const actions = {
                 }
               })
               .catch(error => {
-                commit("errors/LOG_ERROR", error.message, { root: true });
+                commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
               });
           } else {
             // User is signed out
@@ -192,7 +192,7 @@ export const actions = {
         this.$router.push({ name: "dashboard" });
       })
       .catch(error => {
-        commit("errors/LOG_ERROR", error.message, { root: true });
+        commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
         // ...
       });
   },
@@ -217,7 +217,7 @@ export const actions = {
         this.$router.push({ name: "dashboard" });
       })
       .catch(error => {
-        commit("errors/LOG_ERROR", error.message, { root: true });
+        commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
         commit("LOADING_STATE", false);
       });
   },
@@ -226,7 +226,7 @@ export const actions = {
       .auth()
       .signOut()
       .then(() => {
-        commit("getUserProperties/REMOVE_USER_PROPERTY_STATE", "", {
+        commit("dashboard/userProperties/REMOVE_USER_PROPERTY_STATE", "", {
           root: true
         });
         commit("LOGOUT");
@@ -236,7 +236,7 @@ export const actions = {
         return location.reload();
       })
       .catch(error => {
-        commit("errors/LOG_ERROR", error.message, { root: true });
+        commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
       });
   },
   //* check if user is authenticated
@@ -256,8 +256,8 @@ export const actions = {
             .then(doc => {
               if (doc.exists) {
                 // console.log("Document data exits:", doc.data());
-                commit("profile/SET_PROFILE", doc.data(), { root: true });
-                commit("favourites/SET_FAVOURITES", doc.data().favourites, {
+                commit("dashboard/profile/SET_PROFILE", doc.data(), { root: true });
+                commit("dashboard/favourites/SET_FAVOURITES", doc.data().favourites, {
                   root: true
                 });
               } else {
@@ -266,7 +266,7 @@ export const actions = {
               }
             })
             .catch(error => {
-              commit("errors/LOG_ERROR", error.message, { root: true });
+              commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
             });
         } else {
           // User is signed out

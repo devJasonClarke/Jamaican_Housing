@@ -120,23 +120,23 @@ export default {
       return value;
     },
     ...mapGetters({
-      properties: "getTrelawnyProperties/properties",
-      lastVisible: "getTrelawnyProperties/lastVisible",
-      paginateNext: "getTrelawnyProperties/paginateNext",
+      properties: "getProperties/trelawny/properties",
+      lastVisible: "getProperties/trelawny/lastVisible",
+      paginateNext: "getProperties/trelawny/paginateNext",
 
-      properties: "getTrelawnyProperties/properties",
+      properties: "getProperties/trelawny/properties",
 
-      loading: "getTrelawnyProperties/loading",
+      loading: "getProperties/trelawny/loading",
 
-      paginateNext: "getTrelawnyProperties/paginateNext"
+      paginateNext: "getProperties/trelawny/paginateNext"
     })
   },
   methods: {
     ...mapActions({
-      logError: "errors/logError",
-      getParishProperties: "getTrelawnyProperties/getParishProperties",
+      logError: "snackbars/errors/logError",
+      getParishProperties: "getProperties/trelawny/getParishProperties",
 
-      setLoading: "getTrelawnyProperties/setLoading"
+      setLoading: "getProperties/trelawny/setLoading"
     }),
 
     previous() {

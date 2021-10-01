@@ -18,8 +18,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      //    getIpInfo: "api/getIPInfo",
-      getCurrencies: "api/getCurrencies",
+      //    getIpInfo: "api/api/getIPInfo",
+      getCurrencies: "api/api/getCurrencies",
       checkTheme: "colorTheme/colorTheme/checkTheme"
     }),
     resetError(){
@@ -29,8 +29,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      country: "api/country",
-      errorMessage: "api/errorMessage"
+      country: "api/api/country",
+      errorMessage: "api/api/errorMessage"
     })
   },
   watch:{

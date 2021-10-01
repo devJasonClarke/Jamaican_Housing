@@ -63,7 +63,7 @@ export const actions = {
               commit("SET_PAGINATE_NEXT");
             }
             if (querySnapshot.empty && state.newMessages.length) {
-              commit("errors/LOG_ERROR", "You have no more messages.", {
+              commit("snackbars/errors/LOG_ERROR", "You have no more messages.", {
                 root: true
               });
             }
@@ -80,7 +80,7 @@ export const actions = {
             }
           },
           error => {
-            commit("errors/LOG_ERROR", error.message, { root: true });
+            commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
       // // console.log("Firebase");
             // console.log(error);
           }
@@ -121,7 +121,7 @@ export const actions = {
         // console.log("Document successfully deleted!");
       })
       .catch(error => {
-        commit("errors/LOG_ERROR", error.message, { root: true });
+        commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
       });
 
     // commit("READ_MESSAGE");

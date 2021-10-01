@@ -499,16 +499,16 @@ export default {
       return `${this.profile.personalDetails.displayName} Account Info`;
     },
     ...mapGetters({
-      profile: "profile/profile",
-      nameRules: "inputRules/nameRules",
-      descriptionRules: "inputRules/descriptionRules",
-      emailRules: "inputRules/emailRules",
-      websiteRules: "inputRules/websiteRules",
-      phoneNumberRules: "inputRules/phoneNumberRules",
-      whatsappNumberRules: "inputRules/whatsappNumberRules",
-      updateDetailsLoader: "profile/updateDetailsLoader",
-      updateSocialLoader: "profile/updateSocialLoader",
-      user: "authentication/user"
+      profile: "dashboard/profile/profile",
+      nameRules: "inputRules/inputRules/nameRules",
+      descriptionRules: "inputRules/inputRules/descriptionRules",
+      emailRules: "inputRules/inputRules/emailRules",
+      websiteRules: "inputRules/inputRules/websiteRules",
+      phoneNumberRules: "inputRules/inputRules/phoneNumberRules",
+      whatsappNumberRules: "inputRules/inputRules/whatsappNumberRules",
+      updateDetailsLoader: "dashboard/profile/updateDetailsLoader",
+      updateSocialLoader: "dashboard/profile/updateSocialLoader",
+      user: "authentication/authentication/user"
     }),
     email: {
       get() {
@@ -602,23 +602,23 @@ export default {
   },
   methods: {
     ...mapActions({
-      setEmail: "profile/setEmail",
-      setFirstName: "profile/setFirstName",
-      setLastName: "profile/setLastName",
-      setAbout: "profile/setAbout",
-      setPhoneNumber: "profile/setPhoneNumber",
-      setwhatsappNumber: "profile/setwhatsappNumber",
-      setwebsite: "profile/setwebsite",
-      setFacebook: "profile/setFacebook",
-      setInstagram: "profile/setInstagram",
-      setLinkedIn: "profile/setLinkedIn",
-      setYoutube: "profile/setYoutube",
-      updateAccountDetails: "profile/updateAccountDetails",
-      updateAccountSocials: "profile/updateAccountSocials",
-      removeProfilePicture: "profile/removeProfilePicture",
-      setProfilePicture: "profile/setProfilePicture",
-      logSuccess: "success/logSuccess",
-      logError: "errors/logError"
+      setEmail: "dashboard/profile/setEmail",
+      setFirstName: "dashboard/profile/setFirstName",
+      setLastName: "dashboard/profile/setLastName",
+      setAbout: "dashboard/profile/setAbout",
+      setPhoneNumber: "dashboard/profile/setPhoneNumber",
+      setwhatsappNumber: "dashboard/profile/setwhatsappNumber",
+      setwebsite: "dashboard/profile/setwebsite",
+      setFacebook: "dashboard/profile/setFacebook",
+      setInstagram: "dashboard/profile/setInstagram",
+      setLinkedIn: "dashboard/profile/setLinkedIn",
+      setYoutube: "dashboard/profile/setYoutube",
+      updateAccountDetails: "dashboard/profile/updateAccountDetails",
+      updateAccountSocials: "dashboard/profile/updateAccountSocials",
+      removeProfilePicture: "dashboard/profile/removeProfilePicture",
+      setProfilePicture: "dashboard/profile/setProfilePicture",
+      logSuccess: "snackbars/success/logSuccess",
+      logError: "snackbars/errors/logError"
     }),
     validateFields() {
       if (this.$refs.descriptionForm.validate()) {
@@ -716,7 +716,7 @@ export default {
             .catch(error => {
               this.logError(error.message);
               // console.log(error);
-              //   commit("errors/LOG_ERROR", error.message, { root: true });
+              //   commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
             });
 
           // console.log(user);

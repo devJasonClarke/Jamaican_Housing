@@ -16,12 +16,12 @@ export default {
 
   computed: {
     ...mapGetters({
-      user: "authentication/user"
+      user: "authentication/authentication/user"
     })
   },
   methods: {
     ...mapActions({
-      checkAuth: "authentication/checkAuthentication"
+      checkAuth: "authentication/authentication/checkAuthentication"
     })
   }
 };

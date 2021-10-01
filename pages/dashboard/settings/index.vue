@@ -71,8 +71,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      user: "authentication/user",
-      profile: "profile/profile"
+      user: "authentication/authentication/user",
+      profile: "dashboard/profile/profile"
     }),
     title() {
       return `${this.profile.personalDetails.displayName} | Settings | Dashboard`;

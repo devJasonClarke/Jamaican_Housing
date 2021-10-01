@@ -67,7 +67,7 @@ export const actions = {
         .then(res => res.json())
         .then(data => data)
         .catch(error => {
-          commit("errors/LOG_ERROR", error, { root: true });
+          commit("snackbars/errors/LOG_ERROR", error, { root: true });
           console.error(error);
         });
 
@@ -87,12 +87,7 @@ export const actions = {
 };
 
 export const mutations = {
-  LOG_ERROR: (state, error) => {
-    // console.log("Logged Error " + error);
-    state.errorMessage = `${error}. Please check your internet connection`;
-  },
-
-  GET_IP_INFO: (state, info) => {
+/*   GET_IP_INFO: (state, info) => {
     state.country = {
       country: info.country,
       flag: info.flag.svg,
@@ -100,7 +95,7 @@ export const mutations = {
     };
     // Test the API call lifecycle, ensure they are called only once per session
     // // console.log(`Action ${state.country}`);
-  },
+  }, */
   GET_Currencies: (state, currencies) => {
     state.currencies = currencies;
     const myObject = currencies;

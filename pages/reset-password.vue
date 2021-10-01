@@ -70,8 +70,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      logError: "errors/logError",
-      logSuccess: "success/logSuccess"
+      logError: "snackbars/errors/logError",
+      logSuccess: "snackbars/success/logSuccess"
     }),
     validate() {
       if (this.$refs.form.validate()) {
@@ -107,7 +107,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      emailRules: "inputRules/emailRules"
+      emailRules: "inputRules/inputRules/emailRules"
     })
   }
 };

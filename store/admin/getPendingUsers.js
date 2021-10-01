@@ -1,6 +1,6 @@
 export const state = () => ({
   properties: [],
-  lastVisible: "",
+  lastVisible: '',
   deleteLoading: false,
   loading: true,
   paginateNext: {
@@ -18,23 +18,24 @@ export const getters = {
 };
 
 export const actions = {
-  getVerifiedUsers({ commit, state }) {
+  getPendingVerifiedUsers({ commit, state }) {
     // console.log("getTheProperty");
 
     this.$fireModule.auth().onAuthStateChanged(user => {
       if (user) {
-        //  console.log("Get User: User");
-        //  console.log(user);
-        //  console.log(`Properties: ${state.properties.length}`);
+       // console.log("Get User: User");
+        // console.log(user);
+     // console.log(`Properties: ${state.properties.length}`);
 
-        //   console.log("lastVisible");
-        //      console.log(state.lastVisible);
+        // console.log("lastVisible");
+         // console.log(state.lastVisible);
 
         const ref = this.$fire.firestore
           .collection("users")
-          .where("verified", "==", true)
+          .where("verified", "==", false)
+          .where("verificationProcess", "==", 'pending')
           .orderBy("uid", "asc")
-          .startAfter(state.lastVisible || "")
+          .startAfter(state.lastVisible || '')
           .limit(8);
 
         ref.get().then(
@@ -52,7 +53,7 @@ export const actions = {
               commit("SET_PAGINATE_NEXT");
             }
             if (querySnapshot.empty && state.properties.length) {
-              commit("errors/LOG_ERROR", "There are no more verified users.", {
+              commit("snackbars/errors/LOG_ERROR", "There are no more pending users.", {
                 root: true
               });
             }
@@ -71,9 +72,9 @@ export const actions = {
             }
           },
           error => {
-            commit("errors/LOG_ERROR", error.message, { root: true });
-            // // console.log("Firebase");
-            //   console.log(error);
+            commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
+          // // console.log("Firebase");
+            // console.log(error);
           }
         );
       } else {
@@ -136,7 +137,7 @@ export const actions = {
             ref.delete().catch(error => {
               // console.log("delete error");
               // console.log(error);
-              commit("errors/LOG_ERROR", error.message, { root: true });
+              commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
             });
           }
 
@@ -145,14 +146,14 @@ export const actions = {
             .doc(data.id)
             .delete()
             .then(() => {
-              commit("success/LOG_SUCCESS", "Property successfully deleted!", {
+              commit("snackbars/success/LOG_SUCCESS", "Property successfully deleted!", {
                 root: true
               });
               commit("DELETE_LOADING", false);
               commit("REMOVE_PROPERTY_FROM_LOCAL_STATE", index);
             })
             .catch(error => {
-              commit("errors/LOG_ERROR", error.message, { root: true });
+              commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
               commit("DELETE_LOADING", false);
             });
         } else {
@@ -161,19 +162,19 @@ export const actions = {
             .doc(data.id)
             .delete()
             .then(() => {
-              commit("success/LOG_SUCCESS", "Property successfully deleted!", {
+              commit("snackbars/success/LOG_SUCCESS", "Property successfully deleted!", {
                 root: true
               });
               commit("DELETE_LOADING", false);
               commit("REMOVE_PROPERTY_FROM_LOCAL_STATE", index);
             })
             .catch(error => {
-              commit("errors/LOG_ERROR", error.message, { root: true });
+              commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
               commit("DELETE_LOADING", false);
             });
         }
       } else {
-        commit("errors/LOG_ERROR", "Please log in to delete property", {
+        commit("snackbars/errors/LOG_ERROR", "Please log in to delete property", {
           root: true
         });
         commit("DELETE_LOADING", false);

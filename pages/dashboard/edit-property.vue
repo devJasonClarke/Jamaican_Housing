@@ -763,9 +763,9 @@ export default {
   },
   methods: {
     ...mapActions({
-      logError: "errors/logError",
-      logSuccess: "success/logSuccess",
-      editUserProperty: "getUserProperties/editUserProperty"
+      logError: "snackbars/errors/logError",
+      logSuccess: "snackbars/success/logSuccess",
+      editUserProperty: "dashboard/userProperties/editUserProperty"
     }),
     move(from, to) {
       this.urls.move(from, to);
@@ -1067,18 +1067,18 @@ export default {
   },
   computed: {
     ...mapGetters({
-      nameRules: "inputRules/nameRules",
-      descriptionRules: "inputRules/descriptionRules",
-      amountRules: "inputRules/amountRules",
-      amountRulesMinOne: "inputRules/amountRulesMinOne",
-      idRules: "inputRules/idRules",
-      matterportRules: "inputRules/matterportRules",
-      youtubeRules: "inputRules/youtubeRules",
+      nameRules: "inputRules/inputRules/nameRules",
+      descriptionRules: "inputRules/inputRules/descriptionRules",
+      amountRules: "inputRules/inputRules/amountRules",
+      amountRulesMinOne: "inputRules/inputRules/amountRulesMinOne",
+      idRules: "inputRules/inputRules/idRules",
+      matterportRules: "inputRules/inputRules/matterportRules",
+      youtubeRules: "inputRules/inputRules/youtubeRules",
 
-      parishes: "selectOptions/parishes",
-      realEstateType: "selectOptions/realEstateType",
-      user: "authentication/user",
-      profile: "profile/profile"
+      parishes: "selectOptions/selectOptions/parishes",
+      realEstateType: "selectOptions/selectOptions/realEstateType",
+      user: "authentication/authentication/user",
+      profile: "dashboard/profile/profile"
     }),
     title() {
       return `${this.profile.personalDetails.displayName} | Edit Property | Dashboard`;

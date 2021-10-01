@@ -109,14 +109,14 @@ export const actions = {
           .then(() => {
             // console.log("Successfully updated!");
 
-            commit("success/LOG_SUCCESS", "Successfully updated!", {
+            commit("snackbars/success/LOG_SUCCESS", "Successfully updated!", {
               root: true
             });
             commit("SET_DETAILS_LOADER", false);
             commit("SET_NAME", initials);
           })
           .catch(error => {
-            commit("errors/LOG_ERROR", error.message, { root: true });
+            commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
           });
 
         // console.log(user);
@@ -145,13 +145,13 @@ export const actions = {
           })
           .then(() => {
             // console.log("Profile successfully updated!");
-            commit("success/LOG_SUCCESS", "Successfully updated!", {
+            commit("snackbars/success/LOG_SUCCESS", "Successfully updated!", {
               root: true
             });
             commit("SET_SOCIAL_LOADER", false);
           })
           .catch(error => {
-            commit("errors/LOG_ERROR", error.message, { root: true });
+            commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
           });
 
         // console.log(user);

@@ -169,12 +169,12 @@ export default {
   },
   methods: {
     ...mapActions({
-      readMessage: "messages/readMessage",
-      deleteMessage: "messages/deleteMessage",
-      removeLocalMessage: "messages/removeLocalMessage",
-      setLoading: "messages/setLoading",
-      getNewMessages: "messages/getNewMessages",
-      changeMessageReadState: "messages/changeMessageReadState"
+      readMessage: "dashboard/messages/readMessage",
+      deleteMessage: "dashboard/messages/deleteMessage",
+      removeLocalMessage: "dashboard/messages/removeLocalMessage",
+      setLoading: "dashboard/messages/setLoading",
+      getNewMessages: "dashboard/messages/getNewMessages",
+      changeMessageReadState: "dashboard/messages/changeMessageReadState"
     }),
     updateMessage(message, index) {
       this.readMessage(message);
@@ -192,11 +192,11 @@ export default {
   },
   computed: {
     ...mapGetters({
-      newMessages: "messages/newMessages",
-      loading: "messages/loading",
-      paginateNext: "messages/paginateNext",
-      //  unReadMessages: "messages/unReadMessages",
-      profile: "profile/profile"
+      newMessages: "dashboard/messages/newMessages",
+      loading: "dashboard/messages/loading",
+      paginateNext: "dashboard/messages/paginateNext",
+      //  unReadMessages: "dashboard/messages/unReadMessages",
+      profile: "dashboard/profile/profile"
     }),
     title() {
       return `${this.profile.personalDetails.displayName} | Messages | Dashboard`;

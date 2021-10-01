@@ -293,21 +293,21 @@ export default {
     },
 
     ...mapActions({
-      setActiveCurrency: "api/setActiveCurrency",
-      setParishBuy: "getPropertiesForSale/setParish",
-      setTypeBuy: "getPropertiesForSale/setType",
-      setPriceBuy: "getPropertiesForSale/setPrice",
-      setBedroomsBuy: "getPropertiesForSale/setBedrooms",
+      setActiveCurrency: "api/api/setActiveCurrency",
+      setParishBuy: "getProperties/forSale/setParish",
+      setTypeBuy: "getProperties/forSale/setType",
+      setPriceBuy: "getProperties/forSale/setPrice",
+      setBedroomsBuy: "getProperties/forSale/setBedrooms",
 
       getSearchedPropertiesForSale:
-        "getPropertiesForSale/getSearchedPropertiesForSale",
+        "getProperties/forSale/getSearchedPropertiesForSale",
       getSearchedPropertiesForRent:
-        "getPropertiesForRent/getSearchedPropertiesForRent",
+        "getProperties/forRent/getSearchedPropertiesForRent",
 
-      setParishRent: "getPropertiesForRent/setParish",
-      setTypeRent: "getPropertiesForRent/setType",
-      setPriceRent: "getPropertiesForRent/setPrice",
-      setBedroomsRent: "getPropertiesForRent/setBedrooms"
+      setParishRent: "getProperties/forRent/setParish",
+      setTypeRent: "getProperties/forRent/setType",
+      setPriceRent: "getProperties/forRent/setPrice",
+      setBedroomsRent: "getProperties/forRent/setBedrooms"
     }),
     setTheCurrency() {
       const getCurrency = localStorage.getItem("activeCurrency");
@@ -322,15 +322,15 @@ export default {
   },
   computed: {
     ...mapGetters({
-      parishes: "selectOptions/parishes",
-      realEstateType: "selectOptions/realEstateType",
-      maxPrices: "selectOptions/maxPrices",
-      currencyCodeList: "api/currencyCodeList",
-      activeCurrency: "api/activeCurrency",
-      currencyRate: "api/currencyRate",
-      bedrooms: "selectOptions/bedrooms",
-      searchBuy: "getPropertiesForSale/search",
-      searchRent: "getPropertiesForRent/search"
+      parishes: "selectOptions/selectOptions/parishes",
+      realEstateType: "selectOptions/selectOptions/realEstateType",
+      maxPrices: "selectOptions/selectOptions/maxPrices",
+      currencyCodeList: "api/api/currencyCodeList",
+      activeCurrency: "api/api/activeCurrency",
+      currencyRate: "api/api/currencyRate",
+      bedrooms: "selectOptions/selectOptions/bedrooms",
+      searchBuy: "getProperties/forSale/search",
+      searchRent: "getProperties/forRent/search"
     }),
     selectedParishBuy: {
       get() {

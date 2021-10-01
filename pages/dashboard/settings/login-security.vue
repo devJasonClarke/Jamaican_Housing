@@ -52,8 +52,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      logError: "errors/logError",
-      logSuccess: "success/logSuccess"
+      logError: "snackbars/errors/logError",
+      logSuccess: "snackbars/success/logSuccess"
     }),
     sendCode() {
       this.loading = true;
@@ -85,7 +85,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      profile: "profile/profile"
+      profile: "dashboard/profile/profile"
     }),
     title() {
       return `${this.profile.personalDetails.displayName} | Login & security | Dashboard`;

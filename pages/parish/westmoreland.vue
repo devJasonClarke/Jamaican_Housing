@@ -122,23 +122,23 @@ export default {
       return value;
     },
     ...mapGetters({
-      properties: "getWestmorelandProperties/properties",
-      lastVisible: "getWestmorelandProperties/lastVisible",
-      paginateNext: "getWestmorelandProperties/paginateNext",
+      properties: "getProperties/westmoreland/properties",
+      lastVisible: "getProperties/westmoreland/lastVisible",
+      paginateNext: "getProperties/westmoreland/paginateNext",
 
-      properties: "getWestmorelandProperties/properties",
+      properties: "getProperties/westmoreland/properties",
 
-      loading: "getWestmorelandProperties/loading",
+      loading: "getProperties/westmoreland/loading",
 
-      paginateNext: "getWestmorelandProperties/paginateNext"
+      paginateNext: "getProperties/westmoreland/paginateNext"
     })
   },
   methods: {
     ...mapActions({
-      logError: "errors/logError",
-      getParishProperties: "getWestmorelandProperties/getParishProperties",
+      logError: "snackbars/errors/logError",
+      getParishProperties: "getProperties/westmoreland/getParishProperties",
 
-      setLoading: "getWestmorelandProperties/setLoading"
+      setLoading: "getProperties/westmoreland/setLoading"
     }),
 
     previous() {

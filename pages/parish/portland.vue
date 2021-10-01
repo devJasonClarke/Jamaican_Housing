@@ -122,23 +122,23 @@ export default {
       return value;
     },
     ...mapGetters({
-      properties: "getPortlandProperties/properties",
-      lastVisible: "getPortlandProperties/lastVisible",
-      paginateNext: "getPortlandProperties/paginateNext",
+      properties: "getProperties/portland/properties",
+      lastVisible: "getProperties/portland/lastVisible",
+      paginateNext: "getProperties/portland/paginateNext",
 
-      properties: "getPortlandProperties/properties",
+      properties: "getProperties/portland/properties",
 
-      loading: "getPortlandProperties/loading",
+      loading: "getProperties/portland/loading",
 
-      paginateNext: "getPortlandProperties/paginateNext"
+      paginateNext: "getProperties/portland/paginateNext"
     })
   },
   methods: {
     ...mapActions({
-      logError: "errors/logError",
-      getParishProperties: "getPortlandProperties/getParishProperties",
+      logError: "snackbars/errors/logError",
+      getParishProperties: "getProperties/portland/getParishProperties",
 
-      setLoading: "getPortlandProperties/setLoading"
+      setLoading: "getProperties/portland/setLoading"
     }),
 
     previous() {

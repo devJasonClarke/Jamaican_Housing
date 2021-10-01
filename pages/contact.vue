@@ -164,9 +164,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      emailRules: "inputRules/emailRules",
-      nameRules: "inputRules/nameRules",
-      messageRules: "inputRules/messageRules",
+      emailRules: "inputRules/inputRules/emailRules",
+      nameRules: "inputRules/inputRules/nameRules",
+      messageRules: "inputRules/inputRules/messageRules",
        
     })
   }

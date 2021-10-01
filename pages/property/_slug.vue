@@ -948,10 +948,10 @@ export default {
   },
   methods: {
     ...mapActions({
-      removeFavourites: "favourites/removeFavourites",
-      addFavourites: "favourites/addFavourites",
-      logError: "errors/logError",
-      logSuccess: "success/logSuccess"
+      removeFavourites: "dashboard/favourites/removeFavourites",
+      addFavourites: "dashboard/favourites/addFavourites",
+      logError: "snackbars/errors/logError",
+      logSuccess: "snackbars/success/logSuccess"
     }),
     async getUser() {
       await this.$fire.firestore
@@ -1068,14 +1068,14 @@ export default {
   },
   computed: {
     ...mapGetters({
-      country: "api/country",
-      activeCurrency: "api/activeCurrency",
-      currencyRate: "api/currencyRate",
-      nameRules: "inputRules/nameRules",
-      phoneNumberRules: "inputRules/phoneNumberRules",
-      emailRules: "inputRules/emailRules",
-      messageRules: "inputRules/messageRules",
-      favourites: "favourites/favourites"
+      country: "api/api/country",
+      activeCurrency: "api/api/activeCurrency",
+      currencyRate: "api/api/currencyRate",
+      nameRules: "inputRules/inputRules/nameRules",
+      phoneNumberRules: "inputRules/inputRules/phoneNumberRules",
+      emailRules: "inputRules/inputRules/emailRules",
+      messageRules: "inputRules/inputRules/messageRules",
+      favourites: "dashboard/favourites/favourites"
     }),
     baseUrl() {
       return process.env.baseUrl;

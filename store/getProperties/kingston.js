@@ -9,14 +9,16 @@ export const state = () => ({
   paginateNextSearched: {
     disabled: false,
     dark: true
-  }
+  },
+
+
 });
 
 export const getters = {
   properties: state => state.properties,
   loading: state => state.loading,
   lastVisible: state => state.lastVisible,
-  paginateNext: state => state.paginateNext
+  paginateNext: state => state.paginateNext,
 };
 
 export const actions = {
@@ -31,8 +33,8 @@ export const actions = {
     // console.log(state.lastVisible);
 
     const ref = this.$fire.firestore
-      .collection("properties")
-      .where("parish", "==", "Westmoreland")
+    .collection("properties")
+      .where("parish", "==", "Kingston")
       .orderBy("timestamp", "desc")
       .startAfter(state.lastVisible || {})
       .limit(8);
@@ -53,7 +55,7 @@ export const actions = {
         }
         if (querySnapshot.empty && state.properties.length) {
           commit(
-            "errors/LOG_ERROR",
+            "snackbars/errors/LOG_ERROR",
             "Looks like we've run out of properties to show you.",
             {
               root: true
@@ -75,16 +77,19 @@ export const actions = {
         }
       },
       error => {
-        commit("errors/LOG_ERROR", error.message, { root: true });
+        commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
         // // console.log("Firebase");
         // console.log(error);
       }
     );
   },
 
+
+
   setLoading({ commit }, data) {
     commit("LOADING", data);
-  }
+  },
+
 };
 
 export const mutations = {
@@ -121,5 +126,6 @@ export const mutations = {
       dark: true
     };
     state.loading = true;
-  }
+  },
+
 };

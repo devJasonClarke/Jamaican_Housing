@@ -119,9 +119,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      country: "api/country",
-      activeCurrency: "api/activeCurrency",
-      currencyRate: "api/currencyRate"
+      country: "api/api/country",
+      activeCurrency: "api/api/activeCurrency",
+      currencyRate: "api/api/currencyRate"
     }),
     formattedNumber() {
       /* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */

@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      setActiveCurrency: "api/setActiveCurrency"
+      setActiveCurrency: "api/api/setActiveCurrency"
     }),
     setTheCurrency() {
       const getCurrency = localStorage.getItem("activeCurrency");
@@ -40,8 +40,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      currencyCodeList: "api/currencyCodeList",
-      activeCurrency: "api/activeCurrency"
+      currencyCodeList: "api/api/currencyCodeList",
+      activeCurrency: "api/api/activeCurrency"
     })
   }
 };

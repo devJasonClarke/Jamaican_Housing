@@ -106,8 +106,8 @@ baseUrl(){
       return value;
     },
     ...mapGetters({
-      profile: "profile/profile",
-      favourites: "favourites/favourites"
+      profile: "dashboard/profile/profile",
+      favourites: "dashboard/favourites/favourites"
     }),
     title() {
       return `${this.profile.personalDetails.displayName} | Favourite Properties | Dashboard`;
@@ -118,7 +118,7 @@ baseUrl(){
   },
   methods: {
     ...mapActions({
-      removeFavourites: "favourites/removeFavourites"
+      removeFavourites: "dashboard/favourites/removeFavourites"
     }),
     removeFromFavourites(theProperty) {
       this.removeFavourites(theProperty);

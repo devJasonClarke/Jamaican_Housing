@@ -181,29 +181,29 @@ export default {
       return value;
     },
     ...mapGetters({
-      properties: "getPropertiesForRent/properties",
-      lastVisible: "getPropertiesForRent/lastVisible",
-      paginateNext: "getPropertiesForRent/paginateNext",
-      searchedProperties: "getPropertiesForRent/searchedProperties",
-      userSearch: "getPropertiesForRent/userSearch",
-      search: "getPropertiesForRent/search",
+      properties: "getProperties/forRent/properties",
+      lastVisible: "getProperties/forRent/lastVisible",
+      paginateNext: "getProperties/forRent/paginateNext",
+      searchedProperties: "getProperties/forRent/searchedProperties",
+      userSearch: "getProperties/forRent/userSearch",
+      search: "getProperties/forRent/search",
 
-      properties: "getPropertiesForRent/properties",
-      lastVisible: "getPropertiesForRent/lastVisible",
-      loading: "getPropertiesForRent/loading",
-      paginateNextSearched: "getPropertiesForRent/paginateNextSearched",
-      paginateNext: "getPropertiesForRent/paginateNext"
+      properties: "getProperties/forRent/properties",
+      lastVisible: "getProperties/forRent/lastVisible",
+      loading: "getProperties/forRent/loading",
+      paginateNextSearched: "getProperties/forRent/paginateNextSearched",
+      paginateNext: "getProperties/forRent/paginateNext"
     })
   },
   methods: {
     ...mapActions({
-      logError: "errors/logError",
+      logError: "snackbars/errors/logError",
       getSearchedPropertiesForRent:
-        "getPropertiesForRent/getSearchedPropertiesForRent",
+        "getProperties/forRent/getSearchedPropertiesForRent",
       getSearchedPropertiesForRentNext:
-        "getPropertiesForRent/getSearchedPropertiesForRentNext",
-      getPropertiesForRent: "getPropertiesForRent/getPropertiesForRent",
-      setLoading: "getPropertiesForRent/setLoading"
+        "getProperties/forRent/getSearchedPropertiesForRentNext",
+      getPropertiesForRent: "getProperties/forRent/getPropertiesForRent",
+      setLoading: "getProperties/forRent/setLoading"
     }),
     previous() {
       // console.log("previous");

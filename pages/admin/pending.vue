@@ -81,12 +81,12 @@ export default {
   layout: "admin",
   computed: {
     ...mapGetters({
-      user: "authentication/user",
-      properties: "getPendingVerifiedUsers/properties",
-      lastVisible: "getPendingVerifiedUsers/lastVisible",
-      loading: "getPendingVerifiedUsers/loading",
-      paginateNext: "getPendingVerifiedUsers/paginateNext",
-      profile: "profile/profile"
+      user: "authentication/authentication/user",
+      properties: "admin/getPendingUsers/properties",
+      lastVisible: "admin/getPendingUsers/lastVisible",
+      loading: "admin/getPendingUsers/loading",
+      paginateNext: "admin/getPendingUsers/paginateNext",
+      profile: "dashboard/profile/profile"
     }),
     title() {
       return `${this.profile.personalDetails.displayName} | User Properties | Dashboard`;
@@ -97,9 +97,9 @@ export default {
   },
   methods: {
     ...mapActions({
-      logError: "errors/logError",
-      getPendingVerifiedUsers: "getPendingVerifiedUsers/getPendingVerifiedUsers",
-      setLoading: "getPendingVerifiedUsers/setLoading"
+      logError: "snackbars/errors/logError",
+      getPendingVerifiedUsers: "admin/getPendingUsers/getPendingVerifiedUsers",
+      setLoading: "admin/getPendingUsers/setLoading"
     }),
     shortenNumber(num) {
       num = Math.round((num + Number.EPSILON) * 100) / 100;

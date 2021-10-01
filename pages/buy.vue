@@ -179,28 +179,28 @@ export default {
       return value;
     },
     ...mapGetters({
-      properties: "getPropertiesForSale/properties",
-      lastVisible: "getPropertiesForSale/lastVisible",
-      paginateNext: "getPropertiesForSale/paginateNext",
-      searchedProperties: "getPropertiesForSale/searchedProperties",
-      userSearch: "getPropertiesForSale/userSearch",
-      search: "getPropertiesForSale/search",
+      properties: "getProperties/forSale/properties",
+      lastVisible: "getProperties/forSale/lastVisible",
+      paginateNext: "getProperties/forSale/paginateNext",
+      searchedProperties: "getProperties/forSale/searchedProperties",
+      userSearch: "getProperties/forSale/userSearch",
+      search: "getProperties/forSale/search",
 
-      lastSearchedVisible: "getPropertiesForSale/lastSearchedVisible",
-      paginateNextSearched: "getPropertiesForSale/paginateNextSearched",
-      loading: "getPropertiesForSale/loading"
+      lastSearchedVisible: "getProperties/forSale/lastSearchedVisible",
+      paginateNextSearched: "getProperties/forSale/paginateNextSearched",
+      loading: "getProperties/forSale/loading"
     })
   },
 
   methods: {
     ...mapActions({
-      logError: "errors/logError",
-      getPropertiesForSale: "getPropertiesForSale/getPropertiesForSale",
+      logError: "snackbars/errors/logError",
+      getPropertiesForSale: "getProperties/forSale/getPropertiesForSale",
       getSearchedPropertiesForSaleNext:
-        "getPropertiesForSale/getSearchedPropertiesForSaleNext",
+        "getProperties/forSale/getSearchedPropertiesForSaleNext",
       getSearchedPropertiesForSale:
-        "getPropertiesForSale/getSearchedPropertiesForSale",
-      setLoading: "getPropertiesForSale/setLoading"
+        "getProperties/forSale/getSearchedPropertiesForSale",
+      setLoading: "getProperties/forSale/setLoading"
     }),
     previous() {
       this.loading = true;

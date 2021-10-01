@@ -530,12 +530,12 @@ export default {
 
   methods: {
     ...mapActions({
-      getIpAddress: "api/getIPAddress",
-      getIpInfo: "api/getIPInfo",
+      getIpAddress: "api/api/getIPAddress",
+      getIpInfo: "api/api/getIPInfo",
       toggleTheme: "colorTheme/colorTheme/toggleTheme",
-      login: "authentication/login",
-      logout: "authentication/logout",
-      googleLogin: "authentication/googleLogin"
+      login: "authentication/authentication/login",
+      logout: "authentication/authentication/logout",
+      googleLogin: "authentication/authentication/googleLogin"
     }),
     numberWithCommas(x) {
       x = Math.round((x + Number.EPSILON) * 100) / 100;
@@ -564,16 +564,16 @@ export default {
   },
   computed: {
     ...mapGetters({
-      ipAddress: "api/ipAddress",
-      country: "api/country",
-      currencies: "api/currencies",
-      currencyRate: "api/currencyRate",
+      ipAddress: "api/api/ipAddress",
+      country: "api/api/country",
+      currencies: "api/api/currencies",
+      currencyRate: "api/api/currencyRate",
       colorTheme: "colorTheme/colorTheme/theme",
-      profile: "profile/profile",
-      userAthenticated: "profile/userAthenticated",
-      passwordRules: "inputRules/passwordRules",
-      emailRules: "inputRules/emailRules",
-      loading: "authentication/loading"
+      profile: "dashboard/profile/profile",
+      userAthenticated: "dashboard/profile/userAthenticated",
+      passwordRules: "inputRules/inputRules/passwordRules",
+      emailRules: "inputRules/inputRules/emailRules",
+      loading: "authentication/authentication/loading"
     })
   }
 };

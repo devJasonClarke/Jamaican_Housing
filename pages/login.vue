@@ -106,8 +106,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      login: "authentication/login",
-      googleLogin: "authentication/googleLogin"
+      login: "authentication/authentication/login",
+      googleLogin: "authentication/authentication/googleLogin"
     }),
     validate() {
       if (this.$refs.form.validate()) {
@@ -120,9 +120,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      passwordRules: "inputRules/passwordRules",
-      emailRules: "inputRules/emailRules",
-      loading: "authentication/loading"
+      passwordRules: "inputRules/inputRules/passwordRules",
+      emailRules: "inputRules/inputRules/emailRules",
+      loading: "authentication/authentication/loading"
     })
   }
 };

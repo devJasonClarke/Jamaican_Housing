@@ -191,7 +191,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      deleteProperty: "getUserProperties/deleteProperty"
+      deleteProperty: "dashboard/userProperties/deleteProperty"
     }),
     deleteThisProperty() {
       this.deleteProperty({
@@ -233,10 +233,10 @@ export default {
   },
   computed: {
     ...mapGetters({
-      country: "api/country",
-      activeCurrency: "api/activeCurrency",
-      currencyRate: "api/currencyRate",
-      loading: "getUserProperties/deleteLoading"
+      country: "api/api/country",
+      activeCurrency: "api/api/activeCurrency",
+      currencyRate: "api/api/currencyRate",
+      loading: "dashboard/userProperties/deleteLoading"
     })
   }
 };

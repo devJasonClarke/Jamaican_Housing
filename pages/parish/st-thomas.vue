@@ -120,23 +120,23 @@ export default {
       return value;
     },
     ...mapGetters({
-      properties: "getStThomasProperties/properties",
-      lastVisible: "getStThomasProperties/lastVisible",
-      paginateNext: "getStThomasProperties/paginateNext",
+      properties: "getProperties/stThomas/properties",
+      lastVisible: "getProperties/stThomas/lastVisible",
+      paginateNext: "getProperties/stThomas/paginateNext",
 
-      properties: "getStThomasProperties/properties",
+      properties: "getProperties/stThomas/properties",
 
-      loading: "getStThomasProperties/loading",
+      loading: "getProperties/stThomas/loading",
 
-      paginateNext: "getStThomasProperties/paginateNext"
+      paginateNext: "getProperties/stThomas/paginateNext"
     })
   },
   methods: {
     ...mapActions({
-      logError: "errors/logError",
-      getParishProperties: "getStThomasProperties/getParishProperties",
+      logError: "snackbars/errors/logError",
+      getParishProperties: "getProperties/stThomas/getParishProperties",
 
-      setLoading: "getStThomasProperties/setLoading"
+      setLoading: "getProperties/stThomas/setLoading"
     }),
 
     previous() {

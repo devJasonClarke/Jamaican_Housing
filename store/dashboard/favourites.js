@@ -24,7 +24,7 @@ export const actions = {
       } else {
         // User is signed out
         commit(
-          "errors/LOG_ERROR",
+          "snackbars/errors/LOG_ERROR",
           "Please login to remove property to your favourites.",
           { root: true }
         );
@@ -45,7 +45,7 @@ export const actions = {
       } else {
         // User is signed out
         commit(
-          "errors/LOG_ERROR",
+          "snackbars/errors/LOG_ERROR",
           "Please login to add property to your favourites.",
           { root: true }
         );

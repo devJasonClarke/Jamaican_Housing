@@ -398,14 +398,14 @@ export default {
   },
   methods: {
     ...mapActions({
-      logError: "errors/logError",
-      logSuccess: "success/logSuccess",
-      addNewUserProperty: "getUserProperties/addNewUserProperty",
-      setEmail: "profile/setEmail",
-      setFirstName: "profile/setFirstName",
-      setLastName: "profile/setLastName",
-      setPhoneNumber: "profile/setPhoneNumber",
-      setVerificationProcess: "profile/setVerificationProcess"
+      logError: "snackbars/errors/logError",
+      logSuccess: "snackbars/success/logSuccess",
+      addNewUserProperty: "dashboard/userProperties/addNewUserProperty",
+      setEmail: "dashboard/profile/setEmail",
+      setFirstName: "dashboard/profile/setFirstName",
+      setLastName: "dashboard/profile/setLastName",
+      setPhoneNumber: "dashboard/profile/setPhoneNumber",
+      setVerificationProcess: "dashboard/profile/setVerificationProcess"
     }),
     addDropFile(e) {
       this.urls = [];
@@ -582,17 +582,17 @@ export default {
   },
   computed: {
     ...mapGetters({
-      nameRules: "inputRules/nameRules",
-      descriptionRules: "inputRules/descriptionRules",
-      amountRules: "inputRules/amountRules",
-      amountRulesMinOne: "inputRules/amountRulesMinOne",
-      idRules: "inputRules/idRules",
-      parishes: "selectOptions/parishes",
-      realEstateType: "selectOptions/realEstateType",
-      user: "authentication/user",
-      profile: "profile/profile",
-      phoneNumberRules: "inputRules/phoneNumberRules",
-      emailRules: "inputRules/emailRules"
+      nameRules: "inputRules/inputRules/nameRules",
+      descriptionRules: "inputRules/inputRules/descriptionRules",
+      amountRules: "inputRules/inputRules/amountRules",
+      amountRulesMinOne: "inputRules/inputRules/amountRulesMinOne",
+      idRules: "inputRules/inputRules/idRules",
+      parishes: "selectOptions/selectOptions/parishes",
+      realEstateType: "selectOptions/selectOptions/realEstateType",
+      user: "authentication/authentication/user",
+      profile: "dashboard/profile/profile",
+      phoneNumberRules: "inputRules/inputRules/phoneNumberRules",
+      emailRules: "inputRules/inputRules/emailRules"
     }),
     title() {
       return `${this.profile.personalDetails.displayName} | Verify Account | Dashboard`;

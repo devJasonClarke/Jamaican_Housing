@@ -174,9 +174,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      country: "api/country",
-      activeCurrency: "api/activeCurrency",
-      currencyRate: "api/currencyRate"
+      country: "api/api/country",
+      activeCurrency: "api/api/activeCurrency",
+      currencyRate: "api/api/currencyRate"
     })
   }
 };

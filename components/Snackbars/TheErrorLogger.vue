@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      removeError: "errors/removeError"
+      removeError: "snackbars/errors/removeError"
     }),
     resetError() {
       this.error = false;
@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      errorMessage: "errors/errorMessage"
+      errorMessage: "snackbars/errors/errorMessage"
     })
   },
   watch: {

@@ -139,8 +139,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      logError: "errors/logError",
-      logSuccess: "success/logSuccess"
+      logError: "snackbars/errors/logError",
+      logSuccess: "snackbars/success/logSuccess"
     }),
     getYear() {
       let year = new Date().getFullYear();

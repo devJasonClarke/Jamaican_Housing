@@ -675,8 +675,8 @@ export default {
   },
   methods: {
         ...mapActions({
-  logSuccess: "success/logSuccess",
-     logError: "errors/logError"
+  logSuccess: "snackbars/success/logSuccess",
+     logError: "snackbars/errors/logError"
     }),
     showImg(i) {
       // console.log(`show: ${i}`);
@@ -687,7 +687,7 @@ export default {
       this.visible = false;
     },
     ...mapActions({
-      logError: "errors/logError"
+      logError: "snackbars/errors/logError"
     }),
     profanityFilter(info) {
       var Filter = require("bad-words");

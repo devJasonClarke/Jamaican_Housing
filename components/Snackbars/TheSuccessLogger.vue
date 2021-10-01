@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      removeSuccess: "success/removeSuccess"
+      removeSuccess: "snackbars/success/removeSuccess"
     }),
     resetSuccess() {
       this.success = false;
@@ -37,7 +37,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      successMessage: "success/successMessage"
+      successMessage: "snackbars/success/successMessage"
     })
   },
   watch: {

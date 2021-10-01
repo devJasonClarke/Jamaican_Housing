@@ -122,23 +122,23 @@ export default {
       return value;
     },
     ...mapGetters({
-      properties: "getHanoverProperties/properties",
-      lastVisible: "getHanoverProperties/lastVisible",
-      paginateNext: "getHanoverProperties/paginateNext",
+      properties: "getProperties/hanover/properties",
+      lastVisible: "getProperties/hanover/lastVisible",
+      paginateNext: "getProperties/hanover/paginateNext",
 
-      properties: "getHanoverProperties/properties",
+      properties: "getProperties/hanover/properties",
 
-      loading: "getHanoverProperties/loading",
+      loading: "getProperties/hanover/loading",
 
-      paginateNext: "getHanoverProperties/paginateNext"
+      paginateNext: "getProperties/hanover/paginateNext"
     })
   },
   methods: {
     ...mapActions({
-      logError: "errors/logError",
-      getParishProperties: "getHanoverProperties/getParishProperties",
+      logError: "snackbars/errors/logError",
+      getParishProperties: "getProperties/hanover/getParishProperties",
 
-      setLoading: "getHanoverProperties/setLoading"
+      setLoading: "getProperties/hanover/setLoading"
     }),
 
     previous() {

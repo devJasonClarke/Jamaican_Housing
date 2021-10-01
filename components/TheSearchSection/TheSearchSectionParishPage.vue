@@ -130,15 +130,15 @@ export default {
   },
   methods: {
     ...mapActions({
-      setParish: "getPropertiesForRent/setParish",
-      setType: "getPropertiesForRent/setType",
-      setPrice: "getPropertiesForRent/setPrice",
-      setBedrooms: "getPropertiesForRent/setBedrooms",
+      setParish: "getProperties/forRent/setParish",
+      setType: "getProperties/forRent/setType",
+      setPrice: "getProperties/forRent/setPrice",
+      setBedrooms: "getProperties/forRent/setBedrooms",
       getSearchedPropertiesForRent:
-        "getPropertiesForRent/getSearchedPropertiesForRent",
-      getPropertiesForRent: "getPropertiesForRent/getPropertiesForRent",
-      removeFilters: "getPropertiesForRent/removeFilters",
-      resetPropertySearch: "getPropertiesForRent/resetPropertySearch"
+        "getProperties/forRent/getSearchedPropertiesForRent",
+      getPropertiesForRent: "getProperties/forRent/getPropertiesForRent",
+      removeFilters: "getProperties/forRent/removeFilters",
+      resetPropertySearch: "getProperties/forRent/resetPropertySearch"
     }),
     removeTheFilters() {
       this.removeFilters();
@@ -167,16 +167,16 @@ export default {
   },
   computed: {
     ...mapGetters({
-      parishes: "selectOptions/parishes",
-      realEstateType: "selectOptions/realEstateType",
-      maxPrices: "selectOptions/maxPrices",
-      bedrooms: "selectOptions/bedrooms",
-      search: "getPropertiesForRent/search",
-      activeCurrency: "api/activeCurrency",
-      currencyRate: "api/currencyRate",
-      searchedProperties: "getPropertiesForRent/searchedProperties",
-      properties: "getPropertiesForRent/properties",
-      propertySearch: "getPropertiesForRent/propertySearch"
+      parishes: "selectOptions/selectOptions/parishes",
+      realEstateType: "selectOptions/selectOptions/realEstateType",
+      maxPrices: "selectOptions/selectOptions/maxPrices",
+      bedrooms: "selectOptions/selectOptions/bedrooms",
+      search: "getProperties/forRent/search",
+      activeCurrency: "api/api/activeCurrency",
+      currencyRate: "api/api/currencyRate",
+      searchedProperties: "getProperties/forRent/searchedProperties",
+      properties: "getProperties/forRent/properties",
+      propertySearch: "getProperties/forRent/propertySearch"
     }),
     selectedParish: {
       get() {

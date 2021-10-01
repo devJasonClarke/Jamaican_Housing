@@ -55,7 +55,7 @@ export const actions = {
         }
         if (querySnapshot.empty && state.properties.length) {
           commit(
-            "errors/LOG_ERROR",
+            "snackbars/errors/LOG_ERROR",
             "Looks like we've run out of properties to show you.",
             {
               root: true
@@ -77,7 +77,7 @@ export const actions = {
         }
       },
       error => {
-        commit("errors/LOG_ERROR", error.message, { root: true });
+        commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
         // // console.log("Firebase");
         // console.log(error);
       }
