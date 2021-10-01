@@ -679,6 +679,7 @@
                 Message Sent
               </v-btn>
               <a
+                v-if="property.details.propertyFor != 'Off the market'"
                 :href="`tel:${uploader.contact.phoneNumber}`"
                 class="text-subtitle-1"
               >
@@ -700,7 +701,10 @@
                 target="_blank"
                 rel="nofollow noopener"
                 :href="`https://wa.me/${uploader.contact.whatsappNumber}`"
-                v-if="uploader.contact.whatsappNumber"
+                v-if="
+                  uploader.contact.whatsappNumber &&
+                    property.details.propertyFor != 'Off the market'
+                "
               >
                 <v-btn
                   class="mb-6"
@@ -790,6 +794,7 @@ export default {
           garages: "",
           bedRooms: ""
         },
+        images: [],
         parish: "",
         tours: { matterport: "", youtube: "" },
         type: "",

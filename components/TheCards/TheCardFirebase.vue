@@ -28,7 +28,18 @@
         >
           Featured
         </v-chip>
+          <v-chip
+          class="text-uppercase mb-2 mr-1"
+          v-if="property[0].details.propertyFor == 'Off the market'"
+          color="red"
+          small
+          label
+          dark
+        >
+          {{ property[0].details.propertyFor }}
+        </v-chip>
         <v-chip
+        v-else
           class="text-uppercase mb-2 mr-1"
           color="green accent-4"
           small
@@ -37,6 +48,7 @@
         >
           For {{ property[0].details.propertyFor }}
         </v-chip>
+       
       </v-img>
       <div>
         <v-card-title class="hyphens text-capitalize">
