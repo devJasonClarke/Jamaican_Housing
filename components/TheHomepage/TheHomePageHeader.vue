@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-img
+    :lazy-src='img'
       :src="img"
       class="header-img"
       gradient="to top right, rgba(0,0,0,.3), rgba(0,0,0,.2)"

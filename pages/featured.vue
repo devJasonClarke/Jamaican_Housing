@@ -1,11 +1,11 @@
 <template>
   <div>
     <TheMetaTags :title="title" :description="description" />
-    <v-img :src="img" min-height="300" max-height="400"></v-img>
+    <v-img :lazy-src='img' :src="img" min-height="300" max-height="400"></v-img>
     <SectionPadding>
       <SectionTitlesSecondary
         mainTitle="Featured Listings "
-        paragraph="Premium listings that are a cut above the rest. With up to 73% more exposure than regular listings, these real estate deals usually leave the market before you know it."
+        paragraph="Premium listings that are a cut above the rest. With up to 75% more exposure than regular listings, these real estate deals usually leave the market before you know it."
       />
     </SectionPadding>
 
@@ -36,7 +36,7 @@ export default {
     return {
       title: "Featured Listings | Real Estate Ja",
       description:
-        "Premium listings that are a cut above the rest. With up to 73% more exposure than regular listings, these real estate deals usually leave the market before you know it",
+        "Premium listings that are a cut above the rest. With up to 75% more exposure than regular listings, these real estate deals usually leave the market before you know it",
       img: img,
       loading: false
     };
