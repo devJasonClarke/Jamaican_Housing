@@ -12,7 +12,7 @@
             Search For The Perfect Property
           </p>
           <p class="text-body-2">
-            Your dream property is waiting for you and might be a few clicks away!
+            Your dream property is waiting for you and may be a few clicks away!
             Use Real Estate Ja to find that property and start the process of
             making it yours.
           </p>

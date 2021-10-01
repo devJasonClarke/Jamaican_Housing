@@ -14,7 +14,7 @@
     <SectionPadding class="backgroundShade">
       <v-container>
         <v-row>
-          <v-col cols="12" md="6">
+          <v-col>
             <v-form
               @submit.prevent="validate"
               v-model="valid"
@@ -25,7 +25,6 @@
                 <v-col cols="6">
                   <v-text-field
                     outlined
-                    dense
                     v-model="firstname"
                     :rules="nameRules"
                     label="First Name *"
@@ -36,7 +35,6 @@
                 <v-col cols="6">
                   <v-text-field
                     outlined
-                    dense
                     v-model="lastname"
                     :rules="nameRules"
                     label="Last Name *"
@@ -45,14 +43,24 @@
                   ></v-text-field
                 ></v-col>
 
-                <v-col cols="12">
+                <v-col cols="6">
                   <v-text-field
                     outlined
-                    dense
                     v-model="email"
                     :rules="emailRules"
                     label="Email Address *"
                     type="email"
+                    required
+                    :color="iconColor"
+                  ></v-text-field
+                ></v-col>
+                <v-col cols="6">
+                  <v-text-field
+                    outlined
+                    v-model.number="phoneNumber"
+                    :rules="phoneNumberRules"
+                    label="Phone Number *"
+                    type="number"
                     required
                     :color="iconColor"
                   ></v-text-field
@@ -71,43 +79,27 @@
               </v-row>
               <v-btn
                 type="submit"
-                v-if="sentStatus === false"
+                v-if="sent === false"
                 :loading="loading"
                 large
-                color="success"
+                dark
+                color="green accent-4"
                 block
                 depressed
                 >Send
               </v-btn>
               <v-btn
-                v-else-if="sentStatus === true"
-                :loading="loading"
+                v-else-if="sent === true"
                 large
-                color="success"
+                dark
+                color="green accent-4"
                 block
                 depressed
               >
-                <v-icon dark> mdi-check</v-icon>
-              </v-btn>
-              <v-btn
-                type="submit"
-                v-else
-                :loading="loading"
-                large
-                color="error"
-                block
-                depressed
-              >
-                <v-icon dark> mdi-close</v-icon>
+                Message Sent <v-icon dark> mdi-check</v-icon>
               </v-btn>
             </v-form></v-col
           >
-          <v-col cols="12" md="6">
-            <v-img
-              gradient="to top right, rgba(0, 0, 0, 0.1) ,rgba(0, 0, 0, 0.25)"
-              :src="require('~/assets/images/shaking-hands.jpg')"
-            ></v-img
-          ></v-col>
         </v-row>
       </v-container>
     </SectionPadding>
@@ -115,7 +107,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import img from "~/assets/images/houses/9.jpg";
 export default {
   data() {
@@ -128,46 +120,59 @@ export default {
       firstname: "",
       lastname: "",
       email: "",
+      phoneNumber: null,
       message: "",
       loading: false,
-      sentStatus: false,
+      sent: false,
 
       email: ""
     };
   },
   methods: {
+    ...mapActions({
+      logError: "snackbars/errors/logError",
+      logSuccess: "snackbars/success/logSuccess"
+    }),
     validate() {
-      let axios = this.$axios;
       if (this.$refs.form.validate()) {
         this.loading = true;
-        axios
-          .post(`https://submit-form.com/${process.env.formApi}`, {
-            "First Name": this.firstname,
-            "Last Name": this.lastname,
-            Email: this.email,
-            Message: this.message
+
+        this.$fire.firestore
+          .collection("adminMessages")
+          .add({
+            sender: `${this.firstname} ${this.lastname}`,
+            phoneNumber: this.phoneNumber,
+            email: this.email,
+            message: this.message,
+            timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
+            read: false,
+            important: false,
+            urgent: false
           })
-          .then(response => {
-            // console.log("The response: " + response);
+          .then(() => {
             this.loading = false;
-            this.sentStatus = true;
+            this.sent = true;
+            this.logSuccess(
+              "Message Sent! We have been notifed and will respond shortly."
+            );
           })
-          .catch(response => {
-            console.error("The error: " + response);
+          .catch(error => {
+            this.logError(error.message);
             this.loading = false;
-            this.sentStatus = "error";
           });
+
+  
       } else {
-        // console.log("Your bloodclaat mada");
+        this.logError("Please complete required sections.");
       }
     }
   },
   computed: {
     ...mapGetters({
       emailRules: "inputRules/inputRules/emailRules",
+      phoneNumberRules: "inputRules/inputRules/phoneNumberRules",
       nameRules: "inputRules/inputRules/nameRules",
-      messageRules: "inputRules/inputRules/messageRules",
-       
+      messageRules: "inputRules/inputRules/messageRules"
     })
   }
 };

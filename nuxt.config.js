@@ -19,7 +19,8 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: "Discover the best offers on the Jamaican Real Estate Market"
+        content:
+          "Your dream property is waiting for you and may be a few clicks away! Discover the best offers on the Jamaican Real Estate market."
       },
       {
         hid: "twitter:title",
@@ -29,7 +30,8 @@ export default {
       {
         hid: "twitter:description",
         name: "twitter:description",
-        content: "Discover the best offers on the Jamaican Real Estate Market"
+        content:
+          "Your dream property is waiting for you and may be a few clicks away! Discover the best offers on the Jamaican Real Estate market."
       },
       {
         hid: "twitter:image",
@@ -49,17 +51,18 @@ export default {
       {
         hid: "og:description",
         property: "og:description",
-        content: "Discover the best offers on the Jamaican Real Estate Market"
+        content:
+          "Your dream property is waiting for you and may be a few clicks away! Discover the best offers on the Jamaican Real Estate market."
       },
       {
         hid: "og:image",
         property: "og:image",
-        content:  `${process.env.BASE_URL}real-estate-ja.jpg`
+        content: `${process.env.BASE_URL}real-estate-ja.jpg`
       },
       {
         hid: "og:image:secure_url",
         property: "og:image:secure_url",
-        content:  `${process.env.BASE_URL}real-estate-ja.jpg`
+        content: `${process.env.BASE_URL}real-estate-ja.jpg`
       },
       {
         hid: "og:image:alt",
@@ -152,7 +155,7 @@ export default {
   sitemap: {
     hostname: process.env.BASE_URL,
     gzip: true,
-    exclude: ["/dashboard/**"]
+    exclude: ["/dashboard", "/dashboard/**", "/admin", "/admin/**"]
   },
   oneSignal: {
     init: {
@@ -170,7 +173,7 @@ export default {
               text: {
                 /* limited to 90 characters */
                 actionMessage:
-                  "We'd love to show you notifications for the latest news and updates.",
+                  "We'd love to show you notifications for Jamaica's top real estate.",
                 /* acceptButton limited to 15 characters */
                 acceptButton: "Allow",
                 /* cancelButton limited to 15 characters */
@@ -199,7 +202,7 @@ export default {
       name: "Real Estate Jamaica",
       short_name: "Real Estate Ja",
       description:
-        "Discover the best offers on the Jamaican Real Estate Market",
+        "Your dream property is waiting for you and may be a few clicks away! Discover the best offers on the Jamaican Real Estate market.",
       theme_color: "#00c853",
       background_color: "#00c853"
     }

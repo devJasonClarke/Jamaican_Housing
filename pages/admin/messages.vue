@@ -71,18 +71,9 @@
             </p>
             <p>
               Date Sent:
-              {{ message[0].timestamp.toDate().toLocaleDateString() }}
+              {{ message[0].timestamp.toDate().toDateString() }}
             </p>
-            <p>
-              Property Interested In:
-              <a
-                :href="`${message[0].property}`"
-                class="hyphens blue--text"
-                target="_blank"
-                >{{ message[0].property }}</a
-              >
-            </p>
-            <p>Message: {{ message[0].message }}</p>
+            <p>Message: {{ profanityFilter(message[0].message) }}</p>
             <v-btn
               link
               :href="`mailto:${message[0].email}`"
@@ -169,18 +160,24 @@ export default {
   },
   methods: {
     ...mapActions({
-      readMessage: "dashboard/messages/readMessage",
-      deleteMessage: "dashboard/messages/deleteMessage",
-      removeLocalMessage: "dashboard/messages/removeLocalMessage",
-      setLoading: "dashboard/messages/setLoading",
-      getNewMessages: "dashboard/messages/getNewMessages",
-      changeMessageReadState: "dashboard/messages/changeMessageReadState"
+      readMessage: "admin/messages/readMessage",
+      deleteMessage: "admin/messages/deleteMessage",
+      removeLocalMessage: "admin/messages/removeLocalMessage",
+      setLoading: "admin/messages/setLoading",
+      getNewMessages: "admin/messages/getNewMessages",
+      changeMessageReadState: "admin/messages/changeMessageReadState"
     }),
     updateMessage(message, index) {
       this.readMessage(message);
       this.changeMessageReadState(index);
       // console.log(message);
       // console.log(index);
+    },
+    profanityFilter(info) {
+      var Filter = require("bad-words");
+      let filter = new Filter();
+
+      return filter.clean(info);
     },
     removeMessage(message, index) {
       this.deleteMessage(message);
@@ -192,17 +189,14 @@ export default {
   },
   computed: {
     ...mapGetters({
-      newMessages: "dashboard/messages/newMessages",
-      loading: "dashboard/messages/loading",
-      paginateNext: "dashboard/messages/paginateNext",
-      //  unReadMessages: "dashboard/messages/unReadMessages",
-      profile: "dashboard/profile/profile"
+      newMessages: "admin/messages/newMessages",
+      loading: "admin/messages/loading",
+      paginateNext: "admin/messages/paginateNext",
+      //  unReadMessages: "admin/messages/unReadMessages",
+      profile: "admin/profile/profile"
     }),
     title() {
-      return `${this.profile.personalDetails.displayName} | Messages | Dashboard`;
-    },
-    description() {
-      return "Messages";
+      return `Messages | Admin`;
     }
   }
 };

@@ -91,10 +91,7 @@ export default {
       profile: "dashboard/profile/profile"
     }),
     title() {
-      return `${this.profile.personalDetails.displayName} | User Properties | Dashboard`;
-    },
-    description() {
-      return `${this.profile.personalDetails.displayName} amazing properties.`;
+      return `Declined Users | Admin`;
     }
   },
   methods: {

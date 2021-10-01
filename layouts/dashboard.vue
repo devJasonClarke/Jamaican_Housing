@@ -217,11 +217,29 @@
       </v-list-item>
       <v-spacer />
       <v-badge
+        :content="oldAdminMessages"
+        class="mr-6"
+        :value="oldAdminMessages"
+        overlap
+        color="green"
+        v-if="useAdminRoutes"
+      >
+        <nuxt-link :to="{ name: 'admin-messages' }"
+          ><v-icon v-if="oldMessages">
+            mdi-bell
+          </v-icon>
+          <v-icon v-else>
+            mdi-bell-outline
+          </v-icon>
+        </nuxt-link>
+      </v-badge>
+      <v-badge
         :content="oldMessages"
         class="mr-6"
         :value="oldMessages"
         overlap
         color="green"
+        v-else
       >
         <nuxt-link :to="{ name: 'dashboard-messages' }"
           ><v-icon v-if="oldMessages">
@@ -337,6 +355,9 @@ export default {
     if (this.newMessages.length == 0) {
       this.getNewMessages();
     }
+    if (this.newAdminMessages.length == 0) {
+      this.getNewAdminMessages();
+    }
   },
   data() {
     return {
@@ -416,7 +437,8 @@ export default {
     ...mapActions({
       toggleTheme: "colorTheme/colorTheme/toggleTheme",
       logout: "authentication/authentication/logout",
-      getNewMessages: "dashboard/messages/getNewMessages"
+      getNewMessages: "dashboard/messages/getNewMessages",
+      getNewAdminMessages: "admin/messages/getNewMessages"
     }),
 
     resize() {
@@ -439,6 +461,8 @@ export default {
     ...mapGetters({
       newMessages: "dashboard/messages/newMessages",
       oldMessages: "dashboard/messages/oldMessages",
+      newAdminMessages: "admin/messages/newMessages",
+      oldAdminMessages: "admin/messages/oldMessages",
       profile: "dashboard/profile/profile",
       userAthenticated: "dashboard/profile/userAthenticated",
       colorTheme: "colorTheme/colorTheme/theme"

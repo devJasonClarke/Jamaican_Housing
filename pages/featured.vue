@@ -5,7 +5,7 @@
     <SectionPadding>
       <SectionTitlesSecondary
         mainTitle="Featured Listings "
-        paragraph="Premium listings that are a cut above the rest. With 10 times more exposure than regular listings, these real estate deals usually leave the market before you know it."
+        paragraph="Premium listings that are a cut above the rest. With up to 73% more exposure than regular listings, these real estate deals usually leave the market before you know it."
       />
     </SectionPadding>
 
@@ -36,7 +36,7 @@ export default {
     return {
       title: "Featured Listings | Real Estate Ja",
       description:
-        "Premium listings that are a cut above the rest. With 10 times more exposure than regular listings, these real estate deals usually leave the market before you know it",
+        "Premium listings that are a cut above the rest. With up to 73% more exposure than regular listings, these real estate deals usually leave the market before you know it",
       img: img,
       loading: false
     };

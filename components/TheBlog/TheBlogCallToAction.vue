@@ -5,7 +5,7 @@
         <p class="text-center mr-3 my-3 text-h5 font-weight-bold">
           Want to publish your article on Real Estate Ja?
         </p>
-        <v-btn color="success" :to="{ name: 'contact' }" depressed rounded
+        <v-btn dark color="green accent-4" :to="{ name: 'contact' }" depressed rounded
           >Contact Us</v-btn
         >
       </v-container>

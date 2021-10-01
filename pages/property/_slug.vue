@@ -614,7 +614,7 @@
                 required
                 :rules="phoneNumberRules"
                 :color="iconColor"
-                v-model="phoneNumber"
+                v-model.number="phoneNumber"
               ></v-text-field>
               <v-text-field
                 outlined

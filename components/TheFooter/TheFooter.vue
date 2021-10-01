@@ -9,7 +9,10 @@
             >
               Real Estate JA
             </p>
-            <p>Discover the best offers on the Jamaican Real Estate market.</p>
+            <p>
+              Your dream property is waiting for you and may be a few clicks
+              away! Discover the best offers on the Jamaican Real Estate market.
+            </p>
           </v-col>
 
           <v-col cols="12" md="2" sm="6">
