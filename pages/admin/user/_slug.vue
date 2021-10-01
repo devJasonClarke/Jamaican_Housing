@@ -266,7 +266,6 @@
 
           <v-tabs-items class="py-12 px-4" v-model="tab">
             <v-tab-item>
-              {{ request_verification }}
               <v-form ref="descriptionForm" @submit.prevent="validateFields">
                 <v-row
                   ><v-col cols="12" md="6">
