@@ -1,7 +1,7 @@
 <template>
   <div>
-      <TheMetaTags :title="title" :description="description"/>
-    <v-img :lazy-src='img' :src="img" min-height="300" max-height="400"></v-img>
+    <TheMetaTags :title="title" :description="description" />
+    <v-img :lazy-src="img" :src="img" min-height="300" max-height="400"></v-img>
     <SectionPadding>
       <SectionTitlesSecondary
         mainTitle="Parishes"
@@ -15,11 +15,9 @@
       <v-container>
         <v-row>
           <v-col cols="12" md="8" sm="6">
-            <nuxt-link
-              :to="{ name: 'parish-clarendon' }"
-            >
-              <v-img :lazy-src='img'
-                
+            <nuxt-link :to="{ name: 'parish-clarendon' }">
+              <v-img
+                :lazy-src="img"
                 :src="require('~/assets/images/houses/1.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -34,10 +32,9 @@
           </v-col>
 
           <v-col cols="12" md="4" sm="6">
-            <nuxt-link
-              :to="{ name: 'parish-hanover' }"
-            >
-              <v-img :lazy-src='img'
+            <nuxt-link :to="{ name: 'parish-hanover' }">
+              <v-img
+                :lazy-src="img"
                 :src="require('~/assets/images/parishes/hanover.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -52,10 +49,9 @@
           </v-col>
 
           <v-col cols="12" md="4" sm="6">
-            <nuxt-link
-              :to="{ name: 'parish-kingston' }"
-            >
-              <v-img :lazy-src='img'
+            <nuxt-link :to="{ name: 'parish-kingston' }">
+              <v-img
+                :lazy-src="img"
                 :src="require('~/assets/images/parishes/kingston.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -70,10 +66,9 @@
           </v-col>
 
           <v-col cols="12" md="4" sm="6">
-            <nuxt-link
-              :to="{ name: 'parish-manchester' }"
-            >
-              <v-img :lazy-src='img'
+            <nuxt-link :to="{ name: 'parish-manchester' }">
+              <v-img
+                :lazy-src="img"
                 :src="require('~/assets/images/houses/4.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -88,10 +83,9 @@
           </v-col>
 
           <v-col cols="12" md="4" sm="6">
-            <nuxt-link
-              :to="{ name: 'parish-portland' }"
-            >
-              <v-img :lazy-src='img'
+            <nuxt-link :to="{ name: 'parish-portland' }">
+              <v-img
+                :lazy-src="img"
                 :src="require('~/assets/images/parishes/portland.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -105,10 +99,9 @@
             </nuxt-link>
           </v-col>
           <v-col cols="12" md="6" sm="6">
-            <nuxt-link
-              :to="{ name: 'parish-st-andrew' }"
-            >
-              <v-img :lazy-src='img'
+            <nuxt-link :to="{ name: 'parish-st-andrew' }">
+              <v-img
+                :lazy-src="img"
                 :src="require('~/assets/images/parishes/st-andrew.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -122,10 +115,9 @@
             </nuxt-link>
           </v-col>
           <v-col cols="12" md="6" sm="6">
-            <nuxt-link
-              :to="{ name: 'parish-st-ann' }"
-            >
-              <v-img :lazy-src='img'
+            <nuxt-link :to="{ name: 'parish-st-ann' }">
+              <v-img
+                :lazy-src="img"
                 :src="require('~/assets/images/extra-images/5.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -139,10 +131,9 @@
             </nuxt-link>
           </v-col>
           <v-col cols="12" md="4" sm="6">
-            <nuxt-link
-              :to="{ name: 'parish-st-catherine' }"
-            >
-              <v-img :lazy-src='img'
+            <nuxt-link :to="{ name: 'parish-st-catherine' }">
+              <v-img
+                :lazy-src="img"
                 :src="require('~/assets/images/parishes/st-catherine.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -156,10 +147,9 @@
             </nuxt-link>
           </v-col>
           <v-col cols="12" md="8" sm="6">
-            <nuxt-link
-              :to="{ name: 'parish-st-elizabeth' }"
-            >
-              <v-img :lazy-src='img'
+            <nuxt-link :to="{ name: 'parish-st-elizabeth' }">
+              <v-img
+                :lazy-src="img"
                 :src="require('~/assets/images/parishes/st-elizabeth.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -173,10 +163,9 @@
             </nuxt-link>
           </v-col>
           <v-col cols="12" md="4" sm="6">
-            <nuxt-link
-              :to="{ name: 'parish-st-james' }"
-            >
-              <v-img :lazy-src='img'
+            <nuxt-link :to="{ name: 'parish-st-james' }">
+              <v-img
+                :lazy-src="img"
                 :src="require('~/assets/images/parishes/st-james.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -190,10 +179,9 @@
             </nuxt-link>
           </v-col>
           <v-col cols="12" md="4" sm="6">
-            <nuxt-link
-              :to="{ name: 'parish-st-mary' }"
-            >
-              <v-img :lazy-src='img'
+            <nuxt-link :to="{ name: 'parish-st-mary' }">
+              <v-img
+                :lazy-src="img"
                 :src="require('~/assets/images/parishes/st-mary.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -207,10 +195,9 @@
             </nuxt-link>
           </v-col>
           <v-col cols="12" md="4" sm="6">
-            <nuxt-link
-              :to="{ name: 'parish-st-thomas' }"
-            >
-              <v-img :lazy-src='img'
+            <nuxt-link :to="{ name: 'parish-st-thomas' }">
+              <v-img
+                :lazy-src="img"
                 :src="require('~/assets/images/extra-images/1.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -224,10 +211,9 @@
             </nuxt-link>
           </v-col>
           <v-col cols="12" md="6" sm="6">
-            <nuxt-link
-              :to="{ name: 'parish-trelawny' }"
-            >
-              <v-img :lazy-src='img'
+            <nuxt-link :to="{ name: 'parish-trelawny' }">
+              <v-img
+                :lazy-src="img"
                 :src="require('~/assets/images/parishes/trelawny.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -241,10 +227,9 @@
             </nuxt-link>
           </v-col>
           <v-col cols="12" md="6" sm="6">
-            <nuxt-link
-              :to="{ name: 'parish-westmoreland' }"
-            >
-              <v-img :lazy-src='img'
+            <nuxt-link :to="{ name: 'parish-westmoreland' }">
+              <v-img
+                :lazy-src="img"
                 :src="require('~/assets/images/extra-images/6.jpg')"
                 class="d-flex image  align-center rounded-lg image-height"
                 gradient="to top right, rgba(0,0,0,.35), rgba(0,0,0,.35)"
@@ -268,8 +253,8 @@ import img from "~/assets/images/houses/3.jpg";
 export default {
   data() {
     return {
-       title: 'Parishes | Real Estate Ja',
-      description: 'parishes',
+      title: "Parishes | Real Estate Ja",
+      description: "parishes",
       img: img,
       loading: false,
       card: {

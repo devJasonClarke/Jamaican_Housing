@@ -13,6 +13,7 @@
         class="mx-auto mt-6 d-flex justify-center align-center green rounded-circle"
       >
         <v-img
+          :lazy-src="img"
           v-if="user[0].profilePicture.src"
           :src="user[0].profilePicture.src"
         ></v-img>
@@ -71,6 +72,7 @@
 </template>
 
 <script>
+import img from "~/assets/images/houses/3.jpg";
 import { mapGetters } from "vuex";
 export default {
   props: {
@@ -81,7 +83,8 @@ export default {
   },
   data() {
     return {
-      iconColor: "rgba(0, 200, 83, 0.5)"
+      iconColor: "rgba(0, 200, 83, 0.5)",
+      img: img
     };
   },
   methods: {
@@ -133,7 +136,7 @@ export default {
         "-",
         this.user[0].contact.phoneNumber.toString().slice(6)
       ].join("");
-      return  phone;
+      return phone;
     }
   }
 };

@@ -7,7 +7,7 @@
       elevation="0"
       class="rounded-lg card"
     >
-      <v-img :src="property[0].images[0].src" height="200" class="pa-3">
+      <v-img :lazy-src='img' :src="property[0].images[0].src" height="200" class="pa-3">
         <v-chip
           class="text-uppercase mb-2 mr-1"
           color="blue"
@@ -139,6 +139,7 @@
 </template>
 
 <script>
+import img from "~/assets/images/houses/3.jpg";
 import { mapGetters } from "vuex";
 export default {
   props: {
@@ -149,7 +150,8 @@ export default {
   },
   data() {
     return {
-      iconColor: "rgba(0, 200, 83, 0.5)"
+      iconColor: "rgba(0, 200, 83, 0.5)",
+      img: img
     };
   },
   methods: {
