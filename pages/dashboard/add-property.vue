@@ -943,28 +943,30 @@ export default {
           })
           .then(docRef => {
             // console.log("Document written with ID: ", docRef.id);
-            this.addNewUserProperty([
-              {
-                price: parseFloat(this.property.details.price),
-                parish: this.property.details.parish,
-                type: this.property.details.propertyType,
-                bedrooms: bedrooms,
-                featured: false,
-                verified: false,
-                propertyFor: this.property.details.propertyFor,
+            if (this.previousUserProperties.length != 0) {
+              this.addNewUserProperty([
+                {
+                  price: parseFloat(this.property.details.price),
+                  parish: this.property.details.parish,
+                  type: this.property.details.propertyType,
+                  bedrooms: bedrooms,
+                  featured: false,
+                  verified: false,
+                  propertyFor: this.property.details.propertyFor,
 
-                description: this.property.description,
-                details: this.property.details,
-                amenities: this.property.amenities,
-                tours: {
-                  youtube: this.youtubeVideoId,
-                  matterport: this.matterportId
+                  description: this.property.description,
+                  details: this.property.details,
+                  amenities: this.property.amenities,
+                  tours: {
+                    youtube: this.youtubeVideoId,
+                    matterport: this.matterportId
+                  },
+                  uploader: this.user.uid,
+                  images: this.imageUrls
                 },
-                uploader: this.user.uid,
-                images: this.imageUrls
-              },
-              docRef.id
-            ]);
+                docRef.id
+              ]);
+            }
           })
           .then(() => {
             this.loading = false;
@@ -994,6 +996,7 @@ export default {
       descriptionRules: "inputRules/inputRules/descriptionRules",
       amountRules: "inputRules/inputRules/amountRules",
       amountRulesMinOne: "inputRules/inputRules/amountRulesMinOne",
+      previousUserProperties: "dashboard/userProperties/properties",
 
       matterportRules: "inputRules/inputRules/matterportRules",
       youtubeRules: "inputRules/inputRules/youtubeRules",

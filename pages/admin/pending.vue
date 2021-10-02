@@ -10,17 +10,8 @@
         class="d-flex justify-center align-center flex-column pa-3"
         outlined
         ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
-          No properties as yet.
-          <br />Add your first propery today!
+          No Users as yet.
         </p>
-        <v-btn
-          nuxt
-          :to="{ name: 'dashboard-add-property' }"
-          dark
-          color="green accent-4"
-        >
-          <v-icon left>mdi-home-import-outline</v-icon> Add Property</v-btn
-        >
       </v-sheet>
     </SectionPadding>
 
