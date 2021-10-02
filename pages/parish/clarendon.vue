@@ -4,7 +4,7 @@
       :title="`${parish} | Real Estate Ja | Parish`"
       :description="description"
     />
-    <v-img :lazy-src='img' :src="img" min-height="300" max-height="400"></v-img>
+    <v-img :lazy-src="img" :src="img" min-height="300" max-height="400"></v-img>
 
     <SectionPadding>
       <SectionTitlesSecondary

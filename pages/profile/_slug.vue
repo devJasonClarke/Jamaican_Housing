@@ -252,7 +252,7 @@
               ><p
                 class="text-body-1 text-sm-h6 text-center font-weight-regular"
               >
-                This user has no properties as yet
+                This user has no properties as yet.
                 <br />
                 Great things are coming!
               </p>

@@ -197,7 +197,10 @@ export default {
     }),
     title() {
       return `Messages | Admin`;
-    }
+    },
+     description() {
+      return ` Admin`;
+    },
   }
 };
 </script>

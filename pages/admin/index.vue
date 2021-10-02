@@ -81,7 +81,10 @@ export default {
     }),
     title() {
       return `Verified Users | Admin`;
-    }
+    },
+     description() {
+      return ` Admin`;
+    },
   },
   methods: {
     ...mapActions({

@@ -63,9 +63,13 @@ export const actions = {
               commit("SET_PAGINATE_NEXT");
             }
             if (querySnapshot.empty && state.newMessages.length) {
-              commit("snackbars/errors/LOG_ERROR", "You have no more messages.", {
-                root: true
-              });
+              commit(
+                "snackbars/errors/LOG_ERROR",
+                "You have no more messages.",
+                {
+                  root: true
+                }
+              );
             }
 
             querySnapshot.forEach(doc => {
@@ -81,7 +85,7 @@ export const actions = {
           },
           error => {
             commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
-      // // console.log("Firebase");
+            // // console.log("Firebase");
             // console.log(error);
           }
         );

@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <TheMetaTags :title="title" :description="description" />
-    <h1>Your Favourite Properties</h1>
+    <h1>Favourite Properties</h1>
     <SectionPadding class="pt-9" v-if="profile.loading === true">
       <v-skeleton-loader type="list-item@8"></v-skeleton-loader>
     </SectionPadding>

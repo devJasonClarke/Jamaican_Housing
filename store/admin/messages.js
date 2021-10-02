@@ -29,11 +29,10 @@ export const getters = {
 };
 
 export const actions = {
-  getNewMessages({ commit, state }) {
+  getNewMessages({ commit, state, rootState }) {
     // console.log("getNewMessages");
-
     this.$fireModule.auth().onAuthStateChanged(user => {
-      if (user) {
+      if (user && rootState.dashboard.profile.profile.role == "admin") {
         // console.log("Get User: User");
         // console.log(user);
         // // console.log(`Properties: ${state.properties.length}`);

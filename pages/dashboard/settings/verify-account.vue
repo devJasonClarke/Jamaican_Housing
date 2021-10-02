@@ -164,7 +164,7 @@
                         outlined
                         dense
                         prepend-icon="mdi-certificate"
-                        label="Enter your Realtor's Licence Number *"
+                        label="Enter your Realtor Licence Number *"
                         required
                         v-model="realtorId"
                         :color="iconColor"

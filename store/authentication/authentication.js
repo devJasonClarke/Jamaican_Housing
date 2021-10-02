@@ -103,12 +103,14 @@ export const actions = {
       .signInWithPopup(provider)
       .then(result => {
         theResults = result.user;
+        // console.log(result)
         return this.$fire.firestore
           .collection("users")
           .doc(result.user.uid)
           .get()
           .then(doc => {
             if (doc.exists) {
+              
               // console.log("Doc EXIsts");
               commit("dashboard/profile/SET_PROFILE", doc.data(), { root: true });
               commit("dashboard/favourites/SET_FAVOURITES", doc.data().favourites, {
@@ -148,7 +150,7 @@ export const actions = {
                     linkedIn: ""
                   },
                   contact: {
-                    email: email,
+                    email: result.user.email,
                     phoneNumber: null,
                     whatsappNumber: null,
                     website: ""

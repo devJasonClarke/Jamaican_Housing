@@ -90,7 +90,10 @@ export default {
     }),
     title() {
       return `Pending Users | Admin`;
-    }
+    },
+     description() {
+      return ` Admin`;
+    },
   },
   methods: {
     ...mapActions({
