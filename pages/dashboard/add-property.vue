@@ -5,11 +5,31 @@
     <!--     {{ urls }}
     {{ `typeOf price: ${typeof property.details.price}` }} -->
     <!--   {{profile}} -->
+
     <SectionPadding v-if="profile.loading" class="pt-9">
       <v-skeleton-loader
         type="table-row-divider,image,card-heading"
         title="sale"
       ></v-skeleton-loader>
+    </SectionPadding>
+
+   <SectionPadding class="pt-9" v-else-if="!profile.verified">
+      <v-sheet
+        height="250px"
+        class="d-flex justify-center align-center flex-column pa-3"
+        outlined
+        ><p class="text-sm-h6 text-subtitle-1 text-center font-weight-regular">
+          Please verify your account to add properties.
+        </p>
+        <v-btn
+          nuxt
+          :to="{ name: 'dashboard-settings-verify-account' }"
+          dark
+          color="green accent-4"
+        >
+          <v-icon left>mdi-check-decagram </v-icon> Verify account</v-btn
+        >
+      </v-sheet>
     </SectionPadding>
 
     <SectionPadding
@@ -35,24 +55,7 @@
         >
       </v-sheet>
     </SectionPadding>
-    <SectionPadding class="pt-9" v-else-if="!profile.verified">
-      <v-sheet
-        height="250px"
-        class="d-flex justify-center align-center flex-column pa-3"
-        outlined
-        ><p class="text-sm-h6 text-subtitle-1 text-center font-weight-regular">
-          Please verify your account to add properties.
-        </p>
-        <v-btn
-          nuxt
-          :to="{ name: 'dashboard-settings-verify-account' }"
-          dark
-          color="green accent-4"
-        >
-          <v-icon left>mdi-check-decagram </v-icon> Verify account</v-btn
-        >
-      </v-sheet>
-    </SectionPadding>
+ 
     <SectionPadding
       v-else-if="profile.verificationProcess === 'pending'"
       class="pt-9"

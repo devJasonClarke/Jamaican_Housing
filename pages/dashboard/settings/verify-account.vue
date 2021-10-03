@@ -9,7 +9,7 @@
       ></v-skeleton-loader>
     </SectionPadding>
 
-   <SectionPadding
+    <SectionPadding
       v-else-if="profile.verificationProcess === 'pending'"
       class="pt-9"
     >
@@ -32,13 +32,13 @@
         class="d-flex justify-center align-center flex-column pa-3"
         outlined
         ><p class="text-body-1 text-sm-h6 text-center font-weight-regular">
-        Your verification has been declined. <br> If you believe that there has been an
-          error please contact us.
+          Your verification has been declined. <br />
+          If you believe that there has been an error please contact us.
         </p>
         <v-icon>mdi-check-decagram mdi-36px</v-icon>
       </v-sheet>
     </SectionPadding>
-        <SectionPadding v-else-if="profile.verified === true" class="pt-9">
+    <SectionPadding v-else-if="profile.verified === true" class="pt-9">
       <v-sheet
         height="200px"
         class="d-flex justify-center align-center flex-column pa-3"
@@ -249,7 +249,7 @@
                       show-size
                       counter
                       multiple
-                      :maxlength="[realtor ? 3 : 2]"
+                      :maxlength="realtor ? 3 : 2"
                       prepend-icon="mdi-image-multiple"
                       v-model="files"
                       @change="resetURL"
@@ -552,12 +552,6 @@ export default {
             images: this.imageUrls
           })
           .then(() => {
-            this.$fire.firestore
-              .collection("users")
-              .doc(this.user.uid)
-              .update({
-                verificationProcess: "pending"
-              });
             this.setVerificationProcess();
           })
           .then(() => {

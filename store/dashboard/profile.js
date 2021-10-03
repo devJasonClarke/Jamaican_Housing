@@ -71,7 +71,56 @@ export const actions = {
   setwebsite({ commit }, value) {
     commit("SET_WEBSITE", value);
   },
-  setVerificationProcess({ commit }) {
+  setVerificationProcess({ commit, state }) {
+
+    function getInitials() {
+      return `${state.profile.personalDetails.firstName} ${state.profile.personalDetails.lastName}`;
+    }
+
+    let rgx = new RegExp(/(\p{L}{1})\p{L}+/, "gu");
+
+    let initials = [...getInitials().matchAll(rgx)] || [];
+
+    initials = (
+      (initials.shift()?.[1] || "") + (initials.pop()?.[1] || "")
+    ).toUpperCase();
+
+
+    this.$fireModule.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.$fire.firestore
+          .collection("users")
+          .doc(user.uid)
+          .update({
+            verificationProcess: "pending",
+            "personalDetails.displayName": `${state.profile.personalDetails.firstName} ${state.profile.personalDetails.lastName}`,
+            "personalDetails.initials": initials,
+            "personalDetails.firstName":
+              state.profile.personalDetails.firstName,
+            "personalDetails.lastName": state.profile.personalDetails.lastName,
+            "contact.email": state.profile.contact.email,
+            "contact.phoneNumber": state.profile.contact.phoneNumber
+          })
+          .then(() => {
+            // console.log("Successfully updated!");
+
+            commit("snackbars/success/LOG_SUCCESS", "Successfully updated!", {
+              root: true
+            });
+            commit("SET_DETAILS_LOADER", false);
+            commit("SET_NAME", initials);
+          })
+          .catch(error => {
+            commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
+          });
+
+        // console.log(user);
+      } else {
+        // User is signed out
+
+        commit("SET_DETAILS_LOADER", false);
+      }
+    });
     commit("SET_VERIFICATION_PROCESS");
   },
   updateAccountDetails({ commit, state }) {
