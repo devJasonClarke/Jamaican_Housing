@@ -61,7 +61,7 @@
             </template>
             <span>Verified</span>
           </v-tooltip>
-          <v-tooltip color="orange" v-if="property[0].verified" top>
+          <v-tooltip color="orange" v-if="property[0].featured" top>
             <template v-slot:activator="{ on, attrs }">
               <v-icon color="orange" dark v-bind="attrs" v-on="on" class="ml-2">
                 mdi-star mdi-18px
