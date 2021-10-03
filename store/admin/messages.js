@@ -52,11 +52,11 @@ export const actions = {
               "SET_LAST_VISIBLE",
               Object.freeze(querySnapshot.docs[querySnapshot.docs.length - 1])
             );
-            console.log("lastVisible_2");
-            console.log(state.lastVisible);
+        //    console.log("lastVisible_2");
+       //     console.log(state.lastVisible);
 
             if (querySnapshot.empty) {
-              console.log("Empty");
+          //    console.log("Empty");
 
               commit("SET_PAGINATE_NEXT");
             }
@@ -71,7 +71,7 @@ export const actions = {
             }
 
             querySnapshot.forEach(doc => {
-              console.log(`This Document was fetched ${doc.id}`);
+           //   console.log(`This Document was fetched ${doc.id}`);
               commit("SET_Messages", [doc.data(), doc.id]);
             });
 
