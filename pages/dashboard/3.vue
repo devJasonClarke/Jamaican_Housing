@@ -616,7 +616,7 @@
                 class="mt-3"
                 dark
                 v-if="property.images.length === 1"
-                @click="logError('1 picture should always be present for property viewing. Please upload pictures before deleting this one.')"
+                @click="logError('1 picture should always be present for property viewing. Please ensure that atleast 3 photos are present before property is taken down.')"
                 ><v-icon>mdi-delete</v-icon> Delete Image</v-btn
               >
               <v-btn
