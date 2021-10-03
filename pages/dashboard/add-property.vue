@@ -969,6 +969,16 @@ export default {
             }
           })
           .then(() => {
+            this.$fire.firestore
+              .collection("users")
+              .doc(this.profile.uid)
+              .update({
+                numberOfProperties: this.$fireModule.firestore.FieldValue.increment(
+                  1
+                )
+              });
+          })
+          .then(() => {
             this.loading = false;
             this.disabled = true;
             this.fileBeingUploaded = "";

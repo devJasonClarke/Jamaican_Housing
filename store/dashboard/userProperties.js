@@ -52,9 +52,13 @@ export const actions = {
               commit("SET_PAGINATE_NEXT");
             }
             if (querySnapshot.empty && state.properties.length) {
-              commit("snackbars/errors/LOG_ERROR", "You have no more properties.", {
-                root: true
-              });
+              commit(
+                "snackbars/errors/LOG_ERROR",
+                "You have no more properties.",
+                {
+                  root: true
+                }
+              );
             }
 
             querySnapshot.forEach(doc => {
@@ -72,7 +76,7 @@ export const actions = {
           },
           error => {
             commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
-          // // console.log("Firebase");
+            // // console.log("Firebase");
             // console.log(error);
           }
         );
@@ -103,7 +107,7 @@ export const actions = {
   removeUserPropertyState({ commit }) {
     commit("REMOVE_USER_PROPERTY_STATE");
   },
-  deleteProperty({ commit, state }, data) {
+  deleteProperty({ commit, state, rootState }, data) {
     commit("DELETE_LOADING", true);
 
     // console.log(data.id);
@@ -136,7 +140,9 @@ export const actions = {
             ref.delete().catch(error => {
               // console.log("delete error");
               // console.log(error);
-              commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
+              commit("snackbars/errors/LOG_ERROR", error.message, {
+                root: true
+              });
             });
           }
 
@@ -145,14 +151,30 @@ export const actions = {
             .doc(data.id)
             .delete()
             .then(() => {
-              commit("snackbars/success/LOG_SUCCESS", "Property successfully deleted!", {
-                root: true
-              });
+              this.$fire.firestore
+                .collection("users")
+                .doc(rootState.dashboard.profile.profile.uid)
+                .update({
+                  numberOfProperties: this.$fireModule.firestore.FieldValue.increment(
+                    -1
+                  )
+                });
+            })
+            .then(() => {
+              commit(
+                "snackbars/success/LOG_SUCCESS",
+                "Property successfully deleted!",
+                {
+                  root: true
+                }
+              );
               commit("DELETE_LOADING", false);
               commit("REMOVE_PROPERTY_FROM_LOCAL_STATE", index);
             })
             .catch(error => {
-              commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
+              commit("snackbars/errors/LOG_ERROR", error.message, {
+                root: true
+              });
               commit("DELETE_LOADING", false);
             });
         } else {
@@ -161,21 +183,31 @@ export const actions = {
             .doc(data.id)
             .delete()
             .then(() => {
-              commit("snackbars/success/LOG_SUCCESS", "Property successfully deleted!", {
-                root: true
-              });
+              commit(
+                "snackbars/success/LOG_SUCCESS",
+                "Property successfully deleted!",
+                {
+                  root: true
+                }
+              );
               commit("DELETE_LOADING", false);
               commit("REMOVE_PROPERTY_FROM_LOCAL_STATE", index);
             })
             .catch(error => {
-              commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
+              commit("snackbars/errors/LOG_ERROR", error.message, {
+                root: true
+              });
               commit("DELETE_LOADING", false);
             });
         }
       } else {
-        commit("snackbars/errors/LOG_ERROR", "Please log in to delete property", {
-          root: true
-        });
+        commit(
+          "snackbars/errors/LOG_ERROR",
+          "Please log in to delete property",
+          {
+            root: true
+          }
+        );
         commit("DELETE_LOADING", false);
       }
     });
