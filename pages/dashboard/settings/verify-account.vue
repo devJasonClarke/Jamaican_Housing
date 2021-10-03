@@ -214,11 +214,12 @@
             <v-stepper-content step="2">
               <v-container>
                 <p class="text-h6" v-if="realtor">
-                  Please upload a picture of your valid ID and your realtor's
-                  license.
+                  Please upload a picture of your Governemnt ID (eg. passport or
+                  driver's license) and your realtor's license.
                 </p>
                 <p class="text-h6" v-else>
-                  Please upload a picture of your valid ID.
+                  Please upload a picture of your Governemnt ID (eg. passport or
+                  driver's license).
                 </p>
 
                 <p class="text-body-2 mb-12">
