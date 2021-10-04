@@ -1,7 +1,7 @@
 <template>
   <div>
     <TheMetaTags :title="title" :description="description" />
-    <v-img :lazy-src='img' :src="img" min-height="300" max-height="400"></v-img>
+    <v-img :lazy-src="img" :src="img" min-height="300" max-height="400"></v-img>
     <SectionPadding>
       <SectionTitlesSecondary
         mainTitle="TERMS OF CONDITIONS"
@@ -18,16 +18,15 @@
         </p>
         <p class="body-2">
           These Terms of Use constitute a legally binding agreement made between
-          you, whether personally or on behalf of an entity (“you”) and Jamaica
-          Housing ("Company", “we”, “us”, or “our”), concerning your access to
-          and use of the {{baseUrl}} website as well as any
-          other media form, media channel, mobile website or mobile application
-          related, linked, or otherwise connected thereto (collectively, the
-          “Site”). You agree that by accessing the Site, you have read,
-          understood, and agree to be bound by all of these Terms of Use. IF YOU
-          DO NOT AGREE WITH ALL OF THESE TERMS OF USE, THEN YOU ARE EXPRESSLY
-          PROHIBITED FROM USING THE SITE AND YOU MUST DISCONTINUE USE
-          IMMEDIATELY.
+          you, whether personally or on behalf of an entity (“you”) and Real
+          Estate Ja ("Company", “we”, “us”, or “our”), concerning your access to
+          and use of the {{ baseUrl }} website as well as any other media form,
+          media channel, mobile website or mobile application related, linked,
+          or otherwise connected thereto (collectively, the “Site”). You agree
+          that by accessing the Site, you have read, understood, and agree to be
+          bound by all of these Terms of Use. IF YOU DO NOT AGREE WITH ALL OF
+          THESE TERMS OF USE, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE
+          SITE AND YOU MUST DISCONTINUE USE IMMEDIATELY.
           <br />
           <br />
           Supplemental terms and conditions or documents that may be posted on
@@ -605,7 +604,7 @@
         </p>
         <p class="body-2">
           We care about data privacy and security. Please review our Privacy
-          Policy: http://jamaican-housing.pages.dev/privacy-policy. By using the
+          Policy: {{ baseUrl }}. By using the
           Site, you agree to be bound by our Privacy Policy, which is
           incorporated into these Terms of Use. Please be advised the Site is
           hosted in the United States. If you access the Site from any other
@@ -921,7 +920,6 @@
 <script>
 import img from "~/assets/images/houses/3.jpg";
 export default {
-
   data() {
     return {
       img: img,
@@ -930,10 +928,10 @@ export default {
     };
   },
   computed: {
-   baseUrl(){
-  return process.env.baseUrl;
-},
-  },
+    baseUrl() {
+      return process.env.baseUrl;
+    }
+  }
 };
 </script>
 
