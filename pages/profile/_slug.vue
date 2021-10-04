@@ -232,10 +232,7 @@
         <v-col cols="12" md="8" v-else>
           <p class="text-h4 font-weight-bold" id="top">
             Hello, I'm
-            {{
-              profanityFilter(user.personalDetails.firstName) ||
-                profanityFilter(user.personalDetails.displayName)
-            }}
+            {{ profanityFilter(user.personalDetails.displayName) }}
           </p>
           <p class="body-1" v-if="user.personalDetails.about">
             {{ profanityFilter(user.personalDetails.about) }}
@@ -457,11 +454,11 @@ export default {
     formattedNumber() {
       /* var phone = this.phoneNumber.toString().replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3'); */
       var phone = [
-        this.contact.phoneNumber.toString().slice(0, 3),
+        this.user.contact.phoneNumber.toString().slice(0, 3),
         "-",
-        this.contact.phoneNumber.toString().slice(3, 6),
+        this.user.contact.phoneNumber.toString().slice(3, 6),
         "-",
-        this.contact.phoneNumber.toString().slice(6)
+        this.user.contact.phoneNumber.toString().slice(6)
       ].join("");
       return phone;
     }

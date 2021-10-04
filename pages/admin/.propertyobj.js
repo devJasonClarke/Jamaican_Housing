@@ -1,3 +1,4 @@
+let l = "https://www.json-generator.com/";
 let j = {
   tours: { youtube: "", matterport: "" },
   parish: "Kingston",
@@ -40,4 +41,4 @@ let j = {
   uploader: "qhdYBX7tVfOcUyV6bYtFOP9JGiD2",
   propertyFor: "Sale",
   type: "Apartment"
-}
+};
