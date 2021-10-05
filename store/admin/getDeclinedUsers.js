@@ -32,9 +32,9 @@ export const actions = {
 
         const ref = this.$fire.firestore
           .collection("users")
-          .where("verified", "==", false)
-          .where("verificationProcess", "==", 'declined')
-          .orderBy("uid", "asc")
+          .where("verification.verified", "==", false)
+          .where("verification.verificationProcess", "==", 'declined')
+          .orderBy("timestamp.create", "desc")
           .startAfter(state.lastVisible || '')
           .limit(8);
 

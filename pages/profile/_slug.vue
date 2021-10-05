@@ -42,7 +42,7 @@
             <div class="text-center d-flex flex-column">
               <p class="text-h5 font-weight-bold mt-4 mb-0">
                 {{ profanityFilter(user.personalDetails.displayName) }}
-                <SymbolVerified v-if="user.verified" :role="user.role" />
+                <SymbolVerified v-if="user.verification.verified" :role="user.role" />
               </p>
               <a
                 :href="`mailto:${user.contact.email}`"
@@ -207,8 +207,8 @@
                 <p class="mb-0">Top Performer</p>
               </div>
             </div>
-            <v-divider class="mt-2 mb-4" v-if="user.verified"></v-divider>
-            <div class="max-width mx-auto my-0" v-if="user.verified">
+            <v-divider class="mt-2 mb-4" v-if="user.verification.verified"></v-divider>
+            <div class="max-width mx-auto my-0" v-if="user.verification.verified">
               <p class="mb-2 text-h6 font-weight-bold">
                 {{ profanityFilter(user.personalDetails.firstName) }} Provided
               </p>
@@ -399,7 +399,7 @@ export default {
       const ref = await this.$fire.firestore
         .collection("properties")
         .where("uploader", "==", uid)
-        .orderBy("timestamp", "desc")
+        .orderBy("timestamp.created", "desc")
         .startAfter(this.lastVisible || {})
         .limit(6);
       ref.get().then(

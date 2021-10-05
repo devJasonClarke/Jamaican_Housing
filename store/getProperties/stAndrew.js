@@ -34,8 +34,8 @@ export const actions = {
 
     const ref = this.$fire.firestore
     .collection("properties")
-      .where("parish", "==", "St. Andrew")
-      .orderBy("timestamp", "desc")
+      .where("details.parish", "==", "St. Andrew")
+      .orderBy("timestamp.created", "desc")
       .startAfter(state.lastVisible || {})
       .limit(8);
 

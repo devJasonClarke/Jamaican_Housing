@@ -2,8 +2,6 @@ export const state = () => ({
   profile: {
     achievements: [],
     loading: true,
-    verified: "",
-    role: "",
     lastName: "",
     socialMedia: {
       linkedIn: "",
@@ -33,8 +31,19 @@ export const state = () => ({
       src: "",
       fileName: ""
     },
+    verification: {
+      verified: false,
+      verificationProcess: "no attempt",
+      verificationMessage: "",
+      role: "user"
+    },
+    timestamp: {
+      created: "",
+      updated: ""
+    },
     uid: ""
   },
+
   updateDetailsLoader: false,
   updateSocialLoader: false,
 
@@ -72,7 +81,6 @@ export const actions = {
     commit("SET_WEBSITE", value);
   },
   setVerificationProcess({ commit, state }) {
-
     function getInitials() {
       return `${state.profile.personalDetails.firstName} ${state.profile.personalDetails.lastName}`;
     }
@@ -85,21 +93,21 @@ export const actions = {
       (initials.shift()?.[1] || "") + (initials.pop()?.[1] || "")
     ).toUpperCase();
 
-
     this.$fireModule.auth().onAuthStateChanged(user => {
       if (user) {
         this.$fire.firestore
           .collection("users")
           .doc(user.uid)
           .update({
-            verificationProcess: "pending",
+            "verification.verificationProcess": "pending",
             "personalDetails.displayName": `${state.profile.personalDetails.firstName} ${state.profile.personalDetails.lastName}`,
             "personalDetails.initials": initials,
             "personalDetails.firstName":
               state.profile.personalDetails.firstName,
             "personalDetails.lastName": state.profile.personalDetails.lastName,
             "contact.email": state.profile.contact.email,
-            "contact.phoneNumber": state.profile.contact.phoneNumber
+            "contact.phoneNumber": state.profile.contact.phoneNumber,
+            "timestamp.updated": this.$fireModule.firestore.FieldValue.serverTimestamp()
           })
           .then(() => {
             // console.log("Successfully updated!");
@@ -153,7 +161,8 @@ export const actions = {
               state.profile.personalDetails.firstName,
             "personalDetails.lastName": state.profile.personalDetails.lastName,
             "contact.email": state.profile.contact.email,
-            "contact.phoneNumber": state.profile.contact.phoneNumber
+            "contact.phoneNumber": state.profile.contact.phoneNumber,
+            "timestamp.updated": this.$fireModule.firestore.FieldValue.serverTimestamp()
           })
           .then(() => {
             // console.log("Successfully updated!");
@@ -190,7 +199,8 @@ export const actions = {
             "socialMedia.youtube": state.profile.socialMedia.youtube,
             "socialMedia.website": state.profile.contact.email,
             "contact.website": state.profile.contact.website,
-            "contact.whatsappNumber": state.profile.contact.whatsappNumber
+            "contact.whatsappNumber": state.profile.contact.whatsappNumber,
+            "timestamp.updated": this.$fireModule.firestore.FieldValue.serverTimestamp()
           })
           .then(() => {
             // console.log("Profile successfully updated!");

@@ -135,7 +135,7 @@
               {{ `Bed Rooms ${property.details.bedrooms}` }} <br />
               {{ `Bath Rooms ${property.details.bathrooms}` }} <br />
               {{ `Garages ${property.details.garages}` }} <br />
-              {{ `Property Id ${property.details.propertyId}` }} <br /> -->
+              {{ `Property Id ${property.details.propertyMLS}` }} <br /> -->
 
               <v-container>
                 <p class="text-h6 pb-6">
@@ -316,7 +316,7 @@
                         outlined
                         dense
                         label="Multiple Listing Service ID (optional)"
-                        v-model="property.details.propertyId"
+                        v-model="property.details.propertyMLS"
                         :color="iconColor"
                       ></v-text-field
                     ></v-col>
@@ -616,7 +616,11 @@
                 class="mt-3"
                 dark
                 v-if="property.images.length === 1"
-                @click="logError('1 picture should always be present for property viewing. Please upload pictures before deleting this one.')"
+                @click="
+                  logError(
+                    '1 picture should always be present for property viewing. Please upload pictures before deleting this one.'
+                  )
+                "
                 ><v-icon>mdi-delete</v-icon> Delete Image</v-btn
               >
               <v-btn
@@ -710,13 +714,17 @@ export default {
           propertyType: "",
           rentType: "",
           size: null,
-          propertyId: "",
+          propertyMLS: "",
           bedrooms: null,
           community: "",
           propertyFor: "",
           garages: null,
           parish: "",
           bathrooms: null
+        },
+        verification: {
+          featured: false,
+          verified: false
         },
         timestamp: {
           seconds: null,
@@ -954,13 +962,13 @@ export default {
           this.property.details.propertyType === "Factory" ||
           this.property.details.propertyType === "Farm/Agriculture"
         ) {
-          bedrooms = "0";
+          this.property.details.numberOfBedrooms = "0";
         } else if (this.property.details.bedrooms >= 4) {
-          bedrooms = "4 +";
+          this.property.details.numberOfBedrooms = "4 +";
           // console.log(bedrooms);
           // console.log(typeof bedrooms);
         } else {
-          bedrooms = `${this.property.details.bedrooms}`;
+          this.property.details.numberOfBedrooms = `${this.property.details.bedrooms}`;
           // console.log(bedrooms);
           // console.log(typeof bedrooms);
         }
@@ -969,40 +977,35 @@ export default {
           .collection("properties")
           .doc(this.theParam)
           .update({
-            price: parseFloat(this.property.details.price),
-            parish: this.property.details.parish,
-            type: this.property.details.propertyType,
-            bedrooms: bedrooms,
-            featured: this.property.featured,
-            verified: this.property.verified,
-            propertyFor: this.property.details.propertyFor,
-
+            verification: {
+              featured: false,
+              verified: false
+            },
             description: this.property.description,
             details: this.property.details,
             amenities: this.property.amenities,
             tours: {
-              youtube: this.property.tours.youtube,
-              matterport: this.property.tours.matterport
+              youtube: this.youtubeVideoId,
+              matterport: this.matterportId
             },
             uploader: this.user.uid,
-            timestamp: this.property.timestamp,
+            "timestamp.updated": this.$fireModule.firestore.FieldValue.serverTimestamp(),
             images: this.property.images.concat(this.imageUrls)
           })
           .then(() => {
             this.editUserProperty([
               {
-                price: parseFloat(this.property.details.price),
-                parish: this.property.details.parish,
-                type: this.property.details.propertyType,
-                bedrooms: bedrooms,
-                featured: this.property.featured,
-                verified: this.property.verified,
-                propertyFor: this.property.details.propertyFor,
-
+                verification: {
+                  featured: false,
+                  verified: false
+                },
                 description: this.property.description,
                 details: this.property.details,
                 amenities: this.property.amenities,
-                tours: this.property.tours,
+                tours: {
+                  youtube: this.youtubeVideoId,
+                  matterport: this.matterportId
+                },
                 uploader: this.user.uid,
                 images: this.property.images.concat(this.imageUrls)
               },

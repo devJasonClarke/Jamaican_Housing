@@ -73,13 +73,13 @@ export const actions = {
 
     const ref = this.$fire.firestore
       .collection("properties")
-      //.where("parish", "==", "Hanover")
-      // .where("bedrooms", "==", 2)
-      // .where("price", "<=", 500000)
-      // .where("type", "==", "Development Land (Commercial)")
-      .where("propertyFor", equal, "Rent")
-      //.orderBy("price", "desc")
-      .orderBy("timestamp", "desc")
+      //.where("details.parish", "==", "Hanover")
+      // .where("details.numberOfBedrooms", "==", 2)
+      // .where("details.price", "<=", 500000)
+      // .where("details.propertyType", "==", "Development Land (Commercial)")
+      .where("details.propertyFor", equal, "Rent")
+      //.orderBy("details.price", "desc")
+      .orderBy("timestamp.created", "desc")
       .startAfter(state.lastVisible || {})
       .limit(8);
 
@@ -123,7 +123,7 @@ export const actions = {
       error => {
         commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
         // // console.log("Firebase");
-        // console.log(error);
+        console.log(error);
       }
     );
   },
@@ -144,13 +144,13 @@ export const actions = {
 
     const ref = this.$fire.firestore
       .collection("properties")
-      .where("parish", "==", state.search.parish)
-      .where("bedrooms", "==", state.search.bedrooms)
-      .where("price", "<=", state.search.price / rootState.api.api.currencyRate)
-      .where("type", "==", state.search.type)
-      .where("propertyFor", "==", "Rent")
-      .orderBy("price", "desc")
-      .orderBy("timestamp", "desc")
+      .where("details.parish", "==", state.search.parish)
+      .where("details.numberOfBedrooms", "==", state.search.bedrooms)
+      .where("details.price", "<=", state.search.price / rootState.api.api.currencyRate)
+      .where("details.propertyType", "==", state.search.type)
+      .where("details.propertyFor", "==", "Rent")
+      .orderBy("details.price", "desc")
+      .orderBy("timestamp.created", "desc")
       .startAfter(state.lastSearchedVisible || {})
       .limit(8);
 
@@ -194,7 +194,7 @@ export const actions = {
       error => {
         commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
         // // console.log("Firebase");
-        // console.log(error);
+        console.log(error);
       }
     );
   },
@@ -213,13 +213,13 @@ export const actions = {
 
     const ref = this.$fire.firestore
       .collection("properties")
-      .where("parish", "==", state.search.parish)
-      .where("bedrooms", "==", state.search.bedrooms)
-      .where("price", "<=", state.search.price / rootState.api.api.currencyRate)
-      .where("type", "==", state.search.type)
-      .where("propertyFor", "==", "Rent")
-      .orderBy("price", "desc")
-      .orderBy("timestamp", "desc")
+      .where("details.parish", "==", state.search.parish)
+      .where("details.numberOfBedrooms", "==", state.search.bedrooms)
+      .where("details.price", "<=", state.search.price / rootState.api.api.currencyRate)
+      .where("details.propertyType", "==", state.search.type)
+      .where("details.propertyFor", "==", "Rent")
+      .orderBy("details.price", "desc")
+      .orderBy("timestamp.created", "desc")
       .startAfter(state.lastSearchedVisible || {})
       .limit(8);
 
@@ -263,7 +263,7 @@ export const actions = {
       error => {
         commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
         // // console.log("Firebase");
-        // console.log(error);
+        console.log(error);
       }
     );
   },

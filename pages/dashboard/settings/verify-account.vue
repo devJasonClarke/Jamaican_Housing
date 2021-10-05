@@ -38,7 +38,7 @@
         <v-icon>mdi-check-decagram mdi-36px</v-icon>
       </v-sheet>
     </SectionPadding>
-    <SectionPadding v-else-if="profile.verified === true" class="pt-9">
+    <SectionPadding v-else-if="profile.verification.verified === true" class="pt-9">
       <v-sheet
         height="200px"
         class="d-flex justify-center align-center flex-column pa-3"

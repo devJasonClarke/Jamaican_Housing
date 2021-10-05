@@ -27,7 +27,7 @@ export default {
     "price": 507538,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Westmoreland",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -79,7 +79,7 @@ export default {
     "price": 72889,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Andrew",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -131,7 +131,7 @@ export default {
     "price": 470441,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Thomas",
       "propertyType": "Farm/Agriculture",
       "propertyFor": "Sale",
@@ -183,7 +183,7 @@ export default {
     "price": 662240,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Hanover",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -235,7 +235,7 @@ export default {
     "price": 762708,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Trelawny",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -287,7 +287,7 @@ export default {
     "price": 537525,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Westmoreland",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -339,7 +339,7 @@ export default {
     "price": 190346,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Thomas",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -391,7 +391,7 @@ export default {
     "price": 706429,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Thomas",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -443,7 +443,7 @@ export default {
     "price": 66305,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Andrew",
       "propertyType": "Farm/Agriculture",
       "propertyFor": "Sale",
@@ -495,7 +495,7 @@ export default {
     "price": 692002,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Manchester",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -547,7 +547,7 @@ export default {
     "price": 397389,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Catherine",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -599,7 +599,7 @@ export default {
     "price": 123301,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Thomas",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -651,7 +651,7 @@ export default {
     "price": 80894,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Trelawny",
       "propertyType": "Warehouse",
       "propertyFor": "Sale",
@@ -703,7 +703,7 @@ export default {
     "price": 793895,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Clarendon",
       "propertyType": "Warehouse",
       "propertyFor": "Sale",
@@ -755,7 +755,7 @@ export default {
     "price": 615258,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Manchester",
       "propertyType": "Farm/Agriculture",
       "propertyFor": "Sale",
@@ -807,7 +807,7 @@ export default {
     "price": 22457,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Manchester",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -859,7 +859,7 @@ export default {
     "price": 575171,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Portland",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -911,7 +911,7 @@ export default {
     "price": 499568,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Clarendon",
       "propertyType": "Farm/Agriculture",
       "propertyFor": "Sale",
@@ -963,7 +963,7 @@ export default {
     "price": 158271,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Kingston",
       "propertyType": "Farm/Agriculture",
       "propertyFor": "Sale",
@@ -1015,7 +1015,7 @@ export default {
     "price": 611614,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Kingston",
       "propertyType": "Factory",
       "propertyFor": "Sale",
@@ -1067,7 +1067,7 @@ export default {
     "price": 585815,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Kingston",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -1119,7 +1119,7 @@ export default {
     "price": 246462,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Hanover",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -1171,7 +1171,7 @@ export default {
     "price": 409751,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Trelawny",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -1223,7 +1223,7 @@ export default {
     "price": 396134,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Clarendon",
       "propertyType": "Factory",
       "propertyFor": "Sale",
@@ -1275,7 +1275,7 @@ export default {
     "price": 175999,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Thomas",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -1327,7 +1327,7 @@ export default {
     "price": 422899,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Andrew",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -1379,7 +1379,7 @@ export default {
     "price": 490029,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Kingston",
       "propertyType": "Warehouse",
       "propertyFor": "Sale",
@@ -1431,7 +1431,7 @@ export default {
     "price": 288468,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Portland",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -1483,7 +1483,7 @@ export default {
     "price": 124928,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Catherine",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -1535,7 +1535,7 @@ export default {
     "price": 539143,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Ann",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -1587,7 +1587,7 @@ export default {
     "price": 547095,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Trelawny",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -1639,7 +1639,7 @@ export default {
     "price": 667009,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Mary",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -1691,7 +1691,7 @@ export default {
     "price": 573268,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Kingston",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -1743,7 +1743,7 @@ export default {
     "price": 422209,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Mary",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -1795,7 +1795,7 @@ export default {
     "price": 234879,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. James",
       "propertyType": "Factory",
       "propertyFor": "Sale",
@@ -1847,7 +1847,7 @@ export default {
     "price": 178697,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Thomas",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -1899,7 +1899,7 @@ export default {
     "price": 342846,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Elizabeth",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -1951,7 +1951,7 @@ export default {
     "price": 26847,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Catherine",
       "propertyType": "Development Land (Residential)",
       "propertyFor": "Sale",
@@ -2003,7 +2003,7 @@ export default {
     "price": 669638,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Thomas",
       "propertyType": "Development Land (Residential)",
       "propertyFor": "Sale",
@@ -2055,7 +2055,7 @@ export default {
     "price": 374754,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Trelawny",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -2107,7 +2107,7 @@ export default {
     "price": 642393,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Andrew",
       "propertyType": "Development Land (Residential)",
       "propertyFor": "Sale",
@@ -2159,7 +2159,7 @@ export default {
     "price": 665846,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Westmoreland",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -2211,7 +2211,7 @@ export default {
     "price": 411838,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Portland",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -2263,7 +2263,7 @@ export default {
     "price": 560837,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Clarendon",
       "propertyType": "Warehouse",
       "propertyFor": "Sale",
@@ -2315,7 +2315,7 @@ export default {
     "price": 115281,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Ann",
       "propertyType": "Warehouse",
       "propertyFor": "Sale",
@@ -2367,7 +2367,7 @@ export default {
     "price": 337013,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Trelawny",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -2419,7 +2419,7 @@ export default {
     "price": 655164,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Kingston",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -2471,7 +2471,7 @@ export default {
     "price": 782161,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Manchester",
       "propertyType": "Warehouse",
       "propertyFor": "Sale",
@@ -2523,7 +2523,7 @@ export default {
     "price": 179082,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. James",
       "propertyType": "Farm/Agriculture",
       "propertyFor": "Sale",
@@ -2575,7 +2575,7 @@ export default {
     "price": 556580,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. James",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -2627,7 +2627,7 @@ export default {
     "price": 117798,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Hanover",
       "propertyType": "Development Land (Residential)",
       "propertyFor": "Sale",
@@ -2679,7 +2679,7 @@ export default {
     "price": 375534,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. James",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -2731,7 +2731,7 @@ export default {
     "price": 126064,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Thomas",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -2783,7 +2783,7 @@ export default {
     "price": 354437,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Kingston",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -2835,7 +2835,7 @@ export default {
     "price": 797968,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Ann",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -2887,7 +2887,7 @@ export default {
     "price": 174375,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Trelawny",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -2939,7 +2939,7 @@ export default {
     "price": 179335,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Andrew",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -2991,7 +2991,7 @@ export default {
     "price": 635070,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Hanover",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -3043,7 +3043,7 @@ export default {
     "price": 638066,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Portland",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -3095,7 +3095,7 @@ export default {
     "price": 549686,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Portland",
       "propertyType": "Farm/Agriculture",
       "propertyFor": "Sale",
@@ -3147,7 +3147,7 @@ export default {
     "price": 522511,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Andrew",
       "propertyType": "Development Land (Residential)",
       "propertyFor": "Sale",
@@ -3199,7 +3199,7 @@ export default {
     "price": 290671,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Manchester",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -3251,7 +3251,7 @@ export default {
     "price": 81810,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Hanover",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -3303,7 +3303,7 @@ export default {
     "price": 467684,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Clarendon",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -3355,7 +3355,7 @@ export default {
     "price": 635733,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Portland",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -3407,7 +3407,7 @@ export default {
     "price": 538070,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Catherine",
       "propertyType": "Farm/Agriculture",
       "propertyFor": "Sale",
@@ -3459,7 +3459,7 @@ export default {
     "price": 476892,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Thomas",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -3511,7 +3511,7 @@ export default {
     "price": 357474,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Andrew",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -3563,7 +3563,7 @@ export default {
     "price": 288896,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Manchester",
       "propertyType": "Farm/Agriculture",
       "propertyFor": "Sale",
@@ -3615,7 +3615,7 @@ export default {
     "price": 246430,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Thomas",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -3667,7 +3667,7 @@ export default {
     "price": 432941,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Manchester",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -3719,7 +3719,7 @@ export default {
     "price": 24118,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Ann",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -3771,7 +3771,7 @@ export default {
     "price": 358621,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Ann",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -3823,7 +3823,7 @@ export default {
     "price": 473877,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Portland",
       "propertyType": "Factory",
       "propertyFor": "Sale",
@@ -3875,7 +3875,7 @@ export default {
     "price": 164914,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Portland",
       "propertyType": "Farm/Agriculture",
       "propertyFor": "Sale",
@@ -3927,7 +3927,7 @@ export default {
     "price": 41901,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Mary",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -3979,7 +3979,7 @@ export default {
     "price": 325897,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Catherine",
       "propertyType": "Factory",
       "propertyFor": "Sale",
@@ -4031,7 +4031,7 @@ export default {
     "price": 188674,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Clarendon",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -4083,7 +4083,7 @@ export default {
     "price": 91696,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Hanover",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -4135,7 +4135,7 @@ export default {
     "price": 95280,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Mary",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -4187,7 +4187,7 @@ export default {
     "price": 430539,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Manchester",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -4239,7 +4239,7 @@ export default {
     "price": 616143,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Portland",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -4291,7 +4291,7 @@ export default {
     "price": 529192,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Mary",
       "propertyType": "Factory",
       "propertyFor": "Sale",
@@ -4343,7 +4343,7 @@ export default {
     "price": 593404,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Kingston",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -4395,7 +4395,7 @@ export default {
     "price": 501831,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Portland",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -4447,7 +4447,7 @@ export default {
     "price": 444503,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Catherine",
       "propertyType": "Warehouse",
       "propertyFor": "Sale",
@@ -4499,7 +4499,7 @@ export default {
     "price": 682882,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Ann",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -4551,7 +4551,7 @@ export default {
     "price": 398107,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Thomas",
       "propertyType": "Warehouse",
       "propertyFor": "Sale",
@@ -4603,7 +4603,7 @@ export default {
     "price": 371370,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Catherine",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -4655,7 +4655,7 @@ export default {
     "price": 314551,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Ann",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -4707,7 +4707,7 @@ export default {
     "price": 226089,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Mary",
       "propertyType": "Warehouse",
       "propertyFor": "Sale",
@@ -4759,7 +4759,7 @@ export default {
     "price": 402114,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Kingston",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -4811,7 +4811,7 @@ export default {
     "price": 737845,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Hanover",
       "propertyType": "Factory",
       "propertyFor": "Sale",
@@ -4863,7 +4863,7 @@ export default {
     "price": 254637,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. James",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -4915,7 +4915,7 @@ export default {
     "price": 610996,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Portland",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -4967,7 +4967,7 @@ export default {
     "price": 745601,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Kingston",
       "propertyType": "Development Land (Residential)",
       "propertyFor": "Sale",
@@ -5019,7 +5019,7 @@ export default {
     "price": 623038,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Kingston",
       "propertyType": "Farm/Agriculture",
       "propertyFor": "Sale",
@@ -5071,7 +5071,7 @@ export default {
     "price": 319533,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Catherine",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -5123,7 +5123,7 @@ export default {
     "price": 49183,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Mary",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -5175,7 +5175,7 @@ export default {
     "price": 149004,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Trelawny",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -5227,7 +5227,7 @@ export default {
     "price": 703277,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Manchester",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -5279,7 +5279,7 @@ export default {
     "price": 605134,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Elizabeth",
       "propertyType": "Farm/Agriculture",
       "propertyFor": "Sale",
@@ -5331,7 +5331,7 @@ export default {
     "price": 291396,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Portland",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -5383,7 +5383,7 @@ export default {
     "price": 56811,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Kingston",
       "propertyType": "Development Land (Residential)",
       "propertyFor": "Sale",
@@ -5435,7 +5435,7 @@ export default {
     "price": 785419,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Ann",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -5487,7 +5487,7 @@ export default {
     "price": 538300,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Westmoreland",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -5539,7 +5539,7 @@ export default {
     "price": 581234,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Thomas",
       "propertyType": "Factory",
       "propertyFor": "Sale",
@@ -5591,7 +5591,7 @@ export default {
     "price": 501190,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Portland",
       "propertyType": "Factory",
       "propertyFor": "Sale",
@@ -5643,7 +5643,7 @@ export default {
     "price": 222787,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. James",
       "propertyType": "Farm/Agriculture",
       "propertyFor": "Sale",
@@ -5695,7 +5695,7 @@ export default {
     "price": 735782,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Thomas",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -5747,7 +5747,7 @@ export default {
     "price": 511785,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Clarendon",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -5799,7 +5799,7 @@ export default {
     "price": 251261,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Trelawny",
       "propertyType": "Development Land (Residential)",
       "propertyFor": "Sale",
@@ -5851,7 +5851,7 @@ export default {
     "price": 697309,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Portland",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -5903,7 +5903,7 @@ export default {
     "price": 121652,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Ann",
       "propertyType": "Factory",
       "propertyFor": "Sale",
@@ -5955,7 +5955,7 @@ export default {
     "price": 626941,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Kingston",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -6007,7 +6007,7 @@ export default {
     "price": 275989,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Hanover",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -6059,7 +6059,7 @@ export default {
     "price": 289514,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Hanover",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -6111,7 +6111,7 @@ export default {
     "price": 392710,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Mary",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -6163,7 +6163,7 @@ export default {
     "price": 453215,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Mary",
       "propertyType": "Development Land (Residential)",
       "propertyFor": "Sale",
@@ -6215,7 +6215,7 @@ export default {
     "price": 578349,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. James",
       "propertyType": "Farm/Agriculture",
       "propertyFor": "Sale",
@@ -6267,7 +6267,7 @@ export default {
     "price": 302802,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Andrew",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -6319,7 +6319,7 @@ export default {
     "price": 270484,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Thomas",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -6371,7 +6371,7 @@ export default {
     "price": 362530,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Hanover",
       "propertyType": "Warehouse",
       "propertyFor": "Sale",
@@ -6423,7 +6423,7 @@ export default {
     "price": 423502,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Andrew",
       "propertyType": "Development Land (Residential)",
       "propertyFor": "Sale",
@@ -6475,7 +6475,7 @@ export default {
     "price": 322592,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Thomas",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -6527,7 +6527,7 @@ export default {
     "price": 439866,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Portland",
       "propertyType": "Development Land (Residential)",
       "propertyFor": "Sale",
@@ -6579,7 +6579,7 @@ export default {
     "price": 424123,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Clarendon",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -6631,7 +6631,7 @@ export default {
     "price": 249190,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Hanover",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -6683,7 +6683,7 @@ export default {
     "price": 368754,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Mary",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -6735,7 +6735,7 @@ export default {
     "price": 268218,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Westmoreland",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -6787,7 +6787,7 @@ export default {
     "price": 714553,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Mary",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -6839,7 +6839,7 @@ export default {
     "price": 719802,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. James",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -6891,7 +6891,7 @@ export default {
     "price": 630585,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. James",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -6943,7 +6943,7 @@ export default {
     "price": 327090,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Westmoreland",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -6995,7 +6995,7 @@ export default {
     "price": 488473,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Elizabeth",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -7047,7 +7047,7 @@ export default {
     "price": 41513,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Kingston",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -7099,7 +7099,7 @@ export default {
     "price": 640241,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Manchester",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -7151,7 +7151,7 @@ export default {
     "price": 715652,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Andrew",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -7203,7 +7203,7 @@ export default {
     "price": 526057,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Manchester",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -7255,7 +7255,7 @@ export default {
     "price": 511650,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Westmoreland",
       "propertyType": "Factory",
       "propertyFor": "Sale",
@@ -7307,7 +7307,7 @@ export default {
     "price": 626157,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Mary",
       "propertyType": "Farm/Agriculture",
       "propertyFor": "Sale",
@@ -7359,7 +7359,7 @@ export default {
     "price": 86321,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Elizabeth",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -7411,7 +7411,7 @@ export default {
     "price": 706472,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. James",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -7463,7 +7463,7 @@ export default {
     "price": 249502,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Westmoreland",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -7515,7 +7515,7 @@ export default {
     "price": 439205,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Trelawny",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -7567,7 +7567,7 @@ export default {
     "price": 543867,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Clarendon",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -7619,7 +7619,7 @@ export default {
     "price": 754555,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Elizabeth",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -7671,7 +7671,7 @@ export default {
     "price": 437164,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Trelawny",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -7723,7 +7723,7 @@ export default {
     "price": 178524,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Mary",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -7775,7 +7775,7 @@ export default {
     "price": 787275,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Ann",
       "propertyType": "Warehouse",
       "propertyFor": "Sale",
@@ -7827,7 +7827,7 @@ export default {
     "price": 601050,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. James",
       "propertyType": "Development Land (Residential)",
       "propertyFor": "Sale",
@@ -7879,7 +7879,7 @@ export default {
     "price": 633241,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Thomas",
       "propertyType": "Development Land (Residential)",
       "propertyFor": "Sale",
@@ -7931,7 +7931,7 @@ export default {
     "price": 698298,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Elizabeth",
       "propertyType": "Warehouse",
       "propertyFor": "Sale",
@@ -7983,7 +7983,7 @@ export default {
     "price": 267947,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. James",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -8035,7 +8035,7 @@ export default {
     "price": 305196,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Kingston",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -8087,7 +8087,7 @@ export default {
     "price": 335257,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. James",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -8139,7 +8139,7 @@ export default {
     "price": 581415,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Hanover",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -8191,7 +8191,7 @@ export default {
     "price": 253415,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. James",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -8243,7 +8243,7 @@ export default {
     "price": 747577,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Hanover",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -8295,7 +8295,7 @@ export default {
     "price": 641390,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Catherine",
       "propertyType": "Development Land (Residential)",
       "propertyFor": "Sale",
@@ -8347,7 +8347,7 @@ export default {
     "price": 420648,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Catherine",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -8399,7 +8399,7 @@ export default {
     "price": 365392,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Westmoreland",
       "propertyType": "Development Land (Commercial)",
       "propertyFor": "Sale",
@@ -8451,7 +8451,7 @@ export default {
     "price": 556103,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Westmoreland",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -8503,7 +8503,7 @@ export default {
     "price": 723333,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Kingston",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -8555,7 +8555,7 @@ export default {
     "price": 147399,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Clarendon",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -8607,7 +8607,7 @@ export default {
     "price": 527890,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Andrew",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -8659,7 +8659,7 @@ export default {
     "price": 548701,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Manchester",
       "propertyType": "Warehouse",
       "propertyFor": "Sale",
@@ -8711,7 +8711,7 @@ export default {
     "price": 732257,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Hanover",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",
@@ -8763,7 +8763,7 @@ export default {
     "price": 697409,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Portland",
       "propertyType": "Warehouse",
       "propertyFor": "Sale",
@@ -8815,7 +8815,7 @@ export default {
     "price": 739022,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Clarendon",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -8867,7 +8867,7 @@ export default {
     "price": 618444,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Mary",
       "propertyType": "Development Land (Residential)",
       "propertyFor": "Sale",
@@ -8919,7 +8919,7 @@ export default {
     "price": 172300,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Kingston",
       "propertyType": "Warehouse",
       "propertyFor": "Sale",
@@ -8971,7 +8971,7 @@ export default {
     "price": 618383,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Westmoreland",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -9023,7 +9023,7 @@ export default {
     "price": 47369,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Hanover",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -9075,7 +9075,7 @@ export default {
     "price": 70695,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Trelawny",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -9127,7 +9127,7 @@ export default {
     "price": 501847,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Hanover",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -9179,7 +9179,7 @@ export default {
     "price": 641447,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. Thomas",
       "propertyType": "Commercial Building/Offices",
       "propertyFor": "Sale",
@@ -9231,7 +9231,7 @@ export default {
     "price": 227630,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Trelawny",
       "propertyType": "House",
       "propertyFor": "Sale",
@@ -9283,7 +9283,7 @@ export default {
     "price": 49158,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "St. James",
       "propertyType": "Apartment",
       "propertyFor": "Sale",
@@ -9335,7 +9335,7 @@ export default {
     "price": 166098,
     "featured": false,
     "details": {
-      "propertyId": "",
+      "propertyMLS": "",
       "parish": "Manchester",
       "propertyType": "Townhouse",
       "propertyFor": "Sale",

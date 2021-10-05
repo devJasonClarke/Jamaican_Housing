@@ -2,7 +2,7 @@
   <div>
     <TheMetaTags :title="title" :description="description" />
     <TheSwiperPropertyFirebase :images="property.images" />
-<!-- {{property}} -->
+    <!-- {{property}} -->
     <v-container class="mt-6 mb-9">
       <v-row>
         <v-col cols="12" md="8" v-if="property.details.size === ''">
@@ -32,7 +32,7 @@
             <span>
               {{ profanityFilter(property.description.name) }}
 
-              <v-tooltip color="blue" top v-if="property.verified">
+              <v-tooltip color="blue" top v-if="property.verification.verified">
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon color="blue" dark v-bind="attrs" v-on="on">
                     mdi-check-decagram mdi-36px
@@ -125,7 +125,7 @@
             </p>
             <p v-else>
               <v-icon :color="iconColor">mdi-clock mdi-18px</v-icon>
-              {{ property.timestamp.toDate().toDateString() }}
+              {{ property.timestamp.created.toDate().toDateString() }}
             </p>
             <p>
               <v-icon :color="iconColor">mdi-currency-usd mdi-18px</v-icon>
@@ -358,32 +358,32 @@
                     <v-list-item-title class="text-body-1 font-weight-medium"
                       >Date Added :</v-list-item-title
                     >
-                    {{ property.timestamp.toDate().toDateString() }}
+                    {{ property.timestamp.created.toDate().toDateString() }}
                   </v-list-item-content>
                 </v-list-item>
-                <v-list-item class="mb-3" v-if="property.verified">
+                <v-list-item class="mb-3" v-if="property.verification.verified">
                   <v-list-item-content class="  text-capitalize ">
                     <v-list-item-title class="text-body-1 font-weight-medium"
                       >Verified :</v-list-item-title
                     >
-                    {{ property.verified }}
+                    {{ property.verification.verified }}
                   </v-list-item-content>
                 </v-list-item>
-                <v-list-item class="mb-3" v-if="property.featured">
+                <v-list-item class="mb-3" v-if="property.verification.featured">
                   <v-list-item-content class="  text-capitalize">
                     <v-list-item-title class="text-body-1   font-weight-medium"
                       >Featured :</v-list-item-title
                     >
-                    {{ `${property.featured}` }}
+                    {{ `${property.verification.featured}` }}
                   </v-list-item-content>
                 </v-list-item>
 
-                <v-list-item v-if="property.details.propertyId" class="mb-3">
+                <v-list-item v-if="property.details.propertyMLS" class="mb-3">
                   <v-list-item-content class="  text-capitalize">
                     <v-list-item-title class="text-body-1   font-weight-medium">
                       MLS ID :</v-list-item-title
                     >
-                    {{ property.details.propertyId }}
+                    {{ property.details.propertyMLS }}
                   </v-list-item-content>
                 </v-list-item>
               </v-list-item-group>
@@ -510,8 +510,8 @@
               >
                 {{ profanityFilter(uploader.personalDetails.displayName) }}
                 <SymbolVerified
-                  v-if="uploader.verified"
-                  :role="uploader.role"
+                  v-if="uploader.verification.verified"
+                  :role="uploader.verification.role"
                 />
               </nuxt-link>
               <a
@@ -782,7 +782,6 @@ export default {
       loading: false,
       likeLoading: false,
       property: {
-        timestamp: "",
         details: {
           bathRooms: "",
           community: "",
@@ -793,6 +792,14 @@ export default {
           size: "",
           garages: "",
           bedRooms: ""
+        },
+        timestamp: {
+          created: "",
+          updated: ""
+        },
+        verification: {
+          featured: false,
+          verified: false
         },
         images: [],
         parish: "",
@@ -806,8 +813,6 @@ export default {
         uploader: "loading"
       },
       uploader: {
-        verified: false,
-        role: "loading",
         lastName: "",
         socialMedia: {
           linkedIn: "",
@@ -840,6 +845,16 @@ export default {
         profilePicture: {
           src: "",
           fileName: ""
+        },
+        verification: {
+          verified: false,
+          verificationProcess: "no attempt",
+          verificationMessage: "",
+          role: "user"
+        },
+        timestamp: {
+          created: "",
+          updated: ""
         },
         uid: ""
       },

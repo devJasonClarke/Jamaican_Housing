@@ -102,7 +102,7 @@
               class="text-h6 px-0 text-center text-capitalize"
             >
               <span>{{ profile.personalDetails.displayName }}</span>
-              <SymbolVerified :role="profile.role" v-if="profile.verified" />
+              <SymbolVerified :role="profile.verification.role" v-if="profile.verification.verified" />
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -155,7 +155,7 @@
             class="text-capitalize"
             :to="{ name: 'admin' }"
             exact
-            v-if="profile.verified && profile.role === 'admin'"
+            v-if="profile.verification.verified && profile.verification.role === 'admin'"
           >
             <v-list-item-icon>
               <v-icon>mdi-shield-check-outline</v-icon>
@@ -168,7 +168,7 @@
             class="text-capitalize"
             :to="{ name: 'profile-slug', params: { slug: profile.uid } }"
             exact
-            v-if="profile.verified"
+            v-if="profile.verification.verified"
           >
             <v-list-item-icon>
               <v-icon>mdi-account-check-outline</v-icon>

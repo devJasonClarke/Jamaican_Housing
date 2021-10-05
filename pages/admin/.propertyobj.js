@@ -18,7 +18,7 @@ let j = {
   price: 20000000,
   featured: false,
   details: {
-    propertyId: "",
+    propertyMLS: "",
     parish: "Kingston",
     propertyType: "Apartment",
     propertyFor: "Sale",

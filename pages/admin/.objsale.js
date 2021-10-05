@@ -64,7 +64,7 @@
     price: "{{integer(20000, 800000)}}",
     featured: false,
     details: {
-      propertyId: "",
+      propertyMLS: "",
       parish: function(t) {
         var parishz = [
           "Kingston",

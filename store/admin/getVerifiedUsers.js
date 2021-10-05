@@ -32,8 +32,8 @@ export const actions = {
 
         const ref = this.$fire.firestore
           .collection("users")
-          .where("verified", "==", true)
-          .orderBy("uid", "asc")
+          .where("verification.verified", "==", true)
+          .orderBy("timestamp.create", "asc")
           .startAfter(state.lastVisible || "")
           .limit(8);
 

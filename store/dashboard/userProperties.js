@@ -33,7 +33,7 @@ export const actions = {
         const ref = this.$fire.firestore
           .collection("properties")
           .where("uploader", "==", user.uid)
-          .orderBy("timestamp", "desc")
+          .orderBy("timestamp.created", "desc")
           .startAfter(state.lastVisible || {})
           .limit(8);
 

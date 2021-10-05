@@ -108,7 +108,7 @@
                   prepend-icon="mdi-check-decagram"
                   label="Account Verified"
                   required
-                  v-model="profile.verified"
+                  v-model="profile.verification.verified"
                   :color="iconColor"
                   disabled
                 ></v-text-field
@@ -127,8 +127,8 @@
               ></v-col>
             </v-row>
             <v-btn
-            color="green accent-4"
-            dark
+              color="green accent-4"
+              dark
               type="submit"
               :disabled="disableUpdateAccount"
               :loading="updateDetailsLoader"
@@ -137,7 +137,7 @@
           </v-form>
         </v-tab-item>
 
-        <v-tab-item v-if="!profile.verified">
+        <v-tab-item v-if="!profile.verification.verified">
           <v-sheet
             height="200px"
             class="d-flex justify-center align-center flex-column pa-3"
@@ -148,20 +148,22 @@
 
             <div class="d-flex">
               <v-icon color="blue darken-3">mdi-facebook mdi-36px</v-icon>
-              <v-icon color="red darken-1" class="mx-6">mdi-youtube mdi-36px</v-icon>
+              <v-icon color="red darken-1" class="mx-6"
+                >mdi-youtube mdi-36px</v-icon
+              >
               <v-icon color="green">mdi-whatsapp mdi-36px</v-icon>
             </div>
 
             <v-btn
-          nuxt
-          :to="{ name: 'dashboard-settings-verify-account' }"
-          dark
-          color="green accent-4"
-          class="mt-6"
-          elevation="0"
-        >
-          <v-icon left>mdi-check-decagram </v-icon> Verify account</v-btn
-        >
+              nuxt
+              :to="{ name: 'dashboard-settings-verify-account' }"
+              dark
+              color="green accent-4"
+              class="mt-6"
+              elevation="0"
+            >
+              <v-icon left>mdi-check-decagram </v-icon> Verify account</v-btn
+            >
           </v-sheet>
         </v-tab-item>
         <v-tab-item v-else>
@@ -282,7 +284,7 @@
 
           <v-col cols="12" md="6" class="mt-9">
             <v-form
-            v-if="!profile.profilePicture.src"
+              v-if="!profile.profilePicture.src"
               v-model="validPictures"
               @submit.prevent="validatePictures"
               ref="picturesForm"
@@ -629,8 +631,6 @@ export default {
           () => (this.disableUpdateAccount = !this.disableUpdateAccount),
           10000
         );
-
-    
       } else {
       }
     },
@@ -700,7 +700,8 @@ export default {
             .collection("users")
             .doc(user.uid)
             .update({
-              profilePicture: this.imageUrls[0]
+              profilePicture: this.imageUrls[0],
+              "timestamp.updated": this.$fireModule.firestore.FieldValue.serverTimestamp()
             })
             .then(() => {
               this.updatePictureLoader = false;

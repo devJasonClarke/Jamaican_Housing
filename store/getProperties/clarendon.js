@@ -34,8 +34,8 @@ export const actions = {
 
     const ref = this.$fire.firestore
     .collection("properties")
-      .where("parish", "==", "Clarendon")
-      .orderBy("timestamp", "desc")
+      .where("details.parish", "==", "Clarendon")
+      .orderBy("timestamp.created", "desc")
       .startAfter(state.lastVisible || {})
       .limit(8);
 
@@ -79,7 +79,7 @@ export const actions = {
       error => {
         commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
         // // console.log("Firebase");
-        // console.log(error);
+        console.log(error);
       }
     );
   },

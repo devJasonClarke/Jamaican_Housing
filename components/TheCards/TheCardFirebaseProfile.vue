@@ -14,7 +14,7 @@
           small
           label
           dark
-          v-if="property[0].verified"
+          v-if="property[0].verification.verified"
         >
           Verified Property
         </v-chip>
@@ -24,7 +24,7 @@
           small
           label
           dark
-          v-if="property[0].featured"
+          v-if="property[0].verification.featured"
         >
           Featured
         </v-chip>
@@ -53,7 +53,7 @@
         <v-card-title class="hyphens text-capitalize">
           <!-- {{ card.title }} -->
           {{ profanityFilter(property[0].description.name) }}
-          <v-tooltip color="blue " v-if="property[0].verified" top>
+          <v-tooltip color="blue " v-if="property[0].verification.verified" top>
             <template v-slot:activator="{ on, attrs }">
               <v-icon color="blue" dark v-bind="attrs" v-on="on" class="ml-2">
                 mdi-check-decagram mdi-18px
@@ -61,7 +61,7 @@
             </template>
             <span>Verified</span>
           </v-tooltip>
-          <v-tooltip color="orange" v-if="property[0].featured" top>
+          <v-tooltip color="orange" v-if="property[0].verification.featured" top>
             <template v-slot:activator="{ on, attrs }">
               <v-icon color="orange" dark v-bind="attrs" v-on="on" class="ml-2">
                 mdi-star mdi-18px

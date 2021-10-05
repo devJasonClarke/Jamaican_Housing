@@ -13,7 +13,7 @@
       ></v-skeleton-loader>
     </SectionPadding>
 
-   <SectionPadding class="pt-9" v-else-if="!profile.verified">
+    <SectionPadding class="pt-9" v-else-if="!profile.verification.verified">
       <v-sheet
         height="250px"
         class="d-flex justify-center align-center flex-column pa-3"
@@ -55,7 +55,7 @@
         >
       </v-sheet>
     </SectionPadding>
- 
+
     <SectionPadding
       v-else-if="profile.verificationProcess === 'pending'"
       class="pt-9"
@@ -198,7 +198,7 @@
               {{ `Bed Rooms ${property.details.bedrooms}` }} <br />
               {{ `Bath Rooms ${property.details.bathrooms}` }} <br />
               {{ `Garages ${property.details.garages}` }} <br />
-              {{ `Property Id ${property.details.propertyId}` }} <br /> -->
+              {{ `Property Id ${property.details.propertyMLS}` }} <br /> -->
 
               <v-container>
                 <p class="text-h6 pb-6">
@@ -228,7 +228,7 @@
                         dense
                         label="Size *"
                         type="number"
-                        v-model="property.details.size"
+                        v-model.number="property.details.size"
                         :color="iconColor"
                         suffix="Square Feet"
                         :rules="amountRulesMinOne"
@@ -272,7 +272,7 @@
                         type="number"
                         prefix="$"
                         suffix="JMD"
-                        v-model="property.details.price"
+                        v-model.number="property.details.price"
                         :color="iconColor"
                         :rules="amountRulesMinOne"
                       ></v-text-field
@@ -318,7 +318,7 @@
                         label="Number of Bed Rooms"
                         required
                         type="number"
-                        v-model="property.details.bedrooms"
+                        v-model.number="property.details.bedrooms"
                         :color="iconColor"
                         :rules="amountRules"
                       ></v-text-field
@@ -344,7 +344,7 @@
                         required
                         type="number"
                         min="4"
-                        v-model="property.details.bathrooms"
+                        v-model.number="property.details.bathrooms"
                         :color="iconColor"
                         :rules="amountRules"
                       ></v-text-field
@@ -367,7 +367,7 @@
                       <v-text-field
                         outlined
                         dense
-                        v-model="property.details.garages"
+                        v-model.number="property.details.garages"
                         label="Number of Garages"
                         type="number"
                         :color="iconColor"
@@ -379,7 +379,7 @@
                         outlined
                         dense
                         label="Multiple Listing Service ID (optional)"
-                        v-model="property.details.propertyId"
+                        v-model="property.details.propertyMLS"
                         :color="iconColor"
                       ></v-text-field
                     ></v-col>
@@ -674,10 +674,15 @@ export default {
           parish: "",
           community: "",
           bedrooms: null,
+          numberOfBedrooms: "",
           bathrooms: null,
           garages: null,
           rentType: "",
-          propertyId: ""
+          propertyMLS: ""
+        },
+        verification: {
+          featured: false,
+          verified: false
         },
         amenities: [],
         tours: {
@@ -911,13 +916,13 @@ export default {
           this.property.details.propertyType === "Factory" ||
           this.property.details.propertyType === "Farm/Agriculture"
         ) {
-          bedrooms = "0";
+          this.property.details.numberOfBedrooms = "0";
         } else if (this.property.details.bedrooms >= 4) {
-          bedrooms = "4 +";
+          this.property.details.numberOfBedrooms = "4 +";
           // console.log(bedrooms);
           // console.log(typeof bedrooms);
         } else {
-          bedrooms = `${this.property.details.bedrooms}`;
+          this.property.details.numberOfBedrooms = `${this.property.details.bedrooms}`;
           // console.log(bedrooms);
           // console.log(typeof bedrooms);
         }
@@ -925,14 +930,10 @@ export default {
         this.$fire.firestore
           .collection("properties")
           .add({
-            price: parseFloat(this.property.details.price),
-            parish: this.property.details.parish,
-            type: this.property.details.propertyType,
-            bedrooms: bedrooms,
-            featured: false,
-            verified: false,
-            propertyFor: this.property.details.propertyFor,
-
+            verification: {
+              featured: false,
+              verified: false
+            },
             description: this.property.description,
             details: this.property.details,
             amenities: this.property.amenities,
@@ -941,7 +942,10 @@ export default {
               matterport: this.matterportId
             },
             uploader: this.user.uid,
-            timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
+            timestamp: {
+              created: this.$fireModule.firestore.FieldValue.serverTimestamp(),
+              updated: this.$fireModule.firestore.FieldValue.serverTimestamp()
+            },
             images: this.imageUrls
           })
           .then(docRef => {
@@ -949,14 +953,10 @@ export default {
             if (this.previousUserProperties.length != 0) {
               this.addNewUserProperty([
                 {
-                  price: parseFloat(this.property.details.price),
-                  parish: this.property.details.parish,
-                  type: this.property.details.propertyType,
-                  bedrooms: bedrooms,
-                  featured: false,
-                  verified: false,
-                  propertyFor: this.property.details.propertyFor,
-
+                  verification: {
+                    featured: false,
+                    verified: false
+                  },
                   description: this.property.description,
                   details: this.property.details,
                   amenities: this.property.amenities,
@@ -965,6 +965,10 @@ export default {
                     matterport: this.matterportId
                   },
                   uploader: this.user.uid,
+                  timestamp: {
+                    created: this.$fireModule.firestore.FieldValue.serverTimestamp(),
+                    updated: this.$fireModule.firestore.FieldValue.serverTimestamp()
+                  },
                   images: this.imageUrls
                 },
                 docRef.id

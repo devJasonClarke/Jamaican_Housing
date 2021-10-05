@@ -43,9 +43,6 @@ export const actions = {
               fileName: ""
             },
             uid: userCredential.user.uid,
-            verified: false,
-            verificationProcess: 'no attempt',
-            role: "user",
             numberOfProperties: 0,
             favourites: [],
             personalDetails: {
@@ -68,7 +65,16 @@ export const actions = {
               whatsappNumber: null,
               website: ""
             },
-            timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
+            verification: {
+              verified: false,
+              verificationProcess: "no attempt",
+              verificationMessage: "",
+              role: "user"
+            },
+            timestamp: {
+              created: this.$fireModule.firestore.FieldValue.serverTimestamp(),
+              updated: this.$fireModule.firestore.FieldValue.serverTimestamp()
+            }
           });
       })
       //* check user and add user to state
@@ -110,12 +116,17 @@ export const actions = {
           .get()
           .then(doc => {
             if (doc.exists) {
-              
               // console.log("Doc EXIsts");
-              commit("dashboard/profile/SET_PROFILE", doc.data(), { root: true });
-              commit("dashboard/favourites/SET_FAVOURITES", doc.data().favourites, {
+              commit("dashboard/profile/SET_PROFILE", doc.data(), {
                 root: true
               });
+              commit(
+                "dashboard/favourites/SET_FAVOURITES",
+                doc.data().favourites,
+                {
+                  root: true
+                }
+              );
             } else {
               // console.log("setting google document");
               // console.log(result.user);
@@ -129,9 +140,12 @@ export const actions = {
                     fileName: ""
                   },
                   uid: result.user.uid,
-                  verified: false,
-                  verificationProcess: 'no attempt',
-                  role: "user",
+                  verification: {
+                    verified: false,
+                    verificationProcess: "no attempt",
+                    verificationMessage: "",
+                    role: "user"
+                  },
                   favourites: [],
                   numberOfProperties: 0,
                   personalDetails: {
@@ -155,7 +169,10 @@ export const actions = {
                     whatsappNumber: null,
                     website: ""
                   },
-                  timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
+                  timestamp: {
+                    created: this.$fireModule.firestore.FieldValue.serverTimestamp(),
+                    updated: this.$fireModule.firestore.FieldValue.serverTimestamp()
+                  }
                 });
             }
           });
@@ -172,17 +189,25 @@ export const actions = {
               .then(doc => {
                 if (doc.exists) {
                   // console.log("Document data exits:", doc.data());
-                  commit("dashboard/profile/SET_PROFILE", doc.data(), { root: true });
-                  commit("dashboard/favourites/SET_FAVOURITES", doc.data().favourites, {
+                  commit("dashboard/profile/SET_PROFILE", doc.data(), {
                     root: true
                   });
+                  commit(
+                    "dashboard/favourites/SET_FAVOURITES",
+                    doc.data().favourites,
+                    {
+                      root: true
+                    }
+                  );
                 } else {
                   // doc.data() will be undefined in this case
                   // console.log("No such document!");
                 }
               })
               .catch(error => {
-                commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
+                commit("snackbars/errors/LOG_ERROR", error.message, {
+                  root: true
+                });
               });
           } else {
             // User is signed out
@@ -258,17 +283,25 @@ export const actions = {
             .then(doc => {
               if (doc.exists) {
                 // console.log("Document data exits:", doc.data());
-                commit("dashboard/profile/SET_PROFILE", doc.data(), { root: true });
-                commit("dashboard/favourites/SET_FAVOURITES", doc.data().favourites, {
+                commit("dashboard/profile/SET_PROFILE", doc.data(), {
                   root: true
                 });
+                commit(
+                  "dashboard/favourites/SET_FAVOURITES",
+                  doc.data().favourites,
+                  {
+                    root: true
+                  }
+                );
               } else {
                 // doc.data() will be undefined in this case
                 // console.log("No such document!");
               }
             })
             .catch(error => {
-              commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
+              commit("snackbars/errors/LOG_ERROR", error.message, {
+                root: true
+              });
             });
         } else {
           // User is signed out

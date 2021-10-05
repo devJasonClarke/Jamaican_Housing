@@ -7,14 +7,19 @@
       elevation="0"
       class="rounded-lg card"
     >
-      <v-img :lazy-src='img' :src="property[0].images[0].src" height="200" class="pa-3">
+      <v-img
+        :lazy-src="img"
+        :src="property[0].images[0].src"
+        height="200"
+        class="pa-3"
+      >
         <v-chip
           class="text-uppercase mb-2 mr-1"
           color="blue"
           small
           label
           dark
-          v-if="property[0].verified"
+          v-if="property[0].verification.verified"
         >
           Verified Property
         </v-chip>
@@ -24,11 +29,11 @@
           small
           label
           dark
-          v-if="property[0].featured"
+          v-if="property[0].verification.featured"
         >
           Featured
         </v-chip>
-          <v-chip
+        <v-chip
           class="text-uppercase mb-2 mr-1"
           v-if="property[0].details.propertyFor == 'Off the market'"
           color="red"
@@ -39,7 +44,7 @@
           {{ property[0].details.propertyFor }}
         </v-chip>
         <v-chip
-        v-else
+          v-else
           class="text-uppercase mb-2 mr-1"
           color="green accent-4"
           small
@@ -48,13 +53,12 @@
         >
           For {{ property[0].details.propertyFor }}
         </v-chip>
-       
       </v-img>
       <div>
         <v-card-title class="hyphens text-capitalize">
           <!-- {{ card.title }} -->
           {{ profanityFilter(property[0].description.name) }}
-          <v-tooltip color="blue " v-if="property[0].verified" top>
+          <v-tooltip color="blue " v-if="property[0].verification.verified" top>
             <template v-slot:activator="{ on, attrs }">
               <v-icon color="blue" dark v-bind="attrs" v-on="on" class="ml-2">
                 mdi-check-decagram mdi-18px
@@ -62,7 +66,11 @@
             </template>
             <span>Verified</span>
           </v-tooltip>
-          <v-tooltip color="orange" v-if="property[0].featured" top>
+          <v-tooltip
+            color="orange"
+            v-if="property[0].verification.featured"
+            top
+          >
             <template v-slot:activator="{ on, attrs }">
               <v-icon color="orange" dark v-bind="attrs" v-on="on" class="ml-2">
                 mdi-star mdi-18px
