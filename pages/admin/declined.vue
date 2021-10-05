@@ -57,6 +57,7 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   //fetchOnServer: false,
+      middleware: ["admin"],
   fetch() {
     // console.log("fetch");
     // console.log(this.properties);

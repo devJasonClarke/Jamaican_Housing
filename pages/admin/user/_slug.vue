@@ -559,6 +559,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
+      middleware: ["admin"],
   layout: "dashboard",
   async fetch() {
     this.theParam = this.$route.params.slug;

@@ -19,7 +19,7 @@
         route="featured"
       />
 
-      <TheSwiperPropertyFeatured />
+      <TheSwiperPropertyFeaturedFirebase />
     </SectionPadding>
     <SectionPadding>
       <SectionTitles

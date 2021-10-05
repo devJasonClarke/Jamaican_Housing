@@ -55,12 +55,12 @@
         </v-chip>
       </v-img>
       <div>
-        <v-card-title class="hyphens text-capitalize">
+        <v-card-title class="hyphens text-capitalize mb-2">
           <!-- {{ card.title }} -->
-          {{ profanityFilter(property[0].description.name) }}
-          <v-tooltip color="blue " v-if="property[0].verification.verified" top>
+      <span>  {{ profanityFilter(property[0].description.name) }}
+          <v-tooltip  color="blue " v-if="property[0].verification.verified" top>
             <template v-slot:activator="{ on, attrs }">
-              <v-icon color="blue" dark v-bind="attrs" v-on="on" class="ml-2">
+              <v-icon color="blue" dark v-bind="attrs" v-on="on" class="ml-1">
                 mdi-check-decagram mdi-18px
               </v-icon>
             </template>
@@ -72,12 +72,13 @@
             top
           >
             <template v-slot:activator="{ on, attrs }">
-              <v-icon color="orange" dark v-bind="attrs" v-on="on" class="ml-2">
+              <v-icon color="orange" dark v-bind="attrs" v-on="on" class="ml-1">
                 mdi-star mdi-18px
               </v-icon>
             </template>
             <span>Featured</span>
           </v-tooltip>
+          </span>  
         </v-card-title>
 
         <v-card-subtitle class="pb-4 primary-green">

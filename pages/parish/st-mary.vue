@@ -85,7 +85,7 @@
         route="featured"
       />
 
-      <TheSwiperPropertyFeatured />
+      <TheSwiperPropertyFeaturedFirebase />
     </SectionPadding>
   </div>
 </template>
