@@ -108,7 +108,7 @@
       >
     </v-form>
     <v-btn
-      v-if="searchedProperties.length > 0"
+      v-if="selectedParish && selectedRealEstateType && selectedMaxPrice"
       class="text-capitalize"
       color="red"
       text
@@ -166,7 +166,7 @@ export default {
           this.selectedRealEstateType === "Farm/Agriculture"
         ) {
           this.setBedrooms("0");
-        };
+        }
 
         this.getSearchedPropertiesForSale();
       } else {

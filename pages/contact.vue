@@ -145,8 +145,8 @@ export default {
             email: this.email,
             message: this.message,
             timestamp: {
-              created: this.$fireModule.firestore.FieldValue.serverTimestamp(),
-              updated: this.$fireModule.firestore.FieldValue.serverTimestamp()
+              sent: this.$fireModule.firestore.FieldValue.serverTimestamp(),
+              read: this.$fireModule.firestore.FieldValue.serverTimestamp()
             },
             read: false,
             important: false,

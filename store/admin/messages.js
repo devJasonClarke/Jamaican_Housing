@@ -44,7 +44,7 @@ export const actions = {
 
         const ref = this.$fire.firestore
           .collection("adminMessages")
-          .orderBy("timestamp.created", "desc")
+          .orderBy("timestamp.sent", "desc")
           .startAfter(state.lastVisible || {})
           .limit(8);
 
@@ -103,7 +103,7 @@ export const actions = {
       .doc(info.messageId)
       .update({
         read: true,
-        "timestamp.updated": this.$fireModule.firestore.FieldValue.serverTimestamp()
+        "timestamp.read": this.$fireModule.firestore.FieldValue.serverTimestamp()
       });
 
       commit("CHANGE_MESSAGE_READ_STATE", info.index);
@@ -118,6 +118,7 @@ export const actions = {
       .doc(messageId)
       .delete()
       .then(() => {
+        commit("snackbars/success/LOG_SUCCESS", "Message successfully deleted!", { root: true });
         // console.log("Document successfully deleted!");
       })
       .catch(error => {

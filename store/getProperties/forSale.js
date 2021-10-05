@@ -218,7 +218,7 @@ export const actions = {
       .where("details.propertyType", "==", state.search.type)
       .where("details.propertyFor", "==", "Sale")
       .orderBy("details.price", "desc")
-      .orderBy("details.timestamp", "desc")
+      .orderBy("timestamp.created", "desc")
       .startAfter(state.lastSearchedVisible || {})
       .limit(8);
 
