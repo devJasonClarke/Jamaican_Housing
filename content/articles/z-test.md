@@ -1,5 +1,5 @@
 ---
-title: An Introduction
+title: Z test
 
 author:
   name: Jason Clarke
@@ -14,7 +14,7 @@ tags:
   
 image: g39p1kDjvSY
 read_time: 3
-
+blogNumber: 1
 description: This is an introduction
 ---
 
