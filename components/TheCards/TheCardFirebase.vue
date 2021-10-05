@@ -147,7 +147,7 @@
 </template>
 
 <script>
-import img from "~/assets/images/houses/3.jpg";
+import img from "~/assets/images/houses/preview.jpg";
 import { mapGetters } from "vuex";
 export default {
   props: {

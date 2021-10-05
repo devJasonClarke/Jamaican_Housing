@@ -61,7 +61,7 @@
       description: '{{lorem(60, "words")}}',
       name: "{{firstName()}} {{surname()}} Property"
     },
-    price: "{{integer(20000, 800000)}}",
+    price: "{{integer(1400000, 100000000)}}",
     featured: false,
     details: {
       propertyMLS: "",
