@@ -355,7 +355,7 @@ export default {
     if (this.newMessages.length == 0) {
       this.getNewMessages();
     }
-    if (this.newAdminMessages.length == 0) {
+     if (this.newAdminMessages.length == 0) {
       this.getNewAdminMessages();
     }
   },

@@ -71,7 +71,7 @@
             </p>
             <p>
               Date Sent:
-              {{ message[0].timestamp.toDate().toDateString() }}
+              {{ message[0].timestamp.created.toDate().toDateString() }}
             </p>
             <p>Message: {{ profanityFilter(message[0].message) }}</p>
             <v-btn

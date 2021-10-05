@@ -34,7 +34,7 @@ export const actions = {
           .collection("users")
           .where("verification.verified", "==", false)
           .where("verification.verificationProcess", "==", 'declined')
-          .orderBy("timestamp.create", "desc")
+          .orderBy("timestamp.created", "desc")
           .startAfter(state.lastVisible || '')
           .limit(8);
 

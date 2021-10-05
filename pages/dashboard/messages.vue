@@ -71,7 +71,7 @@
             </p>
             <p>
               Date Sent:
-              {{ message[0].timestamp.toDate().toLocaleDateString() }}
+              {{ message[0].timestamp.created.toDate().toLocaleDateString() }}
             </p>
             <p>
               Property Interested In:

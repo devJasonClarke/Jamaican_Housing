@@ -44,7 +44,7 @@ export const actions = {
         const ref = this.$fire.firestore
           .collection("messages")
           .where("recipient", "==", user.uid)
-          .orderBy("timestamp", "desc")
+          .orderBy("timestamp.created", "desc")
           .startAfter(state.lastVisible || {})
           .limit(8);
 
@@ -102,7 +102,8 @@ export const actions = {
       .collection("messages")
       .doc(messageId)
       .update({
-        read: true
+        read: true,
+        "timestamp.updated": this.$fireModule.firestore.FieldValue.serverTimestamp()
       });
 
     commit("READ_MESSAGE");

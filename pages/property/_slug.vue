@@ -1065,7 +1065,10 @@ export default {
           recipient: this.uploader.uid,
           email: this.email,
           phoneNumber: this.phoneNumber,
-          timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
+          timestamp: {
+              created: this.$fireModule.firestore.FieldValue.serverTimestamp(),
+              updated: this.$fireModule.firestore.FieldValue.serverTimestamp()
+            },
           message: this.message,
           property: `${process.env.baseUrl}property/${this.theParam}`,
           read: false

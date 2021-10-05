@@ -54,6 +54,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
+    middleware: ["admin"],
   //fetchOnServer: false,
   fetch() {
     // console.log("fetch");

@@ -42,7 +42,10 @@
             <div class="text-center d-flex flex-column">
               <p class="text-h5 font-weight-bold mt-4 mb-0">
                 {{ profanityFilter(user.personalDetails.displayName) }}
-                <SymbolVerified v-if="user.verified" :role="user.role" />
+                <SymbolVerified
+                  v-if="user.verification.verified"
+                  :role="user.verification.role"
+                />
               </p>
               <a
                 :href="`mailto:${user.contact.email}`"
@@ -209,13 +212,15 @@
             </div>
             <v-divider
               class="mt-2 mb-4"
-              v-if="user.verified && user.role == 'realtor'"
+              v-if="user.verification.verified"
             ></v-divider>
             <div
               class="max-width mx-auto my-0"
-              v-if="user.verified && user.role == 'realtor'"
+              v-if="user.verification.verified"
             >
-              <p class="mb-2 text-h6 font-weight-bold">Jason Provided</p>
+              <p class="mb-2 text-h6 font-weight-bold">
+                {{ profanityFilter(user.personalDetails.firstName) }} Provided
+              </p>
               <ul class="body-1">
                 <li class="grey--text text--darken-2">&#8226; Government ID</li>
                 <li class="grey--text text--darken-2">
@@ -370,7 +375,7 @@
                     <v-text-field
                       outlined
                       dense
-                      v-model="user.verified"
+                      v-model="user.verification.verified"
                       prepend-icon="mdi-check-decagram"
                       label="Account Verified"
                       required
@@ -382,7 +387,7 @@
                     <v-text-field
                       outlined
                       dense
-                      v-model="user.verificationProcess"
+                      v-model="user.verification.verificationProcess"
                       prepend-icon="mdi-check-decagram"
                       label="Verified Process"
                       required
@@ -393,7 +398,7 @@
                 </v-row>
               </v-form>
             </v-tab-item>
-            <v-tab-item v-if="user.role === 'admin'">
+            <v-tab-item v-if="user.verification.role === 'admin'">
               <div>
                 <p class="text-h6">
                   User is an Admin
@@ -427,7 +432,7 @@
               <v-divider class="my-6"></v-divider>
             </v-tab-item>
 
-            <v-tab-item v-if="user.role === 'admin'">
+            <v-tab-item v-if="user.verification.role === 'admin'">
               <div>
                 <p class="text-h6">
                   User is an Admin
@@ -470,7 +475,7 @@
                     <v-select
                       outlined
                       dense
-                      v-model="user.verified"
+                      v-model="user.verification.verified"
                       prepend-icon="mdi-check-decagram"
                       label="Account Verified"
                       item-color="green"
@@ -483,7 +488,7 @@
                     <!--        <v-text-field
                       outlined
                       dense
-                      v-model="user.verificationProcess"
+                      v-model="user.verification.verificationProcess"
                       prepend-icon="mdi-check-decagram"
                       label="Verification Process"
                       required
@@ -494,7 +499,7 @@
                     <v-select
                       outlined
                       dense
-                      v-model="user.verificationProcess"
+                      v-model="user.verification.verificationProcess"
                       prepend-icon="mdi-check-decagram"
                       label="Account Verification"
                       item-color="green"
@@ -507,7 +512,7 @@
                     <!--        <v-text-field
                       outlined
                       dense
-                      v-model="user.verificationProcess"
+                      v-model="user.verification.verificationProcess"
                       prepend-icon="mdi-check-decagram"
                       label="Verification Process"
                       required
@@ -518,7 +523,7 @@
                     <v-select
                       outlined
                       dense
-                      v-model="user.role"
+                      v-model="user.verification.role"
                       prepend-icon="mdi-check-decagram"
                       label="User Role"
                       item-color="green"
@@ -569,7 +574,7 @@ export default {
         } else {
           // doc.data() will be undefined in this case
           // console.log("No such document!");
-            this.logError('Red Flag! User verification information not found!')
+          this.logError("Red Flag! User verification information not found!");
         }
       })
       .catch(error => {
@@ -710,7 +715,7 @@ export default {
           } else {
             // doc.data() will be undefined in this case
             // console.log("No such document!");
-                  this.logError('Red Flag! User verification information not found!')
+            this.logError("Red Flag! User verification information not found!");
           }
         })
         .catch(error => {
@@ -723,9 +728,11 @@ export default {
         .collection("users")
         .doc(this.theParam)
         .update({
-          verificationProcess: this.user.verificationProcess,
-          verified: this.user.verified,
-          role: this.user.role
+          "verification.verificationProcess": this.user.verification
+            .verificationProcess,
+          "verification.verified": this.user.verification.verified,
+          "verification.role": this.user.verification.role,
+          "verification.timestamp": this.$fireModule.firestore.FieldValue.serverTimestamp()
         })
         .then(() => {
           this.logSuccess("Successfully updated user's verification status!");

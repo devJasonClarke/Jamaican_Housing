@@ -31,18 +31,20 @@ export const getters = {
 export const actions = {
   getNewMessages({ commit, state, rootState }) {
     // console.log("getNewMessages");
+    let role = localStorage.getItem("role");
     this.$fireModule.auth().onAuthStateChanged(user => {
-      if (user && rootState.dashboard.profile.profile.verification.role == "admin") {
+      // console.log(role);
+      if (user && role === "admin") {
         // console.log("Get User: User");
         // console.log(user);
-        // // console.log(`Properties: ${state.properties.length}`);
+        // console.log(`Properties: ${state.newMessages.length}`);
 
-        // // console.log("lastVisible");
-        // // console.log(state.lastVisible);
+        // console.log("lastVisible");
+        // console.log(state.lastVisible);
 
         const ref = this.$fire.firestore
           .collection("adminMessages")
-          .orderBy("timestamp", "desc")
+          .orderBy("timestamp.created", "desc")
           .startAfter(state.lastVisible || {})
           .limit(8);
 
@@ -52,11 +54,11 @@ export const actions = {
               "SET_LAST_VISIBLE",
               Object.freeze(querySnapshot.docs[querySnapshot.docs.length - 1])
             );
-        //    console.log("lastVisible_2");
-       //     console.log(state.lastVisible);
+            //    // console.log("lastVisible_2");
+            //     // console.log(state.lastVisible);
 
             if (querySnapshot.empty) {
-          //    console.log("Empty");
+              //    // console.log("Empty");
 
               commit("SET_PAGINATE_NEXT");
             }
@@ -71,7 +73,7 @@ export const actions = {
             }
 
             querySnapshot.forEach(doc => {
-           //   console.log(`This Document was fetched ${doc.id}`);
+              //   // console.log(`This Document was fetched ${doc.id}`);
               commit("SET_Messages", [doc.data(), doc.id]);
             });
 
@@ -83,8 +85,8 @@ export const actions = {
           },
           error => {
             commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
-            // // console.log("Firebase");
-            console.log(error);
+            // console.log("Firebase");
+            // console.log(error);
           }
         );
       } else {
@@ -100,7 +102,8 @@ export const actions = {
       .collection("adminMessages")
       .doc(messageId)
       .update({
-        read: true
+        read: true,
+        "timestamp.updated": this.$fireModule.firestore.FieldValue.serverTimestamp()
       });
 
     commit("READ_MESSAGE");
@@ -149,7 +152,7 @@ export const actions = {
 export const mutations = {
   SET_Messages: (state, data) => {
     state.newMessages.push(data);
-    // // console.log(`Set properties: ` + state.properties);
+    // console.log(`Set properties: ` + state.properties);
   },
   SET_LAST_VISIBLE: (state, data) => {
     /*     // console.log("Set_Last_Visible");

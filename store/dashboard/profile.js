@@ -246,7 +246,7 @@ export const mutations = {
   SET_PROFILE: (state, data) => {
     state.profile = data;
     state.userAthenticated = true;
-    localStorage.setItem("role", data.role);
+    localStorage.setItem("role", data.verification.role);
   },
   SET_ABOUT: (state, value) => {
     state.profile.personalDetails.about = value;

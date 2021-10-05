@@ -19,7 +19,7 @@ export const getters = {
 
 export const actions = {
   getVerifiedUsers({ commit, state }) {
-    // console.log("getTheProperty");
+    console.log("getTheProperty");
 
     this.$fireModule.auth().onAuthStateChanged(user => {
       if (user) {
@@ -33,9 +33,10 @@ export const actions = {
         const ref = this.$fire.firestore
           .collection("users")
           .where("verification.verified", "==", true)
-          .orderBy("timestamp.create", "asc")
-          .startAfter(state.lastVisible || "")
+          .orderBy("timestamp.created", "desc")
+          .startAfter(state.lastVisible || {})
           .limit(8);
+
 
         ref.get().then(
           querySnapshot => {
@@ -43,11 +44,11 @@ export const actions = {
               "SET_LAST_VISIBLE",
               Object.freeze(querySnapshot.docs[querySnapshot.docs.length - 1])
             );
-            // // console.log("lastVisible_2");
-            // // console.log(state.lastVisible);
+            console.log("lastVisible_2");
+            console.log(state.lastVisible);
 
             if (querySnapshot.empty) {
-              // console.log("Empty");
+              console.log("Empty");
 
               commit("SET_PAGINATE_NEXT");
             }
@@ -58,7 +59,7 @@ export const actions = {
             }
 
             querySnapshot.forEach(doc => {
-              // console.log(`This Document was fetched ${doc.id}`);
+              console.log(`This Document was fetched ${doc.id}`);
               commit("SET_PROPERTIES", [doc.data(), doc.id]);
             });
 
@@ -72,8 +73,8 @@ export const actions = {
           },
           error => {
             commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
-            // // console.log("Firebase");
-            //   console.log(error);
+            console.log("Firebase");
+             console.log(error);
           }
         );
       } else {
@@ -106,9 +107,9 @@ export const actions = {
   deleteProperty({ commit, state }, data) {
     commit("DELETE_LOADING", true);
 
-    // console.log(data.id);
-    // console.log(data.property);
-    // console.log("Delete the property");
+    console.log(data.id);
+    console.log(data.property);
+    console.log("Delete the property");
 
     //let index = state.properties.indexOf([data.property, data.id]);
 
@@ -124,18 +125,18 @@ export const actions = {
 
     this.$fireModule.auth().onAuthStateChanged(user => {
       if (user) {
-        // console.log(user.uid);
+        console.log(user.uid);
         if (data.property.images.length > 0) {
           for (let i = 0; i < data.property.images.length; i++) {
-            // console.log(data.property.images[i].fileName);
+            console.log(data.property.images[i].fileName);
 
             let ref = storage.child(
               `property_images/${user.uid}/${data.property.images[i].fileName}`
             );
 
             ref.delete().catch(error => {
-              // console.log("delete error");
-              // console.log(error);
+              console.log("delete error");
+              console.log(error);
               commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
             });
           }
@@ -185,11 +186,11 @@ export const actions = {
 export const mutations = {
   SET_PROPERTIES: (state, data) => {
     state.properties.push(data);
-    // // console.log(`Set properties: ` + state.properties);
+    console.log(`Set properties: ` + state.properties);
   },
   SET_LAST_VISIBLE: (state, data) => {
-    /*     // console.log("Set_Last_Visible");
-    // console.log(data); */
+    /*     console.log("Set_Last_Visible");
+    console.log(data); */
     state.lastVisible = data;
   },
   LOADING: (state, data) => {
@@ -221,7 +222,7 @@ export const mutations = {
     };
   },
   REMOVE_USER_PROPERTY_STATE: state => {
-    // console.log("LOG out From Remove User");
+    console.log("LOG out From Remove User");
     state.properties = [];
     state.lastVisible = null;
     state.loading = true;

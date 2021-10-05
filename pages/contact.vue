@@ -1,7 +1,7 @@
 <template>
   <div>
     <TheMetaTags :title="title" :description="description" />
-    <v-img :lazy-src='img' :src="img" min-height="300" max-height="400"></v-img>
+    <v-img :lazy-src="img" :src="img" min-height="300" max-height="400"></v-img>
     <SectionPadding>
       <SectionTitlesSecondary
         mainTitle="Contact"
@@ -144,7 +144,10 @@ export default {
             phoneNumber: this.phoneNumber,
             email: this.email,
             message: this.message,
-            timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
+            timestamp: {
+              created: this.$fireModule.firestore.FieldValue.serverTimestamp(),
+              updated: this.$fireModule.firestore.FieldValue.serverTimestamp()
+            },
             read: false,
             important: false,
             urgent: false
@@ -160,8 +163,6 @@ export default {
             this.logError(error.message);
             this.loading = false;
           });
-
-  
       } else {
         this.logError("Please complete required sections.");
       }

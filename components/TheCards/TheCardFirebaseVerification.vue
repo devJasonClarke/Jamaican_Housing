@@ -58,11 +58,11 @@
             >
             <v-col cols="12" class="py-2"
               ><v-icon class="mr-3">mdi-check-decagram mdi-18px</v-icon
-              >{{ user[0].verified }}</v-col
+              >{{ user[0].verification.verified }}</v-col
             >
             <v-col cols="12" class="py-2"
               ><v-icon class="mr-3">mdi-account mdi-18px</v-icon
-              >{{ user[0].role }}</v-col
+              >{{ user[0].verification.role }}</v-col
             >
           </v-row>
         </v-card-text>
