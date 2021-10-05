@@ -164,12 +164,11 @@ export default {
       deleteMessage: "admin/messages/deleteMessage",
       removeLocalMessage: "admin/messages/removeLocalMessage",
       setLoading: "admin/messages/setLoading",
-      getNewMessages: "admin/messages/getNewMessages",
-      changeMessageReadState: "admin/messages/changeMessageReadState"
+      getNewMessages: "admin/messages/getNewMessages"
     }),
-    updateMessage(message, index) {
-      this.readMessage(message);
-      this.changeMessageReadState(index);
+    updateMessage(messageId, index) {
+      this.readMessage({ messageId, index });
+
       // console.log(message);
       // console.log(index);
     },
@@ -198,9 +197,9 @@ export default {
     title() {
       return `Messages | Admin`;
     },
-     description() {
+    description() {
       return ` Admin`;
-    },
+    }
   }
 };
 </script>

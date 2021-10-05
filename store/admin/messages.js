@@ -94,26 +94,21 @@ export const actions = {
       }
     });
   },
-  readMessage({ commit }, messageId) {
+  readMessage({ commit }, info) {
     // console.log("read message");
     // console.log(messageId);
 
     this.$fire.firestore
       .collection("adminMessages")
-      .doc(messageId)
+      .doc(info.messageId)
       .update({
         read: true,
         "timestamp.updated": this.$fireModule.firestore.FieldValue.serverTimestamp()
       });
 
-    commit("READ_MESSAGE");
+      commit("CHANGE_MESSAGE_READ_STATE", info.index);
   },
-  changeMessageReadState({ commit }, index) {
-    // console.log("change local message state");
-    // console.log(index);
 
-    commit("CHANGE_MESSAGE_READ_STATE", index);
-  },
   deleteMessage({ commit }, messageId) {
     // console.log("read message");
     // console.log(messageId);
