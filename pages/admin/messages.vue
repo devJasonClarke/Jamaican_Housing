@@ -150,7 +150,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
-      middleware: ["admin"],
+  middleware: ["admin"],
   layout: "dashboard",
   fetch() {
     // console.log("fetch");
