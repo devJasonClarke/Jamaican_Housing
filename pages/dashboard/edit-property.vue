@@ -985,8 +985,8 @@ export default {
             details: this.property.details,
             amenities: this.property.amenities,
             tours: {
-              youtube: this.youtubeVideoId,
-              matterport: this.matterportId
+              youtube: this.property.tours.youtube,
+              matterport: this.property.tours.matterport
             },
             uploader: this.user.uid,
             "timestamp.updated": this.$fireModule.firestore.FieldValue.serverTimestamp(),
@@ -1003,8 +1003,8 @@ export default {
                 details: this.property.details,
                 amenities: this.property.amenities,
                 tours: {
-                  youtube: this.youtubeVideoId,
-                  matterport: this.matterportId
+                  youtube: this.property.tours.youtube,
+                  matterport: this.property.tours.matterport
                 },
                 uploader: this.user.uid,
                 images: this.property.images.concat(this.imageUrls)

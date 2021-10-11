@@ -183,7 +183,7 @@
                   label="Facebook Account URL (optional)"
                   required
                   prepend-icon="mdi-facebook"
-                  validate-on-blur
+                   
                   v-model="facebook"
                   :color="iconColor"
                   :rules="websiteRules"
@@ -196,7 +196,7 @@
                   dense
                   label="Instagram Account URL (optional)"
                   required
-                  validate-on-blur
+                   
                   v-model="instagram"
                   :color="iconColor"
                   :rules="websiteRules"
@@ -209,7 +209,7 @@
                   prepend-icon="mdi-linkedin"
                   label="LinkedIn Account URL (optional)"
                   required
-                  validate-on-blur
+                   
                   v-model="linkedIn"
                   :color="iconColor"
                   :rules="websiteRules"
@@ -222,7 +222,7 @@
                   prepend-icon="mdi-youtube"
                   label="Youtube Account URL (optional)"
                   required
-                  validate-on-blur
+                   
                   v-model="youtube"
                   :color="iconColor"
                   :rules="websiteRules"
@@ -233,21 +233,27 @@
                   outlined
                   prepend-icon="mdi-whatsapp"
                   dense
-                  validate-on-blur
+                   
                   label="Whatsapp Number (optional)"
                   required
                   v-model="whatsapp"
-                  :rules="whatsappNumberRules"
+                  :rules="
+                    whatsapp
+                      ? whatsappNumberRules
+                      : [value => !/[ ]/.test(value) || 'no spaces allowed']
+                  "
                   :color="iconColor"
                   type="number"
                 ></v-text-field
-              ></v-col>
+              >
+              {{whatsapp}}
+              </v-col>
               <v-col cols="12" md="6">
                 <v-text-field
                   outlined
                   prepend-icon="mdi-web"
                   dense
-                  validate-on-blur
+                   
                   label="Website URL (optional)"
                   v-model="website"
                   :color="iconColor"

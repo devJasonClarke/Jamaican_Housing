@@ -71,12 +71,8 @@ export const state = () => ({
   ],
   websiteRules: [
     value => !/[ ]/.test(value) || "no spaces allowed",
-    value => (value || "").length <= 100 || "Max 100 characters"
-    /* value =>
-      /^(https?|ftp|torrent|image|irc):\/\/(-\.)?([^\s\/?\.#-]+\.?)+(\/[^\s]*)?$/i.test(
-        value
-      ) || "URL must be valid. Please enter full URL including HTTPS." */
-  ],
+    value => (value || "").length <= 100 || "Max 100 characters",
+   ],
   youtubeRules: [
     value => !/[ ]/.test(value) || "no spaces allowed",
     value =>
@@ -107,3 +103,5 @@ export const getters = {
   matterportRules: state => state.matterportRules,
   
 };
+
+//validate-on-blur put that in the input tag to run rules on input
