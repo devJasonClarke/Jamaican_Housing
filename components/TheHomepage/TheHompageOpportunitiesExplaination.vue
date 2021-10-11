@@ -26,7 +26,7 @@
             >
           </v-avatar>
           <p class="mt-6 text-body-1 font-weight-bold text-capitalize">
-            Get in touch with property owners
+            Get In Touch Faster
           </p>
           <p class="text-body-2">
             Use Real Estate Ja to contact those who can help you
