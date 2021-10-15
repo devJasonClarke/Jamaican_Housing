@@ -7,7 +7,7 @@
     <SectionPadding>
       <SectionTitlesNoLink
         subTitle="FIND YOUR PROPERTY TODAY"
-        mainTitle="Discover the best Real Estate opportunities around you"
+        mainTitle="Discover the best Real Estate opportunities"
       />
       <TheHompageOpportunitiesExplaination />
     </SectionPadding>
