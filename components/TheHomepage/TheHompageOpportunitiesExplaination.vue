@@ -42,7 +42,7 @@
             ></v-avatar
           >
           <p class="mt-6 text-body-1 font-weight-bold text-capitalize">
-            List your real estate
+            List your real estate for free
           </p>
           <p class="text-body-2">
             Use Real Estate Ja to advertise and post your real estate listings

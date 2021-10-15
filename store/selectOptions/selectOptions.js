@@ -47,7 +47,7 @@ export const state = () => ({
     ]
   },
 
-  bedrooms: ["0", "1", "2", "3", "4 +"],
+  bedrooms: ["1", "2", "3", "4 +"],
   buyProperty: true
 });
 
