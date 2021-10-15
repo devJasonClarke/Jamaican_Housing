@@ -9,7 +9,7 @@
         subTitle="FIND YOUR PROPERTY TODAY"
         mainTitle="Discover the best Real Estate opportunities around you"
       />
-    <TheHompageOpportunitiesExplaination />
+      <TheHompageOpportunitiesExplaination />
     </SectionPadding>
     <SectionPadding class="backgroundShade">
       <SectionTitles
@@ -58,7 +58,7 @@ export default {
     return {
       title: "Home | Real Estate Ja",
       description: "Welcome To Real Estate Ja",
-t: true
+      t: true
       /*       card: {
         title: "Sunny Private Studio Apartment",
         parish: "St. James",

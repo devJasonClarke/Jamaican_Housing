@@ -1,5 +1,5 @@
 <template>
-  <v-container  >
+  <v-container>
     <v-row>
       <v-col cols="11" class=" pb-0">
         <p
@@ -16,8 +16,7 @@
           {{ mainTitle }}
         </p>
         <v-spacer></v-spacer>
-       </v-col
-      >
+      </v-col>
     </v-row>
   </v-container>
 </template>

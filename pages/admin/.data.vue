@@ -9,7 +9,7 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      data:[]
+      data: []
       //  timestamp: this.$fireModule.firestore.FieldValue.serverTimestamp(),
     };
   },
