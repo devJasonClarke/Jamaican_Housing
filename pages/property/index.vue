@@ -253,7 +253,7 @@
               <a
                 target="_blank"
                 rel="nofollow noopener"
-                href="https://gen3d.netlify.app/"
+                href="https://www.facebook.com/"
               >
                 <v-btn icon color="blue darken-3" x-large>
                   <v-icon>mdi-facebook </v-icon>
