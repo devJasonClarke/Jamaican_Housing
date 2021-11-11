@@ -70,7 +70,7 @@
           <nuxt-content :document="article" />
         </article>
         <TheBlogAuthor :author="article.author" class="mt-12" />
-        <prev-next :prev="prev" :next="next" />
+        <TheBlogPagination :prev="prev" :next="next" />
       </v-container>
     </SectionPadding>
     <SectionPadding class="backgroundShade padding-top-and-bottom-alt">
