@@ -33,7 +33,7 @@
     <SectionPadding>
       <SectionTitles
         subTitle="Our Amazing support system"
-        mainTitle="Premiere Sponsors & Partners"
+        mainTitle="Premiere Partners"
         linkMessage="Meet the family"
         route="sponsors"
       />
