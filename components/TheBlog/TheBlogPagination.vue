@@ -6,7 +6,7 @@
         class="pa-3"
         :to="{ name: 'blog-slug', params: { slug: prev.slug } }"
       >
-        <div :class="[theme ? 'white--text' : 'black--text']">
+        <div>
           <p class="text-h6 mb-3">Previous Article:</p>
           <p class="body-1 mb-2">
             <v-icon>mdi-format-quote-open</v-icon>{{ prev.title }}
@@ -22,7 +22,7 @@
         class="pa-3"
         :to="{ name: 'blog-slug', params: { slug: next.slug } }"
       >
-        <div :class="[theme ? 'white--text' : 'black--text']">
+        <div>
           <p class="text-h6 mb-3">Next Article:</p>
           <p class="body-1 mb-2">
             <v-icon>mdi-format-quote-open</v-icon>{{ next.title }}

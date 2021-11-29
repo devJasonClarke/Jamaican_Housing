@@ -33,7 +33,7 @@
           >
             <img
               :src="
-                `https://source.unsplash.com/${article.author.image}/200x200`
+                `${article.author.image}`
               "
               alt="Author Photo"
               class="rounded-circle mr-3 author-img"

@@ -12,7 +12,7 @@
               height="150"
               width="150"
               :src="
-                `https://source.unsplash.com/${articles[0].author.image}/200x200`
+                `${articles[0].author.image}`
               "
               class="rounded-circle mx-auto my-0"
             ></v-img>

@@ -13,7 +13,7 @@
     >
       <v-avatar class="ma-3 mr-sm-4" size="125">
         <v-img
-          :src="`https://source.unsplash.com/${author.image}/125x125`"
+          :src="`${author.image}`"
         ></v-img>
       </v-avatar>
       <div>
