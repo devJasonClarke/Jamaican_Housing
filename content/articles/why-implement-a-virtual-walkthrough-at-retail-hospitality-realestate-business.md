@@ -1,5 +1,5 @@
 ---
-title: Why implement a Virtual Walkthrough at Retail, Hospitality & Real-estate business.
+title: Why implement a Virtual Walkthrough at a Retail, Hospitality & Real-estate business.
 
 author:
   name: VitrinaBox Official
@@ -12,7 +12,7 @@ tags:
 image: 376KN_ISplE
 read_time: 3
 blogNumber: 3
-description: Learn why you should implement a Virtual Walkthrough at Retail, Hospitality & Real-estate business.
+description: Learn why you should implement a Virtual Walkthrough at a Retail, Hospitality & Real-estate business.
 ---
 
 # Let us define the meaning of window-shopping and why people are “into it”?

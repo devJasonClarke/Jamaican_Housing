@@ -18,4 +18,4 @@ blogNumber: 2
 description: This is an introduction
 ---
 
-# An introduction
+# Welcome to Real Estate Ja!
