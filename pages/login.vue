@@ -7,16 +7,20 @@
       class="py-sm-6 px-sm-9 pa-6 mx-auto"
       elevation="0"
     >
-      <v-card-title class="px-0 text-h4 font-weight-bold d-flex justify-space-between align-center">
-        <span>{{ authState }}</span>  <v-btn
-    elevation="0"
-      fab
-      dark
-      small
+      <v-card-title
+        class="px-0 text-h4 font-weight-bold d-flex justify-space-between align-center"
+      >
+        <span>{{ authState }}</span>
+        <v-btn
+          elevation="0"
+          fab
+          dark
+          small
           color="success"
           nuxt
-           :to="{ name: 'index'}"
-    ><v-icon color="white">mdi-home</v-icon> </v-btn>
+          :to="{ name: 'index' }"
+          ><v-icon color="white">mdi-home</v-icon>
+        </v-btn>
       </v-card-title>
       <p class="px-0 body-1 grey--text text--darken-1">
         Welcome back! Great to see that you're onboard.
@@ -63,18 +67,19 @@
           depressed
           block
           type="submit"
+          
           >{{ authState }}</v-btn
         >
       </v-form>
       <p class="middle-text mt-3 grey--text">or</p>
 
       <v-btn block large depressed @click="googleLogin">
-          <img
-                          :src="require('~/assets/images/svg/google.svg')"
-                          width="30px"
-                          height="30px"
-                          class="mr-3 "
-                        />
+        <img
+          :src="require('~/assets/images/svg/google.svg')"
+          width="30px"
+          height="30px"
+          class="mr-3 "
+        />
         {{ authState }} with Google
       </v-btn>
 
@@ -98,8 +103,8 @@ export default {
 
       show1: false,
       credentials: {
-        email: "",
-        password: ""
+        email: "test@test.com",
+        password: "12345678"
       },
       valid: false
     };

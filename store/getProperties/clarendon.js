@@ -9,16 +9,14 @@ export const state = () => ({
   paginateNextSearched: {
     disabled: false,
     dark: true
-  },
-
-
+  }
 });
 
 export const getters = {
   properties: state => state.properties,
   loading: state => state.loading,
   lastVisible: state => state.lastVisible,
-  paginateNext: state => state.paginateNext,
+  paginateNext: state => state.paginateNext
 };
 
 export const actions = {
@@ -27,13 +25,13 @@ export const actions = {
 
     // console.log("Get User: User");
 
-    // // console.log(`Properties: ${state.properties.length}`);
+    // console.log(`Properties: ${state.properties.length}`);
 
-    // // console.log("lastVisible");
+    // console.log("lastVisible");
     // console.log(state.lastVisible);
 
     const ref = this.$fire.firestore
-    .collection("properties")
+      .collection("properties")
       .where("details.parish", "==", "Clarendon")
       .orderBy("timestamp.created", "desc")
       .startAfter(state.lastVisible || {})
@@ -45,8 +43,8 @@ export const actions = {
           "SET_LAST_VISIBLE",
           Object.freeze(querySnapshot.docs[querySnapshot.docs.length - 1])
         );
-        // // console.log("lastVisible_2");
-        // // console.log(state.lastVisible);
+        // console.log("lastVisible_2");
+        // console.log(state.lastVisible);
 
         if (querySnapshot.empty) {
           // console.log("Empty");
@@ -78,24 +76,21 @@ export const actions = {
       },
       error => {
         commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
-        // // console.log("Firebase");
+        // console.log("Firebase");
         console.log(error);
       }
     );
   },
 
-
-
   setLoading({ commit }, data) {
     commit("LOADING", data);
-  },
-
+  }
 };
 
 export const mutations = {
   SET_PROPERTIES: (state, data) => {
     state.properties.push(data);
-    // // console.log(`Set properties: ` + state.properties);
+    // console.log(`Set properties: ` + state.properties);
   },
   SET_LAST_VISIBLE: (state, data) => {
     /*     // console.log("Set_Last_Visible");
@@ -126,6 +121,5 @@ export const mutations = {
       dark: true
     };
     state.loading = true;
-  },
-
+  }
 };

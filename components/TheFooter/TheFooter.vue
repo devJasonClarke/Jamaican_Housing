@@ -85,7 +85,14 @@
     </SectionPadding>
     <div class="footer green darken-2 white--text  text-center">
       <p class="py-7 ma-0">
-        &copy; Real Estate JA {{ year }} | All rights reserved
+        &copy; Real Estate JA {{ year }} | All rights reserved | Developed by:
+        <a
+          class="orange--text"
+          href="https://github.com/devJasonClarke"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Jason Clarke</a
+        >
       </p>
     </div>
   </footer>

@@ -47,7 +47,13 @@
               v-bind="attrs"
               v-on="on"
               color="green accent-4"
-              ><v-icon>mdi-account</v-icon> Sign IN
+              @click="
+                login({
+                  email: 'test@test.com',
+                  password: '12345678'
+                })
+              "
+              ><v-icon>mdi-account</v-icon> Dashboard
             </v-btn>
           </template>
 

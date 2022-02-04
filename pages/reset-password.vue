@@ -100,7 +100,7 @@ export default {
           this.error = true;
           this.errorMessage = errorMessage;
           this.loading = false;
-          // // console.log(error);
+          // console.log(error);
           // console.log("error to email");
         });
     }

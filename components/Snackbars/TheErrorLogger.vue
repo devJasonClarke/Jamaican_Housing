@@ -40,7 +40,7 @@ export default {
     },
     error: function() {
       if (this.error === false) {
-        // // console.log('Remove watcher')
+        // console.log('Remove watcher')
         this.removeError();
       }
     }

@@ -21,7 +21,7 @@ export const mutations = {
     state.successMessage = success;
   },
   REMOVE_SUCCESS: state => {
-    // // console.log("REMOVE_Success " );
+    // console.log("REMOVE_Success " );
     state.successMessage = null;
   }
 };

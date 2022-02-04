@@ -1048,7 +1048,7 @@ export default {
         file => file.fileName === fileName
       );
 
-      // // console.log(this.property.images)
+      // console.log(this.property.images)
       // console.log(fileIndex);
 
       // Delete the file

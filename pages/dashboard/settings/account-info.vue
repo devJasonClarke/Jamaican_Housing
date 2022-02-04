@@ -757,7 +757,7 @@ export default {
       let storage = this.$fire.storage.ref();
       let ref = storage.child(`property_images/${this.user.uid}/${fileName}`);
 
-      // // console.log(this.property.images)
+      // console.log(this.property.images)
 
       // Delete the file
       ref

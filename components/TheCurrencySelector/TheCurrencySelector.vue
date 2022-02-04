@@ -29,7 +29,7 @@ export default {
     }),
     setTheCurrency() {
       const getCurrency = localStorage.getItem("activeCurrency");
-      // // console.log(`getCurrency: from default ${getCurrency}`);
+      // console.log(`getCurrency: from default ${getCurrency}`);
       if (getCurrency) {
         this.selectedCurrency = getCurrency;
       }

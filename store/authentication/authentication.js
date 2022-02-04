@@ -320,7 +320,7 @@ export const actions = {
 export const mutations = {
   CHECK_AUTHENTICATION: (state, user) => {
     if (state.user === null) {
-      // // console.log(user);
+      // console.log(user);
       localStorage.setItem("loggedIn", true);
       state.user = {
         email: user.email,
@@ -330,7 +330,7 @@ export const mutations = {
   },
   LOGIN: (state, user) => {
     if (state.user === null) {
-      // // console.log(user);
+      // console.log(user);
       localStorage.setItem("loggedIn", true);
 
       state.user = {

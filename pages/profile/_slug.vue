@@ -335,7 +335,7 @@ export default {
       })
       .catch(error => {
         this.logError(error.message);
-        // // console.log("Error getting document:", error);
+        // console.log("Error getting document:", error);
       });
 
     await this.loadUserProperties(this.$route.params.slug);
@@ -435,7 +435,7 @@ export default {
           }
         },
         error => {
-          // // console.log("Firebase");
+          // console.log("Firebase");
           // console.log(error);
 
           this.logError(error.message);

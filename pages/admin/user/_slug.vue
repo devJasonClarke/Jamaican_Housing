@@ -580,7 +580,7 @@ export default {
       })
       .catch(error => {
         this.logError(error.message);
-        // // console.log("Error getting document:", error);
+        // console.log("Error getting document:", error);
       });
     await this.loadUserProperties(this.$route.params.slug);
     /* let j = () => parishes.parishes.find(parish => parish.slug == theParam);

@@ -65,9 +65,9 @@ export const actions = {
     // console.log("Get User: User");
 
     let equal = "==";
-    // // console.log(`Properties: ${state.properties.length}`);
+    // console.log(`Properties: ${state.properties.length}`);
 
-    // // console.log("lastVisible");
+    // console.log("lastVisible");
     // console.log(state.lastVisible);
 
     const ref = this.$fire.firestore
@@ -88,8 +88,8 @@ export const actions = {
           "SET_LAST_VISIBLE",
           Object.freeze(querySnapshot.docs[querySnapshot.docs.length - 1])
         );
-        // // console.log("lastVisible_2");
-        // // console.log(state.lastVisible);
+        // console.log("lastVisible_2");
+        // console.log(state.lastVisible);
 
         if (querySnapshot.empty) {
           // console.log("Empty");
@@ -121,7 +121,7 @@ export const actions = {
       },
       error => {
         commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
-        // // console.log("Firebase");
+        // console.log("Firebase");
         console.log(error);
       }
     );
@@ -136,9 +136,9 @@ export const actions = {
 
     commit("REMOVE_PREVIOUS_SEARCHES");
 
-    // // console.log(`Properties: ${state.properties.length}`);
+    // console.log(`Properties: ${state.properties.length}`);
     commit("SET_PROPERTY_SEARCH", true);
-    // // console.log("lastVisible");
+    // console.log("lastVisible");
     // console.log(state.lastSearchedVisible);
 
     const ref = this.$fire.firestore
@@ -159,8 +159,8 @@ export const actions = {
           "SET_LAST_SEARCHED_VISIBLE",
           Object.freeze(querySnapshot.docs[querySnapshot.docs.length - 1])
         );
-        // // console.log("lastVisible_2");
-        // // console.log(state.lastVisible);
+        // console.log("lastVisible_2");
+        // console.log(state.lastVisible);
 
         if (querySnapshot.empty) {
           // console.log("Empty");
@@ -192,7 +192,7 @@ export const actions = {
       },
       error => {
         commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
-        // // console.log("Firebase");
+        // console.log("Firebase");
         console.log(error);
       }
     );
@@ -205,9 +205,9 @@ export const actions = {
     // console.log(state.search.type);
     // console.log("Get User: User");
 
-    // // console.log(`Properties: ${state.properties.length}`);
+    // console.log(`Properties: ${state.properties.length}`);
     commit("SET_PROPERTY_SEARCH", true);
-    // // console.log("lastVisible");
+    // console.log("lastVisible");
     // console.log(state.lastSearchedVisible);
 
     const ref = this.$fire.firestore
@@ -228,8 +228,8 @@ export const actions = {
           "SET_LAST_SEARCHED_VISIBLE",
           Object.freeze(querySnapshot.docs[querySnapshot.docs.length - 1])
         );
-        // // console.log("lastVisible_2");
-        // // console.log(state.lastVisible);
+        // console.log("lastVisible_2");
+        // console.log(state.lastVisible);
 
         if (querySnapshot.empty) {
           // console.log("Empty");
@@ -261,7 +261,7 @@ export const actions = {
       },
       error => {
         commit("snackbars/errors/LOG_ERROR", error.message, { root: true });
-        // // console.log("Firebase");
+        // console.log("Firebase");
         console.log(error);
       }
     );
@@ -295,7 +295,7 @@ export const actions = {
   },
   setPrice({ commit ,rootState}, value) {
     //  let price = parseFloat(value.replace(/[^0-9]/g, ""));
-    // // console.log(price);
+    // console.log(price);
     console.log(value / rootState.api.api.currencyRate )
     console.log(rootState.api.api.currencyRate)
     commit("SET_PRICE", value);
@@ -308,11 +308,11 @@ export const actions = {
 export const mutations = {
   SET_PROPERTIES: (state, data) => {
     state.properties.push(data);
-    // // console.log(`Set properties: ` + state.properties);
+    // console.log(`Set properties: ` + state.properties);
   },
   SET_SEARCHED_PROPERTIES: (state, data) => {
     state.searchedProperties.push(data);
-    // // console.log(`Set properties: ` + state.properties);
+    // console.log(`Set properties: ` + state.properties);
   },
   SET_LAST_VISIBLE: (state, data) => {
     /*     // console.log("Set_Last_Visible");

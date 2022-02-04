@@ -46,7 +46,7 @@ export default {
     },
     success: function() {
       if (this.success === false) {
-        // // console.log('Remove watcher')
+        // console.log('Remove watcher')
         this.removeSuccess();
       }
     }

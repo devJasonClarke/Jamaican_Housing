@@ -29,7 +29,7 @@ export const actions = {
     let country = state.country.country;
 
     // Test the API call lifecycle, ensure they are called only once per session
-    // // console.log(`False ${state.country}`);
+    // console.log(`False ${state.country}`);
 
     if (country === false) {
       const info = await fetch(
@@ -43,7 +43,7 @@ export const actions = {
 
       commit("GET_IP_INFO", info);
       // Test the API call lifecycle, ensure they are called only once per session
-      // // console.log(`Push ${state.country}`);
+      // console.log(`Push ${state.country}`);
     }
   }, */
 
@@ -51,7 +51,7 @@ export const actions = {
     let currency = state.currencies.currencies;
 
     // Test the API call lifecycle, ensure they are called only once per session
-    // // console.log(state.currencies);
+    // console.log(state.currencies);
 
     if (currency === false) {
       const currencies = await fetch(
@@ -74,7 +74,7 @@ export const actions = {
       commit("GET_Currencies", currencies.rates);
 
       // Test the API call lifecycle, ensure they are called only once per session
-      // // console.log(`Push Currency ${state.currencies}`);
+      // console.log(`Push Currency ${state.currencies}`);
     }
   },
   loadActiveCurrency({ commit }) {
@@ -94,7 +94,7 @@ export const mutations = {
       currencyCode: info.currency.currency_code
     };
     // Test the API call lifecycle, ensure they are called only once per session
-    // // console.log(`Action ${state.country}`);
+    // console.log(`Action ${state.country}`);
   }, */
   GET_Currencies: (state, currencies) => {
     state.currencies = currencies;
@@ -102,9 +102,9 @@ export const mutations = {
     const keyNames = Object.keys(myObject);
     state.currencyCodeList = keyNames;
     // Test the API call lifecycle, ensure they are called only once per session
-    // // console.log(`After Currency ${state.currencies}`);
+    // console.log(`After Currency ${state.currencies}`);
     const getCurrency = localStorage.getItem("activeCurrency");
-    // // console.log(`getCurrency: ${getCurrency}`);
+    // console.log(`getCurrency: ${getCurrency}`);
     if (getCurrency) {
       state.currencyRate = state.currencies[getCurrency];
       state.activeCurrency = getCurrency;
